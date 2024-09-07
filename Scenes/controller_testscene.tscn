@@ -22,8 +22,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.723612, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.72171, 0)
 shape = SubResource("BoxShape3D_s60uc")
 
-[node name="Camera3D" type="Camera3D" parent="Velocirambo"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68709, 3.82974)
+[node name="CameraTarget" type="Marker3D" parent="Velocirambo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.721483, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Velocirambo/CameraTarget"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.456751, 0.965609, 3.82974)
+current = true
 
 [node name="Testing Grounds" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.794376, 0)
