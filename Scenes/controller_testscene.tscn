@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://by5gu5p1a3bnx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s60uc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ay4yn"]
+size = Vector3(20, 1, 20)
+
+[node name="ControllerTestscene" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.267891, 0)
+
+[node name="Velocirambo" type="CharacterBody3D" parent="."]
+
+[node name="PlaceholderBody" type="CSGBox3D" parent="Velocirambo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.723612, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Velocirambo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.72171, 0)
+shape = SubResource("BoxShape3D_s60uc")
+
+[node name="Camera3D" type="Camera3D" parent="Velocirambo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68709, 3.82974)
+
+[node name="Testing Grounds" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.794376, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Testing Grounds"]
+size = Vector3(20, 1, 20)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Testing Grounds"]
+shape = SubResource("BoxShape3D_ay4yn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.855789, 0.466271, 0.22409, -0.373047, 0.256103, 0.891766, 0.358415, -0.84676, 0.393111, 0, 16.1203, 0)
