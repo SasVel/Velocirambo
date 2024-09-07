@@ -3,6 +3,16 @@ extends CharacterBody3D
 @export var speed = 5.0
 @export var jumpVelocity = 4.5
 
+@export var mouseSensitivity = 0.5
+@export var upperCameraLimitDegrees = -45.0 #how far down can the camera look/how high can it go
+@export var lowerCameraLimitDegrees = 18.0 #how far up can the camera look/how low can it go
+
+var mouseVelocity = Vector2(0, 0) #Don't confuse with sensitivity
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		mouseVelocity = event.screen_relative
+
 func _physics_process(delta):
 	gravity(delta)
 	player_movement(delta)
@@ -33,4 +43,21 @@ func player_movement(delta):
 
 #TODO
 func camera_movement(delta):
-	pass
+	if(Input.mouse_mode != Input.MOUSE_MODE_CAPTURED):
+		return
+	var oldCameraRotationY = $CameraTarget.rotation_degrees.y
+	var oldCameraRotationX = $CameraTarget.rotation_degrees.x
+
+	var newCameraRotationY = oldCameraRotationY - (mouseVelocity.x * mouseSensitivity)
+	if(newCameraRotationY > 360): newCameraRotationY -= 360
+	if(newCameraRotationY < -360): newCameraRotationY += 360
+
+	var newCameraRotationX = oldCameraRotationX - (mouseVelocity.y * mouseSensitivity)
+	if(newCameraRotationX > lowerCameraLimitDegrees): newCameraRotationX = lowerCameraLimitDegrees
+	if(newCameraRotationX < upperCameraLimitDegrees): newCameraRotationX = upperCameraLimitDegrees
+
+	print(newCameraRotationX)
+	print(newCameraRotationY)
+	$CameraTarget.rotation_degrees.y = newCameraRotationY
+	$CameraTarget.rotation_degrees.x = newCameraRotationX
+	mouseVelocity = Vector2(0, 0)
