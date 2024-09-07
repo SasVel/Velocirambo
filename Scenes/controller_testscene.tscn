@@ -1,4 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://by5gu5p1a3bnx"]
+[gd_scene load_steps=5 format=3 uid="uid://by5gu5p1a3bnx"]
+
+[ext_resource type="Script" path="res://Scripts/playSceneScript.gd" id="1_47xkn"]
+[ext_resource type="Script" path="res://Scripts/velocirambo.gd" id="1_t7r1w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s60uc"]
 
@@ -7,8 +10,10 @@ size = Vector3(20, 1, 20)
 
 [node name="ControllerTestscene" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.267891, 0)
+script = ExtResource("1_47xkn")
 
 [node name="Velocirambo" type="CharacterBody3D" parent="."]
+script = ExtResource("1_t7r1w")
 
 [node name="PlaceholderBody" type="CSGBox3D" parent="Velocirambo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.723612, 0)
