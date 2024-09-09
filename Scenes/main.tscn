@@ -1,9 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=3 format=3 uid="uid://07oru7jy6ubh"]
 
-[ext_resource type="Texture2D" uid="uid://de8dau7616l72" path="res://icon.svg" id="1_je3kq"]
+[ext_resource type="PackedScene" uid="uid://dvcx51efcyq38" path="res://Models/Arena - Copy.fbx" id="1_ovtbq"]
 
-[node name="Icon" type="Sprite2D"]
-position = Vector2(378.5, 208)
-rotation = 0.651249
-scale = Vector2(1.07031, 1.17188)
-texture = ExtResource("1_je3kq")
+[sub_resource type="Environment" id="Environment_k5ebw"]
+reflected_light_source = 2
+tonemap_mode = 2
+adjustment_enabled = true
+adjustment_brightness = 0.9
+adjustment_contrast = 0.95
+adjustment_saturation = 0.9
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k5ebw")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.568433, 0.82273, 0, -0.82273, 0.568433, 0, 39.8015, 0)
+shadow_enabled = true
+shadow_opacity = 0.3
+directional_shadow_mode = 0
+directional_shadow_fade_start = 0.863
+directional_shadow_max_distance = 64.5
+
+[node name="MainCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.27552, 0)
+
+[node name="Arena - Copy" parent="." instance=ExtResource("1_ovtbq")]

@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bn7sjso4b3xrx"]
+
+[ext_resource type="Texture2D" uid="uid://bfw15qcd162f6" path="res://Models/ArenaTextures/Stairs.png" id="1_vjc6s"]
+
+[resource]
+albedo_texture = ExtResource("1_vjc6s")
+texture_filter = 0

@@ -19,6 +19,14 @@ config/icon="res://icon.svg"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[file_customization]
+
+folder_colors={
+"res://Models/": "orange",
+"res://Scenes/": "teal",
+"res://Scripts/": "yellow"
+}
+
 [input]
 
 Forwards={
@@ -59,5 +67,9 @@ Leftclick={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_repeat=1
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/decals/filter=0
+textures/light_projectors/filter=0

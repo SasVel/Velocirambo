@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dla2m3vxn4hxl"]
+
+[ext_resource type="Texture2D" uid="uid://2e04hry7sxo7" path="res://Models/ArenaTextures/Ground.png" id="1_ismcd"]
+[ext_resource type="Texture2D" uid="uid://bicjiw6hkwig6" path="res://Models/ArenaTextures/GroundDisplacement.png" id="2_1p2v8"]
+
+[resource]
+diffuse_mode = 3
+albedo_texture = ExtResource("1_ismcd")
+heightmap_scale = -0.106
+heightmap_texture = ExtResource("2_1p2v8")
