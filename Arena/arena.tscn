@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cobs6br0x6ktt"]
+
+[ext_resource type="PackedScene" uid="uid://dvcx51efcyq38" path="res://Models/Arena - Copy.fbx" id="1_v40ef"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iv5ht"]
+size = Vector3(70, 1, 70)
+
+[node name="Arena" type="StaticBody3D"]
+
+[node name="Arena - Copy" parent="." instance=ExtResource("1_v40ef")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_iv5ht")

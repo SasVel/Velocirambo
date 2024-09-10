@@ -33,8 +33,7 @@ func gravity(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-
-func player_move(delta):
+func player_move(_delta):
 	# Do we need the ability to jump??? Letting it stay for now
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = jumpVelocity

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://by5gu5p1a3bnx"]
 
 [ext_resource type="Script" path="res://Scripts/playSceneScript.gd" id="1_47xkn"]
-[ext_resource type="Script" path="res://Scripts/velocirambo.gd" id="1_t7r1w"]
+[ext_resource type="Script" path="res://Player/velocirambo.gd" id="1_t7r1w"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s60uc"]
 
