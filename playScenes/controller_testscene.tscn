@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://by5gu5p1a3bnx"]
 
-[ext_resource type="Script" path="res://Scripts/playSceneScript.gd" id="1_47xkn"]
-[ext_resource type="Script" path="res://Player/velocirambo.gd" id="1_t7r1w"]
+[ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_hailg"]
+[ext_resource type="Script" path="res://Player/velocirambo.gd" id="2_a58gw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s60uc"]
 
@@ -10,12 +10,12 @@ size = Vector3(20, 1, 20)
 
 [node name="ControllerTestscene" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.267891, 0)
-script = ExtResource("1_47xkn")
+script = ExtResource("1_hailg")
 
 [node name="VeloAndCamera" type="Node3D" parent="."]
 
 [node name="Velocirambo" type="CharacterBody3D" parent="VeloAndCamera"]
-script = ExtResource("1_t7r1w")
+script = ExtResource("2_a58gw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VeloAndCamera/Velocirambo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.72171, 0)
