@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=7 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://cobs6br0x6ktt" path="res://Arena/arena.tscn" id="2_w2pg4"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="3_hkrak"]
+[ext_resource type="Script" path="res://UI/crosshair.gd" id="4_etnxk"]
 [ext_resource type="Script" path="res://UI/pause.gd" id="4_f25ew"]
 
 [sub_resource type="Environment" id="Environment_k5ebw"]
@@ -47,9 +48,12 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_etnxk")
+color = Color(0, 0, 0, 1)
+width = 4
 
 [node name="Bottom" type="Line2D" parent="UI/Crosshair"]
-points = PackedVector2Array(0, 20, 0, 4)
+points = PackedVector2Array(0, 4, 0, 20)
 width = 2.0
 
 [node name="Top" type="Line2D" parent="UI/Crosshair"]
@@ -57,11 +61,11 @@ points = PackedVector2Array(0, -4, 0, -20)
 width = 2.0
 
 [node name="Left" type="Line2D" parent="UI/Crosshair"]
-points = PackedVector2Array(-20, 0, -4, 0)
+points = PackedVector2Array(-4, 0, -20, 0)
 width = 2.0
 
 [node name="Right" type="Line2D" parent="UI/Crosshair"]
-points = PackedVector2Array(20, 0, 4, 0)
+points = PackedVector2Array(4, 0, 20, 0)
 width = 2.0
 
 [node name="Pause" type="Control" parent="UI"]
