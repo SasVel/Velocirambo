@@ -24,7 +24,8 @@ version_control/autoload_on_startup=true
 folder_colors={
 "res://Models/": "orange",
 "res://Player/": "blue",
-"res://playScenes/": "teal"
+"res://UI/": "green",
+"res://playScenes/": "yellow"
 }
 
 [input]

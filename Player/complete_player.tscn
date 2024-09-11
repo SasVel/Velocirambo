@@ -5,8 +5,10 @@
 [node name="CompletePlayer" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="Player" parent="." instance=ExtResource("1_g4u3e")]
+[node name="Player" parent="." node_paths=PackedStringArray("cameraTarget", "horizontalRotPivot") instance=ExtResource("1_g4u3e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.424251, 0)
+cameraTarget = NodePath("../CameraTarget")
+horizontalRotPivot = NodePath("../HorizontalRotationPivot")
 
 [node name="CameraTarget" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2037, -1.03841)

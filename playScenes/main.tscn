@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=6 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://cobs6br0x6ktt" path="res://Arena/arena.tscn" id="2_w2pg4"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="3_hkrak"]
+[ext_resource type="Script" path="res://UI/pause.gd" id="4_f25ew"]
 
 [sub_resource type="Environment" id="Environment_k5ebw"]
 reflected_light_source = 2
@@ -62,3 +63,10 @@ width = 2.0
 [node name="Right" type="Line2D" parent="UI/Crosshair"]
 points = PackedVector2Array(20, 0, 4, 0)
 width = 2.0
+
+[node name="Pause" type="Control" parent="UI"]
+process_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_f25ew")
