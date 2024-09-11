@@ -9,11 +9,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.424251, 0)
 
 [node name="CameraTarget" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2037, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2037, -1.03841)
 
 [node name="Camera3D" type="Camera3D" parent="CameraTarget"]
-transform = Transform3D(1, 0, 0, 0, 0.99822, 0.0596373, 0, -0.0596373, 0.99822, 0.948637, 1.86, 2.21327)
+transform = Transform3D(1, 0, 0, 0, 0.99822, 0.0596373, 0, -0.0596373, 0.99822, 0.948637, 2.35213, 2.48122)
 current = true
 
 [node name="HorizontalRotationPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.43601, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.4286, 0)
