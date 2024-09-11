@@ -4,7 +4,7 @@ extends CharacterBody3D
 ##Still unsure whether or not we will even keep the ability to jump.
 @export var jumpVelocity = 4.5
 ##how fast the body tries to catch up to the camera
-@export var turnSpeed = 30.0
+@export var turnSpeed = 25.0
 ##TODO Currently not being used
 @export var turningDeadZoneDegrees = 15.0
 
@@ -14,7 +14,7 @@ extends CharacterBody3D
 ##how far down can the camera look/how high can it go. This number should be negative.
 @export var upperCameraLimitDegrees = -45.0
 ##how far up can the camera look/how low can it go. This number should be positive.
-@export var lowerCameraLimitDegrees = 18.0
+@export var lowerCameraLimitDegrees = 40.0
 
 var mouseVelocity = Vector2(0, 0) #Don't confuse with sensitivity
 
@@ -75,6 +75,6 @@ func camera_turn(delta):
 	mouseVelocity = Vector2(0, 0)
 
 func turn_body_to_camera(delta):
-	var cameraRotation = $"../CameraTarget".rotation.y
+	var cameraRotation = $"../HorizontalRotationPivot".rotation.y
 	var oldPlayerRotation = rotation.y
 	rotation.y = lerp_angle(oldPlayerRotation, cameraRotation, turnSpeed*delta)
