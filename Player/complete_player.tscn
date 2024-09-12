@@ -1,14 +1,219 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdvqhvfu8pif1"]
+[gd_scene load_steps=5 format=3 uid="uid://bdvqhvfu8pif1"]
 
 [ext_resource type="PackedScene" uid="uid://ctdbu511qitd4" path="res://Player/player.tscn" id="1_g4u3e"]
+[ext_resource type="Script" path="res://Player/skeleton_3d.gd" id="2_bkcex"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2qo2l"]
+height = 0.176361
+radius = 0.240518
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kfp7e"]
+height = 0.979422
+radius = 0.259374
 
 [node name="CompletePlayer" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0423601, 0)
 
-[node name="Player" parent="." node_paths=PackedStringArray("cameraTarget", "horizontalRotPivot") instance=ExtResource("1_g4u3e")]
+[node name="Player" parent="." node_paths=PackedStringArray("cameraTarget", "horizontalRotPivot", "skeleton") instance=ExtResource("1_g4u3e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.424251, 0)
 cameraTarget = NodePath("../CameraTarget")
 horizontalRotPivot = NodePath("../HorizontalRotationPivot")
+skeleton = NodePath("RaptorCommando/RaptorCommando_001/Skeleton3D")
+
+[node name="Skeleton3D" parent="Player/RaptorCommando/RaptorCommando_001" index="0"]
+bones/0/position = Vector3(-0.00169448, 2.88222, 0.340054)
+bones/4/rotation = Quaternion(-0.0700276, 0.0110761, 0.00527357, 0.99747)
+bones/6/position = Vector3(-0.00743061, 0.412671, 0.381833)
+bones/6/rotation = Quaternion(0.0110272, 0.860259, 0.509647, 0.00959647)
+bones/7/rotation = Quaternion(0.0113345, 0.783853, 0.620677, 0.0143233)
+bones/9/rotation = Quaternion(-0.207229, 0.205034, -0.663421, 0.689122)
+bones/10/rotation = Quaternion(0.601083, 3.1522e-06, -2.40723e-06, 0.799187)
+bones/10/scale = Vector3(1, 0.999985, 1.00001)
+bones/12/rotation = Quaternion(-0.132881, -0.133427, 0.681443, 0.707231)
+bones/13/rotation = Quaternion(0.399394, -3.6939e-06, 1.51394e-06, 0.916779)
+bones/13/scale = Vector3(1, 0.999985, 1.00002)
+bones/14/rotation = Quaternion(-0.028749, 0.995046, -0.0938137, -0.0159868)
+bones/15/rotation = Quaternion(0.0192654, -1.19187e-07, 2.29661e-09, 0.999814)
+bones/16/rotation = Quaternion(-0.0137358, 5.07739e-14, 5.27267e-16, 0.999906)
+bones/17/rotation = Quaternion(0.0505618, -3.15521e-15, 2.1017e-15, 0.998721)
+bones/18/rotation = Quaternion(-0.0285858, 1.19161e-07, -3.4077e-09, 0.999591)
+bones/19/rotation = Quaternion(-0.0228047, 1.19178e-07, -8.15558e-09, 0.99974)
+bones/20/rotation = Quaternion(0.0473811, -2.38151e-07, 1.12965e-08, 0.998877)
+bones/21/rotation = Quaternion(-0.0370051, 1.19128e-07, -4.41136e-09, 0.999315)
+bones/22/rotation = Quaternion(0.0113765, -1.19202e-07, 1.35619e-09, 0.999935)
+bones/23/rotation = Quaternion(-0.0265121, 1.19167e-07, -3.16049e-09, 0.999649)
+bones/24/rotation = Quaternion(-0.0260201, 3.77835e-15, -6.20368e-09, 0.999661)
+bones/26/rotation = Quaternion(0.0198003, -0.0357772, -0.737168, 0.674471)
+bones/27/rotation = Quaternion(-0.547048, 1.84121e-06, 1.31818e-06, 0.837101)
+bones/28/rotation = Quaternion(0.636416, 2.34048e-08, -1.92239e-07, 0.771346)
+bones/30/rotation = Quaternion(0.0198006, 0.0357775, 0.737168, 0.674471)
+bones/31/rotation = Quaternion(-0.547048, -1.82917e-06, -1.31079e-06, 0.837101)
+bones/32/rotation = Quaternion(0.636416, -2.55962e-08, 1.95639e-07, 0.771346)
+bones/33/position = Vector3(0.404172, 1.7391, 2.05403)
+bones/33/rotation = Quaternion(0.00157028, 0.761089, 0.648646, 2.32656e-07)
+bones/38/position = Vector3(-0.407561, 1.56494, 2.03354)
+bones/38/rotation = Quaternion(-1.28035e-07, 0.657576, 0.753388, -1.4669e-07)
+script = ExtResource("2_bkcex")
+
+[node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="6"]
+
+[node name="Physical Bone Neck" type="PhysicalBone3D" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D/PhysicalBoneSimulator3D"]
+transform = Transform3D(2, 4.7193e-07, -4.91782e-09, 2.35296e-07, -1.01512, -1.72323, -4.09119e-07, 1.72323, -1.01512, -0.00176873, 3.42861, 1.80945)
+collision_layer = 2
+collision_mask = 0
+joint_type = 5
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.04855e-09, 3.67268e-06, 0.0903595)
+body_offset = Transform3D(2, -4.76518e-10, -4.81407e-10, 1.58678e-10, 2.98023e-07, -1.99997, 5.68434e-14, 1.99997, -5.35846e-05, -6.0536e-09, 0.180717, -2.5034e-06)
+mass = 10.0
+friction = 0.0
+bone_name = "Neck"
+joint_constraints/x/linear_limit_enabled = false
+joint_constraints/x/linear_limit_upper = 0.0
+joint_constraints/x/linear_limit_lower = 0.0
+joint_constraints/x/linear_limit_softness = 0.7
+joint_constraints/x/linear_spring_enabled = false
+joint_constraints/x/linear_spring_stiffness = 0.0
+joint_constraints/x/linear_spring_damping = 0.0
+joint_constraints/x/linear_equilibrium_point = 0.0
+joint_constraints/x/linear_restitution = 0.5
+joint_constraints/x/linear_damping = 1.0
+joint_constraints/x/angular_limit_enabled = false
+joint_constraints/x/angular_limit_upper = 0.0
+joint_constraints/x/angular_limit_lower = 0.0
+joint_constraints/x/angular_limit_softness = 0.5
+joint_constraints/x/angular_restitution = 0.0
+joint_constraints/x/angular_damping = 1.0
+joint_constraints/x/erp = 0.5
+joint_constraints/x/angular_spring_enabled = false
+joint_constraints/x/angular_spring_stiffness = 0.0
+joint_constraints/x/angular_spring_damping = 0.0
+joint_constraints/x/angular_equilibrium_point = 0.0
+joint_constraints/y/linear_limit_enabled = false
+joint_constraints/y/linear_limit_upper = 0.0
+joint_constraints/y/linear_limit_lower = 0.0
+joint_constraints/y/linear_limit_softness = 0.7
+joint_constraints/y/linear_spring_enabled = false
+joint_constraints/y/linear_spring_stiffness = 0.0
+joint_constraints/y/linear_spring_damping = 0.0
+joint_constraints/y/linear_equilibrium_point = 0.0
+joint_constraints/y/linear_restitution = 0.5
+joint_constraints/y/linear_damping = 1.0
+joint_constraints/y/angular_limit_enabled = false
+joint_constraints/y/angular_limit_upper = 0.0
+joint_constraints/y/angular_limit_lower = 0.0
+joint_constraints/y/angular_limit_softness = 0.5
+joint_constraints/y/angular_restitution = 0.0
+joint_constraints/y/angular_damping = 1.0
+joint_constraints/y/erp = 0.5
+joint_constraints/y/angular_spring_enabled = false
+joint_constraints/y/angular_spring_stiffness = 0.0
+joint_constraints/y/angular_spring_damping = 0.0
+joint_constraints/y/angular_equilibrium_point = 0.0
+joint_constraints/z/linear_limit_enabled = false
+joint_constraints/z/linear_limit_upper = 0.0
+joint_constraints/z/linear_limit_lower = 0.0
+joint_constraints/z/linear_limit_softness = 0.7
+joint_constraints/z/linear_spring_enabled = false
+joint_constraints/z/linear_spring_stiffness = 0.0
+joint_constraints/z/linear_spring_damping = 0.0
+joint_constraints/z/linear_equilibrium_point = 0.0
+joint_constraints/z/linear_restitution = 0.5
+joint_constraints/z/linear_damping = 1.0
+joint_constraints/z/angular_limit_enabled = false
+joint_constraints/z/angular_limit_upper = 0.0
+joint_constraints/z/angular_limit_lower = 0.0
+joint_constraints/z/angular_limit_softness = 0.5
+joint_constraints/z/angular_restitution = 0.0
+joint_constraints/z/angular_damping = 1.0
+joint_constraints/z/erp = 0.5
+joint_constraints/z/angular_spring_enabled = false
+joint_constraints/z/angular_spring_stiffness = 0.0
+joint_constraints/z/angular_spring_damping = 0.0
+joint_constraints/z/angular_equilibrium_point = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Neck"]
+transform = Transform3D(1, -3.7029e-08, 5.90417e-09, -8.07262e-10, 0.136165, 0.990686, -3.74881e-08, -0.990686, 0.136165, -2.27592e-08, 0.0871301, 0.0972788)
+shape = SubResource("CylinderShape3D_2qo2l")
+
+[node name="Physical Bone Head" type="PhysicalBone3D" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D/PhysicalBoneSimulator3D"]
+transform = Transform3D(1.9994, 0.0427166, 0.0241439, 0.038637, -0.763973, -1.84793, -0.030246, 1.84784, -0.764569, -0.0040183, 3.75648, 1.9724)
+collision_layer = 2
+collision_mask = 0
+joint_type = 5
+joint_offset = Transform3D(0.999999, 0, 0, 0, 0.999998, 0, 0, 0, 0.999997, 2.78425e-08, 1.47849e-06, 0.0931684)
+body_offset = Transform3D(2, 1.46963e-06, 1.92132e-06, -8.3819e-09, 2.20537e-06, -1.99997, -1.67638e-08, 1.99998, -4.96507e-05, -2.34693e-07, 0.186334, 1.66893e-06)
+friction = 0.0
+bone_name = "Head"
+joint_constraints/x/linear_limit_enabled = false
+joint_constraints/x/linear_limit_upper = 0.0
+joint_constraints/x/linear_limit_lower = 0.0
+joint_constraints/x/linear_limit_softness = 0.7
+joint_constraints/x/linear_spring_enabled = false
+joint_constraints/x/linear_spring_stiffness = 0.0
+joint_constraints/x/linear_spring_damping = 0.0
+joint_constraints/x/linear_equilibrium_point = 0.0
+joint_constraints/x/linear_restitution = 0.5
+joint_constraints/x/linear_damping = 1.0
+joint_constraints/x/angular_limit_enabled = false
+joint_constraints/x/angular_limit_upper = 0.0
+joint_constraints/x/angular_limit_lower = 0.0
+joint_constraints/x/angular_limit_softness = 0.5
+joint_constraints/x/angular_restitution = 0.0
+joint_constraints/x/angular_damping = 1.0
+joint_constraints/x/erp = 0.5
+joint_constraints/x/angular_spring_enabled = false
+joint_constraints/x/angular_spring_stiffness = 0.0
+joint_constraints/x/angular_spring_damping = 0.0
+joint_constraints/x/angular_equilibrium_point = 0.0
+joint_constraints/y/linear_limit_enabled = false
+joint_constraints/y/linear_limit_upper = 0.0
+joint_constraints/y/linear_limit_lower = 0.0
+joint_constraints/y/linear_limit_softness = 0.7
+joint_constraints/y/linear_spring_enabled = false
+joint_constraints/y/linear_spring_stiffness = 0.0
+joint_constraints/y/linear_spring_damping = 0.0
+joint_constraints/y/linear_equilibrium_point = 0.0
+joint_constraints/y/linear_restitution = 0.5
+joint_constraints/y/linear_damping = 1.0
+joint_constraints/y/angular_limit_enabled = false
+joint_constraints/y/angular_limit_upper = 0.0
+joint_constraints/y/angular_limit_lower = 0.0
+joint_constraints/y/angular_limit_softness = 0.5
+joint_constraints/y/angular_restitution = 0.0
+joint_constraints/y/angular_damping = 1.0
+joint_constraints/y/erp = 0.5
+joint_constraints/y/angular_spring_enabled = false
+joint_constraints/y/angular_spring_stiffness = 0.0
+joint_constraints/y/angular_spring_damping = 0.0
+joint_constraints/y/angular_equilibrium_point = 0.0
+joint_constraints/z/linear_limit_enabled = false
+joint_constraints/z/linear_limit_upper = 0.0
+joint_constraints/z/linear_limit_lower = 0.0
+joint_constraints/z/linear_limit_softness = 0.7
+joint_constraints/z/linear_spring_enabled = false
+joint_constraints/z/linear_spring_stiffness = 0.0
+joint_constraints/z/linear_spring_damping = 0.0
+joint_constraints/z/linear_equilibrium_point = 0.0
+joint_constraints/z/linear_restitution = 0.5
+joint_constraints/z/linear_damping = 1.0
+joint_constraints/z/angular_limit_enabled = false
+joint_constraints/z/angular_limit_upper = 0.0
+joint_constraints/z/angular_limit_lower = 0.0
+joint_constraints/z/angular_limit_softness = 0.5
+joint_constraints/z/angular_restitution = 0.0
+joint_constraints/z/angular_damping = 1.0
+joint_constraints/z/erp = 0.5
+joint_constraints/z/angular_spring_enabled = false
+joint_constraints/z/angular_spring_stiffness = 0.0
+joint_constraints/z/angular_spring_damping = 0.0
+joint_constraints/z/angular_equilibrium_point = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Head"]
+transform = Transform3D(0.999998, 0.000930347, -0.00173396, -0.000898792, 0.999836, 0.0181096, 0.00175052, -0.0181081, 0.999835, 0.00126077, 0.344553, -0.298343)
+shape = SubResource("CylinderShape3D_kfp7e")
+
+[node name="CollisionShape3D" parent="Player" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0491333, 1.22165, 0.645217)
 
 [node name="CameraTarget" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2037, -1.03841)
@@ -19,3 +224,6 @@ current = true
 
 [node name="HorizontalRotationPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.4286, 0)
+
+[editable path="Player"]
+[editable path="Player/RaptorCommando"]

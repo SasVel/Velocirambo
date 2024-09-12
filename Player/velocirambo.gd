@@ -18,12 +18,17 @@ extends CharacterBody3D
 
 @export var cameraTarget : Marker3D
 @export var horizontalRotPivot : Node3D
+@export var skeleton : Skeleton3D
 
 var mouseVelocity = Vector2.ZERO #Don't confuse with sensitivity
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouseVelocity = event.screen_relative
+	#if event.is_action_pressed("test"):
+		#skeleton.physical_bones_start_simulation()
+	#elif event.is_action_released("test"):
+		#skeleton.physical_bones_stop_simulation()
 
 func _physics_process(delta):
 	gravity(delta)
