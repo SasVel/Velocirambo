@@ -1,8 +1,7 @@
 extends CharacterBody3D
-##Only affects walking speed in case it wasn't obvious.
-@export var speed : float = 5.0
-##Still unsure whether or not we will even keep the ability to jump.
-@export var jumpVelocity : float = 4.5
+
+@export var walkingSpeed : float = 2.5
+@export var runningSpeed : float = 5.0
 ##how fast the body tries to catch up to the camera
 @export var turnSpeed : float = 25.0
 ##TODO Currently not being used
@@ -10,6 +9,7 @@ extends CharacterBody3D
 
 ##The default value is very low for now, because my Mouse has way too much DPI.
 @export var mouseSensitivity : float = 1.7
+@export var zoomedInSensModifier : float = 0.5
 
 ##how far down can the camera look/how high can it go. This number should be negative.
 @export var upperCameraLimitDegrees : float = -45.0
@@ -20,34 +20,84 @@ extends CharacterBody3D
 @export var horizontalRotPivot : Node3D
 @export var skeleton : Skeleton3D
 
+enum PLAYER_STATE {IDLE, RUNNING, WALKING, RAGDOLL}
+var currentState = PLAYER_STATE.IDLE
+
 var mouseVelocity = Vector2.ZERO #Don't confuse with sensitivity
 
 func _input(event):
+	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	if event is InputEventMouseMotion:
 		mouseVelocity = event.screen_relative
+	if(currentState == PLAYER_STATE.IDLE || currentState == PLAYER_STATE.RUNNING || currentState == PLAYER_STATE.WALKING):
+		if event.is_action_pressed("Leftclick"):
+			shoot()
 	#if event.is_action_pressed("test"):
 		#skeleton.physical_bones_start_simulation()
 	#elif event.is_action_released("test"):
 		#skeleton.physical_bones_stop_simulation()
 
 func _physics_process(delta):
+	match currentState:
+		PLAYER_STATE.IDLE:
+			print("Current State: Idle")
+			idleState(delta)
+		PLAYER_STATE.RUNNING:
+			print("Current State: Running")
+			runningState(delta)
+		PLAYER_STATE.WALKING:
+			print("Current State: Walking")
+			walkingState(delta)
+		PLAYER_STATE.RAGDOLL:
+			print("Current State: Ragdoll")
+			ragdollState(delta)
+	zoom()
+	move_and_slide()
+	camera_move(delta)
+
+func idleState(delta):
 	gravity(delta)
 	turn_body_to_camera(delta)
-	player_move(delta)
-	camera_move(delta)
+	handleRunWalkIdleState()
+
+func runningState(delta):
+	gravity(delta)
+	turn_body_to_camera(delta)
+	player_move(delta, runningSpeed)
+	handleRunWalkIdleState()
+
+func walkingState(delta):
+	gravity(delta)
+	turn_body_to_camera(delta)
+	player_move(delta, walkingSpeed)
+	handleRunWalkIdleState()
+
+func ragdollState(delta):
+	pass
+
+func handleRunWalkIdleState():
+	if Input.is_action_pressed("Forwards") || Input.is_action_pressed("Backwards") || Input.is_action_pressed("Leftways") || Input.is_action_pressed("Rightways"):
+		if Input.is_action_pressed("Rightclick"):
+			currentState = PLAYER_STATE.WALKING
+		else: currentState = PLAYER_STATE.RUNNING
+	else: currentState = PLAYER_STATE.IDLE
+
+#TODO
+func zoom():
+	pass
+
+#TODO
+func shoot():
+	print("Shot!")
+	pass
 
 # Add the gravity. Hasn't been changed since script creation
 func gravity(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-func player_move(_delta):
-	# Do we need the ability to jump??? Letting it stay for now
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		velocity.y = jumpVelocity
-
-	# Get the input direction and handle the movement/deceleration.
-	#This part hasn't changed much since script creation. Apart from the camera beeing used as the basis for movement
+# Get the input direction and handle the movement/deceleration.
+func player_move(_delta, speed):
 	var input_dir : Vector2 = Input.get_vector("Leftways", "Rightways", "Forwards", "Backwards")
 	var direction = (horizontalRotPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -56,8 +106,6 @@ func player_move(_delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
-
-	move_and_slide()
 
 func camera_move(delta):
 	cameraTarget.position = position
@@ -68,9 +116,12 @@ func camera_turn(delta):
 	if(Input.mouse_mode != Input.MOUSE_MODE_CAPTURED):
 		return
 	
+	var mouseModifier = mouseSensitivity * delta
+	if(Input.is_action_pressed("Rightclick")): mouseModifier *= zoomedInSensModifier
+	
 	var oldCameraRot = Vector2(cameraTarget.rotation_degrees.x, cameraTarget.rotation_degrees.y)
-	var newCameraRot = Vector2(oldCameraRot.x - (mouseVelocity.y * mouseSensitivity * delta),\
-								oldCameraRot.y - (mouseVelocity.x * mouseSensitivity * delta))
+	var newCameraRot = Vector2(oldCameraRot.x - (mouseVelocity.y * mouseModifier),\
+								oldCameraRot.y - (mouseVelocity.x * mouseModifier))
 	
 	if(newCameraRot.x > lowerCameraLimitDegrees): newCameraRot.x = lowerCameraLimitDegrees
 	if(newCameraRot.x < upperCameraLimitDegrees): newCameraRot.x = upperCameraLimitDegrees
