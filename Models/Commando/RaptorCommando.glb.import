@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cufn7ji82vhtv"
-path="res://.godot/imported/RaptorCommando.glb-eb12bdfd33c22160522560cdc857367b.scn"
+path="res://.godot/imported/RaptorCommando.glb-84d819828d4bdeda16b8ef027660ee55.scn"
 
 [deps]
 
-source_file="res://Models/RaptorCommando.glb"
-dest_files=["res://.godot/imported/RaptorCommando.glb-eb12bdfd33c22160522560cdc857367b.scn"]
+source_file="res://Models/Commando/RaptorCommando.glb"
+dest_files=["res://.godot/imported/RaptorCommando.glb-84d819828d4bdeda16b8ef027660ee55.scn"]
 
 [params]
 

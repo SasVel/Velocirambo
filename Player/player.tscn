@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ctdbu511qitd4"]
 
-[ext_resource type="PackedScene" uid="uid://cufn7ji82vhtv" path="res://Models/RaptorCommando.glb" id="1_viyl2"]
+[ext_resource type="PackedScene" uid="uid://cufn7ji82vhtv" path="res://Models/Commando/RaptorCommando.glb" id="1_viyl2"]
 [ext_resource type="Script" path="res://Player/velocirambo.gd" id="1_wvw08"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k3bea"]
