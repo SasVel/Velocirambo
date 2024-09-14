@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://pxixeaqnu3ne"]
+
+[ext_resource type="Texture2D" uid="uid://bagpdafyrtnlb" path="res://Arena/Crowd/CrowdSprites/Dino_4.2.png" id="2_ge2th"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8be20"]
+transparency = 1
+albedo_texture = ExtResource("2_ge2th")
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_b2a17"]
+material = SubResource("StandardMaterial3D_8be20")
+size = Vector2(4, 4)
+
+[sub_resource type="Animation" id="Animation_7hagh"]
+resource_name = "move"
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 2.01454, 0, 0.5, 1, 0, 2.99886, 0, 1, 1, 0, 2.01454, 0)
+
+[sub_resource type="Animation" id="Animation_l7jh7"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 2.01454, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2orbv"]
+_data = {
+"RESET": SubResource("Animation_l7jh7"),
+"move": SubResource("Animation_7hagh")
+}
+
+[node name="Dino_4" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01454, 0)
+mesh = SubResource("QuadMesh_b2a17")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2orbv")
+}
+autoplay = "move"

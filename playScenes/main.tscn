@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
-[ext_resource type="PackedScene" uid="uid://cobs6br0x6ktt" path="res://Arena/arena.tscn" id="2_w2pg4"]
+[ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="3_hkrak"]
 [ext_resource type="Script" path="res://UI/crosshair.gd" id="4_etnxk"]
 [ext_resource type="Script" path="res://UI/pause.gd" id="4_f25ew"]
@@ -26,8 +26,6 @@ shadow_opacity = 0.3
 directional_shadow_mode = 0
 directional_shadow_fade_start = 0.863
 directional_shadow_max_distance = 64.5
-
-[node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 
@@ -74,3 +72,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_f25ew")
+
+[node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266819, -0.0516815, -0.008564)
