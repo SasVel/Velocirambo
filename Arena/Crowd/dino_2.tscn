@@ -11,6 +11,16 @@ billboard_mode = 2
 material = SubResource("StandardMaterial3D_tmowt")
 size = Vector2(4, 3)
 
+[sub_resource type="Animation" id="Animation_t4i45"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.51365, 0)
+
 [sub_resource type="Animation" id="Animation_sbag3"]
 resource_name = "move"
 loop_mode = 1
@@ -21,16 +31,6 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.51365, 0, 0.5, 1, 0, 2.15367, 0, 1, 1, 0, 1.51365, 0)
-
-[sub_resource type="Animation" id="Animation_t4i45"]
-length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.51365, 0)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5q6gw"]
 _data = {

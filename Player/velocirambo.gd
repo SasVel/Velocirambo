@@ -3,7 +3,7 @@ extends CharacterBody3D
 @export var walkingSpeed : float = 2.5
 @export var runningSpeed : float = 5.0
 ##how fast the body tries to catch up to the camera
-@export var turnSpeed : float = 25.0
+@export var turnSpeed : float = 10.0
 ##TODO Currently not being used
 @export var turningDeadZoneDegrees : float = 15.0
 
@@ -98,7 +98,8 @@ func gravity(delta):
 
 # Get the input direction and handle the movement/deceleration.
 func player_move(_delta, speed):
-	var input_dir : Vector2 = Input.get_vector("Leftways", "Rightways", "Forwards", "Backwards")
+	#Controls got inverted for some reason. Couldn't figure out why so, uh, temporary fix.
+	var input_dir : Vector2 = Input.get_vector("Leftways", "Rightways", "Forwards", "Backwards") * -1
 	var direction = (horizontalRotPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * speed
@@ -120,18 +121,18 @@ func camera_turn(delta):
 	if(Input.is_action_pressed("Rightclick")): mouseModifier *= zoomedInSensModifier
 	
 	var oldCameraRot = Vector2(cameraTarget.rotation_degrees.x, cameraTarget.rotation_degrees.y)
-	var newCameraRot = Vector2(oldCameraRot.x - (mouseVelocity.y * mouseModifier),\
+	#Quick fix for the camera rotation.
+	var newCameraRot = Vector2(oldCameraRot.x - ((mouseVelocity.y * -1) * mouseModifier),\
 								oldCameraRot.y - (mouseVelocity.x * mouseModifier))
 	
 	if(newCameraRot.x > lowerCameraLimitDegrees): newCameraRot.x = lowerCameraLimitDegrees
 	if(newCameraRot.x < upperCameraLimitDegrees): newCameraRot.x = upperCameraLimitDegrees
-
-	cameraTarget.rotation_degrees.y = newCameraRot.y
-	cameraTarget.rotation_degrees.x = newCameraRot.x
+	
+	cameraTarget.rotation_degrees = Vector3(newCameraRot.x, newCameraRot.y, 0.0)
 	horizontalRotPivot.rotation_degrees.y = newCameraRot.y
-	mouseVelocity = Vector2(0, 0)
+	mouseVelocity = Vector2.ZERO
 
 func turn_body_to_camera(delta):
 	var cameraRotation = horizontalRotPivot.rotation.y
 	var oldPlayerRotation = rotation.y
-	rotation.y = lerp_angle(oldPlayerRotation, cameraRotation, turnSpeed*delta)
+	rotation.y = lerp_angle(oldPlayerRotation, cameraRotation, turnSpeed * delta)

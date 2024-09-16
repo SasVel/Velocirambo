@@ -27,8 +27,6 @@ directional_shadow_mode = 0
 directional_shadow_fade_start = 0.863
 directional_shadow_max_distance = 64.5
 
-[node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
-
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -75,3 +73,5 @@ script = ExtResource("4_f25ew")
 
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266819, -0.0516815, -0.008564)
+
+[node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
