@@ -533,7 +533,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gxxsm")
 
-[sub_resource type="Resource" id="Resource_kks1m"]
+[sub_resource type="Resource" id="Resource_0eaek"]
 script = ExtResource("10_xtkoc")
 amount = 200
 enabled = true
@@ -542,9 +542,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_8vfxs"]
+[sub_resource type="Resource" id="Resource_kr7nd"]
 script = ExtResource("8_bxmh1")
-stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_kks1m")])
+stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_0eaek")])
 
 [sub_resource type="Resource" id="Resource_xwqgj"]
 script = ExtResource("12_yopbr")
@@ -1174,7 +1174,7 @@ skeleton = NodePath("")
 [node name="ProtonScatter" type="Node3D" parent="Crowd"]
 script = ExtResource("7_hfvfd")
 global_seed = 3
-modifier_stack = SubResource("Resource_8vfxs")
+modifier_stack = SubResource("Resource_kr7nd")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
