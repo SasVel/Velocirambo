@@ -22,9 +22,12 @@ extends CharacterBody3D
 @export var horizontalRotPivot : Node3D
 @export var cameraDirMarker : Marker3D
 @export var skeleton : Skeleton3D
+@export var headIK : SkeletonIK3D
 @onready var skelHeadIdx = skeleton.find_bone("Head")
 @onready var animTree = $AnimationTree
 
+# Controls the aiming state. Figured it should be seperate from the rest of the states, so they can overlap
+var IS_AIMING : bool = false : set = set_aiming_state
 enum PLAYER_STATE {IDLE, RUNNING, WALKING, SPRINTING, RAGDOLL}
 var currentState : PLAYER_STATE = PLAYER_STATE.IDLE :
 	set(newState):
@@ -45,10 +48,12 @@ func _input(event):
 	if(currentState == PLAYER_STATE.IDLE || currentState == PLAYER_STATE.RUNNING || currentState == PLAYER_STATE.WALKING):
 		if event.is_action_pressed("Leftclick"):
 			shoot()
+	if event.is_action_pressed("Aim"): IS_AIMING = true
+	elif event.is_action_released("Aim"): IS_AIMING = false
 
 func handleStateTransitions(event):
 	if Input.get_vector("Backwards", "Forwards", "Leftways", "Rightways") != Vector2.ZERO:
-		if Input.is_action_pressed("Rightclick"):
+		if Input.is_action_pressed("Aim"):
 			currentState = PLAYER_STATE.WALKING
 			return
 		if Input.is_action_pressed("sprint"): currentState = PLAYER_STATE.SPRINTING
@@ -98,6 +103,15 @@ func sprintingState(delta):
 	gravity(delta)
 	turn_body_to_camera(delta)
 	player_move(delta, runningSpeed * sprintMultiplier)
+
+func set_aiming_state(val):
+	if val:
+		headIK.start()
+		get_viewport().get_camera_3d().zoom_fov(60)
+	else: 
+		headIK.stop()
+		skeleton.clear_bones_global_pose_override()
+		get_viewport().get_camera_3d().reset_fov()
 
 func ragdollState(delta):
 	pass
@@ -155,7 +169,7 @@ func camera_turn(delta):
 		return
 	
 	var mouseModifier = mouseSensitivity * delta
-	if(Input.is_action_pressed("Rightclick")): mouseModifier *= zoomedInSensModifier
+	if(Input.is_action_pressed("Aim")): mouseModifier *= zoomedInSensModifier
 	
 	var oldCameraRot = Vector2(cameraTarget.rotation_degrees.x, cameraTarget.rotation_degrees.y)
 	#Quick fix for the camera rotation.

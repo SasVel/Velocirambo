@@ -1,16 +1,8 @@
-[gd_scene load_steps=21 format=4 uid="uid://bdvqhvfu8pif1"]
+[gd_scene load_steps=19 format=4 uid="uid://bdvqhvfu8pif1"]
 
 [ext_resource type="PackedScene" uid="uid://ctdbu511qitd4" path="res://Player/player.tscn" id="1_g4u3e"]
-[ext_resource type="Script" path="res://Player/skeleton_3d.gd" id="2_bkcex"]
 [ext_resource type="Material" uid="uid://b76duvumet37p" path="res://Models/Materials/ColorMat.tres" id="3_671pn"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_2qo2l"]
-height = 0.176361
-radius = 0.240518
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_kfp7e"]
-height = 0.979422
-radius = 0.259374
+[ext_resource type="Script" path="res://Player/camera_3d.gd" id="3_n06hd"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_65pd1"]
 resource_name = "RaptorCommando_Cylinder_009"
@@ -2811,265 +2803,113 @@ _data = {
 [node name="CompletePlayer" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0423601, 0)
 
-[node name="Player" parent="." node_paths=PackedStringArray("cameraTarget", "horizontalRotPivot", "cameraDirMarker", "skeleton") instance=ExtResource("1_g4u3e")]
+[node name="Player" parent="." node_paths=PackedStringArray("cameraTarget", "horizontalRotPivot", "cameraDirMarker", "skeleton", "headIK") instance=ExtResource("1_g4u3e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.424251, 0)
 cameraTarget = NodePath("../CameraTarget")
 horizontalRotPivot = NodePath("../HorizontalRotationPivot")
 cameraDirMarker = NodePath("../CameraTarget/Camera3D/CameraDirMarker")
 skeleton = NodePath("RaptorCommando/RaptorCommando_001/Skeleton3D")
+headIK = NodePath("RaptorCommando/RaptorCommando_001/Skeleton3D/HeadIK")
 
 [node name="RaptorCommando" parent="Player" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Player/RaptorCommando/RaptorCommando_001" index="0"]
-bones/0/position = Vector3(-0.00169442, 2.96201, 0.949058)
+bones/0/position = Vector3(-0.00169452, 3.00919, 0.340054)
 bones/0/rotation = Quaternion(1.60095e-07, -0.569149, 0.822234, -1.10817e-07)
-bones/1/rotation = Quaternion(0.00811655, 0.0464114, 0.998836, 0.0103559)
-bones/2/rotation = Quaternion(0.00958533, 0.997525, -0.0696487, 0.000594018)
+bones/1/rotation = Quaternion(1.92893e-07, 0.0511689, 0.99869, -9.96228e-09)
+bones/2/rotation = Quaternion(-7.50228e-05, 0.999815, -0.0191978, 0.00115631)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.00911275, 0.929893, 0.36762, -0.00842823)
+bones/3/rotation = Quaternion(0.000370724, 0.931858, 0.362822, -0.00109793)
 bones/3/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(-0.0645721, -0.0258624, 0.00672626, 0.997555)
+bones/4/rotation = Quaternion(-0.126672, -1.20924e-07, -1.54645e-08, 0.991945)
 bones/5/rotation = Quaternion(0.0623685, 1.02902e-11, -1.71913e-11, 0.998053)
 bones/5/scale = Vector3(1, 1, 1)
-bones/6/position = Vector3(0.00105059, 0.395358, 0.327414)
-bones/6/rotation = Quaternion(0.00106726, 0.848868, 0.528599, -0.00226819)
-bones/7/position = Vector3(0.00532838, 0.590108, 0.658294)
-bones/7/rotation = Quaternion(0.00131347, 0.801202, 0.598393, -0.000260209)
-bones/8/rotation = Quaternion(0.495284, -0.556996, -0.502802, -0.437765)
-bones/9/rotation = Quaternion(-0.217927, 0.0766775, -0.586308, 0.776448)
-bones/10/rotation = Quaternion(0.848378, -0.0291153, -0.184238, 0.495442)
+bones/6/position = Vector3(-0.00840289, 0.403969, 0.490247)
+bones/6/rotation = Quaternion(0.0110239, 0.899577, 0.436498, 0.0104673)
+bones/7/position = Vector3(0.00590881, 0.590108, 0.658294)
+bones/7/rotation = Quaternion(0.010807, 0.845148, 0.534196, 0.0155712)
+bones/8/rotation = Quaternion(0.531307, -0.510131, -0.472316, -0.484145)
+bones/9/rotation = Quaternion(-0.198988, 0.1971, -0.665821, 0.691547)
+bones/10/rotation = Quaternion(0.580593, 3.19821e-06, -2.30799e-06, 0.814194)
 bones/10/scale = Vector3(1, 0.999985, 1.00001)
-bones/11/rotation = Quaternion(0.509989, 0.53919, 0.49075, -0.456454)
-bones/12/rotation = Quaternion(-0.281104, -0.158023, 0.560866, 0.762521)
+bones/11/rotation = Quaternion(0.532346, 0.509065, 0.471034, -0.485374)
+bones/12/rotation = Quaternion(-0.198988, -0.1971, 0.665821, 0.691547)
 bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(0.85764, 0.0107384, 0.194254, 0.47603)
+bones/13/rotation = Quaternion(0.580593, -3.28258e-06, 2.23026e-06, 0.814194)
 bones/13/scale = Vector3(1, 0.999985, 1.00002)
-bones/14/rotation = Quaternion(0.0184671, 0.973807, -0.226405, 0.00993761)
+bones/14/rotation = Quaternion(-1.37846e-08, 0.98319, -0.182583, -3.0864e-07)
 bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(0.019579, -0.00188078, 0.0129228, 0.999723)
-bones/16/rotation = Quaternion(-0.0134256, -0.00137848, 0.0206492, 0.999696)
+bones/15/rotation = Quaternion(0.0192654, -1.19187e-07, 2.29661e-09, 0.999814)
+bones/16/rotation = Quaternion(-0.0137358, 5.07739e-14, 5.27267e-16, 0.999906)
 bones/16/scale = Vector3(1, 1, 1)
-bones/17/rotation = Quaternion(0.0470578, -0.00220921, 0.024255, 0.998595)
-bones/18/rotation = Quaternion(-0.040624, -1.57977e-05, 0.032292, 0.998653)
-bones/19/rotation = Quaternion(-0.0491592, -0.000375211, 0.00739705, 0.998764)
-bones/20/rotation = Quaternion(-0.00166353, 0.00148609, -0.053478, 0.998567)
+bones/17/rotation = Quaternion(0.0505618, -3.15521e-15, 2.1017e-15, 0.998721)
+bones/18/rotation = Quaternion(-0.0285858, 1.19161e-07, -3.4077e-09, 0.999591)
+bones/19/rotation = Quaternion(-0.0228047, 1.19178e-07, -8.15558e-09, 0.99974)
+bones/20/rotation = Quaternion(0.0473811, -2.38151e-07, 1.12965e-08, 0.998877)
 bones/20/scale = Vector3(1, 1, 1)
-bones/21/rotation = Quaternion(-0.0975326, -0.00359599, -0.137511, 0.98568)
+bones/21/rotation = Quaternion(-0.0370051, 1.19128e-07, -4.41136e-09, 0.999315)
 bones/21/scale = Vector3(1, 1, 1)
-bones/22/rotation = Quaternion(-0.0187184, 0.00390024, -0.18964, 0.981667)
+bones/22/rotation = Quaternion(0.0113765, -1.19202e-07, 1.35619e-09, 0.999935)
 bones/22/scale = Vector3(1, 1, 1)
-bones/23/rotation = Quaternion(0.107882, 2.51753e-06, -0.187273, 0.976366)
-bones/24/rotation = Quaternion(-0.00117801, 0.0109492, 0.00914803, 0.999898)
-bones/25/rotation = Quaternion(0.4389, -0.48699, 0.579134, 0.484573)
+bones/23/rotation = Quaternion(-0.0265121, 1.19167e-07, -3.16049e-09, 0.999649)
+bones/24/rotation = Quaternion(-0.0260201, 3.77143e-15, -6.20368e-09, 0.999661)
+bones/25/rotation = Quaternion(0.445196, -0.476238, 0.563821, 0.507055)
 bones/25/scale = Vector3(1, 1, 1)
-bones/26/rotation = Quaternion(0.0434818, -0.0604571, -0.733847, 0.67522)
-bones/27/rotation = Quaternion(-0.574828, -0.000188145, 0.00217702, 0.818271)
-bones/28/rotation = Quaternion(0.725794, -0.000720585, 0.00110124, 0.68791)
-bones/29/rotation = Quaternion(0.441256, 0.483095, -0.573574, 0.492875)
+bones/26/rotation = Quaternion(0.0168762, -0.0325811, -0.737316, 0.674551)
+bones/27/rotation = Quaternion(-0.500277, 1.90136e-06, 1.20155e-06, 0.865865)
+bones/28/rotation = Quaternion(0.561719, 2.44333e-08, -1.69437e-07, 0.827328)
+bones/29/rotation = Quaternion(0.445195, 0.476238, -0.563821, 0.507055)
 bones/29/scale = Vector3(1, 1, 1)
-bones/30/rotation = Quaternion(0.00557103, 0.0199542, 0.737382, 0.675158)
+bones/30/rotation = Quaternion(0.0168763, 0.0325812, 0.737316, 0.674551)
 bones/30/scale = Vector3(1, 1, 1)
-bones/31/rotation = Quaternion(-0.555754, 1.09559e-05, -0.000425317, 0.831347)
-bones/32/rotation = Quaternion(0.625697, 0.000136619, -0.000196098, 0.780066)
-bones/33/position = Vector3(0.614927, 2.70647, 2.88101)
-bones/33/rotation = Quaternion(1.20334e-07, 0.880201, 0.474601, 1.43456e-07)
-bones/34/rotation = Quaternion(-0.694852, 0.0604886, 0.0382129, 0.715585)
+bones/31/rotation = Quaternion(-0.500277, -1.8892e-06, -1.19882e-06, 0.865865)
+bones/32/rotation = Quaternion(0.561719, -2.54656e-08, 1.7095e-07, 0.827328)
+bones/33/position = Vector3(0.404172, 1.84455, 2.05403)
+bones/33/rotation = Quaternion(1.37679e-07, 0.707107, 0.707107, 1.37679e-07)
+bones/34/rotation = Quaternion(-0.686919, -0.0306942, -0.0324117, 0.725362)
 bones/34/scale = Vector3(1, 1, 1)
-bones/35/position = Vector3(0.761438, 0.304363, 0.568626)
-bones/35/rotation = Quaternion(-0.544879, 0.494598, -0.474843, 0.482704)
-bones/36/rotation = Quaternion(-0.699136, 2.52103e-08, 0.714989, -5.65331e-10)
-bones/37/position = Vector3(0.61155, 1.20597, -0.809925)
-bones/38/position = Vector3(-0.478774, 2.60789, 2.85093)
-bones/38/rotation = Quaternion(-1.80049e-07, 0.83494, 0.550341, -8.96756e-08)
-bones/39/rotation = Quaternion(-0.693019, -0.0269859, -0.0122502, 0.72031)
+bones/35/position = Vector3(0.611549, 0.0219753, -0.318177)
+bones/35/rotation = Quaternion(-0.505573, 0.494364, -0.494364, 0.505574)
+bones/36/rotation = Quaternion(-0.699136, 2.52103e-08, 0.714989, -5.6533e-10)
+bones/37/position = Vector3(0.611549, 0.90481, -1.11825)
+bones/38/position = Vector3(-0.407561, 1.84455, 2.05403)
+bones/38/rotation = Quaternion(-1.37679e-07, 0.707107, 0.707107, -1.37679e-07)
+bones/39/rotation = Quaternion(-0.686919, 0.0306942, 0.0324117, 0.725362)
 bones/39/scale = Vector3(1, 1, 1)
-bones/40/position = Vector3(-0.708603, 0.137607, 0.145981)
-bones/40/rotation = Quaternion(-0.526946, -0.495946, 0.478306, 0.497583)
-bones/42/position = Vector3(-0.614938, 1.09546, -0.923059)
+bones/40/position = Vector3(-0.614938, 0.0219753, -0.318177)
+bones/40/rotation = Quaternion(-0.505573, -0.494364, 0.494364, 0.505574)
+bones/42/position = Vector3(-0.614938, 0.90481, -1.11825)
 bones/42/rotation = Quaternion(1.37679e-07, 0.707107, -0.707107, -1.37679e-07)
-script = ExtResource("2_bkcex")
 
-[node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="0"]
-
-[node name="Physical Bone Neck" type="PhysicalBone3D" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(0.960375, 0.177778, -0.214648, -0.129477, -0.397417, -0.908458, -0.246809, 0.900253, -0.358651, 0.217503, 3.67382, 2.364)
-collision_layer = 2
-collision_mask = 0
-joint_type = 5
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0696027, -0.0217304, 0.189934)
-body_offset = Transform3D(0.992515, 0.0777178, -0.094204, -0.0949039, 0.00537127, -0.995455, -0.0768613, 0.996951, 0.0126808, 0.088663, 0.182582, 0.0139059)
-mass = 10.0
-friction = 0.0
-bone_name = "Neck"
-joint_constraints/x/linear_limit_enabled = false
-joint_constraints/x/linear_limit_upper = 0.0
-joint_constraints/x/linear_limit_lower = 0.0
-joint_constraints/x/linear_limit_softness = 0.7
-joint_constraints/x/linear_spring_enabled = false
-joint_constraints/x/linear_spring_stiffness = 0.0
-joint_constraints/x/linear_spring_damping = 0.0
-joint_constraints/x/linear_equilibrium_point = 0.0
-joint_constraints/x/linear_restitution = 0.5
-joint_constraints/x/linear_damping = 1.0
-joint_constraints/x/angular_limit_enabled = false
-joint_constraints/x/angular_limit_upper = 0.0
-joint_constraints/x/angular_limit_lower = 0.0
-joint_constraints/x/angular_limit_softness = 0.5
-joint_constraints/x/angular_restitution = 0.0
-joint_constraints/x/angular_damping = 1.0
-joint_constraints/x/erp = 0.5
-joint_constraints/x/angular_spring_enabled = false
-joint_constraints/x/angular_spring_stiffness = 0.0
-joint_constraints/x/angular_spring_damping = 0.0
-joint_constraints/x/angular_equilibrium_point = 0.0
-joint_constraints/y/linear_limit_enabled = false
-joint_constraints/y/linear_limit_upper = 0.0
-joint_constraints/y/linear_limit_lower = 0.0
-joint_constraints/y/linear_limit_softness = 0.7
-joint_constraints/y/linear_spring_enabled = false
-joint_constraints/y/linear_spring_stiffness = 0.0
-joint_constraints/y/linear_spring_damping = 0.0
-joint_constraints/y/linear_equilibrium_point = 0.0
-joint_constraints/y/linear_restitution = 0.5
-joint_constraints/y/linear_damping = 1.0
-joint_constraints/y/angular_limit_enabled = false
-joint_constraints/y/angular_limit_upper = 0.0
-joint_constraints/y/angular_limit_lower = 0.0
-joint_constraints/y/angular_limit_softness = 0.5
-joint_constraints/y/angular_restitution = 0.0
-joint_constraints/y/angular_damping = 1.0
-joint_constraints/y/erp = 0.5
-joint_constraints/y/angular_spring_enabled = false
-joint_constraints/y/angular_spring_stiffness = 0.0
-joint_constraints/y/angular_spring_damping = 0.0
-joint_constraints/y/angular_equilibrium_point = 0.0
-joint_constraints/z/linear_limit_enabled = false
-joint_constraints/z/linear_limit_upper = 0.0
-joint_constraints/z/linear_limit_lower = 0.0
-joint_constraints/z/linear_limit_softness = 0.7
-joint_constraints/z/linear_spring_enabled = false
-joint_constraints/z/linear_spring_stiffness = 0.0
-joint_constraints/z/linear_spring_damping = 0.0
-joint_constraints/z/linear_equilibrium_point = 0.0
-joint_constraints/z/linear_restitution = 0.5
-joint_constraints/z/linear_damping = 1.0
-joint_constraints/z/angular_limit_enabled = false
-joint_constraints/z/angular_limit_upper = 0.0
-joint_constraints/z/angular_limit_lower = 0.0
-joint_constraints/z/angular_limit_softness = 0.5
-joint_constraints/z/angular_restitution = 0.0
-joint_constraints/z/angular_damping = 1.0
-joint_constraints/z/erp = 0.5
-joint_constraints/z/angular_spring_enabled = false
-joint_constraints/z/angular_spring_stiffness = 0.0
-joint_constraints/z/angular_spring_damping = 0.0
-joint_constraints/z/angular_equilibrium_point = 0.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Neck"]
-transform = Transform3D(1, -3.7029e-08, 5.90417e-09, -8.07262e-10, 0.136165, 0.990686, -3.74881e-08, -0.990686, 0.136165, -2.27592e-08, 0.0871301, 0.0972788)
-shape = SubResource("CylinderShape3D_2qo2l")
-
-[node name="Physical Bone Head" type="PhysicalBone3D" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D/PhysicalBoneSimulator3D"]
-transform = Transform3D(0.99397, 0.0290251, -0.105745, -0.0999124, -0.157677, -0.982423, -0.0451886, 0.987064, -0.153826, 0.275534, 4.02303, 2.47238)
-collision_layer = 2
-collision_mask = 0
-joint_type = 5
-joint_offset = Transform3D(0.999999, 0, 0, 0, 0.999998, 0, 0, 0, 0.999997, -0.10499, -0.0153802, 0.189827)
-body_offset = Transform3D(0.99918, 0.0250045, -0.0318492, -0.0324229, 0.0229591, -0.999188, -0.0242546, 0.999419, 0.0237306, 0.111334, 0.186622, 0.00832009)
-friction = 0.0
-bone_name = "Head"
-joint_constraints/x/linear_limit_enabled = false
-joint_constraints/x/linear_limit_upper = 0.0
-joint_constraints/x/linear_limit_lower = 0.0
-joint_constraints/x/linear_limit_softness = 0.7
-joint_constraints/x/linear_spring_enabled = false
-joint_constraints/x/linear_spring_stiffness = 0.0
-joint_constraints/x/linear_spring_damping = 0.0
-joint_constraints/x/linear_equilibrium_point = 0.0
-joint_constraints/x/linear_restitution = 0.5
-joint_constraints/x/linear_damping = 1.0
-joint_constraints/x/angular_limit_enabled = false
-joint_constraints/x/angular_limit_upper = 0.0
-joint_constraints/x/angular_limit_lower = 0.0
-joint_constraints/x/angular_limit_softness = 0.5
-joint_constraints/x/angular_restitution = 0.0
-joint_constraints/x/angular_damping = 1.0
-joint_constraints/x/erp = 0.5
-joint_constraints/x/angular_spring_enabled = false
-joint_constraints/x/angular_spring_stiffness = 0.0
-joint_constraints/x/angular_spring_damping = 0.0
-joint_constraints/x/angular_equilibrium_point = 0.0
-joint_constraints/y/linear_limit_enabled = false
-joint_constraints/y/linear_limit_upper = 0.0
-joint_constraints/y/linear_limit_lower = 0.0
-joint_constraints/y/linear_limit_softness = 0.7
-joint_constraints/y/linear_spring_enabled = false
-joint_constraints/y/linear_spring_stiffness = 0.0
-joint_constraints/y/linear_spring_damping = 0.0
-joint_constraints/y/linear_equilibrium_point = 0.0
-joint_constraints/y/linear_restitution = 0.5
-joint_constraints/y/linear_damping = 1.0
-joint_constraints/y/angular_limit_enabled = false
-joint_constraints/y/angular_limit_upper = 0.0
-joint_constraints/y/angular_limit_lower = 0.0
-joint_constraints/y/angular_limit_softness = 0.5
-joint_constraints/y/angular_restitution = 0.0
-joint_constraints/y/angular_damping = 1.0
-joint_constraints/y/erp = 0.5
-joint_constraints/y/angular_spring_enabled = false
-joint_constraints/y/angular_spring_stiffness = 0.0
-joint_constraints/y/angular_spring_damping = 0.0
-joint_constraints/y/angular_equilibrium_point = 0.0
-joint_constraints/z/linear_limit_enabled = false
-joint_constraints/z/linear_limit_upper = 0.0
-joint_constraints/z/linear_limit_lower = 0.0
-joint_constraints/z/linear_limit_softness = 0.7
-joint_constraints/z/linear_spring_enabled = false
-joint_constraints/z/linear_spring_stiffness = 0.0
-joint_constraints/z/linear_spring_damping = 0.0
-joint_constraints/z/linear_equilibrium_point = 0.0
-joint_constraints/z/linear_restitution = 0.5
-joint_constraints/z/linear_damping = 1.0
-joint_constraints/z/angular_limit_enabled = false
-joint_constraints/z/angular_limit_upper = 0.0
-joint_constraints/z/angular_limit_lower = 0.0
-joint_constraints/z/angular_limit_softness = 0.5
-joint_constraints/z/angular_restitution = 0.0
-joint_constraints/z/angular_damping = 1.0
-joint_constraints/z/erp = 0.5
-joint_constraints/z/angular_spring_enabled = false
-joint_constraints/z/angular_spring_stiffness = 0.0
-joint_constraints/z/angular_spring_damping = 0.0
-joint_constraints/z/angular_equilibrium_point = 0.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Head"]
-transform = Transform3D(0.999998, 0.000930347, -0.00173396, -0.000898792, 0.999836, 0.0181096, 0.00175052, -0.0181081, 0.999835, 0.00126077, 0.344553, -0.298343)
-shape = SubResource("CylinderShape3D_kfp7e")
-
-[node name="AmmoCircle_001" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="1"]
+[node name="AmmoCircle_001" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="0"]
 mesh = SubResource("ArrayMesh_65pd1")
 skin = SubResource("Skin_7xe1y")
 
-[node name="Cylinder_001" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="2"]
+[node name="Cylinder_001" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="1"]
 mesh = SubResource("ArrayMesh_6xhhd")
 skin = SubResource("Skin_7xe1y")
 
-[node name="Cylinder_002" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="3"]
+[node name="Cylinder_002" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="2"]
 mesh = SubResource("ArrayMesh_wujkt")
 skin = SubResource("Skin_7xe1y")
 
-[node name="MainBody_001" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="4"]
+[node name="MainBody_001" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="3"]
 mesh = SubResource("ArrayMesh_f5mms")
 skin = SubResource("Skin_7xe1y")
 
-[node name="Plane_003" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="5"]
+[node name="Plane_003" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="4"]
 mesh = SubResource("ArrayMesh_v32uk")
 skin = SubResource("Skin_7xe1y")
 
-[node name="Plane_004" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="6"]
+[node name="Plane_004" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="5"]
 mesh = SubResource("ArrayMesh_3ofed")
 skin = SubResource("Skin_7xe1y")
+
+[node name="HeadIK" type="SkeletonIK3D" parent="Player/RaptorCommando/RaptorCommando_001/Skeleton3D" index="6"]
+root_bone = &"Neck"
+tip_bone = &"Head"
+target_node = NodePath("../../../../../CameraTarget/HeadIKTarget")
 
 [node name="AnimationPlayer" parent="Player/RaptorCommando" index="1"]
 libraries = {
@@ -3079,19 +2919,19 @@ libraries = {
 [node name="CollisionShape3D" parent="Player" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0491333, 1.22165, 0.645217)
 
-[node name="AnimationTree" parent="Player" index="3"]
-parameters/IdleTime/scale = 1.0
-parameters/RunTime/scale = 1.0
-parameters/WalkTime/scale = 1.0
-
 [node name="CameraTarget" type="Marker3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CameraTarget"]
 transform = Transform3D(-1, 6.0983e-09, -8.72098e-08, 0, 0.997564, 0.0697565, 8.74228e-08, 0.0697565, -0.997564, -1.86575, 5.20766, -3.15021)
 current = true
+script = ExtResource("3_n06hd")
+zoom_speed = 0.2
 
 [node name="CameraDirMarker" type="Marker3D" parent="CameraTarget/Camera3D"]
 transform = Transform3D(1, -4.44089e-16, 7.10543e-15, 0, 1, -7.45058e-09, 0, 7.45058e-09, 1, 2.38419e-06, 1.9252, -27.5317)
+
+[node name="HeadIKTarget" type="Marker3D" parent="CameraTarget"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.67116, 2.36332)
 
 [node name="HorizontalRotationPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.70468, 2.82899)
