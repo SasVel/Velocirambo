@@ -3,5 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://bfw15qcd162f6" path="res://Models/ArenaTextures/Stairs.png" id="1_vjc6s"]
 
 [resource]
+shading_mode = 0
 albedo_texture = ExtResource("1_vjc6s")
 texture_filter = 0

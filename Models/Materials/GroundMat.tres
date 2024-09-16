@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bicjiw6hkwig6" path="res://Models/ArenaTextures/GroundDisplacement.png" id="2_1p2v8"]
 
 [resource]
-diffuse_mode = 3
+shading_mode = 0
 albedo_texture = ExtResource("1_ismcd")
 heightmap_scale = -0.106
 heightmap_texture = ExtResource("2_1p2v8")

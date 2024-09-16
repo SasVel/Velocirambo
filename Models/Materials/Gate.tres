@@ -3,5 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://d11ssmg2udgt8" path="res://Models/ArenaTextures/Gate.png" id="1_p1xho"]
 
 [resource]
+shading_mode = 0
 albedo_texture = ExtResource("1_p1xho")
 texture_filter = 0

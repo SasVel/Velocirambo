@@ -3,5 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://b0hlu7purohei" path="res://Models/ArenaTextures/InnerWall.png" id="1_6afq2"]
 
 [resource]
+shading_mode = 0
 albedo_texture = ExtResource("1_6afq2")
 texture_filter = 0

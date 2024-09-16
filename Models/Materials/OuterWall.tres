@@ -3,5 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://yf6525m4i66p" path="res://Models/ArenaTextures/OuterWall.png" id="1_eseha"]
 
 [resource]
+shading_mode = 0
 albedo_texture = ExtResource("1_eseha")
 texture_filter = 0
