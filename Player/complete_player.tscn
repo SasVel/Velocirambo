@@ -3079,6 +3079,11 @@ libraries = {
 [node name="CollisionShape3D" parent="Player" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0491333, 1.22165, 0.645217)
 
+[node name="AnimationTree" parent="Player" index="3"]
+parameters/IdleTime/scale = 1.0
+parameters/RunTime/scale = 1.0
+parameters/WalkTime/scale = 1.0
+
 [node name="CameraTarget" type="Marker3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CameraTarget"]

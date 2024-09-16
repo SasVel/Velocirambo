@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 @export var walkingSpeed : float = 2.5
 @export var runningSpeed : float = 5.0
+##Multiplies the value in runningSpeed to get the sprinting speed.
+@export var sprintMultiplier : float = 1.7
 ##how fast the body tries to catch up to the camera
 @export var turnSpeed : float = 10.0
 ##TODO Currently not being used
@@ -21,9 +23,15 @@ extends CharacterBody3D
 @export var cameraDirMarker : Marker3D
 @export var skeleton : Skeleton3D
 @onready var skelHeadIdx = skeleton.find_bone("Head")
+@onready var animTree = $AnimationTree
 
-enum PLAYER_STATE {IDLE, RUNNING, WALKING, RAGDOLL}
-var currentState = PLAYER_STATE.IDLE
+enum PLAYER_STATE {IDLE, RUNNING, WALKING, SPRINTING, RAGDOLL}
+var currentState : PLAYER_STATE = PLAYER_STATE.IDLE :
+	set(newState):
+		if currentState == newState: return
+		if currentState != lastState: lastState = currentState
+		currentState = newState
+var lastState : PLAYER_STATE = PLAYER_STATE.IDLE
 
 var mouseVelocity = Vector2.ZERO #Don't confuse with sensitivity
 
@@ -31,13 +39,23 @@ func _input(event):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	if event is InputEventMouseMotion:
 		mouseVelocity = event.screen_relative
+	
+	handleStateTransitions(event)
+	
 	if(currentState == PLAYER_STATE.IDLE || currentState == PLAYER_STATE.RUNNING || currentState == PLAYER_STATE.WALKING):
 		if event.is_action_pressed("Leftclick"):
 			shoot()
-	#if event.is_action_pressed("test"):
-		#skeleton.physical_bones_start_simulation()
-	#elif event.is_action_released("test"):
-		#skeleton.physical_bones_stop_simulation()
+
+func handleStateTransitions(event):
+	if Input.get_vector("Backwards", "Forwards", "Leftways", "Rightways") != Vector2.ZERO:
+		if Input.is_action_pressed("Rightclick"):
+			currentState = PLAYER_STATE.WALKING
+			return
+		if Input.is_action_pressed("sprint"): currentState = PLAYER_STATE.SPRINTING
+		elif event.is_action_released("sprint"): currentState = lastState
+		else: currentState = PLAYER_STATE.RUNNING
+	else: 
+		currentState = PLAYER_STATE.IDLE
 
 func _physics_process(delta):
 	match currentState:
@@ -50,9 +68,13 @@ func _physics_process(delta):
 		PLAYER_STATE.WALKING:
 			print("Current State: Walking")
 			walkingState(delta)
+		PLAYER_STATE.SPRINTING:
+			print("Current State: Sprinting")
+			sprintingState(delta)
 		PLAYER_STATE.RAGDOLL:
 			print("Current State: Ragdoll")
 			ragdollState(delta)
+	animTransition()
 	zoom()
 	move_and_slide()
 	camera_move(delta)
@@ -60,29 +82,41 @@ func _physics_process(delta):
 func idleState(delta):
 	gravity(delta)
 	turn_body_to_camera(delta)
-	handleRunWalkIdleState()
+	player_stop(runningSpeed)
 
 func runningState(delta):
 	gravity(delta)
 	turn_body_to_camera(delta)
 	player_move(delta, runningSpeed)
-	handleRunWalkIdleState()
 
 func walkingState(delta):
 	gravity(delta)
 	turn_body_to_camera(delta)
 	player_move(delta, walkingSpeed)
-	handleRunWalkIdleState()
+
+func sprintingState(delta):
+	gravity(delta)
+	turn_body_to_camera(delta)
+	player_move(delta, runningSpeed * sprintMultiplier)
 
 func ragdollState(delta):
 	pass
 
-func handleRunWalkIdleState():
-	if Input.is_action_pressed("Forwards") || Input.is_action_pressed("Backwards") || Input.is_action_pressed("Leftways") || Input.is_action_pressed("Rightways"):
-		if Input.is_action_pressed("Rightclick"):
-			currentState = PLAYER_STATE.WALKING
-		else: currentState = PLAYER_STATE.RUNNING
-	else: currentState = PLAYER_STATE.IDLE
+func animTransition(state : PLAYER_STATE = currentState):
+	match state:
+		PLAYER_STATE.IDLE:
+			animTree.set("parameters/idle_move/blend_amount", lerpf(animTree["parameters/idle_move/blend_amount"], 0.0, 0.1))
+		PLAYER_STATE.WALKING:
+			animTree.set("parameters/aim_transition/transition_request", "aiming")
+			animTree.set("parameters/idle_move/blend_amount", lerpf(animTree["parameters/idle_move/blend_amount"], 1.0, 0.1))
+		PLAYER_STATE.RUNNING:
+			animTree.set("parameters/aim_transition/transition_request", "not_aiming")
+			animTree.set("parameters/RunTime/scale", lerpf(animTree["parameters/RunTime/scale"], 1.0, 0.2))
+			animTree.set("parameters/idle_move/blend_amount", lerpf(animTree["parameters/idle_move/blend_amount"], 1.0, 0.1))
+		PLAYER_STATE.SPRINTING:
+			animTree.set("parameters/aim_transition/transition_request", "not_aiming")
+			animTree.set("parameters/RunTime/scale", lerpf(animTree["parameters/RunTime/scale"], sprintMultiplier, 0.2))
+			animTree.set("parameters/idle_move/blend_amount", lerpf(animTree["parameters/idle_move/blend_amount"], 1.0, 0.1))
 
 #TODO
 func zoom():
@@ -98,7 +132,7 @@ func gravity(delta):
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-# Get the input direction and handle the movement/deceleration.
+# Get the input direction and handle the movement.
 func player_move(_delta, speed):
 	#Controls got inverted for some reason. Couldn't figure out why so, uh, temporary fix.
 	var input_dir : Vector2 = Input.get_vector("Leftways", "Rightways", "Forwards", "Backwards") * -1
@@ -106,9 +140,10 @@ func player_move(_delta, speed):
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+
+# Handles decelerration.
+func player_stop(speed):
+	velocity = velocity.move_toward(Vector3.ZERO, speed)
 
 func camera_move(delta):
 	cameraTarget.position = position
