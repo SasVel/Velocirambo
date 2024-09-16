@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=7 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
@@ -15,9 +15,6 @@ adjustment_enabled = true
 adjustment_brightness = 0.95
 adjustment_contrast = 1.15
 adjustment_saturation = 0.9
-
-[sub_resource type="BoxMesh" id="BoxMesh_327jh"]
-size = Vector3(110, 70, 110)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -80,8 +77,3 @@ script = ExtResource("4_f25ew")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266819, -0.0516815, -0.008564)
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
-
-[node name="ShaderBox" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30.4314, 0)
-visible = false
-mesh = SubResource("BoxMesh_327jh")

@@ -18,7 +18,9 @@ extends CharacterBody3D
 
 @export var cameraTarget : Marker3D
 @export var horizontalRotPivot : Node3D
+@export var cameraDirMarker : Marker3D
 @export var skeleton : Skeleton3D
+@onready var skelHeadIdx = skeleton.find_bone("Head")
 
 enum PLAYER_STATE {IDLE, RUNNING, WALKING, RAGDOLL}
 var currentState = PLAYER_STATE.IDLE
