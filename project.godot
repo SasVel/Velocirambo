@@ -35,6 +35,10 @@ folder_colors={
 "res://playScenes/": "yellow"
 }
 
+[gui]
+
+theme/custom_font="res://Misc/Font/LapsusPro-Bold.otf"
+
 [input]
 
 Forwards={
