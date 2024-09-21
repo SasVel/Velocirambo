@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="DinoShooter"
-run/main_scene="res://playScenes/main.tscn"
+run/main_scene="res://MainMenu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -37,7 +37,7 @@ folder_colors={
 
 [gui]
 
-theme/custom_font="res://Misc/Font/LapsusPro-Bold.otf"
+theme/custom_font="res://Misc/Fonts/LapsusPro-Bold.otf"
 
 [input]
 

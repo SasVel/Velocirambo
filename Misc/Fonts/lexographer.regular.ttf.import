@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dnuvjagnytag5"
-path="res://.godot/imported/LapsusPro-Bold.otf-870ea1af5b12c2ba361715c149e1194d.fontdata"
+uid="uid://bf8h1e0v7igqs"
+path="res://.godot/imported/lexographer.regular.ttf-c3cf5e1e7298359ec115d0d983818a87.fontdata"
 
 [deps]
 
-source_file="res://Misc/Font/LapsusPro-Bold.otf"
-dest_files=["res://.godot/imported/LapsusPro-Bold.otf-870ea1af5b12c2ba361715c149e1194d.fontdata"]
+source_file="res://Misc/Fonts/lexographer.regular.ttf"
+dest_files=["res://.godot/imported/lexographer.regular.ttf-c3cf5e1e7298359ec115d0d983818a87.fontdata"]
 
 [params]
 

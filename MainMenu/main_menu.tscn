@@ -1,18 +1,40 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0y2nmepdt2pj"]
+[gd_scene load_steps=10 format=3 uid="uid://d0y2nmepdt2pj"]
 
+[ext_resource type="Script" path="res://MainMenu/main_menu.gd" id="1_hp2ea"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="1_levnm"]
 [ext_resource type="Environment" uid="uid://ciipvdp53q8qo" path="res://Misc/MainEnv.tres" id="1_qi8qv"]
 [ext_resource type="PackedScene" uid="uid://cufn7ji82vhtv" path="res://Models/Commando/RaptorCommando.glb" id="2_w0nex"]
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="3_xg8ev"]
 [ext_resource type="Script" path="res://UI/Components/button_anim_component.gd" id="4_vgnm4"]
+[ext_resource type="Shader" path="res://Shaders/Vignette.gdshader" id="5_4xcmi"]
+
+[sub_resource type="Environment" id="Environment_tvhjm"]
+background_mode = 1
+background_color = Color(0.41249, 0.734924, 0.938587, 1)
+reflected_light_source = 2
+tonemap_mode = 2
+glow_intensity = 0.2
+glow_hdr_threshold = 0.2
+adjustment_enabled = true
+adjustment_brightness = 0.95
+adjustment_contrast = 1.15
+adjustment_saturation = 0.9
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_om8ps"]
+shader = ExtResource("5_4xcmi")
+shader_parameter/vignette_intensity = 0.3
+shader_parameter/vignette_opacity = 0.4
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Node3D"]
+script = ExtResource("1_hp2ea")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_qi8qv")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.990268, 0.139173, 0, -0.139173, 0.990268, -0.635, 5.137, 1.974)
+environment = SubResource("Environment_tvhjm")
 current = true
 
 [node name="Arena" parent="." instance=ExtResource("1_levnm")]
@@ -21,23 +43,23 @@ current = true
 transform = Transform3D(0.113203, 0, -0.993572, 0, 1, 0, 0.993572, 0, 0.113203, 3.858, 0.46, -2.547)
 
 [node name="Skeleton3D" parent="RaptorCommando/RaptorCommando_001" index="0"]
-bones/0/position = Vector3(-0.00169446, 2.84766, 0.340054)
+bones/0/position = Vector3(-0.00169452, 3.00919, 0.340054)
 bones/0/rotation = Quaternion(1.60095e-07, -0.569149, 0.822234, -1.10817e-07)
 bones/1/rotation = Quaternion(1.92893e-07, 0.0511689, 0.99869, -9.96228e-09)
 bones/2/rotation = Quaternion(-7.50228e-05, 0.999815, -0.0191978, 0.00115631)
 bones/3/rotation = Quaternion(0.000370724, 0.931858, 0.362822, -0.00109793)
-bones/4/rotation = Quaternion(-0.0545535, 0.0140874, 0.00670729, 0.998389)
-bones/6/position = Vector3(-0.00716594, 0.41504, 0.35232)
-bones/6/rotation = Quaternion(0.0110149, 0.848508, 0.528986, 0.0093475)
+bones/4/rotation = Quaternion(-0.126672, -1.20924e-07, -1.54645e-08, 0.991945)
+bones/6/position = Vector3(-0.00840289, 0.403969, 0.490247)
+bones/6/rotation = Quaternion(0.0110239, 0.899577, 0.436498, 0.0104673)
 bones/7/position = Vector3(0.00590881, 0.590108, 0.658294)
-bones/7/rotation = Quaternion(0.0114565, 0.765589, 0.643077, 0.0139547)
-bones/9/rotation = Quaternion(-0.214129, 0.211676, -0.661331, 0.68701)
-bones/10/rotation = Quaternion(0.61821, 3.11099e-06, -2.48913e-06, 0.786013)
+bones/7/rotation = Quaternion(0.010807, 0.845148, 0.534196, 0.0155712)
+bones/9/rotation = Quaternion(-0.198988, 0.1971, -0.665821, 0.691547)
+bones/10/rotation = Quaternion(0.580593, 3.19821e-06, -2.30799e-06, 0.814194)
 bones/10/scale = Vector3(1, 0.999985, 1.00001)
-bones/12/rotation = Quaternion(-0.129874, -0.13053, 0.682004, 0.707789)
-bones/13/rotation = Quaternion(0.389602, -3.70907e-06, 1.474e-06, 0.920983)
+bones/12/rotation = Quaternion(-0.198988, -0.1971, 0.665821, 0.691547)
+bones/13/rotation = Quaternion(0.580593, -3.28258e-06, 2.23026e-06, 0.814194)
 bones/13/scale = Vector3(1, 0.999985, 1.00002)
-bones/14/rotation = Quaternion(-0.0330015, 0.996036, -0.0805411, -0.0183516)
+bones/14/rotation = Quaternion(-1.37847e-08, 0.98319, -0.182583, -3.0864e-07)
 bones/15/rotation = Quaternion(0.0192654, -1.19187e-07, 2.29661e-09, 0.999814)
 bones/16/rotation = Quaternion(-0.0137358, 5.07739e-14, 5.27267e-16, 0.999906)
 bones/17/rotation = Quaternion(0.0505618, -3.15521e-15, 2.1017e-15, 0.998721)
@@ -49,21 +71,19 @@ bones/22/rotation = Quaternion(0.0113765, -1.19202e-07, 1.35619e-09, 0.999935)
 bones/23/rotation = Quaternion(-0.0265121, 1.19167e-07, -3.16049e-09, 0.999649)
 bones/24/rotation = Quaternion(-0.0260201, 3.77835e-15, -6.20368e-09, 0.999661)
 bones/25/rotation = Quaternion(0.445196, -0.476238, 0.563821, 0.507055)
-bones/26/rotation = Quaternion(0.020127, -0.0361343, -0.737151, 0.674461)
-bones/27/rotation = Quaternion(-0.55847, 1.82577e-06, 1.33534e-06, 0.829525)
-bones/28/rotation = Quaternion(0.654596, 2.68127e-08, -2.031e-07, 0.755979)
+bones/26/rotation = Quaternion(0.0168762, -0.0325811, -0.737316, 0.674551)
+bones/27/rotation = Quaternion(-0.500277, 1.90136e-06, 1.20155e-06, 0.865865)
+bones/28/rotation = Quaternion(0.561719, 2.44333e-08, -1.69437e-07, 0.827328)
 bones/29/rotation = Quaternion(0.445195, 0.476238, -0.563821, 0.507055)
-bones/30/rotation = Quaternion(0.0201271, 0.0361343, 0.737151, 0.674461)
-bones/31/rotation = Quaternion(-0.55847, -1.81318e-06, -1.34581e-06, 0.829525)
-bones/32/rotation = Quaternion(0.654596, -2.31074e-08, 1.98183e-07, 0.755979)
-bones/33/position = Vector3(0.404172, 1.72348, 2.05403)
-bones/33/rotation = Quaternion(0.00180206, 0.768677, 0.639635, 2.46742e-07)
+bones/30/rotation = Quaternion(0.0168763, 0.0325812, 0.737316, 0.674551)
+bones/31/rotation = Quaternion(-0.500277, -1.8892e-06, -1.19882e-06, 0.865865)
+bones/32/rotation = Quaternion(0.561719, -2.54656e-08, 1.7095e-07, 0.827328)
+bones/33/rotation = Quaternion(1.37679e-07, 0.707107, 0.707107, 1.37679e-07)
 bones/34/rotation = Quaternion(-0.686919, -0.0306942, -0.0324117, 0.725362)
 bones/35/position = Vector3(0.611549, 0.0219753, -0.318177)
 bones/35/rotation = Quaternion(-0.505573, 0.494364, -0.494364, 0.505574)
 bones/36/rotation = Quaternion(-0.699136, 2.52103e-08, 0.714989, -5.65331e-10)
-bones/38/position = Vector3(-0.407561, 1.52352, 2.0305)
-bones/38/rotation = Quaternion(-1.26556e-07, 0.649981, 0.759951, -1.47968e-07)
+bones/38/rotation = Quaternion(-1.37679e-07, 0.707107, 0.707107, -1.37679e-07)
 bones/39/rotation = Quaternion(-0.686919, 0.0306942, 0.0324117, 0.725362)
 bones/40/position = Vector3(-0.614938, 0.0219753, -0.318177)
 bones/40/rotation = Quaternion(-0.505573, -0.494364, 0.494364, 0.505574)
@@ -72,7 +92,20 @@ bones/42/rotation = Quaternion(1.37679e-07, 0.707107, -0.707107, -1.37679e-07)
 [node name="AnimationPlayer" parent="RaptorCommando" index="1"]
 autoplay = "idle"
 
-[node name="Menu" type="Control" parent="."]
+[node name="ShadersLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="ShadersLayer"]
+material = SubResource("ShaderMaterial_om8ps")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="Menu" type="Control" parent="UILayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,24 +114,69 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_xg8ev")
 
-[node name="MarginContainer" type="MarginContainer" parent="Menu"]
+[node name="MainMenuComponents" type="MarginContainer" parent="UILayer/Menu"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 423.0
+offset_right = 546.0
 grow_vertical = 2
+theme_override_constants/margin_left = 45
+theme_override_constants/margin_top = 45
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/Menu/MainMenuComponents"]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+bbcode_enabled = true
+text = "[font=res://Misc/Fonts/lexographer.regular.ttf][color=WHITE][font_size=80][outline_size=20][shake rate=20.0 level=5 connected=1]Velocirambo[/shake][/outline_size][/font_size][/color][/font]"
+fit_content = true
+scroll_active = false
+
+[node name="BtnsContainer" type="VBoxContainer" parent="UILayer/Menu/MainMenuComponents"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
 alignment = 1
 
-[node name="NewGameBtn" type="Button" parent="Menu/MarginContainer/VBoxContainer"]
+[node name="NewGameBtn" type="Button" parent="UILayer/Menu/MainMenuComponents/BtnsContainer"]
 layout_mode = 2
 text = "New Game"
 
-[node name="ButtonAnimComponent" type="Node" parent="Menu/MarginContainer/VBoxContainer/NewGameBtn"]
+[node name="ButtonAnimComponent" type="Node" parent="UILayer/Menu/MainMenuComponents/BtnsContainer/NewGameBtn"]
 script = ExtResource("4_vgnm4")
 time = 0.2
 size = Vector2(1.2, 1.2)
+
+[node name="SettingsBtn" type="Button" parent="UILayer/Menu/MainMenuComponents/BtnsContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="ButtonAnimComponent" type="Node" parent="UILayer/Menu/MainMenuComponents/BtnsContainer/SettingsBtn"]
+script = ExtResource("4_vgnm4")
+time = 0.2
+size = Vector2(1.2, 1.2)
+
+[node name="CreditsBtn" type="Button" parent="UILayer/Menu/MainMenuComponents/BtnsContainer"]
+layout_mode = 2
+text = "Credits"
+
+[node name="ButtonAnimComponent" type="Node" parent="UILayer/Menu/MainMenuComponents/BtnsContainer/CreditsBtn"]
+script = ExtResource("4_vgnm4")
+time = 0.2
+size = Vector2(1.2, 1.2)
+
+[node name="QuitBtn" type="Button" parent="UILayer/Menu/MainMenuComponents/BtnsContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="ButtonAnimComponent" type="Node" parent="UILayer/Menu/MainMenuComponents/BtnsContainer/QuitBtn"]
+script = ExtResource("4_vgnm4")
+time = 0.2
+size = Vector2(1.2, 1.2)
+
+[connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/NewGameBtn" to="." method="_on_new_game_btn_pressed"]
+[connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/CreditsBtn" to="." method="_on_credits_btn_pressed"]
+[connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
 
 [editable path="RaptorCommando"]

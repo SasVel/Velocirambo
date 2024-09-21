@@ -40,6 +40,7 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [resource]
+Button/constants/align_to_largest_stylebox = 1
 Button/font_sizes/font_size = 24
 Button/styles/focus = SubResource("StyleBoxEmpty_lpssa")
 Button/styles/hover = SubResource("StyleBoxFlat_8up6i")
@@ -49,3 +50,4 @@ MarginContainer/constants/margin_bottom = 20
 MarginContainer/constants/margin_left = 20
 MarginContainer/constants/margin_right = 20
 MarginContainer/constants/margin_top = 20
+VBoxContainer/constants/separation = 13
