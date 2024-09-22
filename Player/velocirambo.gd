@@ -77,6 +77,7 @@ func _physics_process(delta):
 	animTransition()
 	move_and_slide()
 	camera_move(delta)
+	PlayerData.position = self.position
 
 func idleState(delta):
 	gravity(delta)

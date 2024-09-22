@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=11 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="3_hkrak"]
 [ext_resource type="Script" path="res://UI/crosshair.gd" id="4_etnxk"]
 [ext_resource type="Script" path="res://UI/pause.gd" id="4_f25ew"]
-[ext_resource type="PackedScene" uid="uid://0lhdiufyg5dr" path="res://Bosses/Components/Target/target.tscn" id="7_6tyam"]
+[ext_resource type="Script" path="res://UI/StatsDisplay/health_bar.gd" id="5_iicw0"]
+[ext_resource type="PackedScene" uid="uid://bxb5dwbcvtql4" path="res://Bosses/Anky/anky_boss.tscn" id="8_ktlfx"]
 
 [sub_resource type="Gradient" id="Gradient_3ul7b"]
 interpolation_mode = 1
@@ -68,7 +69,8 @@ width = 2.0
 points = PackedVector2Array(4, 0, 20, 0)
 width = 2.0
 
-[node name="Sprite2D" type="Sprite2D" parent="UI/Crosshair"]
+[node name="CenterDot" type="Sprite2D" parent="UI/Crosshair"]
+visible = false
 scale = Vector2(0.06, 0.06)
 texture = SubResource("GradientTexture2D_hqkee")
 
@@ -79,10 +81,29 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_f25ew")
 
+[node name="StatsDisplay" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="ProgressBar" parent="UI/StatsDisplay"]
+modulate = Color(0.890777, 0.131414, 0, 1)
+layout_mode = 1
+offset_left = 28.0
+offset_top = 35.0
+offset_right = 388.0
+offset_bottom = 57.0
+value = 50.0
+show_percentage = false
+script = ExtResource("5_iicw0")
+
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266819, -0.0516815, -0.008564)
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 
-[node name="Target" parent="." instance=ExtResource("7_6tyam")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.66376, 17.8208)
+[node name="AnkyBoss" parent="." instance=ExtResource("8_ktlfx")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 22)

@@ -1,6 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://bxb5dwbcvtql4"]
+[gd_scene load_steps=27 format=3 uid="uid://bxb5dwbcvtql4"]
 
 [ext_resource type="PackedScene" uid="uid://dwmycrnmjyus6" path="res://Models/Anky/Ankylosaurus.glb" id="1_1ojo7"]
+[ext_resource type="Script" path="res://Bosses/Anky/anky_boss.gd" id="1_6emht"]
+[ext_resource type="Script" path="res://Components/Stats/stats.gd" id="2_u4ojp"]
 [ext_resource type="Animation" uid="uid://cs5nsjcwstevw" path="res://Bosses/Anky/Animations/death.res" id="2_yu11f"]
 [ext_resource type="Animation" uid="uid://ctrbxgn2mudxe" path="res://Bosses/Anky/Animations/idle.res" id="3_m6hnr"]
 [ext_resource type="Animation" uid="uid://k16qa8u6r6yv" path="res://Bosses/Anky/Animations/roll_attack.res" id="4_3ib46"]
@@ -82,39 +84,53 @@ nodes/walk/node = SubResource("AnimationNodeAnimation_y4rna")
 nodes/walk/position = Vector2(-240, 220)
 node_connections = [&"attack", 0, &"idle_walk", &"attack", 1, &"roll_tail_throw_blend", &"idle_walk", 0, &"idle", &"idle_walk", 1, &"walk", &"live_dead", 0, &"attack", &"live_dead", 1, &"death", &"output", 0, &"live_dead", &"roll_tail_throw_blend", 0, &"roll_attack", &"roll_tail_throw_blend", 1, &"tail_attack_left_right", &"roll_tail_throw_blend", 2, &"throw_attack", &"tail_attack_left_right", 0, &"tail_attack_left", &"tail_attack_left_right", 1, &"tail_attack_right"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_15ios"]
+size = Vector3(4, 3, 7.6355)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_8duml"]
+height = 4.0
+radius = 8.0
+
 [node name="AnkyBoss" type="CharacterBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("1_6emht")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("2_u4ojp")
+maxHealth = 1000.0
+damage = 15.0
 
 [node name="Ankylosaurus2" parent="." instance=ExtResource("1_1ojo7")]
 
 [node name="Skeleton3D" parent="Ankylosaurus2/Armature" index="0"]
-bones/0/position = Vector3(0, -1.15426, -0.290531)
-bones/0/rotation = Quaternion(-0.0104996, 0, 0, 0.999945)
-bones/1/rotation = Quaternion(0.0163265, 0, 0, 0.999867)
+bones/0/position = Vector3(-2.84519e-17, -1.15957, -0.303232)
+bones/0/rotation = Quaternion(-0.00695982, 2.21135e-17, -9.76845e-25, 0.999976)
+bones/1/rotation = Quaternion(0.0108201, -1.73077e-17, 1.33758e-18, 0.999941)
 bones/2/rotation = Quaternion(-0.0670452, -1.39497e-17, -1.39497e-17, 0.99775)
-bones/3/position = Vector3(-0.0179637, 1.45493, 0.0689731)
-bones/3/rotation = Quaternion(0.327298, 0.00562795, 0.0817904, 0.941358)
+bones/3/position = Vector3(-0.0179637, 1.45819, 0.0709631)
+bones/3/rotation = Quaternion(0.332621, 0.00516499, 0.0818209, 0.93949)
 bones/4/position = Vector3(-0.0179636, 1.15447, 0.427826)
-bones/4/rotation = Quaternion(0.027627, 0.00114625, 0.0754274, 0.996768)
-bones/5/position = Vector3(-0.0329568, 1.32569, 0.27156)
-bones/5/rotation = Quaternion(0.189043, 0.00211335, 0.0771777, 0.978929)
-bones/6/rotation = Quaternion(0.777549, 0.214225, -0.108399, 0.581184)
-bones/7/rotation = Quaternion(-0.463164, -0.0574727, 0.0977695, 0.878986)
-bones/8/rotation = Quaternion(0.777549, -0.214225, 0.108399, 0.581184)
-bones/9/rotation = Quaternion(-0.463164, 0.0574727, -0.0977695, 0.878986)
-bones/10/rotation = Quaternion(0.974702, -0.000228776, -5.52847e-05, -0.22351)
-bones/11/rotation = Quaternion(-0.187237, 0.000598618, 0.00403423, 0.982306)
+bones/4/rotation = Quaternion(0.0255075, 0.00130663, 0.0754248, 0.996824)
+bones/5/position = Vector3(-0.0329567, 1.32449, 0.271196)
+bones/5/rotation = Quaternion(0.190305, 0.0020138, 0.0771804, 0.978684)
+bones/6/rotation = Quaternion(0.776035, 0.213948, -0.106872, 0.583587)
+bones/7/rotation = Quaternion(-0.457161, -0.0574862, 0.0968774, 0.882221)
+bones/8/rotation = Quaternion(0.776035, -0.213948, 0.106872, 0.583587)
+bones/9/rotation = Quaternion(-0.457161, 0.0574862, -0.0968774, 0.882221)
+bones/10/rotation = Quaternion(0.983592, 3.83796e-18, 2.17778e-17, -0.180408)
+bones/11/rotation = Quaternion(-0.247071, -6.99441e-15, 1.77636e-15, 0.968997)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(-0.107186, 6.29513e-05, 0.0275039, 0.993858)
+bones/12/rotation = Quaternion(-0.131481, 6.6709e-07, 7.42033e-06, 0.991319)
 bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(-0.147644, -0.00248916, 0.0942313, 0.984538)
+bones/13/rotation = Quaternion(-0.00495449, 4.33292e-05, 0.000641291, 0.999988)
 bones/13/scale = Vector3(1, 0.999999, 1)
-bones/14/rotation = Quaternion(0.125792, 0.00180811, 0.104539, 0.986532)
+bones/14/rotation = Quaternion(0.434423, -0.00116703, 0.0152953, 0.900578)
 bones/14/scale = Vector3(1, 0.999999, 1)
 bones/15/rotation = Quaternion(-0.00665235, -1.13469e-07, -4.55656e-09, 0.999978)
-bones/16/rotation = Quaternion(0.0738603, 0.84113, 0.531957, -0.06377)
-bones/17/rotation = Quaternion(-0.409004, 0.0191223, -0.0687219, 0.90974)
-bones/18/rotation = Quaternion(-0.0738603, 0.84113, 0.531957, 0.06377)
-bones/19/rotation = Quaternion(-0.409004, -0.0191223, 0.0687219, 0.90974)
+bones/16/rotation = Quaternion(0.0730619, 0.839374, 0.535002, -0.0623377)
+bones/17/rotation = Quaternion(-0.39477, 0.019011, -0.0668675, 0.916146)
+bones/18/rotation = Quaternion(-0.0730619, 0.839374, 0.535002, 0.0623377)
+bones/19/rotation = Quaternion(-0.39477, -0.019011, 0.0668675, 0.916146)
 bones/21/position = Vector3(1.34051, -0.978494, 1.37702)
 bones/21/rotation = Quaternion(0, 0.999829, 0, -0.0184734)
 bones/23/position = Vector3(-1.34051, -0.978494, 1.37702)
@@ -137,5 +153,16 @@ parameters/idle_walk/blend_amount = 0.0
 parameters/live_dead/blend_amount = 0
 parameters/roll_tail_throw_blend/blend_amount = 0
 parameters/tail_attack_left_right/blend_amount = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44761, 0.460815)
+shape = SubResource("BoxShape3D_15ios")
+
+[node name="AttackArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.69314, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.62637, 0)
+shape = SubResource("CylinderShape3D_8duml")
 
 [editable path="Ankylosaurus2"]
