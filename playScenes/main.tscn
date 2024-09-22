@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=10 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
@@ -6,6 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="3_hkrak"]
 [ext_resource type="Script" path="res://UI/crosshair.gd" id="4_etnxk"]
 [ext_resource type="Script" path="res://UI/pause.gd" id="4_f25ew"]
+[ext_resource type="PackedScene" uid="uid://0lhdiufyg5dr" path="res://Bosses/Components/Target/target.tscn" id="7_6tyam"]
+
+[sub_resource type="Gradient" id="Gradient_3ul7b"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hqkee"]
+gradient = SubResource("Gradient_3ul7b")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.153846, 0.15812)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -57,6 +68,10 @@ width = 2.0
 points = PackedVector2Array(4, 0, 20, 0)
 width = 2.0
 
+[node name="Sprite2D" type="Sprite2D" parent="UI/Crosshair"]
+scale = Vector2(0.06, 0.06)
+texture = SubResource("GradientTexture2D_hqkee")
+
 [node name="Pause" type="Control" parent="UI"]
 process_mode = 3
 anchors_preset = 0
@@ -68,3 +83,6 @@ script = ExtResource("4_f25ew")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266819, -0.0516815, -0.008564)
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
+
+[node name="Target" parent="." instance=ExtResource("7_6tyam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.66376, 17.8208)

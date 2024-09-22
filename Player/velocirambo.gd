@@ -20,11 +20,11 @@ extends CharacterBody3D
 
 @export var cameraTarget : Marker3D
 @export var horizontalRotPivot : Node3D
-@export var cameraDirMarker : Marker3D
 @export var skeleton : Skeleton3D
-@export var headIK : SkeletonIK3D
 @onready var skelHeadIdx = skeleton.find_bone("Head")
 @onready var animTree = $AnimationTree
+
+signal shot_gun
 
 # Controls the aiming state. Figured it should be seperate from the rest of the states, so they can overlap
 var IS_AIMING : bool = false : set = set_aiming_state
@@ -65,22 +65,16 @@ func handleStateTransitions(event):
 func _physics_process(delta):
 	match currentState:
 		PLAYER_STATE.IDLE:
-			print("Current State: Idle")
 			idleState(delta)
 		PLAYER_STATE.RUNNING:
-			print("Current State: Running")
 			runningState(delta)
 		PLAYER_STATE.WALKING:
-			print("Current State: Walking")
 			walkingState(delta)
 		PLAYER_STATE.SPRINTING:
-			print("Current State: Sprinting")
 			sprintingState(delta)
 		PLAYER_STATE.RAGDOLL:
-			print("Current State: Ragdoll")
 			ragdollState(delta)
 	animTransition()
-	zoom()
 	move_and_slide()
 	camera_move(delta)
 
@@ -106,12 +100,11 @@ func sprintingState(delta):
 
 func set_aiming_state(val):
 	if val:
-		headIK.start()
 		get_viewport().get_camera_3d().zoom_fov(60)
 	else: 
-		headIK.stop()
 		skeleton.clear_bones_global_pose_override()
 		get_viewport().get_camera_3d().reset_fov()
+	IS_AIMING = val
 
 func ragdollState(delta):
 	pass
@@ -133,12 +126,9 @@ func animTransition(state : PLAYER_STATE = currentState):
 			animTree.set("parameters/idle_move/blend_amount", lerpf(animTree["parameters/idle_move/blend_amount"], 1.0, 0.1))
 
 #TODO
-func zoom():
-	pass
-
-#TODO
 func shoot():
 	print("Shot!")
+	shot_gun.emit()
 	pass
 
 # Add the gravity. Hasn't been changed since script creation
@@ -187,3 +177,9 @@ func turn_body_to_camera(delta):
 	var cameraRotation = horizontalRotPivot.rotation.y
 	var oldPlayerRotation = rotation.y
 	rotation.y = lerp_angle(oldPlayerRotation, cameraRotation, turnSpeed * delta)
+	
+	#Aiming logic below
+	#if !IS_AIMING: return
+	#var bonePose : Transform3D = skeleton.global_transform * skeleton.get_bone_global_pose(skelHeadIdx)
+	#bonePose = bonePose.looking_at(bonePose.origin + get_viewport().get_camera_3d().basis.z)
+	#skeleton.set_bone_global_pose_override(skelHeadIdx, skeleton.global_transform.affine_inverse() * bonePose, 1.0, true)

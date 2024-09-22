@@ -9,3 +9,6 @@ https://pixabay.com/illustrations/dinosaur-animal-prehistoric-6291409/
 Fonts:
 https://www.1001fonts.com/lapsus-pro-font.html
 https://www.1001fonts.com/lexographer-font.html
+
+Target:
+	<a href="https://www.flaticon.com/free-icons/target" title="target icons">Target icons created by Freepik - Flaticon</a>
