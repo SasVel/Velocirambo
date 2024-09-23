@@ -89,10 +89,9 @@ size = Vector3(4, 3, 7.6355)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_8duml"]
 height = 4.0
-radius = 8.0
+radius = 12.441
 
 [node name="AnkyBoss" type="CharacterBody3D"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_6emht")
 
 [node name="Stats" type="Node" parent="."]
@@ -101,36 +100,37 @@ maxHealth = 1000.0
 damage = 15.0
 
 [node name="Ankylosaurus2" parent="." instance=ExtResource("1_1ojo7")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Ankylosaurus2/Armature" index="0"]
-bones/0/position = Vector3(-2.84519e-17, -1.15957, -0.303232)
-bones/0/rotation = Quaternion(-0.00695982, 2.21135e-17, -9.76845e-25, 0.999976)
-bones/1/rotation = Quaternion(0.0108201, -1.73077e-17, 1.33758e-18, 0.999941)
+bones/0/position = Vector3(-2.84519e-17, -1.02193, 0.0259131)
+bones/0/rotation = Quaternion(-0.0986288, 2.21074e-17, -1.02361e-24, 0.995124)
+bones/1/rotation = Quaternion(0.153268, -1.72961e-17, 1.33668e-18, 0.988185)
 bones/2/rotation = Quaternion(-0.0670452, -1.39497e-17, -1.39497e-17, 0.99775)
-bones/3/position = Vector3(-0.0179637, 1.45819, 0.0709631)
-bones/3/rotation = Quaternion(0.332621, 0.00516499, 0.0818209, 0.93949)
+bones/3/position = Vector3(-0.0179637, 1.37367, 0.0193838)
+bones/3/rotation = Quaternion(0.191396, 0.0170961, 0.0801815, 0.978083)
 bones/4/position = Vector3(-0.0179636, 1.15447, 0.427826)
-bones/4/rotation = Quaternion(0.0255075, 0.00130663, 0.0754248, 0.996824)
-bones/5/position = Vector3(-0.0329567, 1.32449, 0.271196)
-bones/5/rotation = Quaternion(0.190305, 0.0020138, 0.0771804, 0.978684)
-bones/6/rotation = Quaternion(0.776035, 0.213948, -0.106872, 0.583587)
-bones/7/rotation = Quaternion(-0.457161, -0.0574862, 0.0968774, 0.882221)
-bones/8/rotation = Quaternion(0.776035, -0.213948, 0.106872, 0.583587)
-bones/9/rotation = Quaternion(-0.457161, 0.0574862, -0.0968774, 0.882221)
-bones/10/rotation = Quaternion(0.983592, 3.83796e-18, 2.17778e-17, -0.180408)
-bones/11/rotation = Quaternion(-0.247071, -6.99441e-15, 1.77636e-15, 0.968997)
+bones/4/rotation = Quaternion(0.0802127, -0.00283754, 0.0753828, 0.993919)
+bones/5/position = Vector3(-0.0329567, 1.35511, 0.280454)
+bones/5/rotation = Quaternion(0.158081, 0.00454593, 0.0770727, 0.984403)
+bones/6/rotation = Quaternion(0.801128, 0.219596, -0.14171, 0.538415)
+bones/7/rotation = Quaternion(-0.583061, -0.0581888, 0.110723, 0.802742)
+bones/8/rotation = Quaternion(0.801128, -0.219596, 0.14171, 0.538415)
+bones/9/rotation = Quaternion(-0.583061, 0.0581888, -0.110723, 0.802742)
+bones/10/rotation = Quaternion(0.974481, -8.08099e-07, -1.80753e-07, -0.224471)
+bones/11/rotation = Quaternion(-0.128608, 1.13043e-05, 6.99813e-05, 0.991696)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(-0.131481, 6.6709e-07, 7.42033e-06, 0.991319)
+bones/12/rotation = Quaternion(0.0844525, -3.69978e-05, 0.00206018, 0.996425)
 bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(-0.00495449, 4.33292e-05, 0.000641291, 0.999988)
+bones/13/rotation = Quaternion(0.167731, -0.00405871, 0.0320055, 0.985305)
 bones/13/scale = Vector3(1, 0.999999, 1)
-bones/14/rotation = Quaternion(0.434423, -0.00116703, 0.0152953, 0.900578)
+bones/14/rotation = Quaternion(-0.128913, -0.0237961, 0.202688, 0.970429)
 bones/14/scale = Vector3(1, 0.999999, 1)
 bones/15/rotation = Quaternion(-0.00665235, -1.13469e-07, -4.55656e-09, 0.999978)
-bones/16/rotation = Quaternion(0.0730619, 0.839374, 0.535002, -0.0623377)
-bones/17/rotation = Quaternion(-0.39477, 0.019011, -0.0668675, 0.916146)
-bones/18/rotation = Quaternion(-0.0730619, 0.839374, 0.535002, 0.0623377)
-bones/19/rotation = Quaternion(-0.39477, -0.019011, 0.0668675, 0.916146)
+bones/16/rotation = Quaternion(0.0840836, 0.852186, 0.508339, -0.0911081)
+bones/17/rotation = Quaternion(-0.649481, 0.0224698, -0.0876695, 0.754973)
+bones/18/rotation = Quaternion(-0.0840836, 0.852186, 0.508339, 0.0911081)
+bones/19/rotation = Quaternion(-0.649481, -0.0224698, 0.0876695, 0.754973)
 bones/21/position = Vector3(1.34051, -0.978494, 1.37702)
 bones/21/rotation = Quaternion(0, 0.999829, 0, -0.0184734)
 bones/23/position = Vector3(-1.34051, -0.978494, 1.37702)
@@ -160,9 +160,19 @@ shape = SubResource("BoxShape3D_15ios")
 
 [node name="AttackArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.69314, 0)
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.62637, 0)
 shape = SubResource("CylinderShape3D_8duml")
+
+[node name="IdleWalkTransition" type="Timer" parent="."]
+process_callback = 0
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="IdleWalkTransition" to="." method="_on_idle_to_walk_timer_timeout"]
+[connection signal="timeout" from="IdleWalkTransition" to="." method="_on_idle_walk_transition_timeout"]
 
 [editable path="Ankylosaurus2"]

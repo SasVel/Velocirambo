@@ -98,8 +98,8 @@ sprint={
 
 [layer_names]
 
-3d_physics/layer_1="PlayerCollision"
-3d_physics/layer_2="PlayerRagdoll"
+3d_physics/layer_1="World"
+3d_physics/layer_2="PlayerCollision"
 3d_physics/layer_3="GunCollision"
 
 [rendering]
