@@ -126,11 +126,8 @@ func animTransition(state : PLAYER_STATE = currentState):
 			animTree.set("parameters/RunTime/scale", lerpf(animTree["parameters/RunTime/scale"], sprintMultiplier, 0.2))
 			animTree.set("parameters/idle_move/blend_amount", lerpf(animTree["parameters/idle_move/blend_amount"], 1.0, 0.1))
 
-#TODO
 func shoot():
-	print("Shot!")
 	shot_gun.emit()
-	pass
 
 # Add the gravity. Hasn't been changed since script creation
 func gravity(delta):

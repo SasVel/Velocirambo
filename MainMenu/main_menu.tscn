@@ -33,14 +33,14 @@ script = ExtResource("1_hp2ea")
 environment = ExtResource("1_qi8qv")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.990268, 0.139173, 0, -0.139173, 0.990268, -0.635, 5.137, 1.974)
+transform = Transform3D(1, 0, 0, 0, 0.990268, 0.139173, 0, -0.139173, 0.990268, -0.635, 3.362, 1.974)
 environment = SubResource("Environment_tvhjm")
 current = true
 
 [node name="Arena" parent="." instance=ExtResource("1_levnm")]
 
 [node name="RaptorCommando" parent="." instance=ExtResource("2_w0nex")]
-transform = Transform3D(0.113203, 0, -0.993572, 0, 1, 0, 0.993572, 0, 0.113203, 3.858, 0.46, -2.547)
+transform = Transform3D(0.174083, 0, -0.678008, 0, 0.7, 0, 0.678008, 0, 0.174083, 1.898, 0.395, -0.197)
 
 [node name="Skeleton3D" parent="RaptorCommando/RaptorCommando_001" index="0"]
 bones/0/position = Vector3(-0.00169452, 3.00919, 0.340054)

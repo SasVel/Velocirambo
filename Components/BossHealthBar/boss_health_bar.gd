@@ -13,8 +13,8 @@ func _ready() -> void:
 	stats.health_changed.connect(update_health)
 
 func _on_health_bar_ready() -> void:
-	update_health(stats.health)
 	update_max_health(stats.maxHealth)
+	update_health(stats.health)
 
 func update_health(val):
 	$HealthBar.value = val

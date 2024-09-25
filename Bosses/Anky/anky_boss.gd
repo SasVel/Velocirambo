@@ -88,7 +88,12 @@ func animTransition(animState : States = state):
 
 func _on_idle_walk_transition_timeout() -> void:
 	if state == States.IDLE:
-		if attackArea.has_overlapping_bodies(): state = States.ATTACK
+		if attackArea.has_overlapping_bodies(): 
+			state = States.ATTACK
+			
+			attackState += 1
+			if attackState > AttackStates.keys().size(): attackState = 0
+			
 		else: state = States.WALK
 	else: state = States.IDLE 
 
