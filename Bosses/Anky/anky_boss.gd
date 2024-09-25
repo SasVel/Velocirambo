@@ -1,7 +1,10 @@
 extends CharacterBody3D
 
+@export var bossName : String = "Anky"
 @export var speed : float = 3
 @export_range(0.1, 1.0) var animationTransTime : float = 0.2
+
+@onready var bossHealthBarScn = preload("res://Components/BossHealthBar/boss_health_bar.tscn")
 @onready var animTree : AnimationTree = $AnimationTree
 @onready var attackArea : Area3D = $AttackArea
 
@@ -25,6 +28,7 @@ var attackState : AttackStates = AttackStates.ROLL
 
 func _ready() -> void:
 	self.look_at(PlayerData.position, Vector3.UP, true)
+	init_health_bar()
 
 func _physics_process(delta: float) -> void:
 	match state:
@@ -87,3 +91,7 @@ func _on_idle_walk_transition_timeout() -> void:
 		if attackArea.has_overlapping_bodies(): state = States.ATTACK
 		else: state = States.WALK
 	else: state = States.IDLE 
+
+func init_health_bar():
+	var healthBar : BossHealthBar = bossHealthBarScn.instantiate().init(bossName, $Stats)
+	get_tree().get_root().get_node("/root/Main/UI").add_child(healthBar)
