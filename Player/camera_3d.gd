@@ -27,8 +27,6 @@ var currShakeStr : float = 0.0
 ##There is a better way of doing this probably.
 @export_range(1, 10) var shakeFade : float = 0.5
 var currShakeFade : float = 0.0
-
-@onready var rng = RandomNumberGenerator.new()
 var isShakeActive : bool = false
 
 func apply_shake(strength : float = shakeStr, fade : float = shakeFade):
@@ -39,12 +37,10 @@ func apply_shake(strength : float = shakeStr, fade : float = shakeFade):
 func _physics_process(delta):
 	if isShakeActive:
 		currShakeStr = lerpf(currShakeStr, 0, shakeFade * delta)
-		var offset = random_offset()
+		var offset = Rng.random_offset(currShakeStr)
 		h_offset = offset.x
 		v_offset = offset.y
 		if currShakeStr <= 0: 
 			isShakeActive = false
 
-func random_offset() -> Vector2:
-	return Vector2(rng.randf_range(-currShakeStr, currShakeStr), rng.randf_range(-currShakeStr, currShakeStr))
 #endregion

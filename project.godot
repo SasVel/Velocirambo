@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 PlayerData="*res://GlobalScripts/PlayerData.gd"
 Ref="*res://GlobalScripts/Ref.gd"
+Rng="*res://GlobalScripts/Rng.gd"
 
 [editor]
 

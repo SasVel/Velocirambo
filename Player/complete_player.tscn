@@ -23,8 +23,7 @@ shakeStr = 0.1
 shakeFade = 9.0
 
 [node name="GunRayCast" type="RayCast3D" parent="CameraTarget/Camera3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-target_position = Vector3(0, 0, 100)
+target_position = Vector3(0, 0, -100)
 collision_mask = 4
 collide_with_areas = true
 collide_with_bodies = false

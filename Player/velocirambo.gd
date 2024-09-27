@@ -29,10 +29,11 @@ class_name Player
 @onready var skelHeadIdx = skeleton.find_bone("Head")
 @onready var animTree = $AnimationTree
 
-signal shot_gun
+signal shot_gun(isAiming : bool)
 
 # Controls the aiming state. Figured it should be seperate from the rest of the states, so they can overlap
 var IS_AIMING : bool = false : set = set_aiming_state
+var canShoot : bool = true
 enum PLAYER_STATE {IDLE, RUNNING, WALKING, SPRINTING, RAGDOLL}
 var currentState : PLAYER_STATE = PLAYER_STATE.IDLE :
 	set(newState):
@@ -51,7 +52,7 @@ func _input(event):
 	handleStateTransitions(event)
 	
 	if(currentState == PLAYER_STATE.IDLE || currentState == PLAYER_STATE.RUNNING || currentState == PLAYER_STATE.WALKING):
-		if event.is_action_pressed("Leftclick"):
+		if event.is_action_pressed("Leftclick") && canShoot:
 			shoot()
 	if event.is_action_pressed("Aim"): IS_AIMING = true
 	elif event.is_action_released("Aim"): IS_AIMING = false
@@ -64,7 +65,7 @@ func handleStateTransitions(event):
 		if Input.is_action_pressed("sprint"): currentState = PLAYER_STATE.SPRINTING
 		elif event.is_action_released("sprint"): currentState = lastState
 		else: currentState = PLAYER_STATE.RUNNING
-	else: 
+	else:
 		currentState = PLAYER_STATE.IDLE
 
 func _physics_process(delta):
@@ -132,8 +133,16 @@ func animTransition(state : PLAYER_STATE = currentState):
 			animTree.set("parameters/idle_move/blend_amount", lerpf(animTree["parameters/idle_move/blend_amount"], 1.0, 0.1))
 
 func shoot():
-	camera.apply_shake()
-	shot_gun.emit()
+	PlayerData.currBullets -= 1
+	if PlayerData.currBullets <= 0: 
+		canShoot = false
+		%ReloadTimer.start()
+	#camera.apply_shake()
+	shot_gun.emit(IS_AIMING)
+
+func _on_reload_timer_timeout():
+	PlayerData.currBullets = PlayerData.maxBullets
+	canShoot = true
 
 # Add the gravity. Hasn't been changed since script creation
 func gravity(delta):

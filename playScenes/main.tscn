@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=12 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://UI/crosshair.gd" id="4_etnxk"]
 [ext_resource type="Script" path="res://UI/pause.gd" id="4_f25ew"]
 [ext_resource type="Script" path="res://UI/StatsDisplay/health_bar.gd" id="5_iicw0"]
+[ext_resource type="PackedScene" uid="uid://30rmawnd7jsv" path="res://UI/StatsDisplay/BulletDisplay/bullet_display.tscn" id="6_6fr0m"]
 [ext_resource type="PackedScene" uid="uid://bxb5dwbcvtql4" path="res://Bosses/Anky/anky_boss.tscn" id="8_ktlfx"]
 
 [sub_resource type="Gradient" id="Gradient_3ul7b"]
@@ -99,6 +100,13 @@ offset_bottom = 57.0
 value = 50.0
 show_percentage = false
 script = ExtResource("5_iicw0")
+
+[node name="BulletDisplay" parent="UI/StatsDisplay" instance=ExtResource("6_6fr0m")]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 86.0
+offset_right = 265.0
+offset_bottom = 342.0
 
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266819, -0.0516815, -0.008564)

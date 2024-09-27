@@ -46,7 +46,7 @@ func idle_state(delta):
 	velocity = velocity.move_toward(Vector3.ZERO, delta * 4)
 	run_idle_walk_trans()
 
-func walk_state(delta):
+func walk_state(_delta):
 	velocity = self.position.direction_to(PlayerData.position) * speed
 	var targetTransform = self.global_transform.looking_at(PlayerData.position, Vector3.UP, true)
 	global_transform.basis = lerp(global_transform.basis.orthonormalized(), targetTransform.basis.orthonormalized(), 0.01)
