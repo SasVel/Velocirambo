@@ -48,4 +48,5 @@ grow_vertical = 0
 fill_mode = 1
 show_percentage = false
 
+[connection signal="ready" from="Label" to="." method="_on_label_ready"]
 [connection signal="ready" from="HealthBar" to="." method="_on_health_bar_ready"]

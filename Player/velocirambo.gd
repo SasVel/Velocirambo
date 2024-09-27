@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 @export var walkingSpeed : float = 2.5
 @export var runningSpeed : float = 5.0
@@ -6,9 +7,10 @@ extends CharacterBody3D
 @export var sprintMultiplier : float = 1.7
 ##how fast the body tries to catch up to the camera
 @export var turnSpeed : float = 10.0
+
+@export_category("Mouse/Camera controls")
 ##TODO Currently not being used
 @export var turningDeadZoneDegrees : float = 15.0
-
 ##The default value is very low for now, because my Mouse has way too much DPI.
 @export var mouseSensitivity : float = 1.7
 @export var zoomedInSensModifier : float = 0.5
@@ -18,10 +20,12 @@ extends CharacterBody3D
 ##how far up can the camera look/how low can it go. This number should be positive.
 @export var lowerCameraLimitDegrees : float = 40.0
 
+@export_category("Links to objects")
 @export var camera : PlayerCamera
 @export var cameraTarget : Marker3D
 @export var horizontalRotPivot : Node3D
 @export var skeleton : Skeleton3D
+
 @onready var skelHeadIdx = skeleton.find_bone("Head")
 @onready var animTree = $AnimationTree
 

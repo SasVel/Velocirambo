@@ -12,6 +12,9 @@ func init(_bossName : String, _statsComponent : Stats):
 func _ready() -> void:
 	stats.health_changed.connect(update_health)
 
+func _on_label_ready():
+	$Label.text = bossName
+
 func _on_health_bar_ready() -> void:
 	update_max_health(stats.maxHealth)
 	update_health(stats.health)
