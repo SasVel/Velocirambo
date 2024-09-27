@@ -18,6 +18,7 @@ extends CharacterBody3D
 ##how far up can the camera look/how low can it go. This number should be positive.
 @export var lowerCameraLimitDegrees : float = 40.0
 
+@export var camera : PlayerCamera
 @export var cameraTarget : Marker3D
 @export var horizontalRotPivot : Node3D
 @export var skeleton : Skeleton3D
@@ -127,6 +128,7 @@ func animTransition(state : PLAYER_STATE = currentState):
 			animTree.set("parameters/idle_move/blend_amount", lerpf(animTree["parameters/idle_move/blend_amount"], 1.0, 0.1))
 
 func shoot():
+	camera.apply_shake()
 	shot_gun.emit()
 
 # Add the gravity. Hasn't been changed since script creation

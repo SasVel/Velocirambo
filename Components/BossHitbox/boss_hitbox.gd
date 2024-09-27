@@ -10,7 +10,7 @@ extends Area3D
 ##Multiplier for the damage value in the stats component
 @export_range(1, 5) var dmgMultiplier = 1.5
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var boneTransform = skeleton.get_bone_global_pose(boneIdx)
 	self.transform = boneTransform
 

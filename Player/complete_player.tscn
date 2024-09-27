@@ -7,17 +7,20 @@
 [node name="CompletePlayer" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0423601, 0)
 
-[node name="Player" parent="." node_paths=PackedStringArray("cameraTarget", "horizontalRotPivot") instance=ExtResource("1_g4u3e")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera", "cameraTarget", "horizontalRotPivot") instance=ExtResource("1_g4u3e")]
+camera = NodePath("../CameraTarget/Camera3D")
 cameraTarget = NodePath("../CameraTarget")
 horizontalRotPivot = NodePath("../HorizontalRotationPivot")
 
 [node name="CameraTarget" type="Marker3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CameraTarget"]
-transform = Transform3D(-1, 6.09831e-09, -8.72098e-08, 0, 0.997564, 0.0697565, 8.74228e-08, 0.0697565, -0.997564, -1.48187, 2.70766, -1.53459)
+transform = Transform3D(-1, 1.05329e-08, -1.50628e-07, 0, 0.997564, 0.0697565, 1.50996e-07, 0.0697565, -0.997564, -1.48187, 2.70766, -1.53459)
 current = true
 script = ExtResource("3_n06hd")
 zoom_speed = 0.2
+shakeStr = 0.1
+shakeFade = 9.0
 
 [node name="GunRayCast" type="RayCast3D" parent="CameraTarget/Camera3D"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
