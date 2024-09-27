@@ -7,7 +7,6 @@ func _on_player_shot_gun(isAiming : bool) -> void:
 		var offset = Rng.random_offset(20, -20, 5)
 		target_position = Vector3(offset.x, offset.y, target_position.z)
 	
-	print(target_position)
 	if self.is_colliding():
 		var target : Target = get_collider()
 		target.hit(PlayerData.shootDmg)

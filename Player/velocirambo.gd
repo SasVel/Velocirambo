@@ -137,7 +137,9 @@ func shoot():
 	if PlayerData.currBullets <= 0: 
 		canShoot = false
 		%ReloadTimer.start()
-	#camera.apply_shake()
+	if !IS_AIMING:
+		camera.apply_rot_offset(Vector2(8, 0))
+	camera.apply_shake()
 	shot_gun.emit(IS_AIMING)
 
 func _on_reload_timer_timeout():
