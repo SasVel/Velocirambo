@@ -12,7 +12,7 @@ signal bullets_changed(val : int)
 		health_changed.emit(health)
 @export var shootDmg : float = 10
 
-@export var maxBullets : int = 5
+@export var maxBullets : int = 7
 var currBullets : int = maxBullets :
 	set(val):
 		currBullets = clamp(val, 0, maxBullets)

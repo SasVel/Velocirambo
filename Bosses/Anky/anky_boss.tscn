@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bxb5dwbcvtql4"]
+[gd_scene load_steps=33 format=3 uid="uid://bxb5dwbcvtql4"]
 
 [ext_resource type="PackedScene" uid="uid://dwmycrnmjyus6" path="res://Models/Anky/Ankylosaurus.glb" id="1_1ojo7"]
 [ext_resource type="Script" path="res://Bosses/Anky/anky_boss.gd" id="1_6emht"]
@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://c1jajrrorycq6" path="res://Components/BossHitbox/BossHitbox.tscn" id="4_4fbe8"]
 [ext_resource type="Animation" uid="uid://cuhk80cylfx36" path="res://Bosses/Anky/Animations/tail_attack_left.res" id="5_ktcyf"]
 [ext_resource type="Animation" uid="uid://iej8rrqgdha1" path="res://Bosses/Anky/Animations/tail_attack_right.res" id="6_hhdgh"]
-[ext_resource type="Animation" uid="uid://b0c3cltawari6" path="res://Bosses/Anky/Animations/throw_attack.res" id="7_l6upb"]
+[ext_resource type="Animation" uid="uid://b0c3cltawari6" path="res://Bosses/Anky/Animations/throw_attack_up.res" id="7_l6upb"]
 [ext_resource type="Animation" uid="uid://bjamyuidcy21l" path="res://Bosses/Anky/Animations/walk.res" id="8_qdx1i"]
+[ext_resource type="Animation" uid="uid://o3n4878un458" path="res://Bosses/Anky/Animations/throw_attack_down.res" id="10_8vwxa"]
 [ext_resource type="PackedScene" uid="uid://0lhdiufyg5dr" path="res://Components/Target/target.tscn" id="11_w07bf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mk0fu"]
@@ -28,9 +29,13 @@ _data = {
 "roll_attack": ExtResource("4_3ib46"),
 "tail_attack_left": ExtResource("5_ktcyf"),
 "tail_attack_right": ExtResource("6_hhdgh"),
-"throw_attack": ExtResource("7_l6upb"),
+"throw_attack_down": ExtResource("10_8vwxa"),
+"throw_attack_up": ExtResource("7_l6upb"),
 "walk": ExtResource("8_qdx1i")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bjobf"]
+animation = &"throw_attack_down"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_1nfkm"]
 fadein_time = 0.5
@@ -42,15 +47,29 @@ animation = &"death"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uny2m"]
 animation = &"idle"
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vh45u"]
-sync = true
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vgkyw"]
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_or5n7"]
 animation = &"roll_attack"
 
-[sub_resource type="AnimationNodeBlend3" id="AnimationNodeBlend3_f22g5"]
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_wj6sq"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_yt2f8"]
+xfade_time = 0.5
+input_0/name = "idle_state"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "walk_state"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+input_2/name = "throw_attack_state"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = true
+input_3/name = "death_state"
+input_3/auto_advance = false
+input_3/break_loop_at_end = false
+input_3/reset = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eb1ys"]
 animation = &"tail_attack_left"
@@ -61,45 +80,50 @@ animation = &"tail_attack_left"
 animation = &"tail_attack_right"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_26gjx"]
-animation = &"throw_attack"
+animation = &"throw_attack_up"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_a4vea"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y4rna"]
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_updbs"]
+graph_offset = Vector2(-231.119, 315.106)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_bjobf")
+nodes/Animation/position = Vector2(-100, 940)
 nodes/attack/node = SubResource("AnimationNodeOneShot_1nfkm")
-nodes/attack/position = Vector2(840, 660)
+nodes/attack/position = Vector2(760, 500)
 nodes/death/node = SubResource("AnimationNodeAnimation_yqvub")
-nodes/death/position = Vector2(-240, 920)
+nodes/death/position = Vector2(-100, 1100)
 nodes/idle/node = SubResource("AnimationNodeAnimation_uny2m")
-nodes/idle/position = Vector2(-240, 80)
-nodes/idle_walk/node = SubResource("AnimationNodeBlend2_vh45u")
-nodes/idle_walk/position = Vector2(600, 500)
-nodes/live_dead/node = SubResource("AnimationNodeBlend2_vgkyw")
-nodes/live_dead/position = Vector2(1060, 680)
-nodes/output/position = Vector2(1280, 680)
+nodes/idle/position = Vector2(-120, 20)
+nodes/output/position = Vector2(1300, 740)
 nodes/roll_attack/node = SubResource("AnimationNodeAnimation_or5n7")
-nodes/roll_attack/position = Vector2(-240, 360)
-nodes/roll_tail_throw_blend/node = SubResource("AnimationNodeBlend3_f22g5")
-nodes/roll_tail_throw_blend/position = Vector2(300, 680)
+nodes/roll_attack/position = Vector2(-120, 180)
+nodes/roll_tail_blend/node = SubResource("AnimationNodeBlend2_wj6sq")
+nodes/roll_tail_blend/position = Vector2(420, 500)
+nodes/states_trans/node = SubResource("AnimationNodeTransition_yt2f8")
+nodes/states_trans/position = Vector2(1020, 660)
 nodes/tail_attack_left/node = SubResource("AnimationNodeAnimation_eb1ys")
-nodes/tail_attack_left/position = Vector2(-240, 500)
+nodes/tail_attack_left/position = Vector2(-120, 340)
 nodes/tail_attack_left_right/node = SubResource("AnimationNodeBlend2_77sm5")
-nodes/tail_attack_left_right/position = Vector2(20, 620)
+nodes/tail_attack_left_right/position = Vector2(140, 460)
 nodes/tail_attack_right/node = SubResource("AnimationNodeAnimation_tqtuh")
-nodes/tail_attack_right/position = Vector2(-240, 640)
+nodes/tail_attack_right/position = Vector2(-120, 480)
 nodes/throw_attack/node = SubResource("AnimationNodeAnimation_26gjx")
-nodes/throw_attack/position = Vector2(-240, 780)
+nodes/throw_attack/position = Vector2(-100, 800)
+nodes/throw_up_down/node = SubResource("AnimationNodeBlend2_a4vea")
+nodes/throw_up_down/position = Vector2(160, 880)
 nodes/walk/node = SubResource("AnimationNodeAnimation_y4rna")
-nodes/walk/position = Vector2(-240, 220)
-node_connections = [&"attack", 0, &"idle_walk", &"attack", 1, &"roll_tail_throw_blend", &"idle_walk", 0, &"idle", &"idle_walk", 1, &"walk", &"live_dead", 0, &"attack", &"live_dead", 1, &"death", &"output", 0, &"live_dead", &"roll_tail_throw_blend", 0, &"roll_attack", &"roll_tail_throw_blend", 1, &"tail_attack_left_right", &"roll_tail_throw_blend", 2, &"throw_attack", &"tail_attack_left_right", 0, &"tail_attack_left", &"tail_attack_left_right", 1, &"tail_attack_right"]
+nodes/walk/position = Vector2(-100, 640)
+node_connections = [&"attack", 0, &"idle", &"attack", 1, &"roll_tail_blend", &"output", 0, &"states_trans", &"roll_tail_blend", 0, &"roll_attack", &"roll_tail_blend", 1, &"tail_attack_left_right", &"states_trans", 0, &"attack", &"states_trans", 1, &"walk", &"states_trans", 2, &"throw_up_down", &"states_trans", 3, &"death", &"tail_attack_left_right", 0, &"tail_attack_left", &"tail_attack_left_right", 1, &"tail_attack_right", &"throw_up_down", 0, &"throw_attack", &"throw_up_down", 1, &"Animation"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_15ios"]
 size = Vector3(2, 3, 5)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_8duml"]
 height = 4.0
-radius = 12.441
+radius = 31.5575
 
 [node name="AnkyBoss" type="CharacterBody3D"]
 script = ExtResource("1_6emht")
@@ -113,34 +137,34 @@ damage = 15.0
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Ankylosaurus2/Armature" index="0"]
-bones/0/position = Vector3(-2.84519e-17, -1.12071, -0.210306)
-bones/0/rotation = Quaternion(-0.0328737, 2.21307e-17, -9.82819e-25, 0.99946)
-bones/1/rotation = Quaternion(0.0511627, -1.73403e-17, 1.3401e-18, 0.99869)
+bones/0/position = Vector3(-2.84519e-17, -1.14624, -0.271355)
+bones/0/rotation = Quaternion(-0.015846, 2.21211e-17, -9.7872e-25, 0.999874)
+bones/1/rotation = Quaternion(0.024647, -1.7322e-17, 1.33869e-18, 0.999696)
 bones/2/rotation = Quaternion(-0.0670452, -1.39497e-17, -1.39497e-17, 0.99775)
-bones/3/position = Vector3(-0.0179637, 1.43433, 0.056401)
-bones/3/rotation = Quaternion(0.293371, 0.00855393, 0.0815363, 0.952477)
+bones/3/position = Vector3(-0.0179637, 1.45001, 0.0659678)
+bones/3/rotation = Quaternion(0.319235, 0.00632727, 0.0817393, 0.944123)
 bones/4/position = Vector3(-0.0179636, 1.15447, 0.427826)
-bones/4/rotation = Quaternion(0.0410164, 0.000132749, 0.075436, 0.996307)
-bones/5/position = Vector3(-0.0329567, 1.33329, 0.273858)
-bones/5/rotation = Quaternion(0.18106, 0.00274214, 0.0771579, 0.980437)
-bones/6/rotation = Quaternion(0.785857, 0.215934, -0.117636, 0.567417)
-bones/7/rotation = Quaternion(-0.498447, -0.0574957, 0.102684, 0.858895)
-bones/8/rotation = Quaternion(0.785857, -0.215934, 0.117636, 0.567417)
-bones/9/rotation = Quaternion(-0.498447, 0.0574957, -0.102684, 0.858895)
-bones/10/rotation = Quaternion(0.9853, 3.05594e-18, 2.19169e-17, -0.170833)
-bones/11/rotation = Quaternion(-0.241313, 7.55252e-08, 3.45861e-07, 0.970447)
+bones/4/rotation = Quaternion(0.0308274, 0.000904046, 0.0754307, 0.996674)
+bones/5/position = Vector3(-0.0329567, 1.32751, 0.272109)
+bones/5/rotation = Quaternion(0.187136, 0.00226365, 0.0771735, 0.979295)
+bones/6/rotation = Quaternion(0.779718, 0.214638, -0.110664, 0.577688)
+bones/7/rotation = Quaternion(-0.471976, -0.0574617, 0.0990518, 0.874143)
+bones/8/rotation = Quaternion(0.779718, -0.214638, 0.110664, 0.577688)
+bones/9/rotation = Quaternion(-0.471976, 0.0574617, -0.0990518, 0.874143)
+bones/10/rotation = Quaternion(0.984728, 3.50558e-18, 2.18412e-17, -0.174101)
+bones/11/rotation = Quaternion(-0.248125, 1.81331e-08, 8.27103e-08, 0.968728)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(-0.0703239, 2.91526e-06, 3.90441e-05, 0.997524)
+bones/12/rotation = Quaternion(-0.11138, 1.27758e-06, 1.47271e-05, 0.993778)
 bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(0.170276, -6.25637e-06, 0.00199395, 0.985394)
+bones/13/rotation = Quaternion(0.0694886, 4.33814e-05, 0.00103578, 0.997582)
 bones/13/scale = Vector3(1, 0.999999, 1)
-bones/14/rotation = Quaternion(0.442472, -0.00572438, 0.0301243, 0.896258)
+bones/14/rotation = Quaternion(0.459921, -0.00255381, 0.0197232, 0.887737)
 bones/14/scale = Vector3(1, 0.999999, 1)
 bones/15/rotation = Quaternion(-0.00665235, -1.13469e-07, -4.55656e-09, 0.999978)
-bones/16/rotation = Quaternion(0.07797, 0.848783, 0.517982, -0.0719835)
-bones/17/rotation = Quaternion(-0.487244, 0.0198706, -0.0775653, 0.869587)
-bones/18/rotation = Quaternion(-0.07797, 0.848783, 0.517982, 0.0719835)
-bones/19/rotation = Quaternion(-0.487244, -0.0198706, 0.0775653, 0.869587)
+bones/16/rotation = Quaternion(0.0749842, 0.843419, 0.527902, -0.0658878)
+bones/17/rotation = Quaternion(-0.42932, 0.0192945, -0.0712553, 0.90013)
+bones/18/rotation = Quaternion(-0.0749842, 0.843419, 0.527902, 0.0658878)
+bones/19/rotation = Quaternion(-0.42932, -0.0192945, 0.0712553, 0.90013)
 bones/21/position = Vector3(1.34051, -0.978494, 1.37702)
 bones/21/rotation = Quaternion(0, 0.999829, 0, -0.0184734)
 bones/23/position = Vector3(-1.34051, -0.978494, 1.37702)
@@ -179,10 +203,12 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/attack/active = false
 parameters/attack/internal_active = false
 parameters/attack/request = 0
-parameters/idle_walk/blend_amount = 0.0
-parameters/live_dead/blend_amount = 0
-parameters/roll_tail_throw_blend/blend_amount = 0
-parameters/tail_attack_left_right/blend_amount = 0
+parameters/roll_tail_blend/blend_amount = 0
+parameters/states_trans/current_state = "idle_state"
+parameters/states_trans/transition_request = ""
+parameters/states_trans/current_index = 0
+parameters/tail_attack_left_right/blend_amount = 0.0
+parameters/throw_up_down/blend_amount = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44761, 0.778565)
@@ -197,23 +223,30 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.62637, 0)
 shape = SubResource("CylinderShape3D_8duml")
 
-[node name="IdleWalkTransition" type="Timer" parent="."]
+[node name="Targets" type="Node3D" parent="AttackArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.69314, 0)
+
+[node name="Target" parent="AttackArea/Targets" node_paths=PackedStringArray("statsComponent") instance=ExtResource("11_w07bf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61471, 3.87514, 6.10814)
+statsComponent = NodePath("../../../Stats")
+
+[node name="Target2" parent="AttackArea/Targets" node_paths=PackedStringArray("statsComponent") instance=ExtResource("11_w07bf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68109, 3.87514, 6.10814)
+statsComponent = NodePath("../../../Stats")
+
+[node name="StateTransTimer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
-[node name="Targets" type="Node3D" parent="."]
+[node name="AttackCooldownTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 4.0
+one_shot = true
 
-[node name="Target" parent="Targets" node_paths=PackedStringArray("statsComponent") instance=ExtResource("11_w07bf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61471, 3.87514, 6.10814)
-statsComponent = NodePath("../../Stats")
-
-[node name="Target2" parent="Targets" node_paths=PackedStringArray("statsComponent") instance=ExtResource("11_w07bf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68109, 3.87514, 6.10814)
-statsComponent = NodePath("../../Stats")
-
-[connection signal="timeout" from="IdleWalkTransition" to="." method="_on_idle_walk_transition_timeout"]
-[connection signal="timeout" from="IdleWalkTransition" to="." method="_on_idle_to_walk_timer_timeout"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="timeout" from="StateTransTimer" to="." method="_on_state_trans_timer_timeout"]
+[connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 
 [editable path="Ankylosaurus2"]
 [editable path="Ankylosaurus2/Armature/Skeleton3D/BodyHitbox"]

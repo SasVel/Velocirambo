@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var bossName : String = "Anky"
-@export var speed : float = 3
+@export var speed : float = 5
 @export_range(0.1, 1.0) var animationTransTime : float = 0.2
 
 @onready var bossHealthBarScn = preload("res://Components/BossHealthBar/boss_health_bar.tscn")
@@ -16,7 +16,7 @@ enum States {
 }
 var state : States = States.IDLE :
 	set(val):
-		animTransition(val)
+		if val != States.ATTACK: animTransition(val)
 		state = val
 
 enum AttackStates {
@@ -44,59 +44,115 @@ func _physics_process(delta: float) -> void:
 
 func idle_state(delta):
 	velocity = velocity.move_toward(Vector3.ZERO, delta * 4)
-	run_idle_walk_trans()
+	run_state_trans_timer()
 
 func walk_state(_delta):
-	velocity = self.position.direction_to(PlayerData.position) * speed
+	velocity = global_position.direction_to(PlayerData.position) * speed
 	var targetTransform = self.global_transform.looking_at(PlayerData.position, Vector3.UP, true)
 	global_transform.basis = lerp(global_transform.basis.orthonormalized(), targetTransform.basis.orthonormalized(), 0.01)
-	run_idle_walk_trans()
+	run_state_trans_timer()
 
-func run_idle_walk_trans():
-	if $IdleWalkTransition.is_stopped(): $IdleWalkTransition.start()
+func run_state_trans_timer():
+	if $StateTransTimer.is_stopped():
+		$StateTransTimer.start()
 
+var inAttack : bool = false
+var canAttack : bool = true
 func attack_state():
-	run_idle_walk_trans()
+	if inAttack || !canAttack: return
+	else: inAttack = true
+	
+	match attackState:
+		AttackStates.ROLL:
+			await _roll_attack()
+		AttackStates.TAIL:
+			await _tail_attack()
+		AttackStates.THROW:
+			await _throw_attack()
+	
+	attackState += 1
+	if attackState > AttackStates.keys().size(): 
+		attackState = 0
+		$AttackCooldownTimer.start()
+		canAttack = false
+	state = States.IDLE
+	inAttack = false
+
+func _roll_attack():
+	animTransition()
+	self.look_at(PlayerData.position, Vector3.UP, true)
+	await move_tween(global_position.direction_to(PlayerData.position), speed * 3, 2.5)
+
+func _tail_attack():
+	animTransition()
+	move_tween(global_position.direction_to(PlayerData.position), speed * 0.3, 1.25)
+
+var isThrowAttackDown : bool = false
+func _throw_attack():
+	self.look_at(PlayerData.position, Vector3.UP, true)
+	
+	#Jumps in the air
+	isThrowAttackDown = false
+	animTransition()
+	await move_tween(Vector3.UP, speed * 3, 0.5)
+	
+	#Moves towards player
+	await move_tween(global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)), speed * 4, 2)
+	
+	#Goes down
+	isThrowAttackDown = true
+	animTransition()
+	await move_tween(Vector3.DOWN, speed * 3, 0.5)
+
+func _on_attack_cooldown_timer_timeout():
+	canAttack = true
+	run_state_trans_timer()
 
 func dead_state():
 	pass
 
-var animTransTween : Tween
+func _on_state_trans_timer_timeout():
+	if attackArea.has_overlapping_bodies() && canAttack:
+		state = States.ATTACK
+	else: state = States.WALK
+
+func move_tween(dir : Vector3, moveSpeed : float, time : float):
+	var moveTween = create_tween()
+	moveTween.tween_property(self, "velocity", dir * moveSpeed, time * 0.2)
+	moveTween.tween_property(self, "velocity", Vector3.ZERO, time * 0.2).set_delay(time * 0.6)
+	await moveTween.finished
+	velocity = Vector3.ZERO
+
 ##Designed to run when a new state is assigned, not every loop. 
-##The tween interpolates between the different animations.
 func animTransition(animState : States = state):
-	if animTransTween != null: animTransTween.kill()
-	animTransTween = create_tween()
 	match animState:
 		States.IDLE:
-			animTransTween.tween_property(animTree, "parameters/idle_walk/blend_amount", 0.0, animationTransTime)
+			animTree.set("parameters/states_trans/transition_request", "idle_state")
 		States.WALK:
-			animTransTween.tween_property(animTree, "parameters/idle_walk/blend_amount", 1.0, animationTransTime)
+			animTree.set("parameters/states_trans/transition_request", "walk_state")
 		States.ATTACK:
 			match attackState:
 				AttackStates.ROLL:
-					animTransTween.tween_property(animTree, "parameters/roll_tail_throw_blend/blend_amount", -1.0, animationTransTime)
+					animTree.set("parameters/states_trans/transition_request", "idle_state")
 					animTree.set("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 				AttackStates.TAIL:
-					animTransTween.tween_property(animTree, "parameters/roll_tail_throw_blend/blend_amount", 0.0, animationTransTime)
+					animTree.set("parameters/states_trans/transition_request", "idle_state")
+					
+					if position.signed_angle_to(PlayerData.position, Vector3.UP) < 0:
+						animTree.set("parameters/tail_attack_left_right/blend_amount",  1)
+					else: animTree.set("parameters/tail_attack_left_right/blend_amount",  0)
+					
+					animTree.set("parameters/roll_tail_blend/blend_amount", 1.0)
 					animTree.set("parameters/attack/request",  AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 				AttackStates.THROW:
-					animTransTween.tween_property(animTree, "parameters/roll_tail_throw_blend/blend_amount", 1.0, animationTransTime)
-					animTree.set("parameters/attack/request",  AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+					animTree.set("parameters/throw_up_down/blend_amount", isThrowAttackDown)
+					animTree.set("parameters/states_trans/transition_request", "throw_attack_state")
 		States.DEAD:
-			animTransTween.tween_property(animTree, "parameters/live_dead/blend_amount", 1.0, animationTransTime)
-
-func _on_idle_walk_transition_timeout() -> void:
-	if state == States.IDLE:
-		if attackArea.has_overlapping_bodies(): 
-			state = States.ATTACK
-			
-			attackState += 1
-			if attackState > AttackStates.keys().size(): attackState = 0
-			
-		else: state = States.WALK
-	else: state = States.IDLE 
+			animTree.set("parameters/states_trans/transition_request", "death_state")
 
 func init_health_bar():
 	var healthBar : BossHealthBar = bossHealthBarScn.instantiate().init(bossName, $Stats)
 	get_tree().get_root().get_node("/root/Main/UI").add_child(healthBar)
+
+func _on_stats_no_health():
+	state = States.DEAD
