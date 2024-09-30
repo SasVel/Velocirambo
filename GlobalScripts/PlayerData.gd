@@ -10,6 +10,7 @@ signal bullets_changed(val : int)
 	set(val):
 		health = clampf(val, 0, maxHealth)
 		health_changed.emit(health)
+		if health == 0: GameData.game_lost.emit()
 @export var shootDmg : float = 10
 
 @export var maxBullets : int = 7

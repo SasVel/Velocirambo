@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://bngold1yrgekl"]
+[gd_scene load_steps=54 format=4 uid="uid://bngold1yrgekl"]
 
 [ext_resource type="Material" uid="uid://dla2m3vxn4hxl" path="res://Models/Materials/GroundMat.tres" id="1_c2ipf"]
 [ext_resource type="Material" uid="uid://sd2u46h2r7aw" path="res://Models/Materials/InnerWall.tres" id="2_dgw1y"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="11_uhtoy"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="12_yopbr"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="14_s3yjs"]
+[ext_resource type="Script" path="res://Arena/confetti.gd" id="15_bcewd"]
+[ext_resource type="PackedScene" uid="uid://by4cfs7s0nxir" path="res://Arena/Particles/confetti_particles.tscn" id="16_vixfe"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1a26s"]
 _surfaces = [{
@@ -502,7 +504,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gxxsm")
 
-[sub_resource type="Resource" id="Resource_yayk8"]
+[sub_resource type="Resource" id="Resource_yskn2"]
 script = ExtResource("10_xtkoc")
 amount = 200
 enabled = true
@@ -511,9 +513,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_14pd8"]
+[sub_resource type="Resource" id="Resource_y4p52"]
 script = ExtResource("8_bxmh1")
-stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_yayk8")])
+stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_yskn2")])
 
 [sub_resource type="Resource" id="Resource_xwqgj"]
 script = ExtResource("12_yopbr")
@@ -1140,7 +1142,7 @@ skeleton = NodePath("")
 [node name="ProtonScatter" type="Node3D" parent="Crowd"]
 script = ExtResource("7_hfvfd")
 global_seed = 3
-modifier_stack = SubResource("Resource_14pd8")
+modifier_stack = SubResource("Resource_y4p52")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -1189,3 +1191,48 @@ shape = SubResource("Resource_6bs28")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.3099, 0)
 script = ExtResource("11_uhtoy")
 shape = SubResource("Resource_fjwjt")
+
+[node name="Confetti" type="Node3D" parent="."]
+script = ExtResource("15_bcewd")
+
+[node name="ConfettiParticles" parent="Confetti" instance=ExtResource("16_vixfe")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 10.196, 39.0736)
+
+[node name="ConfettiParticles2" parent="Confetti" instance=ExtResource("16_vixfe")]
+transform = Transform3D(-0.538183, 0, 0.842828, 0, 1, 0, -0.842828, 0, -0.538183, 19.894, 10.196, 34.3683)
+
+[node name="ConfettiParticles3" parent="Confetti" instance=ExtResource("16_vixfe")]
+transform = Transform3D(-0.836774, 0, 0.547549, 0, 1, 0, -0.547549, 0, -0.836774, 31.9172, 10.196, 23.4374)
+
+[node name="ConfettiParticles4" parent="Confetti" instance=ExtResource("16_vixfe")]
+transform = Transform3D(-0.999938, 0, 0.0111524, 0, 1, 0, -0.0111524, 0, -0.999938, 38.873, 10.196, 4.21432)
+
+[node name="ConfettiParticles5" parent="Confetti" instance=ExtResource("16_vixfe")]
+transform = Transform3D(0.942967, 0, -0.332885, 0, 1, 0, 0.332885, 0, 0.942967, -36.3778, 10.196, -11.9378)
+
+[node name="ConfettiParticles6" parent="Confetti" instance=ExtResource("16_vixfe")]
+transform = Transform3D(0.973913, 0, 0.226923, 0, 1, 0, -0.226923, 0, 0.973913, -38.5633, 10.196, 8.38788)
+
+[node name="ConfettiParticles7" parent="Confetti" instance=ExtResource("16_vixfe")]
+transform = Transform3D(0.79487, 0, 0.606779, 0, 1, 0, -0.606779, 0, 0.79487, -32.2582, 10.196, 23.3642)
+
+[node name="ConfettiParticles8" parent="Confetti" instance=ExtResource("16_vixfe")]
+transform = Transform3D(0.343381, 0, 0.939196, 0, 1, 0, -0.939196, 0, 0.343381, -16.4469, 10.196, 36.3223)
+
+[node name="ConfettiParticles9" parent="Confetti" instance=ExtResource("16_vixfe")]
+transform = Transform3D(0.36042, 0, -0.93279, 0, 1, 0, 0.93279, 0, 0.36042, -13.5253, 10.196, -36.0519)
+
+[node name="ConfettiParticles10" parent="Confetti" instance=ExtResource("16_vixfe")]
+transform = Transform3D(0.805784, 0, -0.59221, 0, 1, 0, 0.59221, 0, 0.805784, -30.3863, 10.196, -24.4927)
+
+[node name="ConfettiParticles12" parent="Confetti" instance=ExtResource("16_vixfe")]
+transform = Transform3D(0.936752, 0, 0.349995, 0, 1, 0, -0.349995, 0, 0.936752, -37.2216, 10.196, 10.4751)
+
+[node name="ConfettiParticles14" parent="Confetti" instance=ExtResource("16_vixfe")]
+transform = Transform3D(-0.826668, 0, -0.56269, 0, 1, 0, 0.56269, 0, -0.826668, 33.506, 10.196, -21.3276)
+
+[node name="ConfettiParticles15" parent="Confetti" instance=ExtResource("16_vixfe")]
+transform = Transform3D(-0.522752, 0, -0.852485, 0, 1, 0, 0.852485, 0, -0.522752, 22.2268, 10.196, -33.0248)
+
+[node name="ConfettiParticles16" parent="Confetti" instance=ExtResource("16_vixfe")]
+transform = Transform3D(0.0182029, 0, -0.999834, 0, 1, 0, 0.999834, 0, 0.0182029, 2.80785, 10.196, -39.4133)

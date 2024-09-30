@@ -32,6 +32,7 @@ func _ready() -> void:
 	init_health_bar()
 
 func _physics_process(delta: float) -> void:
+	if state == States.DEAD: return
 	match state:
 		States.IDLE:
 			idle_state(delta)
@@ -39,8 +40,6 @@ func _physics_process(delta: float) -> void:
 			walk_state(delta)
 		States.ATTACK:
 			attack_state()
-		States.DEAD:
-			dead_state()
 	move_and_slide()
 
 func idle_state(delta):
@@ -112,10 +111,8 @@ func _on_attack_cooldown_timer_timeout():
 	canAttack = true
 	run_state_trans_timer()
 
-func dead_state():
-	pass
-
 func _on_state_trans_timer_timeout():
+	if state == States.DEAD: return
 	if attackArea.has_overlapping_bodies() && canAttack:
 		state = States.ATTACK
 	else: state = States.WALK
@@ -160,6 +157,8 @@ func init_health_bar():
 
 func _on_stats_no_health():
 	state = States.DEAD
+	%Targets.enabled = false
+	GameData.game_won.emit()
 
 ##Spawns stomp particles at the global position of the StompGroundMarker
 func spawn_stomp_particles():

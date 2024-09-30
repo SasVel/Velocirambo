@@ -57,6 +57,11 @@ func _input(event):
 			shoot()
 	if event.is_action_pressed("Aim"): IS_AIMING = true
 	elif event.is_action_released("Aim"): IS_AIMING = false
+	
+	if event.is_action_pressed("reload"):
+		PlayerData.currBullets = 0
+		canShoot = false
+		%ReloadTimer.start()
 
 func handleStateTransitions(event):
 	if Input.get_vector("Backwards", "Forwards", "Leftways", "Rightways") != Vector2.ZERO:

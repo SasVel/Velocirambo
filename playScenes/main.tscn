@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=20 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
@@ -8,7 +8,11 @@
 [ext_resource type="Script" path="res://UI/pause.gd" id="4_f25ew"]
 [ext_resource type="Script" path="res://UI/StatsDisplay/health_bar.gd" id="5_iicw0"]
 [ext_resource type="PackedScene" uid="uid://30rmawnd7jsv" path="res://UI/StatsDisplay/BulletDisplay/bullet_display.tscn" id="6_6fr0m"]
+[ext_resource type="Script" path="res://UI/GameOverScreen/game_over_screen.gd" id="7_usdf4"]
 [ext_resource type="PackedScene" uid="uid://bxb5dwbcvtql4" path="res://Bosses/Anky/anky_boss.tscn" id="8_ktlfx"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="8_ygn4d"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="9_wwvj3"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_ab8gv"]
 
 [sub_resource type="Gradient" id="Gradient_3ul7b"]
 interpolation_mode = 1
@@ -19,6 +23,25 @@ gradient = SubResource("Gradient_3ul7b")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.153846, 0.15812)
+
+[sub_resource type="LabelSettings" id="LabelSettings_701rm"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_chqpx"]
+font_size = 26
+
+[sub_resource type="Resource" id="Resource_wuxpl"]
+script = ExtResource("10_ab8gv")
+amount = 200
+enabled = true
+override_global_seed = true
+custom_seed = 0
+restrict_height = false
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_llkl5"]
+script = ExtResource("8_ygn4d")
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_wuxpl")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -108,10 +131,63 @@ offset_top = 86.0
 offset_right = 265.0
 offset_bottom = 342.0
 
+[node name="GameOverScreen" type="ColorRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.481789, 0.48179, 0.481789, 0.121569)
+script = ExtResource("7_usdf4")
+
+[node name="GameWonLabel" type="Label" parent="UI/GameOverScreen"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -164.0
+offset_top = -133.0
+offset_right = 165.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You will live to see another day!"
+label_settings = SubResource("LabelSettings_701rm")
+
+[node name="GameLostLabel" type="Label" parent="UI/GameOverScreen"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.0
+offset_top = -124.0
+offset_right = 173.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Better luck next time!"
+label_settings = SubResource("LabelSettings_chqpx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.263416, 0)
+
+[node name="ProtonScatter" parent="Arena/Crowd" index="0"]
+modifier_stack = SubResource("Resource_llkl5")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 
 [node name="AnkyBoss" parent="." instance=ExtResource("8_ktlfx")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 22)
+
+[editable path="Arena"]

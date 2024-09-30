@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://by4cfs7s0nxir"]
+
+[sub_resource type="Curve" id="Curve_adifi"]
+_data = [Vector2(0.025974, 0.989011), 0.0, -0.188034, 0, 0, Vector2(1, 0), -7.86923, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_blg1v"]
+curve = SubResource("Curve_adifi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_patfm"]
+direction = Vector3(0.5, 0.5, 0)
+spread = 25.0
+initial_velocity_min = 25.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, -20, 0)
+radial_accel_min = -2.23517e-06
+radial_accel_max = 5.99
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_blg1v")
+color = Color(0, 0, 1, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+collision_mode = 1
+collision_friction = 1.0
+collision_bounce = 0.0
+
+[sub_resource type="Gradient" id="Gradient_0faet"]
+offsets = PackedFloat32Array(0.661765, 0.744118)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i8wmp"]
+gradient = SubResource("Gradient_0faet")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oy8n0"]
+transparency = 1
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = SubResource("GradientTexture2D_i8wmp")
+emission_enabled = true
+emission = Color(1, 0.900078, 0.0947462, 1)
+emission_energy_multiplier = 2.0
+emission_operator = 1
+billboard_mode = 2
+billboard_keep_scale = true
+grow_amount = 1.203
+
+[sub_resource type="QuadMesh" id="QuadMesh_ncfxe"]
+material = SubResource("StandardMaterial3D_oy8n0")
+size = Vector2(0.2, 0.2)
+
+[node name="ConfettiParticles" type="GPUParticles3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+emitting = false
+amount = 16
+lifetime = 4.0
+speed_scale = 2.0
+explosiveness = 0.9
+randomness = 0.1
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_patfm")
+draw_pass_1 = SubResource("QuadMesh_ncfxe")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
