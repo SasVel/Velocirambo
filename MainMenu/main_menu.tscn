@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0y2nmepdt2pj"]
+[gd_scene load_steps=9 format=3 uid="uid://d0y2nmepdt2pj"]
 
 [ext_resource type="Script" path="res://MainMenu/main_menu.gd" id="1_hp2ea"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="1_levnm"]
@@ -7,18 +7,6 @@
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="3_xg8ev"]
 [ext_resource type="Script" path="res://UI/Components/button_anim_component.gd" id="4_vgnm4"]
 [ext_resource type="Shader" path="res://Shaders/Vignette.gdshader" id="5_4xcmi"]
-
-[sub_resource type="Environment" id="Environment_tvhjm"]
-background_mode = 1
-background_color = Color(0.41249, 0.734924, 0.938587, 1)
-reflected_light_source = 2
-tonemap_mode = 2
-glow_intensity = 0.2
-glow_hdr_threshold = 0.2
-adjustment_enabled = true
-adjustment_brightness = 0.95
-adjustment_contrast = 1.15
-adjustment_saturation = 0.9
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_om8ps"]
 shader = ExtResource("5_4xcmi")
@@ -34,7 +22,6 @@ environment = ExtResource("1_qi8qv")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.990268, 0.139173, 0, -0.139173, 0.990268, -0.635, 3.362, 1.974)
-environment = SubResource("Environment_tvhjm")
 current = true
 
 [node name="Arena" parent="." instance=ExtResource("1_levnm")]

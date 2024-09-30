@@ -39,6 +39,7 @@ var currentState : PLAYER_STATE = PLAYER_STATE.IDLE :
 	set(newState):
 		if currentState == newState: return
 		if currentState != lastState: lastState = currentState
+		if currentState == PLAYER_STATE.SPRINTING: camera.reset_fov()
 		currentState = newState
 var lastState : PLAYER_STATE = PLAYER_STATE.IDLE
 
@@ -101,16 +102,17 @@ func walkingState(delta):
 	player_move(delta, walkingSpeed)
 
 func sprintingState(delta):
+	camera.zoom_fov(88)
 	gravity(delta)
 	turn_body_to_camera(delta)
 	player_move(delta, runningSpeed * sprintMultiplier)
 
 func set_aiming_state(val):
 	if val:
-		get_viewport().get_camera_3d().zoom_fov(60)
+		camera.zoom_fov(60)
 	else: 
 		skeleton.clear_bones_global_pose_override()
-		get_viewport().get_camera_3d().reset_fov()
+		camera.reset_fov()
 	IS_AIMING = val
 
 func ragdollState(delta):

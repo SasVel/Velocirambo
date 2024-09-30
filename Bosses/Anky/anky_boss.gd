@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var bossHealthBarScn = preload("res://Components/BossHealthBar/boss_health_bar.tscn")
 @onready var animTree : AnimationTree = $AnimationTree
 @onready var attackArea : Area3D = $AttackArea
+@onready var stompParticlesScn = preload("res://Bosses/Particles/stomp_particles.tscn")
 
 enum States {
 	IDLE,
@@ -61,6 +62,7 @@ var canAttack : bool = true
 func attack_state():
 	if inAttack || !canAttack: return
 	else: inAttack = true
+	%Targets.enabled = false
 	
 	match attackState:
 		AttackStates.ROLL:
@@ -75,8 +77,10 @@ func attack_state():
 		attackState = 0
 		$AttackCooldownTimer.start()
 		canAttack = false
-	state = States.IDLE
+	
 	inAttack = false
+	state = States.IDLE
+	%Targets.enabled = true
 
 func _roll_attack():
 	animTransition()
@@ -156,3 +160,7 @@ func init_health_bar():
 
 func _on_stats_no_health():
 	state = States.DEAD
+
+##Spawns stomp particles at the global position of the StompGroundMarker
+func spawn_stomp_particles():
+	Particles.spawn(stompParticlesScn, %StompGroundMarker.global_position)

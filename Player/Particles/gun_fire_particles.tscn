@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://d3ohotru1rspp"]
+
+[ext_resource type="PackedScene" uid="uid://v6hijdblg5kp" path="res://Player/Particles/gun_hit_particles.tscn" id="1_evd5j"]
+
+[sub_resource type="Curve" id="Curve_i6gtw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.0879121), -5.0043, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wx2n4"]
+curve = SubResource("Curve_i6gtw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5vh7c"]
+direction = Vector3(1, 0, 1)
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+damping_min = 2.0
+damping_max = 4.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_wx2n4")
+anim_speed_min = 0.93
+anim_speed_max = 1.8
+
+[sub_resource type="Gradient" id="Gradient_2mir0"]
+offsets = PackedFloat32Array(0.661765, 0.744118)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_78ipo"]
+gradient = SubResource("Gradient_2mir0")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glk1r"]
+transparency = 1
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1.50196, 1.50196, 0, 0.866667)
+albedo_texture = SubResource("GradientTexture2D_78ipo")
+emission_enabled = true
+emission = Color(1, 0.900078, 0.0947462, 1)
+emission_energy_multiplier = 2.0
+emission_operator = 1
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_32qgc"]
+material = SubResource("StandardMaterial3D_glk1r")
+size = Vector2(0.1, 0.1)
+
+[node name="GunFireParticles" instance=ExtResource("1_evd5j")]
+lifetime = 0.4
+process_material = SubResource("ParticleProcessMaterial_5vh7c")
+draw_pass_1 = SubResource("QuadMesh_32qgc")

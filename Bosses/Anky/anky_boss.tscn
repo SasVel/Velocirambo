@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bxb5dwbcvtql4"]
+[gd_scene load_steps=36 format=3 uid="uid://bxb5dwbcvtql4"]
 
 [ext_resource type="PackedScene" uid="uid://dwmycrnmjyus6" path="res://Models/Anky/Ankylosaurus.glb" id="1_1ojo7"]
 [ext_resource type="Script" path="res://Bosses/Anky/anky_boss.gd" id="1_6emht"]
@@ -13,17 +13,32 @@
 [ext_resource type="Animation" uid="uid://bjamyuidcy21l" path="res://Bosses/Anky/Animations/walk.res" id="8_qdx1i"]
 [ext_resource type="Animation" uid="uid://o3n4878un458" path="res://Bosses/Anky/Animations/throw_attack_down.res" id="10_8vwxa"]
 [ext_resource type="PackedScene" uid="uid://0lhdiufyg5dr" path="res://Components/Target/target.tscn" id="11_w07bf"]
+[ext_resource type="Script" path="res://Bosses/Anky/targets.gd" id="13_0lt6n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mk0fu"]
 radius = 1.32391
 height = 5.39644
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ehwt"]
+height = 4.96637
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b627g"]
 radius = 0.644541
 height = 1.87212
 
+[sub_resource type="Animation" id="Animation_7vcjp"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../StompGroundMarker")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 2.86846, 0, -1.32112)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1q4un"]
 _data = {
+"RESET": SubResource("Animation_7vcjp"),
 "death": ExtResource("2_yu11f"),
 "idle": ExtResource("3_m6hnr"),
 "roll_attack": ExtResource("4_3ib46"),
@@ -88,7 +103,6 @@ animation = &"throw_attack_up"
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_updbs"]
-graph_offset = Vector2(-231.119, 315.106)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_bjobf")
 nodes/Animation/position = Vector2(-100, 940)
 nodes/attack/node = SubResource("AnimationNodeOneShot_1nfkm")
@@ -118,14 +132,16 @@ nodes/walk/node = SubResource("AnimationNodeAnimation_y4rna")
 nodes/walk/position = Vector2(-100, 640)
 node_connections = [&"attack", 0, &"idle", &"attack", 1, &"roll_tail_blend", &"output", 0, &"states_trans", &"roll_tail_blend", 0, &"roll_attack", &"roll_tail_blend", 1, &"tail_attack_left_right", &"states_trans", 0, &"attack", &"states_trans", 1, &"walk", &"states_trans", 2, &"throw_up_down", &"states_trans", 3, &"death", &"tail_attack_left_right", 0, &"tail_attack_left", &"tail_attack_left_right", 1, &"tail_attack_right", &"throw_up_down", 0, &"throw_attack", &"throw_up_down", 1, &"Animation"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_15ios"]
-size = Vector3(2, 3, 5)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_55g5k"]
+radius = 2.94513
+height = 12.7761
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_8duml"]
 height = 4.0
-radius = 31.5575
+radius = 23.7884
 
 [node name="AnkyBoss" type="CharacterBody3D"]
+collision_layer = 16
 script = ExtResource("1_6emht")
 
 [node name="Stats" type="Node" parent="."]
@@ -137,34 +153,34 @@ damage = 15.0
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Ankylosaurus2/Armature" index="0"]
-bones/0/position = Vector3(-2.84519e-17, -1.14624, -0.271355)
-bones/0/rotation = Quaternion(-0.015846, 2.21211e-17, -9.7872e-25, 0.999874)
-bones/1/rotation = Quaternion(0.024647, -1.7322e-17, 1.33869e-18, 0.999696)
+bones/0/position = Vector3(0, -1.03447, -0.00408876)
+bones/0/rotation = Quaternion(-0.0903065, 0, 0, 0.995914)
+bones/1/rotation = Quaternion(0.14041, 0, 0, 0.990093)
 bones/2/rotation = Quaternion(-0.0670452, -1.39497e-17, -1.39497e-17, 0.99775)
-bones/3/position = Vector3(-0.0179637, 1.45001, 0.0659678)
-bones/3/rotation = Quaternion(0.319235, 0.00632727, 0.0817393, 0.944123)
+bones/3/position = Vector3(-0.0179637, 1.38138, 0.0240856)
+bones/3/rotation = Quaternion(0.204444, 0.0160235, 0.0804027, 0.975439)
 bones/4/position = Vector3(-0.0179636, 1.15447, 0.427826)
-bones/4/rotation = Quaternion(0.0308274, 0.000904046, 0.0754307, 0.996674)
-bones/5/position = Vector3(-0.0329567, 1.32751, 0.272109)
-bones/5/rotation = Quaternion(0.187136, 0.00226365, 0.0771735, 0.979295)
-bones/6/rotation = Quaternion(0.779718, 0.214638, -0.110664, 0.577688)
-bones/7/rotation = Quaternion(-0.471976, -0.0574617, 0.0990518, 0.874143)
-bones/8/rotation = Quaternion(0.779718, -0.214638, 0.110664, 0.577688)
-bones/9/rotation = Quaternion(-0.471976, 0.0574617, -0.0990518, 0.874143)
-bones/10/rotation = Quaternion(0.984728, 3.50558e-18, 2.18412e-17, -0.174101)
-bones/11/rotation = Quaternion(-0.248125, 1.81331e-08, 8.27103e-08, 0.968728)
+bones/4/rotation = Quaternion(0.0753987, -0.00247246, 0.0753956, 0.994296)
+bones/5/position = Vector3(-0.0329568, 1.35283, 0.279765)
+bones/5/rotation = Quaternion(0.160486, 0.00435757, 0.0770836, 0.984014)
+bones/6/rotation = Quaternion(0.799836, 0.219265, -0.138914, 0.541192)
+bones/7/rotation = Quaternion(-0.573512, -0.0580544, 0.110188, 0.809675)
+bones/8/rotation = Quaternion(0.799836, -0.219265, 0.138914, 0.541192)
+bones/9/rotation = Quaternion(-0.573512, 0.0580544, -0.110188, 0.809675)
+bones/10/rotation = Quaternion(0.968008, -1.21129e-05, -2.89588e-06, -0.250919)
+bones/11/rotation = Quaternion(-0.10775, 8.56081e-05, 0.00059548, 0.994178)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(-0.11138, 1.27758e-06, 1.47271e-05, 0.993778)
+bones/12/rotation = Quaternion(0.0543808, -0.000230005, 0.00952778, 0.998475)
 bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(0.0694886, 4.33814e-05, 0.00103578, 0.997582)
+bones/13/rotation = Quaternion(0.00480729, -0.00811252, 0.0867325, 0.996187)
 bones/13/scale = Vector3(1, 0.999999, 1)
-bones/14/rotation = Quaternion(0.459921, -0.00255381, 0.0197232, 0.887737)
+bones/14/rotation = Quaternion(-0.254518, -0.00828841, 0.264615, 0.930124)
 bones/14/scale = Vector3(1, 0.999999, 1)
 bones/15/rotation = Quaternion(-0.00665235, -1.13469e-07, -4.55656e-09, 0.999978)
-bones/16/rotation = Quaternion(0.0749842, 0.843419, 0.527902, -0.0658878)
-bones/17/rotation = Quaternion(-0.42932, 0.0192945, -0.0712553, 0.90013)
-bones/18/rotation = Quaternion(-0.0749842, 0.843419, 0.527902, 0.0658878)
-bones/19/rotation = Quaternion(-0.42932, -0.0192945, 0.0712553, 0.90013)
+bones/16/rotation = Quaternion(0.0837821, 0.852556, 0.508004, -0.0897839)
+bones/17/rotation = Quaternion(-0.632638, 0.0220481, -0.0872346, 0.769203)
+bones/18/rotation = Quaternion(-0.0837821, 0.852556, 0.508004, 0.0897839)
+bones/19/rotation = Quaternion(-0.632638, -0.0220481, 0.0872346, 0.769203)
 bones/21/position = Vector3(1.34051, -0.978494, 1.37702)
 bones/21/rotation = Quaternion(0, 0.999829, 0, -0.0184734)
 bones/23/position = Vector3(-1.34051, -0.978494, 1.37702)
@@ -180,7 +196,16 @@ dmgMultiplier = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.422562, -0.270494)
 shape = SubResource("CapsuleShape3D_mk0fu")
 
-[node name="TailEndHitbox" parent="Ankylosaurus2/Armature/Skeleton3D" index="2" node_paths=PackedStringArray("skeleton", "stats") instance=ExtResource("4_4fbe8")]
+[node name="TailMidHitbox" parent="Ankylosaurus2/Armature/Skeleton3D" index="2" node_paths=PackedStringArray("skeleton", "stats") instance=ExtResource("4_4fbe8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.23462, 0)
+skeleton = NodePath("..")
+boneName = "Tail_3"
+stats = NodePath("../../../../Stats")
+
+[node name="CollisionShape3D" parent="Ankylosaurus2/Armature/Skeleton3D/TailMidHitbox" index="0"]
+shape = SubResource("CapsuleShape3D_3ehwt")
+
+[node name="TailEndHitbox" parent="Ankylosaurus2/Armature/Skeleton3D" index="3" node_paths=PackedStringArray("skeleton", "stats") instance=ExtResource("4_4fbe8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.91564, 0)
 skeleton = NodePath("..")
 boneName = "Tail_5"
@@ -211,8 +236,8 @@ parameters/tail_attack_left_right/blend_amount = 0.0
 parameters/throw_up_down/blend_amount = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44761, 0.778565)
-shape = SubResource("BoxShape3D_15ios")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.106567, 3.68967, 0.869477)
+shape = SubResource("CapsuleShape3D_55g5k")
 
 [node name="AttackArea" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.69314, 0)
@@ -223,16 +248,17 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.62637, 0)
 shape = SubResource("CylinderShape3D_8duml")
 
-[node name="Targets" type="Node3D" parent="AttackArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.69314, 0)
+[node name="Targets" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("13_0lt6n")
 
-[node name="Target" parent="AttackArea/Targets" node_paths=PackedStringArray("statsComponent") instance=ExtResource("11_w07bf")]
+[node name="Target" parent="Targets" node_paths=PackedStringArray("statsComponent") instance=ExtResource("11_w07bf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.61471, 3.87514, 6.10814)
-statsComponent = NodePath("../../../Stats")
+statsComponent = NodePath("../../Stats")
 
-[node name="Target2" parent="AttackArea/Targets" node_paths=PackedStringArray("statsComponent") instance=ExtResource("11_w07bf")]
+[node name="Target2" parent="Targets" node_paths=PackedStringArray("statsComponent") instance=ExtResource("11_w07bf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68109, 3.87514, 6.10814)
-statsComponent = NodePath("../../../Stats")
+statsComponent = NodePath("../../Stats")
 
 [node name="StateTransTimer" type="Timer" parent="."]
 process_callback = 0
@@ -244,10 +270,16 @@ process_callback = 0
 wait_time = 4.0
 one_shot = true
 
+[node name="StompGroundMarker" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86846, 0, -1.32112)
+gizmo_extents = 0.5
+
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 [connection signal="timeout" from="StateTransTimer" to="." method="_on_state_trans_timer_timeout"]
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]
 
 [editable path="Ankylosaurus2"]
 [editable path="Ankylosaurus2/Armature/Skeleton3D/BodyHitbox"]
+[editable path="Ankylosaurus2/Armature/Skeleton3D/TailMidHitbox"]
 [editable path="Ankylosaurus2/Armature/Skeleton3D/TailEndHitbox"]

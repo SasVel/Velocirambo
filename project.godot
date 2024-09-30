@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PlayerData="*res://GlobalScripts/PlayerData.gd"
 Ref="*res://GlobalScripts/Ref.gd"
 Rng="*res://GlobalScripts/Rng.gd"
+Particles="*res://GlobalScripts/ParticlesHelper.gd"
 
 [editor]
 
@@ -104,6 +105,7 @@ sprint={
 3d_physics/layer_2="PlayerCollision"
 3d_physics/layer_3="GunCollision"
 3d_physics/layer_4="PlayerHurtbox"
+3d_physics/layer_5="BossCollision"
 
 [rendering]
 

@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=3 uid="uid://v6hijdblg5kp"]
+
+[ext_resource type="Script" path="res://Bosses/Particles/OneShotParticles.gd" id="1_uupoi"]
+
+[sub_resource type="Curve" id="Curve_trq8i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.244853), -2.8788, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vt76s"]
+curve = SubResource("Curve_trq8i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2vs34"]
+direction = Vector3(1, 0, 1)
+spread = 180.0
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+damping_min = 2.0
+damping_max = 4.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_vt76s")
+
+[sub_resource type="Gradient" id="Gradient_qt2c8"]
+offsets = PackedFloat32Array(0.661765, 0.744118)
+colors = PackedColorArray(0.151276, 0.151276, 0.151276, 1, 0.152941, 0.152941, 0.152941, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oim47"]
+gradient = SubResource("Gradient_qt2c8")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vorex"]
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_oim47")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_bys8e"]
+material = SubResource("StandardMaterial3D_vorex")
+size = Vector2(0.4, 0.4)
+
+[node name="GunHitParticles" type="GPUParticles3D"]
+emitting = false
+amount = 6
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.95
+randomness = 0.1
+process_material = SubResource("ParticleProcessMaterial_2vs34")
+draw_pass_1 = SubResource("QuadMesh_bys8e")
+script = ExtResource("1_uupoi")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

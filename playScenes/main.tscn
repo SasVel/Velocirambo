@@ -109,9 +109,9 @@ offset_right = 265.0
 offset_bottom = 342.0
 
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0266819, -0.0516815, -0.008564)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.263416, 0)
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 
 [node name="AnkyBoss" parent="." instance=ExtResource("8_ktlfx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.344037, 22)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 22)
