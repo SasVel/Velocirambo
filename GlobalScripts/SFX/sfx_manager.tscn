@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://j14c17hjdrw4"]
+[gd_scene load_steps=22 format=3 uid="uid://j14c17hjdrw4"]
 
 [ext_resource type="Script" path="res://GlobalScripts/SFX/sfx_manager.gd" id="1_fcx7w"]
 [ext_resource type="AudioStream" uid="uid://b6umf8d3v6d40" path="res://MusicAndSounds/Sounds/Gunshot.mp3" id="2_4g6vg"]
@@ -9,8 +9,13 @@
 [ext_resource type="AudioStream" uid="uid://2m6t4a15uss" path="res://MusicAndSounds/Sounds/Run/player_fs_run_06.mp3" id="7_ruu52"]
 [ext_resource type="AudioStream" uid="uid://dqmm1id4aawfa" path="res://MusicAndSounds/Sounds/Run/player_fs_run_07.mp3" id="8_ooht2"]
 [ext_resource type="AudioStream" uid="uid://dxn6bytfeo00q" path="res://MusicAndSounds/Sounds/BeerSounds/Burp_1.mp3" id="9_bwhgm"]
+[ext_resource type="AudioStream" uid="uid://brbs080ea1tb" path="res://MusicAndSounds/Sounds/Raptor/Roar/player_sfx_01.mp3" id="9_ftftp"]
 [ext_resource type="AudioStream" uid="uid://bh2uc2bq0mom8" path="res://MusicAndSounds/Sounds/BeerSounds/Burp_2.mp3" id="10_05u2j"]
+[ext_resource type="AudioStream" uid="uid://dkl084q15wwt7" path="res://MusicAndSounds/Sounds/Raptor/Roar/player_sfx_02.mp3" id="10_lmmku"]
 [ext_resource type="AudioStream" uid="uid://cdcgjqaqkdxhk" path="res://MusicAndSounds/Sounds/Crowd.mp3" id="11_s21w1"]
+[ext_resource type="AudioStream" uid="uid://dq72p4v7a3ph6" path="res://MusicAndSounds/Sounds/Raptor/Hurt/player_sfx_03.mp3" id="12_rflod"]
+[ext_resource type="AudioStream" uid="uid://bhv46sf34cq7i" path="res://MusicAndSounds/Sounds/Raptor/Hurt/player_sfx_04.mp3" id="13_cfjan"]
+[ext_resource type="AudioStream" uid="uid://o0skrvkeot3y" path="res://MusicAndSounds/Sounds/Raptor/Hurt/player_sfx_05.mp3" id="14_8t4hp"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i64ju"]
 random_pitch = 1.1
@@ -26,6 +31,18 @@ stream_2/stream = ExtResource("5_fyyv0")
 stream_3/stream = ExtResource("6_5x2of")
 stream_4/stream = ExtResource("7_ruu52")
 stream_5/stream = ExtResource("8_ooht2")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_a4ucx"]
+random_pitch = 1.1
+streams_count = 2
+stream_0/stream = ExtResource("9_ftftp")
+stream_1/stream = ExtResource("10_lmmku")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6uxyj"]
+streams_count = 3
+stream_0/stream = ExtResource("12_rflod")
+stream_1/stream = ExtResource("13_cfjan")
+stream_2/stream = ExtResource("14_8t4hp")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h6xa5"]
 streams_count = 2
@@ -47,6 +64,13 @@ bus = &"SFX"
 playback_type = 2
 
 [node name="RaptorRoar" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_a4ucx")
+bus = &"SFX"
+
+[node name="RaptorHurt" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_6uxyj")
+max_polyphony = 3
+bus = &"SFX"
 
 [node name="Beer" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_h6xa5")

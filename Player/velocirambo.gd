@@ -169,8 +169,8 @@ func player_move(_delta, speed):
 		velocity.z = direction.z * speed
 	
 	#I want to make the sound frequency scale with speed, temporary solution
-	$MoveSoundTimer.wait_time = (1 / speed) * 6
-	if $MoveSoundTimer.is_stopped(): $MoveSoundTimer.start()
+	%MoveSoundTimer.wait_time = (1 / speed) * 6
+	if %MoveSoundTimer.is_stopped(): %MoveSoundTimer.start()
 
 # Handles decelerration.
 func player_stop(speed):
@@ -213,3 +213,8 @@ func turn_body_to_camera(delta):
 
 func _on_move_sound_timer_timeout():
 	SFX.play(SFX.Run)
+
+func _on_roar_timer_timeout():
+	SFX.play(SFX.RaptorRoar)
+	%RoarTimer.wait_time = randf_range(10.0, 20.0)
+	%RoarTimer.start()

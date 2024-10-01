@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bup6i3dckybu7"]
+
+[ext_resource type="Script" path="res://GlobalScripts/Music/music_manager.gd" id="1_nelcw"]
+[ext_resource type="AudioStream" uid="uid://iwd1dc3n8np1" path="res://MusicAndSounds/Music/Ankylosaurus_music_lp.wav" id="2_kvrkd"]
+
+[node name="MusicManager" type="Node"]
+script = ExtResource("1_nelcw")
+
+[node name="Anky" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_kvrkd")
+bus = &"Music"

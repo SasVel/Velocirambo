@@ -5,18 +5,26 @@ extends Node
 
 @onready var runStream = $Run
 
+func _ready():
+	GameData.game_won.connect(game_won)
+
+func game_won():
+	play(Crowd)
+
 enum {
 	Gunshot,
 	Run,
 	RaptorRoar,
 	Beer,
-	Crowd
+	Crowd,
+	RaptorHurt
 }
 
 func play(sound):
 	match sound:
 		Gunshot: $Gunshot.play()
 		Run: $Run.play()
-		RaptorRoar: $RaptorRoar.play()
 		Beer: $Beer.play()
 		Crowd: $Crowd.play()
+		RaptorRoar: $RaptorRoar.play()
+		RaptorHurt: $RaptorHurt.play()
