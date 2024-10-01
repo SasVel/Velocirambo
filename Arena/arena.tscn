@@ -50,7 +50,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_1a26s")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o2eea"]
-size = Vector3(75, 0.114746, 75)
+size = Vector3(75, 0, 75)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fnhqg"]
 _surfaces = [{
@@ -504,7 +504,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gxxsm")
 
-[sub_resource type="Resource" id="Resource_yskn2"]
+[sub_resource type="Resource" id="Resource_a8mis"]
 script = ExtResource("10_xtkoc")
 amount = 200
 enabled = true
@@ -513,9 +513,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_y4p52"]
+[sub_resource type="Resource" id="Resource_vgn13"]
 script = ExtResource("8_bxmh1")
-stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_yskn2")])
+stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_a8mis")])
 
 [sub_resource type="Resource" id="Resource_xwqgj"]
 script = ExtResource("12_yopbr")
@@ -573,7 +573,7 @@ mesh = SubResource("ArrayMesh_nmedp")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0632453, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0782155, 0)
 shape = SubResource("BoxShape3D_o2eea")
 
 [node name="InnerWalls" type="MeshInstance3D" parent="."]
@@ -1142,7 +1142,7 @@ skeleton = NodePath("")
 [node name="ProtonScatter" type="Node3D" parent="Crowd"]
 script = ExtResource("7_hfvfd")
 global_seed = 3
-modifier_stack = SubResource("Resource_y4p52")
+modifier_stack = SubResource("Resource_vgn13")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 

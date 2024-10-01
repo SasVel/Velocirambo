@@ -1,0 +1,75 @@
+[gd_scene load_steps=13 format=3 uid="uid://bnjiabs2prmki"]
+
+[ext_resource type="Script" path="res://Components/Pickcups/health_pickup.gd" id="1_ejw8h"]
+[ext_resource type="PackedScene" uid="uid://bknvt8s1gqm3f" path="res://Models/Props/Beer/Beer.fbx" id="1_r7nf4"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ry7ma"]
+height = 2.46222
+radius = 0.819024
+
+[sub_resource type="Curve" id="Curve_7okr0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.220544, 0.969011), 0.0702563, 0.0702563, 0, 0, Vector2(1, 0.418951), -2.25664, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ky7cx"]
+curve = SubResource("Curve_7okr0")
+
+[sub_resource type="Curve" id="Curve_lxwl4"]
+_data = [Vector2(0, 0.659118), 0.0, 1.49588, 0, 0, Vector2(1, 0), -3.57257, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j3pkn"]
+curve = SubResource("Curve_lxwl4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ft435"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 2, 1)
+gravity = Vector3(0, 1, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_j3pkn")
+alpha_curve = SubResource("CurveTexture_ky7cx")
+
+[sub_resource type="Gradient" id="Gradient_lbp3r"]
+offsets = PackedFloat32Array(0.661765, 0.744118)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g1dty"]
+gradient = SubResource("Gradient_lbp3r")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rggdn"]
+transparency = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.745098)
+albedo_texture = SubResource("GradientTexture2D_g1dty")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_fwg2s"]
+material = SubResource("StandardMaterial3D_rggdn")
+size = Vector2(0.1, 0.1)
+
+[node name="HealthPickup" type="Area3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ejw8h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.17875, 0)
+shape = SubResource("CylinderShape3D_ry7ma")
+
+[node name="Beer" parent="." instance=ExtResource("1_r7nf4")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 1.02312, 0)
+
+[node name="BeerParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 2.27118, 0)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_ft435")
+draw_pass_1 = SubResource("QuadMesh_fwg2s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

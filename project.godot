@@ -21,6 +21,7 @@ GameData="*res://GlobalScripts/GameData.gd"
 PlayerData="*res://GlobalScripts/PlayerData.gd"
 Rng="*res://GlobalScripts/Rng.gd"
 Particles="*res://GlobalScripts/ParticlesHelper.gd"
+SFX="*res://GlobalScripts/SFX/sfx_manager.tscn"
 
 [editor]
 

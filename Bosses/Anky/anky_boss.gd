@@ -47,7 +47,7 @@ func idle_state(delta):
 	run_state_trans_timer()
 
 func walk_state(_delta):
-	velocity = global_position.direction_to(PlayerData.position) * speed
+	velocity = global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)) * speed
 	var targetTransform = self.global_transform.looking_at(PlayerData.position, Vector3.UP, true)
 	global_transform.basis = lerp(global_transform.basis.orthonormalized(), targetTransform.basis.orthonormalized(), 0.01)
 	run_state_trans_timer()
@@ -84,11 +84,11 @@ func attack_state():
 func _roll_attack():
 	animTransition()
 	self.look_at(PlayerData.position, Vector3.UP, true)
-	await move_tween(global_position.direction_to(PlayerData.position), speed * 3, 2.5)
+	await move_tween(global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)), speed * 3, 2.5)
 
 func _tail_attack():
 	animTransition()
-	move_tween(global_position.direction_to(PlayerData.position), speed * 0.3, 1.25)
+	move_tween(global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)), speed * 0.3, 1.25)
 
 var isThrowAttackDown : bool = false
 func _throw_attack():

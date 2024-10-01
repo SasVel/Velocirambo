@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=21 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="8_ygn4d"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="9_wwvj3"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_ab8gv"]
+[ext_resource type="PackedScene" uid="uid://bnjiabs2prmki" path="res://Components/Pickcups/health_pickup.tscn" id="14_8octu"]
 
 [sub_resource type="Gradient" id="Gradient_3ul7b"]
 interpolation_mode = 1
@@ -30,7 +31,7 @@ font_size = 26
 [sub_resource type="LabelSettings" id="LabelSettings_chqpx"]
 font_size = 26
 
-[sub_resource type="Resource" id="Resource_wuxpl"]
+[sub_resource type="Resource" id="Resource_c71ud"]
 script = ExtResource("10_ab8gv")
 amount = 200
 enabled = true
@@ -39,9 +40,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_llkl5"]
+[sub_resource type="Resource" id="Resource_4biy3"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_wuxpl")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_c71ud")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -180,14 +181,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.263416, 0)
 
 [node name="ProtonScatter" parent="Arena/Crowd" index="0"]
-modifier_stack = SubResource("Resource_llkl5")
+modifier_stack = SubResource("Resource_4biy3")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)
 
 [node name="AnkyBoss" parent="." instance=ExtResource("8_ktlfx")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 22)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.26249, 22)
+
+[node name="HealthPickup" parent="." instance=ExtResource("14_8octu")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.27487, 0, 0)
 
 [editable path="Arena"]

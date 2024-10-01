@@ -146,6 +146,7 @@ func shoot():
 		%ReloadTimer.start()
 	if !IS_AIMING:
 		camera.apply_rot_offset(Vector2(8, 0))
+	SFX.play(SFX.Gunshot)
 	camera.apply_shake()
 	shot_gun.emit(IS_AIMING)
 
@@ -166,6 +167,10 @@ func player_move(_delta, speed):
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
+	
+	#I want to make the sound frequency scale with speed, temporary solution
+	$MoveSoundTimer.wait_time = (1 / speed) * 6
+	if $MoveSoundTimer.is_stopped(): $MoveSoundTimer.start()
 
 # Handles decelerration.
 func player_stop(speed):
@@ -205,3 +210,6 @@ func turn_body_to_camera(delta):
 	#var bonePose : Transform3D = skeleton.global_transform * skeleton.get_bone_global_pose(skelHeadIdx)
 	#bonePose = bonePose.looking_at(bonePose.origin + get_viewport().get_camera_3d().basis.z)
 	#skeleton.set_bone_global_pose_override(skelHeadIdx, skeleton.global_transform.affine_inverse() * bonePose, 1.0, true)
+
+func _on_move_sound_timer_timeout():
+	SFX.play(SFX.Run)
