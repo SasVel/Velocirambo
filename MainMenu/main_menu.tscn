@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0y2nmepdt2pj"]
+[gd_scene load_steps=14 format=3 uid="uid://d0y2nmepdt2pj"]
 
 [ext_resource type="Script" path="res://MainMenu/main_menu.gd" id="1_hp2ea"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="1_levnm"]
@@ -7,12 +7,21 @@
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="3_xg8ev"]
 [ext_resource type="Script" path="res://UI/Components/button_anim_component.gd" id="4_vgnm4"]
 [ext_resource type="Shader" path="res://Shaders/Vignette.gdshader" id="5_4xcmi"]
+[ext_resource type="Script" path="res://MainMenu/menu.gd" id="7_oh74a"]
+[ext_resource type="Script" path="res://UI/Settings/settings.gd" id="8_0a8ku"]
+[ext_resource type="Script" path="res://MainMenu/main_menu_components.gd" id="8_0koxa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_om8ps"]
 shader = ExtResource("5_4xcmi")
 shader_parameter/vignette_intensity = 0.3
 shader_parameter/vignette_opacity = 0.4
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sijme"]
+font_size = 37
+
+[sub_resource type="LabelSettings" id="LabelSettings_0qidy"]
+font_size = 26
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_hp2ea")
@@ -82,7 +91,7 @@ autoplay = "idle"
 [node name="ShadersLayer" type="CanvasLayer" parent="."]
 layer = 0
 
-[node name="ColorRect" type="ColorRect" parent="ShadersLayer"]
+[node name="Vignette" type="ColorRect" parent="ShadersLayer"]
 material = SubResource("ShaderMaterial_om8ps")
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,8 +109,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_xg8ev")
+script = ExtResource("7_oh74a")
 
 [node name="MainMenuComponents" type="MarginContainer" parent="UILayer/Menu"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -109,6 +120,7 @@ offset_right = 546.0
 grow_vertical = 2
 theme_override_constants/margin_left = 45
 theme_override_constants/margin_top = 45
+script = ExtResource("8_0koxa")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UILayer/Menu/MainMenuComponents"]
 custom_minimum_size = Vector2(0, 70)
@@ -161,9 +173,117 @@ script = ExtResource("4_vgnm4")
 time = 0.2
 size = Vector2(1.2, 1.2)
 
-[connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/NewGameBtn" to="." method="_on_new_game_btn_pressed"]
-[connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
-[connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/CreditsBtn" to="." method="_on_credits_btn_pressed"]
-[connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
+[node name="Settings" type="Control" parent="UILayer/Menu"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_0a8ku")
+
+[node name="PanelContainer" type="MarginContainer" parent="UILayer/Menu/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -186.0
+offset_right = 220.0
+offset_bottom = 186.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="VBoxContainer" parent="UILayer/Menu/Settings/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VolumeLabel" type="Label" parent="UILayer/Menu/Settings/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Volume"
+label_settings = SubResource("LabelSettings_sijme")
+horizontal_alignment = 1
+
+[node name="MainVolContainer" type="HBoxContainer" parent="UILayer/Menu/Settings/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Label" type="Label" parent="UILayer/Menu/Settings/PanelContainer/HBoxContainer/MainVolContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Main"
+label_settings = SubResource("LabelSettings_0qidy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainVolSlider" type="HSlider" parent="UILayer/Menu/Settings/PanelContainer/HBoxContainer/MainVolContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+max_value = 1.0
+step = 0.01
+
+[node name="MusicVolContainer" type="HBoxContainer" parent="UILayer/Menu/Settings/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Label" type="Label" parent="UILayer/Menu/Settings/PanelContainer/HBoxContainer/MusicVolContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Music"
+label_settings = SubResource("LabelSettings_0qidy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolSlider" type="HSlider" parent="UILayer/Menu/Settings/PanelContainer/HBoxContainer/MusicVolContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+
+[node name="SfxVolContainer" type="HBoxContainer" parent="UILayer/Menu/Settings/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Label" type="Label" parent="UILayer/Menu/Settings/PanelContainer/HBoxContainer/SfxVolContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Sound Effects"
+label_settings = SubResource("LabelSettings_0qidy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SfxVolSlider" type="HSlider" parent="UILayer/Menu/Settings/PanelContainer/HBoxContainer/SfxVolContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+
+[node name="BackBtn" type="Button" parent="UILayer/Menu/Settings/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Back"
+
+[connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/NewGameBtn" to="UILayer/Menu" method="_on_new_game_btn_pressed"]
+[connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/SettingsBtn" to="UILayer/Menu" method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/CreditsBtn" to="UILayer/Menu" method="_on_credits_btn_pressed"]
+[connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/QuitBtn" to="UILayer/Menu" method="_on_quit_btn_pressed"]
+[connection signal="value_changed" from="UILayer/Menu/Settings/PanelContainer/HBoxContainer/MainVolContainer/MainVolSlider" to="UILayer/Menu/Settings" method="_on_main_vol_slider_value_changed"]
+[connection signal="value_changed" from="UILayer/Menu/Settings/PanelContainer/HBoxContainer/MusicVolContainer/MusicVolSlider" to="UILayer/Menu/Settings" method="_on_music_vol_slider_value_changed"]
+[connection signal="value_changed" from="UILayer/Menu/Settings/PanelContainer/HBoxContainer/SfxVolContainer/SfxVolSlider" to="UILayer/Menu/Settings" method="_on_sfx_vol_slider_value_changed"]
+[connection signal="pressed" from="UILayer/Menu/Settings/PanelContainer/HBoxContainer/BackBtn" to="UILayer/Menu/Settings" method="_on_back_btn_pressed"]
 
 [editable path="RaptorCommando"]
