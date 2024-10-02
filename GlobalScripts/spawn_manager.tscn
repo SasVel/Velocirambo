@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl4uqoyocivlp"]
+
+[ext_resource type="Script" path="res://GlobalScripts/SpawnManager.gd" id="1_8mgs8"]
+
+[node name="SpawnManager" type="Node"]
+script = ExtResource("1_8mgs8")
+
+[node name="PickupsTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="PickupsTimer" to="." method="_on_pickups_timer_timeout"]

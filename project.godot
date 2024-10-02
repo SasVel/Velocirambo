@@ -23,6 +23,7 @@ Rng="*res://GlobalScripts/Rng.gd"
 Particles="*res://GlobalScripts/ParticlesHelper.gd"
 SFX="*res://GlobalScripts/SFX/sfx_manager.tscn"
 Music="*res://GlobalScripts/Music/music_manager.tscn"
+Spawn="*res://GlobalScripts/spawn_manager.tscn"
 
 [editor]
 
