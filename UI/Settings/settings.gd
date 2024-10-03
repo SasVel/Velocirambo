@@ -8,8 +8,14 @@ func _ready():
 	mainBusIndex = AudioServer.get_bus_index("Master")
 	musicBusIndex = AudioServer.get_bus_index("Music")
 	sfxBusIndex = AudioServer.get_bus_index("SFX")
-	
+
+func activate():
+	self.visible = true
 	config_vol_sliders()
+
+func deactivate():
+	self.visible = false
+	closed.emit(self)
 
 func config_vol_sliders():
 	%MainVolSlider.value = db_to_linear(AudioServer.get_bus_volume_db(mainBusIndex))
@@ -26,5 +32,4 @@ func _on_sfx_vol_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(sfxBusIndex, linear_to_db(value))
 
 func _on_back_btn_pressed():
-	self.visible = false
-	closed.emit(self)
+	deactivate()

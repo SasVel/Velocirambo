@@ -23,11 +23,11 @@ func _on_new_game_btn_pressed() -> void:
 
 func _on_settings_btn_pressed() -> void:
 	close_main_menu()
-	%Settings.visible = true
+	%Settings.activate()
 
 func _on_credits_btn_pressed() -> void:
 	close_main_menu()
-	%Credits.visible = true
+	%Credits.activate()
 
 func _on_quit_btn_pressed() -> void:
 	get_tree().quit()

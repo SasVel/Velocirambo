@@ -30,7 +30,7 @@ font_size = 26
 [sub_resource type="LabelSettings" id="LabelSettings_chqpx"]
 font_size = 26
 
-[sub_resource type="Resource" id="Resource_a4u66"]
+[sub_resource type="Resource" id="Resource_075bp"]
 script = ExtResource("10_ab8gv")
 amount = 200
 enabled = true
@@ -39,9 +39,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_gy8qa"]
+[sub_resource type="Resource" id="Resource_plfng"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_a4u66")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_075bp")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -132,6 +132,7 @@ offset_right = 265.0
 offset_bottom = 342.0
 
 [node name="GameOverScreen" type="ColorRect" parent="UI"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -141,48 +142,49 @@ grow_vertical = 2
 color = Color(0.481789, 0.48179, 0.481789, 0.121569)
 script = ExtResource("7_usdf4")
 
-[node name="GameWonLabel" type="Label" parent="UI/GameOverScreen"]
-unique_name_in_owner = true
-visible = false
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -164.0
-offset_top = -133.0
-offset_right = 165.0
-offset_bottom = -98.0
+offset_left = -166.0
+offset_top = -94.0
+offset_right = 166.0
+offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
+
+[node name="GameWonLabel" type="Label" parent="UI/GameOverScreen/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
 text = "You will live to see another day!"
 label_settings = SubResource("LabelSettings_701rm")
 
-[node name="GameLostLabel" type="Label" parent="UI/GameOverScreen"]
+[node name="GameLostLabel" type="Label" parent="UI/GameOverScreen/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -173.0
-offset_top = -124.0
-offset_right = 173.0
-offset_bottom = -76.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_vertical = 3
 text = "Better luck next time!"
 label_settings = SubResource("LabelSettings_chqpx")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ReturnLabel" type="RichTextLabel" parent="UI/GameOverScreen/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][font_size=22][color=YELLOW][wave amp=35.0 freq=-3.0 connected=1]Press Space to return 
+to the main menu[/wave][/color][/font_size][/center]"
+fit_content = true
+
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
 [node name="ProtonScatter" parent="Arena/Crowd" index="0"]
-modifier_stack = SubResource("Resource_gy8qa")
+modifier_stack = SubResource("Resource_plfng")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)
