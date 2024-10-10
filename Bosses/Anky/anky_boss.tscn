@@ -147,40 +147,41 @@ script = ExtResource("1_6emht")
 
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("2_u4ojp")
+maxHealth = 250.0
 damage = 15.0
 
 [node name="Ankylosaurus2" parent="." instance=ExtResource("1_1ojo7")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Ankylosaurus2/Armature" index="0"]
-bones/0/position = Vector3(-2.84519e-17, -1.15264, -0.286657)
-bones/0/rotation = Quaternion(-0.0115796, 2.21177e-17, -9.62557e-25, 0.999933)
-bones/1/rotation = Quaternion(0.0180069, -1.73155e-17, 1.33819e-18, 0.999838)
+bones/0/position = Vector3(0, -1.16405, -0.313942)
+bones/0/rotation = Quaternion(-0.00397555, 0, 0, 0.999992)
+bones/1/rotation = Quaternion(0.00617947, 0, 0, 0.999981)
 bones/2/rotation = Quaternion(-0.0670452, -1.39497e-17, -1.39497e-17, 0.99775)
-bones/3/position = Vector3(-0.0179637, 1.45394, 0.0683658)
-bones/3/rotation = Quaternion(0.325672, 0.00576921, 0.0817806, 0.941922)
+bones/3/position = Vector3(-0.0179636, 1.46094, 0.0726414)
+bones/3/rotation = Quaternion(0.337097, 0.00477474, 0.0818447, 0.937894)
 bones/4/position = Vector3(-0.0179636, 1.15447, 0.427826)
-bones/4/rotation = Quaternion(0.0282736, 0.00109732, 0.0754282, 0.99675)
-bones/5/position = Vector3(-0.0329568, 1.32606, 0.271671)
-bones/5/rotation = Quaternion(0.188658, 0.00214371, 0.0771769, 0.979003)
-bones/6/rotation = Quaternion(0.777998, 0.214308, -0.10886, 0.580466)
-bones/7/rotation = Quaternion(-0.464968, -0.0574697, 0.0980345, 0.878004)
-bones/8/rotation = Quaternion(0.777998, -0.214308, 0.10886, 0.580466)
-bones/9/rotation = Quaternion(-0.464968, 0.0574697, -0.0980345, 0.878004)
-bones/10/rotation = Quaternion(0.984306, 3.65076e-18, 2.18141e-17, -0.176472)
-bones/11/rotation = Quaternion(-0.248428, 4.1309e-09, 1.88423e-08, 0.96865)
+bones/4/rotation = Quaternion(0.0237201, 0.00144186, 0.0754224, 0.996868)
+bones/5/position = Vector3(-0.0329567, 1.32347, 0.270889)
+bones/5/rotation = Quaternion(0.19137, 0.00192986, 0.0771825, 0.978477)
+bones/6/rotation = Quaternion(0.774713, 0.213714, -0.105568, 0.585664)
+bones/7/rotation = Quaternion(-0.451997, -0.0575008, 0.0960993, 0.884962)
+bones/8/rotation = Quaternion(0.774713, -0.213714, 0.105568, 0.585664)
+bones/9/rotation = Quaternion(-0.451997, 0.0575008, -0.0960993, 0.884962)
+bones/10/rotation = Quaternion(0.976542, -0.000154581, -3.73551e-05, -0.215328)
+bones/11/rotation = Quaternion(-0.201626, 0.000404529, 0.00272622, 0.979459)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(-0.121147, 9.67115e-07, 1.09006e-05, 0.992635)
+bones/12/rotation = Quaternion(-0.120385, 4.2602e-05, 0.0185877, 0.992553)
 bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(0.0369148, 4.55126e-05, 0.000840589, 0.999318)
+bones/13/rotation = Quaternion(-0.139918, -0.0016751, 0.0638066, 0.988104)
 bones/13/scale = Vector3(1, 0.999999, 1)
-bones/14/rotation = Quaternion(0.453082, -0.00187678, 0.0175791, 0.891293)
+bones/14/rotation = Quaternion(0.186167, 0.00129904, 0.0741602, 0.979714)
 bones/14/scale = Vector3(1, 0.999999, 1)
 bones/15/rotation = Quaternion(-0.00665235, -1.13469e-07, -4.55656e-09, 0.999978)
-bones/16/rotation = Quaternion(0.074095, 0.841623, 0.531091, -0.0642142)
-bones/17/rotation = Quaternion(-0.413216, 0.0191564, -0.0692562, 0.907793)
-bones/18/rotation = Quaternion(-0.074095, 0.841623, 0.531091, 0.0642142)
-bones/19/rotation = Quaternion(-0.413216, -0.0191564, 0.0692562, 0.907793)
+bones/16/rotation = Quaternion(0.0723696, 0.837739, 0.537796, -0.0610935)
+bones/17/rotation = Quaternion(-0.382252, 0.0189215, -0.0652111, 0.92156)
+bones/18/rotation = Quaternion(-0.0723696, 0.837739, 0.537796, 0.0610935)
+bones/19/rotation = Quaternion(-0.382252, -0.0189215, 0.0652111, 0.92156)
 bones/21/position = Vector3(1.34051, -0.978494, 1.37702)
 bones/21/rotation = Quaternion(0, 0.999829, 0, -0.0184734)
 bones/23/position = Vector3(-1.34051, -0.978494, 1.37702)
@@ -208,7 +209,7 @@ shape = SubResource("CapsuleShape3D_3ehwt")
 [node name="TailEndHitbox" parent="Ankylosaurus2/Armature/Skeleton3D" index="3" node_paths=PackedStringArray("skeleton", "stats") instance=ExtResource("4_4fbe8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.91564, 0)
 skeleton = NodePath("..")
-boneName = "Tail_5"
+boneName = "Tail_6"
 stats = NodePath("../../../../Stats")
 dmgMultiplier = 2.0
 
@@ -275,6 +276,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86846, 0, -1.32112)
 gizmo_extents = 0.5
 
+[connection signal="health_changed" from="Stats" to="." method="_on_stats_health_changed"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 [connection signal="timeout" from="StateTransTimer" to="." method="_on_state_trans_timer_timeout"]
 [connection signal="timeout" from="AttackCooldownTimer" to="." method="_on_attack_cooldown_timer_timeout"]

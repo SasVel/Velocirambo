@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://yf6525m4i66p"
 path.s3tc="res://.godot/imported/OuterWall.png-99dedaffd8ce21f33bd58c6b490c3bc4.s3tc.ctex"
+path.etc2="res://.godot/imported/OuterWall.png-99dedaffd8ce21f33bd58c6b490c3bc4.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Models/ArenaTextures/OuterWall.png"
-dest_files=["res://.godot/imported/OuterWall.png-99dedaffd8ce21f33bd58c6b490c3bc4.s3tc.ctex"]
+dest_files=["res://.godot/imported/OuterWall.png-99dedaffd8ce21f33bd58c6b490c3bc4.s3tc.ctex", "res://.godot/imported/OuterWall.png-99dedaffd8ce21f33bd58c6b490c3bc4.etc2.ctex"]
 
 [params]
 

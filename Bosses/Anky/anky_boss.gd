@@ -9,6 +9,9 @@ extends CharacterBody3D
 @onready var attackArea : Area3D = $AttackArea
 @onready var stompParticlesScn = preload("res://Bosses/Particles/stomp_particles.tscn")
 
+@onready var stateTransDefaultTime = $StateTransTimer.wait_time
+@onready var atkCoolDefaultTime = $AttackCooldownTimer.wait_time
+
 enum States {
 	IDLE,
 	WALK,
@@ -72,7 +75,7 @@ func attack_state():
 			await _throw_attack()
 	
 	attackState += 1
-	if attackState > AttackStates.keys().size(): 
+	if attackState > AttackStates.keys().size() - 1: 
 		attackState = 0
 		$AttackCooldownTimer.start()
 		canAttack = false
@@ -84,11 +87,11 @@ func attack_state():
 func _roll_attack():
 	animTransition()
 	self.look_at(PlayerData.position, Vector3.UP, true)
-	await move_tween(global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)), speed * 3, 2.5)
+	await move_dir_tween(global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)), speed * 3, 2.5)
 
 func _tail_attack():
 	animTransition()
-	move_tween(global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)), speed * 0.3, 1.25)
+	move_dir_tween(global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)), speed * 0.3, 1.25)
 
 var isThrowAttackDown : bool = false
 func _throw_attack():
@@ -97,15 +100,15 @@ func _throw_attack():
 	#Jumps in the air
 	isThrowAttackDown = false
 	animTransition()
-	await move_tween(Vector3.UP, speed * 3, 0.5)
+	await move_dir_tween(Vector3.UP, speed * 3, 0.5)
 	
 	#Moves towards player
-	await move_tween(global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)), speed * 4, 2)
+	await move_pos_tween(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z), 1)
 	
 	#Goes down
 	isThrowAttackDown = true
 	animTransition()
-	await move_tween(Vector3.DOWN, speed * 3, 0.5)
+	await move_dir_tween(Vector3.DOWN, speed * 3, 0.5)
 
 func _on_attack_cooldown_timer_timeout():
 	canAttack = true
@@ -117,11 +120,19 @@ func _on_state_trans_timer_timeout():
 		state = States.ATTACK
 	else: state = States.WALK
 
-func move_tween(dir : Vector3, moveSpeed : float, time : float):
+##Moves towards a direction
+func move_dir_tween(dir : Vector3, moveSpeed : float, time : float):
 	var moveTween = create_tween()
 	moveTween.tween_property(self, "velocity", dir * moveSpeed, time * 0.2)
 	moveTween.tween_property(self, "velocity", Vector3.ZERO, time * 0.2).set_delay(time * 0.6)
 	await moveTween.finished
+	velocity = Vector3.ZERO
+
+##Moves to a global position
+func move_pos_tween(pos : Vector3, time : float):
+	var moveToTween = create_tween()
+	moveToTween.tween_property(self, "global_position", pos, time)
+	await moveToTween.finished
 	velocity = Vector3.ZERO
 
 ##Designed to run when a new state is assigned, not every loop. 
@@ -135,6 +146,7 @@ func animTransition(animState : States = state):
 			match attackState:
 				AttackStates.ROLL:
 					animTree.set("parameters/states_trans/transition_request", "idle_state")
+					animTree.set("parameters/roll_tail_blend/blend_amount", 0.0)
 					animTree.set("parameters/attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 				AttackStates.TAIL:
 					animTree.set("parameters/states_trans/transition_request", "idle_state")
@@ -163,3 +175,8 @@ func _on_stats_no_health():
 ##Spawns stomp particles at the global position of the StompGroundMarker
 func spawn_stomp_particles():
 	Particles.spawn(stompParticlesScn, %StompGroundMarker.global_position)
+
+func _on_stats_health_changed(health):
+	var reductionPercentage = health / $Stats.maxHealth
+	$StateTransTimer.wait_time = stateTransDefaultTime * reductionPercentage
+	$AttackCooldownTimer.wait_time = atkCoolDefaultTime * reductionPercentage

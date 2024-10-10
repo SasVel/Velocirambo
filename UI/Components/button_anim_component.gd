@@ -2,8 +2,8 @@ extends Node
 class_name ButtonAnimComponent
 
 @export var time : float = 0.3
-@export var size : Vector2 = Vector2(1, 1)
-@export var pivotPos : PIVOTPOS
+@export var size : Vector2 = Vector2(1.2, 1.2)
+@export var pivotPos : PIVOTPOS = PIVOTPOS.Center
 @export var transitionType : Tween.TransitionType
 
 @onready var btn : Button = self.get_parent()

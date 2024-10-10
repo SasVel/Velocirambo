@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0y2nmepdt2pj"]
+[gd_scene load_steps=15 format=3 uid="uid://d0y2nmepdt2pj"]
 
+[ext_resource type="Script" path="res://UI/MainMenu/main_menu.gd" id="1_fu6vu"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="1_levnm"]
 [ext_resource type="Environment" uid="uid://ciipvdp53q8qo" path="res://Misc/MainEnv.tres" id="1_qi8qv"]
 [ext_resource type="PackedScene" uid="uid://cufn7ji82vhtv" path="res://Models/Commando/RaptorCommando.glb" id="2_w0nex"]
@@ -24,8 +25,8 @@ adjustment_saturation = 0.9
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_om8ps"]
 shader = ExtResource("5_4xcmi")
-shader_parameter/vignette_intensity = 0.3
-shader_parameter/vignette_opacity = 0.4
+shader_parameter/vignette_intensity = 0.2
+shader_parameter/vignette_opacity = 0.089
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4ss05"]
@@ -35,6 +36,7 @@ font_size = 34
 font_size = 24
 
 [node name="MainMenu" type="Node3D"]
+script = ExtResource("1_fu6vu")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_qi8qv")
@@ -184,8 +186,6 @@ text = "Back"
 
 [node name="ButtonAnimComponent" type="Node" parent="UILayer/Menu/Credits/VBoxContainer/BackBtn"]
 script = ExtResource("4_vgnm4")
-size = Vector2(1.2, 1.2)
-pivotPos = 1
 
 [node name="Settings" type="Control" parent="UILayer/Menu"]
 unique_name_in_owner = true
@@ -291,8 +291,6 @@ text = "Back"
 [node name="ButtonAnimComponent" type="Node" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/BackBtn"]
 script = ExtResource("4_vgnm4")
 time = 0.2
-size = Vector2(1.2, 1.2)
-pivotPos = 1
 
 [node name="MainMenuComponents" type="MarginContainer" parent="UILayer/Menu"]
 unique_name_in_owner = true
@@ -326,7 +324,7 @@ text = "New Game"
 [node name="ButtonAnimComponent" type="Node" parent="UILayer/Menu/MainMenuComponents/BtnsContainer/NewGameBtn"]
 script = ExtResource("4_vgnm4")
 time = 0.2
-size = Vector2(1.2, 1.2)
+pivotPos = 0
 
 [node name="SettingsBtn" type="Button" parent="UILayer/Menu/MainMenuComponents/BtnsContainer"]
 layout_mode = 2
@@ -335,7 +333,7 @@ text = "Settings"
 [node name="ButtonAnimComponent" type="Node" parent="UILayer/Menu/MainMenuComponents/BtnsContainer/SettingsBtn"]
 script = ExtResource("4_vgnm4")
 time = 0.2
-size = Vector2(1.2, 1.2)
+pivotPos = 0
 
 [node name="CreditsBtn" type="Button" parent="UILayer/Menu/MainMenuComponents/BtnsContainer"]
 layout_mode = 2
@@ -344,7 +342,7 @@ text = "Credits"
 [node name="ButtonAnimComponent" type="Node" parent="UILayer/Menu/MainMenuComponents/BtnsContainer/CreditsBtn"]
 script = ExtResource("4_vgnm4")
 time = 0.2
-size = Vector2(1.2, 1.2)
+pivotPos = 0
 
 [node name="QuitBtn" type="Button" parent="UILayer/Menu/MainMenuComponents/BtnsContainer"]
 layout_mode = 2
@@ -353,7 +351,7 @@ text = "Exit"
 [node name="ButtonAnimComponent" type="Node" parent="UILayer/Menu/MainMenuComponents/BtnsContainer/QuitBtn"]
 script = ExtResource("4_vgnm4")
 time = 0.2
-size = Vector2(1.2, 1.2)
+pivotPos = 0
 
 [connection signal="pressed" from="UILayer/Menu/Credits/VBoxContainer/BackBtn" to="UILayer/Menu/Credits" method="_on_back_btn_pressed"]
 [connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/MainVolContainer/MainVolSlider" to="UILayer/Menu/Settings" method="_on_main_vol_slider_value_changed"]

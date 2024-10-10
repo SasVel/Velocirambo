@@ -1,9 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://bchtlllt7j06x"]
+[gd_scene load_steps=6 format=3 uid="uid://bchtlllt7j06x"]
 
 [ext_resource type="Script" path="res://Components/BossHealthBar/boss_health_bar.gd" id="1_6s5dp"]
+[ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="1_rmpot"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ev4s7"]
 font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdxb4"]
+bg_color = Color(0.371552, 0.361787, 0.345508, 0.533333)
+corner_radius_top_left = 13
+corner_radius_bottom_right = 13
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jux3"]
+bg_color = Color(0.628281, 0.0231745, 9.62615e-08, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 13
+corner_radius_bottom_right = 13
 
 [node name="BossHealthBar" type="Control"]
 layout_mode = 3
@@ -12,6 +28,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_rmpot")
 script = ExtResource("1_6s5dp")
 
 [node name="Label" type="Label" parent="."]
@@ -45,6 +63,9 @@ offset_right = 299.0
 offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_sdxb4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3jux3")
+value = 50.0
 fill_mode = 1
 show_percentage = false
 

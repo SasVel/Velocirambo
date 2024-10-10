@@ -24,6 +24,12 @@ Particles="*res://GlobalScripts/ParticlesHelper.gd"
 SFX="*res://GlobalScripts/SFX/sfx_manager.tscn"
 Music="*res://GlobalScripts/Music/music_manager.tscn"
 Spawn="*res://GlobalScripts/spawn_manager.tscn"
+SceneManager="*res://GlobalScripts/SceneManager.gd"
+
+[display]
+
+mouse_cursor/custom_image="res://UI/Cursor/DinoHandCursor-ezgif.com-resize.png"
+mouse_cursor/custom_image_hotspot=Vector2(14, 6)
 
 [editor]
 
@@ -126,5 +132,6 @@ textures/canvas_textures/default_texture_filter=0
 textures/canvas_textures/default_texture_repeat=1
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 textures/decals/filter=0
 textures/light_projectors/filter=0

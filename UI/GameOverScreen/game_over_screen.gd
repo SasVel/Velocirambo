@@ -1,16 +1,15 @@
 extends ColorRect
 
-@onready var mainMenuScn : PackedScene = ResourceLoader.load("res://UI/MainMenu/main_menu.tscn")
-
 @onready var active : bool = false
 func _ready():
 	GameData.game_won.connect(game_won)
 	GameData.game_lost.connect(game_lost)
+	GameData.reset.connect(reset)
 
 func _input(event):
 	if !active: return
 	if event.is_action_pressed("return_to_main_menu"):
-		get_tree().change_scene_to_packed(mainMenuScn)
+		SceneManager.go_to_main_menu()
 
 func game_won():
 	active = true

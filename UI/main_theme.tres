@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=13 format=3 uid="uid://bybm5iuhmxeoj"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://bybm5iuhmxeoj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lpssa"]
 
@@ -101,6 +101,21 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 shadow_size = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vuhmc"]
+bg_color = Color(0.371552, 0.361787, 0.345508, 0.533333)
+corner_radius_top_right = 13
+corner_radius_bottom_left = 13
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qx3pa"]
+bg_color = Color(0.575186, 0.563598, 0.545906, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 13
+corner_radius_bottom_left = 13
+
 [resource]
 Button/constants/align_to_largest_stylebox = 1
 Button/font_sizes/font_size = 24
@@ -117,4 +132,6 @@ MarginContainer/constants/margin_bottom = 20
 MarginContainer/constants/margin_left = 20
 MarginContainer/constants/margin_right = 20
 MarginContainer/constants/margin_top = 20
+ProgressBar/styles/background = SubResource("StyleBoxFlat_vuhmc")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_qx3pa")
 VBoxContainer/constants/separation = 13

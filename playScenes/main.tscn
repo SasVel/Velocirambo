@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=23 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
 [ext_resource type="Environment" uid="uid://ciipvdp53q8qo" path="res://Misc/MainEnv.tres" id="2_ydlcm"]
+[ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="3_0vutq"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="3_hkrak"]
 [ext_resource type="Script" path="res://UI/crosshair.gd" id="4_etnxk"]
 [ext_resource type="Script" path="res://UI/pause.gd" id="4_f25ew"]
@@ -10,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://30rmawnd7jsv" path="res://UI/StatsDisplay/BulletDisplay/bullet_display.tscn" id="6_6fr0m"]
 [ext_resource type="Script" path="res://UI/GameOverScreen/game_over_screen.gd" id="7_usdf4"]
 [ext_resource type="PackedScene" uid="uid://bxb5dwbcvtql4" path="res://Bosses/Anky/anky_boss.tscn" id="8_ktlfx"]
+[ext_resource type="Script" path="res://UI/Components/button_anim_component.gd" id="8_udlky"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="8_ygn4d"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="9_wwvj3"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_ab8gv"]
@@ -24,13 +26,23 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.153846, 0.15812)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghko3"]
+bg_color = Color(0.878923, 0.0484415, 1.92523e-07, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 13
+corner_radius_bottom_left = 13
+
 [sub_resource type="LabelSettings" id="LabelSettings_701rm"]
 font_size = 26
 
 [sub_resource type="LabelSettings" id="LabelSettings_chqpx"]
 font_size = 26
 
-[sub_resource type="Resource" id="Resource_075bp"]
+[sub_resource type="Resource" id="Resource_yoocq"]
 script = ExtResource("10_ab8gv")
 amount = 200
 enabled = true
@@ -39,9 +51,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_plfng"]
+[sub_resource type="Resource" id="Resource_736ts"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_075bp")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_yoocq")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -63,6 +75,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_0vutq")
 
 [node name="Crosshair" type="CenterContainer" parent="UI"]
 layout_mode = 1
@@ -73,6 +86,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("4_etnxk")
 color = Color(0, 0, 0, 1)
 width = 4
@@ -98,13 +112,6 @@ visible = false
 scale = Vector2(0.06, 0.06)
 texture = SubResource("GradientTexture2D_hqkee")
 
-[node name="Pause" type="Control" parent="UI"]
-process_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("4_f25ew")
-
 [node name="StatsDisplay" type="Control" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
@@ -112,14 +119,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="HealthBar" type="ProgressBar" parent="UI/StatsDisplay"]
-modulate = Color(0.890777, 0.131414, 0, 1)
 layout_mode = 1
 offset_left = 28.0
 offset_top = 35.0
 offset_right = 388.0
 offset_bottom = 57.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_ghko3")
 value = 50.0
 show_percentage = false
 script = ExtResource("5_iicw0")
@@ -131,6 +139,54 @@ offset_top = 86.0
 offset_right = 265.0
 offset_bottom = 342.0
 
+[node name="Pause" type="ColorRect" parent="UI"]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.482353, 0.482353, 0.482353, 0.121569)
+script = ExtResource("4_f25ew")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -116.0
+offset_right = 94.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ContinueBtn" type="Button" parent="UI/Pause/VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="ButtonAnimComponent" type="Node" parent="UI/Pause/VBoxContainer/ContinueBtn"]
+script = ExtResource("8_udlky")
+
+[node name="MainMenuBtn" type="Button" parent="UI/Pause/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="ButtonAnimComponent" type="Node" parent="UI/Pause/VBoxContainer/MainMenuBtn"]
+script = ExtResource("8_udlky")
+
+[node name="QuitBtn" type="Button" parent="UI/Pause/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="ButtonAnimComponent" type="Node" parent="UI/Pause/VBoxContainer/QuitBtn"]
+script = ExtResource("8_udlky")
+
 [node name="GameOverScreen" type="ColorRect" parent="UI"]
 visible = false
 layout_mode = 1
@@ -139,6 +195,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 color = Color(0.481789, 0.48179, 0.481789, 0.121569)
 script = ExtResource("7_usdf4")
 
@@ -184,12 +241,16 @@ fit_content = true
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
 [node name="ProtonScatter" parent="Arena/Crowd" index="0"]
-modifier_stack = SubResource("Resource_plfng")
+modifier_stack = SubResource("Resource_736ts")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)
 
 [node name="AnkyBoss" parent="." instance=ExtResource("8_ktlfx")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.26249, 22)
+
+[connection signal="pressed" from="UI/Pause/VBoxContainer/ContinueBtn" to="UI/Pause" method="_on_continue_btn_pressed"]
+[connection signal="pressed" from="UI/Pause/VBoxContainer/MainMenuBtn" to="UI/Pause" method="_on_main_screen_btn_pressed"]
+[connection signal="pressed" from="UI/Pause/VBoxContainer/QuitBtn" to="UI/Pause" method="_on_quit_btn_pressed"]
 
 [editable path="Arena"]

@@ -7,9 +7,13 @@ extends Node
 
 func _ready():
 	GameData.game_won.connect(game_won)
+	GameData.reset.connect(reset)
 
 func game_won():
 	play(Crowd)
+
+func reset():
+	$Crowd.stop()
 
 enum {
 	Gunshot,
