@@ -5,6 +5,9 @@ var position : Vector3
 signal health_changed(val : float)
 signal bullets_changed(val : int)
 
+func _ready():
+	GameData.reset.connect(reset)
+
 @export var maxHealth : float = 100
 @export var health : float = maxHealth :
 	set(val):
@@ -18,3 +21,7 @@ var currBullets : int = maxBullets :
 	set(val):
 		currBullets = clamp(val, 0, maxBullets)
 		bullets_changed.emit(currBullets)
+
+func reset():
+	health = maxHealth
+	currBullets = maxBullets

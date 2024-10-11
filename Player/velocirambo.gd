@@ -30,11 +30,18 @@ class_name Player
 @onready var animTree = $AnimationTree
 
 signal shot_gun(isAiming : bool)
+signal reloading_gun(bulletsLeft : int)
 
 # Controls the aiming state. Figured it should be seperate from the rest of the states, so they can overlap
 var IS_AIMING : bool = false : set = set_aiming_state
 var canShoot : bool = true
-enum PLAYER_STATE {IDLE, RUNNING, WALKING, SPRINTING, RAGDOLL}
+enum PLAYER_STATE {
+	IDLE, 
+	RUNNING, 
+	WALKING, 
+	SPRINTING, 
+	STUNNED 
+	}
 var currentState : PLAYER_STATE = PLAYER_STATE.IDLE :
 	set(newState):
 		if currentState == newState: return
@@ -42,7 +49,7 @@ var currentState : PLAYER_STATE = PLAYER_STATE.IDLE :
 		if currentState == PLAYER_STATE.SPRINTING: camera.reset_fov()
 		currentState = newState
 var lastState : PLAYER_STATE = PLAYER_STATE.IDLE
-
+var lastDirection : Vector3
 var mouseVelocity = Vector2.ZERO #Don't confuse with sensitivity
 
 func _input(event):
@@ -59,9 +66,11 @@ func _input(event):
 	elif event.is_action_released("Aim"): IS_AIMING = false
 	
 	if event.is_action_pressed("reload"):
+		reloading_gun.emit(PlayerData.currBullets)
 		PlayerData.currBullets = 0
 		canShoot = false
 		%ReloadTimer.start()
+		SFX.play(SFX.Reload)
 
 func handleStateTransitions(event):
 	if Input.get_vector("Backwards", "Forwards", "Leftways", "Rightways") != Vector2.ZERO:
@@ -84,8 +93,8 @@ func _physics_process(delta):
 			walkingState(delta)
 		PLAYER_STATE.SPRINTING:
 			sprintingState(delta)
-		PLAYER_STATE.RAGDOLL:
-			ragdollState(delta)
+		PLAYER_STATE.STUNNED:
+			stunnedState(delta)
 	animTransition()
 	move_and_slide()
 	camera_move(delta)
@@ -120,8 +129,13 @@ func set_aiming_state(val):
 		camera.reset_fov()
 	IS_AIMING = val
 
-func ragdollState(delta):
-	pass
+func stunnedState(delta):
+	if %StunTimer.is_stopped(): %StunTimer.start()
+	velocity = (Vector3(lastDirection.x, 0.0, lastDirection.z) * -1) * runningSpeed * sprintMultiplier
+
+func _on_stun_timer_timeout():
+	velocity = Vector3.ZERO
+	currentState = lastState
 
 func animTransition(state : PLAYER_STATE = currentState):
 	match state:
@@ -141,9 +155,10 @@ func animTransition(state : PLAYER_STATE = currentState):
 
 func shoot():
 	PlayerData.currBullets -= 1
-	if PlayerData.currBullets <= 0: 
+	if PlayerData.currBullets <= 0:
 		canShoot = false
 		%ReloadTimer.start()
+		SFX.play(SFX.Reload)
 	if !IS_AIMING:
 		camera.apply_rot_offset(Vector2(8, 0))
 	SFX.play(SFX.Gunshot)
@@ -167,6 +182,8 @@ func player_move(_delta, speed):
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed
+	
+	lastDirection = direction
 	
 	#I want to make the sound frequency scale with speed, temporary solution
 	%MoveSoundTimer.wait_time = (1 / speed) * 6
@@ -218,3 +235,6 @@ func _on_roar_timer_timeout():
 	SFX.play(SFX.RaptorRoar)
 	%RoarTimer.wait_time = randf_range(10.0, 20.0)
 	%RoarTimer.start()
+
+func _on_hurtbox_got_hit(dmg):
+	currentState = PLAYER_STATE.STUNNED

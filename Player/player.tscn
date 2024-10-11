@@ -137,28 +137,34 @@ process_callback = 0
 wait_time = 2.0
 one_shot = true
 
+[node name="StunTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+wait_time = 2.0
+one_shot = true
+
 [node name="RaptorCommando" parent="." instance=ExtResource("1_viyl2")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="RaptorCommando/RaptorCommando_001" index="0"]
-bones/0/position = Vector3(-0.00169447, 2.85098, 0.340054)
+bones/0/position = Vector3(-0.00169448, 2.90144, 0.340054)
 bones/0/rotation = Quaternion(1.60095e-07, -0.569149, 0.822234, -1.10817e-07)
 bones/1/rotation = Quaternion(1.92893e-07, 0.0511689, 0.99869, -9.96228e-09)
 bones/2/rotation = Quaternion(-7.50228e-05, 0.999815, -0.0191978, 0.00115631)
 bones/3/rotation = Quaternion(0.000370724, 0.931858, 0.362822, -0.00109793)
 bones/4/enabled = false
-bones/4/rotation = Quaternion(-0.0560396, 0.0137985, 0.00656972, 0.998312)
-bones/6/position = Vector3(-0.00719135, 0.414812, 0.355154)
-bones/6/rotation = Quaternion(0.0110164, 0.849654, 0.527142, 0.00937161)
+bones/4/rotation = Quaternion(-0.0786238, 0.0094006, 0.00447583, 0.99685)
+bones/6/position = Vector3(-0.00757773, 0.411355, 0.398236)
+bones/6/rotation = Quaternion(0.0110316, 0.866605, 0.498778, 0.00973281)
 bones/7/position = Vector3(0.00590881, 0.590108, 0.658294)
-bones/7/rotation = Quaternion(0.0114452, 0.767369, 0.640951, 0.0139905)
-bones/9/rotation = Quaternion(-0.213267, 0.210847, -0.661596, 0.687278)
-bones/10/rotation = Quaternion(0.616069, 3.11746e-06, -2.48061e-06, 0.787692)
+bones/7/rotation = Quaternion(0.0112626, 0.793733, 0.607989, 0.0145233)
+bones/9/rotation = Quaternion(-0.204629, 0.202531, -0.66419, 0.689899)
+bones/10/rotation = Quaternion(0.594623, 3.17266e-06, -2.38388e-06, 0.804005)
 bones/10/scale = Vector3(1, 0.999985, 1.00001)
-bones/12/rotation = Quaternion(-0.129159, -0.129841, 0.682135, 0.70792)
-bones/13/rotation = Quaternion(0.387931, -3.71167e-06, 1.46727e-06, 0.921688)
+bones/12/rotation = Quaternion(-0.140074, -0.140357, 0.680049, 0.705842)
+bones/13/rotation = Quaternion(0.419245, -3.65955e-06, 1.59305e-06, 0.907873)
 bones/13/scale = Vector3(1, 0.999985, 1.00002)
-bones/14/rotation = Quaternion(-0.0327566, 0.995984, -0.0813065, -0.0182154)
+bones/14/rotation = Quaternion(-0.0254122, 0.994131, -0.104202, -0.0141313)
 bones/15/rotation = Quaternion(0.0192654, -1.19187e-07, 2.29661e-09, 0.999814)
 bones/16/rotation = Quaternion(-0.0137358, 5.07739e-14, 5.27267e-16, 0.999906)
 bones/17/rotation = Quaternion(0.0505618, -3.15521e-15, 2.1017e-15, 0.998721)
@@ -170,21 +176,21 @@ bones/22/rotation = Quaternion(0.0113765, -1.19202e-07, 1.35619e-09, 0.999935)
 bones/23/rotation = Quaternion(-0.0265121, 1.19167e-07, -3.16049e-09, 0.999649)
 bones/24/rotation = Quaternion(-0.0260201, 3.77835e-15, -6.20368e-09, 0.999661)
 bones/25/rotation = Quaternion(0.445196, -0.476238, 0.563821, 0.507055)
-bones/26/rotation = Quaternion(0.020094, -0.0360982, -0.737152, 0.674463)
-bones/27/rotation = Quaternion(-0.557417, 1.8272e-06, 1.33322e-06, 0.830233)
-bones/28/rotation = Quaternion(0.652878, 2.66697e-08, -2.02319e-07, 0.757463)
+bones/26/rotation = Quaternion(0.0194102, -0.0353508, -0.737189, 0.674483)
+bones/27/rotation = Quaternion(-0.540422, 1.85029e-06, 1.29816e-06, 0.841394)
+bones/28/rotation = Quaternion(0.625992, 2.46751e-08, -1.90657e-07, 0.77983)
 bones/29/rotation = Quaternion(0.445195, 0.476238, -0.563821, 0.507055)
-bones/30/rotation = Quaternion(0.0200941, 0.0360983, 0.737152, 0.674462)
-bones/31/rotation = Quaternion(-0.557417, -1.81462e-06, -1.34391e-06, 0.830233)
-bones/32/rotation = Quaternion(0.652878, -2.29039e-08, 1.97311e-07, 0.757463)
-bones/33/position = Vector3(0.404172, 1.72437, 2.05403)
-bones/33/rotation = Quaternion(0.0017888, 0.768245, 0.640153, 2.45927e-07)
+bones/30/rotation = Quaternion(0.0194159, 0.035357, 0.737188, 0.674482)
+bones/31/rotation = Quaternion(-0.540422, -1.83821e-06, -1.29217e-06, 0.841394)
+bones/32/rotation = Quaternion(0.625992, -2.6477e-08, 1.93446e-07, 0.77983)
+bones/33/position = Vector3(0.404172, 1.75137, 2.05403)
+bones/33/rotation = Quaternion(0.00138797, 0.755051, 0.655664, 2.21829e-07)
 bones/34/rotation = Quaternion(-0.686919, -0.0306942, -0.0324117, 0.725362)
 bones/35/position = Vector3(0.611549, 0.0219753, -0.318177)
 bones/35/rotation = Quaternion(-0.505573, 0.494364, -0.494364, 0.505574)
 bones/36/rotation = Quaternion(-0.699136, 2.52103e-08, 0.714989, -5.65331e-10)
-bones/38/position = Vector3(-0.407561, 1.52589, 2.03067)
-bones/38/rotation = Quaternion(-1.26641e-07, 0.650417, 0.759577, -1.47895e-07)
+bones/38/position = Vector3(-0.407561, 1.59747, 2.03592)
+bones/38/rotation = Quaternion(-1.29188e-07, 0.663497, 0.748179, -1.45676e-07)
 bones/39/rotation = Quaternion(-0.686919, 0.0306942, 0.0324117, 0.725362)
 bones/40/position = Vector3(-0.614938, 0.0219753, -0.318177)
 bones/40/rotation = Quaternion(-0.505573, -0.494364, 0.494364, 0.505574)
@@ -194,7 +200,12 @@ bones/42/rotation = Quaternion(1.37679e-07, 0.707107, -0.707107, -1.37679e-07)
 script = ExtResource("3_uylya")
 
 [node name="GunMarker" type="Marker3D" parent="RaptorCommando/RaptorCommando_001/Skeleton3D/Cylinder_001" index="0"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.265377, 3.88035, 4.46398)
+
+[node name="CasingsMarker" type="Marker3D" parent="RaptorCommando/RaptorCommando_001/Skeleton3D/Cylinder_001/GunMarker"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.488773, -1.88026)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0192187, 1.29062, 0.097489)
@@ -243,8 +254,16 @@ unique_name_in_owner = true
 process_callback = 0
 wait_time = 10.0
 
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2, 1)
+rotation_order = 3
+current = true
+
+[connection signal="reloading_gun" from="." to="RaptorCommando/RaptorCommando_001/Skeleton3D/Cylinder_001" method="_on_player_reloading_gun"]
 [connection signal="shot_gun" from="." to="RaptorCommando/RaptorCommando_001/Skeleton3D/Cylinder_001" method="_on_player_shot_gun"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
+[connection signal="got_hit" from="Hurtbox" to="." method="_on_hurtbox_got_hit"]
 [connection signal="timeout" from="SoundTimers/MoveSoundTimer" to="." method="_on_move_sound_timer_timeout"]
 [connection signal="timeout" from="SoundTimers/RoarTimer" to="." method="_on_roar_timer_timeout"]
 

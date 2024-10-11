@@ -2,10 +2,12 @@ extends MeshInstance3D
 
 @onready var bulletTrailScn = preload("res://Player/bullet_trail.tscn")
 @onready var gunFireParticles = preload("res://Player/Particles/gun_fire_particles.tscn")
+@onready var gunCasingsParticles = preload("res://Player/Particles/gun_casing_particles.tscn")
 
 func _on_player_shot_gun(isAiming : bool) -> void:
 	create_bullet_trail($GunMarker.position, 0.2, isAiming)
 	Particles.spawn(gunFireParticles, $GunMarker.global_position)
+	spawnCasing()
 	var tween = create_tween()
 	tween.tween_property(self, "rotation_degrees:x", rotation_degrees.x + -4, 0.1)
 	tween.parallel().tween_property(self, "scale:z", 0.8, 0.1)
@@ -23,3 +25,11 @@ func create_bullet_trail(pos, time, isAiming : bool):
 	
 	await get_tree().create_timer(time).timeout
 	remove_child(bulletTrail)
+
+func _on_player_reloading_gun(bulletsLeft):
+	for i in bulletsLeft:
+		await get_tree().create_timer(0.05).timeout
+		spawnCasing()
+
+func spawnCasing():
+	Particles.spawn(gunCasingsParticles, $GunMarker/CasingsMarker.global_position, $GunMarker/CasingsMarker.global_rotation)

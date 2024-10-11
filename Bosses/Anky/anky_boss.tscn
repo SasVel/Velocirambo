@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bxb5dwbcvtql4"]
+[gd_scene load_steps=52 format=3 uid="uid://bxb5dwbcvtql4"]
 
 [ext_resource type="PackedScene" uid="uid://dwmycrnmjyus6" path="res://Models/Anky/Ankylosaurus.glb" id="1_1ojo7"]
 [ext_resource type="Script" path="res://Bosses/Anky/anky_boss.gd" id="1_6emht"]
@@ -14,6 +14,20 @@
 [ext_resource type="Animation" uid="uid://o3n4878un458" path="res://Bosses/Anky/Animations/throw_attack_down.res" id="10_8vwxa"]
 [ext_resource type="PackedScene" uid="uid://0lhdiufyg5dr" path="res://Components/Target/target.tscn" id="11_w07bf"]
 [ext_resource type="Script" path="res://Bosses/Anky/targets.gd" id="13_0lt6n"]
+[ext_resource type="AudioStream" uid="uid://bkavlrxmuf0oh" path="res://MusicAndSounds/Sounds/Anky/walk/ank_fs_walk_01.mp3" id="15_qk3x7"]
+[ext_resource type="AudioStream" uid="uid://dholtg0rstswg" path="res://MusicAndSounds/Sounds/Anky/walk/ank_fs_walk_02.mp3" id="16_if3fq"]
+[ext_resource type="AudioStream" uid="uid://vgmxrqgera36" path="res://MusicAndSounds/Sounds/Anky/walk/ank_fs_walk_03.mp3" id="17_tnbas"]
+[ext_resource type="AudioStream" uid="uid://cu6h8w80sm5p2" path="res://MusicAndSounds/Sounds/Anky/walk/ank_fs_walk_04.mp3" id="18_tdald"]
+[ext_resource type="AudioStream" uid="uid://djf2x2aufhas2" path="res://MusicAndSounds/Sounds/Anky/walk/ank_fs_walk_05.mp3" id="19_4brhb"]
+[ext_resource type="AudioStream" uid="uid://d1hyyxrmiquir" path="res://MusicAndSounds/Sounds/Anky/death/ank_death.mp3" id="20_3x81r"]
+[ext_resource type="AudioStream" uid="uid://bn6i31nr14xa" path="res://MusicAndSounds/Sounds/Anky/hit/ank_hit_01.mp3" id="21_ynl3h"]
+[ext_resource type="AudioStream" uid="uid://dv77hal6nqkc7" path="res://MusicAndSounds/Sounds/Anky/hit/ank_hit_02.mp3" id="22_y78n1"]
+[ext_resource type="AudioStream" uid="uid://c30rnyjryr38m" path="res://MusicAndSounds/Sounds/Anky/hit/ank_hit_03.mp3" id="23_c5v8y"]
+[ext_resource type="AudioStream" uid="uid://dtkhxiu36aofb" path="res://MusicAndSounds/Sounds/Anky/hit/ank_hit_04.mp3" id="24_8ox5d"]
+[ext_resource type="AudioStream" uid="uid://cmxgh6vsw4oa3" path="res://MusicAndSounds/Sounds/Anky/attacks/ank_roll.mp3" id="25_ptnyy"]
+[ext_resource type="AudioStream" uid="uid://b108m7wcfyrnr" path="res://MusicAndSounds/Sounds/Anky/attacks/ank_tail_attack.mp3" id="26_mq6e7"]
+[ext_resource type="AudioStream" uid="uid://bvajarbnskp8" path="res://MusicAndSounds/Sounds/Anky/attacks/ank_throw_attack_start.mp3" id="27_hbuw4"]
+[ext_resource type="AudioStream" uid="uid://cjpbqri12q2aq" path="res://MusicAndSounds/Sounds/Anky/attacks/ank_throw_attack_end.mp3" id="28_k4nhe"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mk0fu"]
 radius = 1.32391
@@ -103,7 +117,7 @@ animation = &"throw_attack_up"
 animation = &"walk"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_updbs"]
-graph_offset = Vector2(162.437, 526.751)
+graph_offset = Vector2(162.437, 326)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_bjobf")
 nodes/Animation/position = Vector2(-100, 940)
 nodes/attack/node = SubResource("AnimationNodeOneShot_1nfkm")
@@ -141,6 +155,23 @@ height = 10.1423
 height = 4.0
 radius = 23.7884
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_drott"]
+random_pitch = 1.1
+streams_count = 5
+stream_0/stream = ExtResource("15_qk3x7")
+stream_1/stream = ExtResource("16_if3fq")
+stream_2/stream = ExtResource("17_tnbas")
+stream_3/stream = ExtResource("18_tdald")
+stream_4/stream = ExtResource("19_4brhb")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vyfln"]
+random_pitch = 1.2
+streams_count = 4
+stream_0/stream = ExtResource("21_ynl3h")
+stream_1/stream = ExtResource("22_y78n1")
+stream_2/stream = ExtResource("23_c5v8y")
+stream_3/stream = ExtResource("24_8ox5d")
+
 [node name="AnkyBoss" type="CharacterBody3D"]
 collision_layer = 16
 script = ExtResource("1_6emht")
@@ -151,40 +182,39 @@ maxHealth = 250.0
 damage = 15.0
 
 [node name="Ankylosaurus2" parent="." instance=ExtResource("1_1ojo7")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.258566, 0)
 
 [node name="Skeleton3D" parent="Ankylosaurus2/Armature" index="0"]
-bones/0/position = Vector3(0, -1.16405, -0.313942)
-bones/0/rotation = Quaternion(-0.00397555, 0, 0, 0.999992)
-bones/1/rotation = Quaternion(0.00617947, 0, 0, 0.999981)
-bones/2/rotation = Quaternion(-0.0670452, -1.39497e-17, -1.39497e-17, 0.99775)
-bones/3/position = Vector3(-0.0179636, 1.46094, 0.0726414)
-bones/3/rotation = Quaternion(0.337097, 0.00477474, 0.0818447, 0.937894)
-bones/4/position = Vector3(-0.0179636, 1.15447, 0.427826)
-bones/4/rotation = Quaternion(0.0237201, 0.00144186, 0.0754224, 0.996868)
-bones/5/position = Vector3(-0.0329567, 1.32347, 0.270889)
-bones/5/rotation = Quaternion(0.19137, 0.00192986, 0.0771825, 0.978477)
-bones/6/rotation = Quaternion(0.774713, 0.213714, -0.105568, 0.585664)
-bones/7/rotation = Quaternion(-0.451997, -0.0575008, 0.0960993, 0.884962)
-bones/8/rotation = Quaternion(0.774713, -0.213714, 0.105568, 0.585664)
-bones/9/rotation = Quaternion(-0.451997, 0.0575008, -0.0960993, 0.884962)
-bones/10/rotation = Quaternion(0.976542, -0.000154581, -3.73551e-05, -0.215328)
-bones/11/rotation = Quaternion(-0.201626, 0.000404529, 0.00272622, 0.979459)
+bones/0/position = Vector3(2.84808e-09, -1.17002, -0.328214)
+bones/0/rotation = Quaternion(0.0143624, 0.0478326, 0.000687845, 0.998752)
+bones/1/rotation = Quaternion(-0.0450631, 1.71889e-09, -0.00432628, 0.998975)
+bones/2/rotation = Quaternion(0.0216281, -0.000570332, 0.00848752, 0.99973)
+bones/3/position = Vector3(-0.0179636, 1.46461, 0.0748776)
+bones/3/rotation = Quaternion(0.343046, 0.00425493, 0.0818733, 0.935734)
+bones/4/position = Vector3(-0.0179636, 1.15448, 0.427826)
+bones/4/rotation = Quaternion(0.120575, -0.006985, 0.0846905, 0.98906)
+bones/5/position = Vector3(-0.0329567, 1.32212, 0.27048)
+bones/5/rotation = Quaternion(0.192788, 0.001818, 0.0771852, 0.978198)
+bones/6/rotation = Quaternion(0.73567, 0.211428, -0.082174, 0.638228)
+bones/7/rotation = Quaternion(-0.48023, -0.0556301, 0.10375, 0.869207)
+bones/8/rotation = Quaternion(0.890199, -0.208187, 0.175758, 0.365122)
+bones/9/rotation = Quaternion(-0.561124, 0.0523406, -0.121181, 0.817138)
+bones/10/rotation = Quaternion(0.9851, -0.0522147, -0.0114405, -0.163464)
+bones/11/rotation = Quaternion(-0.167532, -0.00167705, -0.00943576, 0.98582)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(-0.120385, 4.2602e-05, 0.0185877, 0.992553)
-bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(-0.139918, -0.0016751, 0.0638066, 0.988104)
-bones/13/scale = Vector3(1, 0.999999, 1)
-bones/14/rotation = Quaternion(0.186167, 0.00129904, 0.0741602, 0.979714)
-bones/14/scale = Vector3(1, 0.999999, 1)
-bones/15/rotation = Quaternion(-0.00665235, -1.13469e-07, -4.55656e-09, 0.999978)
-bones/16/rotation = Quaternion(0.0723696, 0.837739, 0.537796, -0.0610935)
-bones/17/rotation = Quaternion(-0.382252, 0.0189215, -0.0652111, 0.92156)
-bones/18/rotation = Quaternion(-0.0723696, 0.837739, 0.537796, 0.0610935)
-bones/19/rotation = Quaternion(-0.382252, -0.0189215, 0.0652111, 0.92156)
-bones/21/position = Vector3(1.34051, -0.978494, 1.37702)
+bones/12/rotation = Quaternion(0.0674004, -0.00294095, -0.128677, 0.989389)
+bones/13/rotation = Quaternion(0.0165948, 0.01465, -0.148563, 0.988655)
+bones/14/rotation = Quaternion(-0.216738, 0.0227839, 0.172978, 0.960513)
+bones/15/rotation = Quaternion(-0.00665236, -1.19207e-07, -7.93022e-10, 0.999978)
+bones/16/rotation = Quaternion(0.0678824, 0.946201, 0.312188, -0.0513243)
+bones/17/rotation = Quaternion(-0.474873, 0.00541189, -0.121868, 0.871559)
+bones/18/rotation = Quaternion(-0.0966231, 0.825269, 0.546956, 0.10215)
+bones/19/rotation = Quaternion(-0.488248, -0.029479, 0.0522145, 0.870643)
+bones/20/position = Vector3(1.56217, 2.3976, 1.1106)
+bones/21/position = Vector3(1.34051, -0.452021, 1.07901)
 bones/21/rotation = Quaternion(0, 0.999829, 0, -0.0184734)
-bones/23/position = Vector3(-1.34051, -0.978494, 1.37702)
+bones/22/position = Vector3(-1.56217, 1.58941, 1.41814)
+bones/23/position = Vector3(-1.34051, -1.30034, 1.35556)
 bones/23/rotation = Quaternion(0, 0.999829, 0, 0.0184734)
 
 [node name="BodyHitbox" parent="Ankylosaurus2/Armature/Skeleton3D" index="1" node_paths=PackedStringArray("skeleton", "stats") instance=ExtResource("4_4fbe8")]
@@ -237,11 +267,11 @@ parameters/tail_attack_left_right/blend_amount = 0.0
 parameters/throw_up_down/blend_amount = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.106567, 3.68967, 0.869477)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.106567, 3.94824, 0.869477)
 shape = SubResource("CapsuleShape3D_55g5k")
 
 [node name="AttackArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.69314, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.95171, 0)
 collision_layer = 0
 collision_mask = 2
 
@@ -251,6 +281,7 @@ shape = SubResource("CylinderShape3D_8duml")
 
 [node name="Targets" type="Node3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.258566, 0)
 script = ExtResource("13_0lt6n")
 
 [node name="Target" parent="Targets" node_paths=PackedStringArray("statsComponent") instance=ExtResource("11_w07bf")]
@@ -275,6 +306,60 @@ one_shot = true
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86846, 0, -1.32112)
 gizmo_extents = 0.5
+
+[node name="StompPlayer" type="AudioStreamPlayer3D" parent="StompGroundMarker"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_drott")
+volume_db = 4.0
+unit_size = 50.0
+pitch_scale = 1.2
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="AudioPlayers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.28691, 0)
+
+[node name="DeathPlayer" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+unique_name_in_owner = true
+stream = ExtResource("20_3x81r")
+unit_size = 50.0
+bus = &"SFX"
+
+[node name="HitPlayer" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_vyfln")
+unit_size = 50.0
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="RollAttackPlayer" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+unique_name_in_owner = true
+stream = ExtResource("25_ptnyy")
+unit_size = 50.0
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="TailAttackPlayer" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+unique_name_in_owner = true
+stream = ExtResource("26_mq6e7")
+volume_db = 10.0
+unit_size = 50.0
+max_polyphony = 3
+bus = &"SFX"
+
+[node name="ThrowAtkStartPlayer" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+unique_name_in_owner = true
+stream = ExtResource("27_hbuw4")
+volume_db = 10.0
+unit_size = 50.0
+bus = &"SFX"
+
+[node name="ThrowAtkEndPlayer" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+unique_name_in_owner = true
+stream = ExtResource("28_k4nhe")
+volume_db = 10.0
+unit_size = 50.0
+bus = &"SFX"
 
 [connection signal="health_changed" from="Stats" to="." method="_on_stats_health_changed"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]

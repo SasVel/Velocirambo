@@ -10,8 +10,9 @@ func _ready():
 	animate_rot_y()
 	animate_move_y()
 
-func picked_up(valToChange, isAdditive : bool = true):
-	valToChange = valToChange + valueAmount if isAdditive else valToChange - valueAmount 
+##To be overwritten
+func picked_up():
+	pass
 
 func animate_rot_y():
 	var tween = create_tween().set_loops()

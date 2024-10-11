@@ -1,13 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://j14c17hjdrw4"]
+[gd_scene load_steps=29 format=3 uid="uid://j14c17hjdrw4"]
 
 [ext_resource type="Script" path="res://GlobalScripts/SFX/sfx_manager.gd" id="1_fcx7w"]
 [ext_resource type="AudioStream" uid="uid://b6umf8d3v6d40" path="res://MusicAndSounds/Sounds/Gunshot.mp3" id="2_4g6vg"]
-[ext_resource type="AudioStream" uid="uid://vo8le6ba0jq1" path="res://MusicAndSounds/Sounds/Run/player_fs_run_02.mp3" id="3_q1tik"]
-[ext_resource type="AudioStream" uid="uid://bombdpemao2bt" path="res://MusicAndSounds/Sounds/Run/player_fs_run_03.mp3" id="4_35hkk"]
-[ext_resource type="AudioStream" uid="uid://bxyvl0cqeit05" path="res://MusicAndSounds/Sounds/Run/player_fs_run_04.mp3" id="5_fyyv0"]
-[ext_resource type="AudioStream" uid="uid://dh8l0n2ds8nco" path="res://MusicAndSounds/Sounds/Run/player_fs_run_05.mp3" id="6_5x2of"]
-[ext_resource type="AudioStream" uid="uid://2m6t4a15uss" path="res://MusicAndSounds/Sounds/Run/player_fs_run_06.mp3" id="7_ruu52"]
-[ext_resource type="AudioStream" uid="uid://dqmm1id4aawfa" path="res://MusicAndSounds/Sounds/Run/player_fs_run_07.mp3" id="8_ooht2"]
+[ext_resource type="AudioStream" uid="uid://vo8le6ba0jq1" path="res://MusicAndSounds/Sounds/Raptor/Run/player_fs_run_02.mp3" id="3_q1tik"]
+[ext_resource type="AudioStream" uid="uid://bombdpemao2bt" path="res://MusicAndSounds/Sounds/Raptor/Run/player_fs_run_03.mp3" id="4_35hkk"]
+[ext_resource type="AudioStream" uid="uid://bxyvl0cqeit05" path="res://MusicAndSounds/Sounds/Raptor/Run/player_fs_run_04.mp3" id="5_fyyv0"]
+[ext_resource type="AudioStream" uid="uid://dh8l0n2ds8nco" path="res://MusicAndSounds/Sounds/Raptor/Run/player_fs_run_05.mp3" id="6_5x2of"]
+[ext_resource type="AudioStream" uid="uid://2m6t4a15uss" path="res://MusicAndSounds/Sounds/Raptor/Run/player_fs_run_06.mp3" id="7_ruu52"]
+[ext_resource type="AudioStream" uid="uid://dqmm1id4aawfa" path="res://MusicAndSounds/Sounds/Raptor/Run/player_fs_run_07.mp3" id="8_ooht2"]
 [ext_resource type="AudioStream" uid="uid://dxn6bytfeo00q" path="res://MusicAndSounds/Sounds/BeerSounds/Burp_1.mp3" id="9_bwhgm"]
 [ext_resource type="AudioStream" uid="uid://brbs080ea1tb" path="res://MusicAndSounds/Sounds/Raptor/Roar/player_sfx_01.mp3" id="9_ftftp"]
 [ext_resource type="AudioStream" uid="uid://bh2uc2bq0mom8" path="res://MusicAndSounds/Sounds/BeerSounds/Burp_2.mp3" id="10_05u2j"]
@@ -16,6 +16,11 @@
 [ext_resource type="AudioStream" uid="uid://dq72p4v7a3ph6" path="res://MusicAndSounds/Sounds/Raptor/Hurt/player_sfx_03.mp3" id="12_rflod"]
 [ext_resource type="AudioStream" uid="uid://bhv46sf34cq7i" path="res://MusicAndSounds/Sounds/Raptor/Hurt/player_sfx_04.mp3" id="13_cfjan"]
 [ext_resource type="AudioStream" uid="uid://o0skrvkeot3y" path="res://MusicAndSounds/Sounds/Raptor/Hurt/player_sfx_05.mp3" id="14_8t4hp"]
+[ext_resource type="AudioStream" uid="uid://12vvy4qoivk2" path="res://MusicAndSounds/Sounds/Casings/CasingsDrop-001.mp3" id="17_2dybp"]
+[ext_resource type="AudioStream" uid="uid://ctvrpy0kjthys" path="res://MusicAndSounds/Sounds/Casings/CasingsDrop-002.mp3" id="18_c3jxq"]
+[ext_resource type="AudioStream" uid="uid://b4dpcgfagobhj" path="res://MusicAndSounds/Sounds/Casings/CasingsDrop-003.mp3" id="19_2ano7"]
+[ext_resource type="AudioStream" uid="uid://clo51wj2mgjxh" path="res://MusicAndSounds/Sounds/Casings/CasingsDrop-004.mp3" id="20_cmuff"]
+[ext_resource type="AudioStream" uid="uid://bvof6j4uyd6qc" path="res://MusicAndSounds/Sounds/Reload.mp3" id="21_ctpak"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i64ju"]
 random_pitch = 1.1
@@ -49,6 +54,19 @@ streams_count = 2
 stream_0/stream = ExtResource("9_bwhgm")
 stream_1/stream = ExtResource("10_05u2j")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fww56"]
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("17_2dybp")
+stream_1/stream = ExtResource("18_c3jxq")
+stream_2/stream = ExtResource("19_2ano7")
+stream_3/stream = ExtResource("20_cmuff")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3qqu3"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("21_ctpak")
+
 [node name="SFXManager" type="Node"]
 script = ExtResource("1_fcx7w")
 
@@ -78,3 +96,21 @@ stream = SubResource("AudioStreamRandomizer_h6xa5")
 [node name="Crowd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_s21w1")
 bus = &"SFX"
+
+[node name="CasingsDrop" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_fww56")
+volume_db = 7.0
+max_polyphony = 8
+bus = &"SFX"
+
+[node name="CasingsTimer" type="Timer" parent="CasingsDrop"]
+unique_name_in_owner = true
+process_callback = 0
+wait_time = 0.5
+
+[node name="Reload" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_3qqu3")
+max_polyphony = 2
+bus = &"SFX"
+
+[connection signal="timeout" from="CasingsDrop/CasingsTimer" to="." method="_on_casings_timer_timeout"]

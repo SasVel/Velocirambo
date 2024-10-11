@@ -85,19 +85,22 @@ func attack_state():
 	%Targets.enabled = true
 
 func _roll_attack():
+	%RollAttackPlayer.play()
 	animTransition()
 	self.look_at(PlayerData.position, Vector3.UP, true)
 	await move_dir_tween(global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)), speed * 3, 2.5)
 
 func _tail_attack():
+	%TailAttackPlayer.play()
 	animTransition()
-	move_dir_tween(global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)), speed * 0.3, 1.25)
+	await move_dir_tween(global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)), speed * 0.3, 1.25)
 
 var isThrowAttackDown : bool = false
 func _throw_attack():
 	self.look_at(PlayerData.position, Vector3.UP, true)
 	
 	#Jumps in the air
+	%ThrowAtkStartPlayer.play()
 	isThrowAttackDown = false
 	animTransition()
 	await move_dir_tween(Vector3.UP, speed * 3, 0.5)
@@ -106,9 +109,10 @@ func _throw_attack():
 	await move_pos_tween(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z), 1)
 	
 	#Goes down
+	%ThrowAtkEndPlayer.play()
 	isThrowAttackDown = true
 	animTransition()
-	await move_dir_tween(Vector3.DOWN, speed * 3, 0.5)
+	await move_pos_tween(Vector3(self.global_position.x, 0, self.global_position.z), 0.5)
 
 func _on_attack_cooldown_timer_timeout():
 	canAttack = true
@@ -169,14 +173,18 @@ func init_health_bar():
 
 func _on_stats_no_health():
 	state = States.DEAD
+	%DeathPlayer.play()
 	%Targets.enabled = false
 	GameData.game_won.emit()
 
 ##Spawns stomp particles at the global position of the StompGroundMarker
 func spawn_stomp_particles():
 	Particles.spawn(stompParticlesScn, %StompGroundMarker.global_position)
+	%StompPlayer.play()
 
 func _on_stats_health_changed(health):
+	if health <= 0: return
+	if randf_range(0, 1) >= 0.5: %HitPlayer.play()
 	var reductionPercentage = health / $Stats.maxHealth
 	$StateTransTimer.wait_time = stateTransDefaultTime * reductionPercentage
 	$AttackCooldownTimer.wait_time = atkCoolDefaultTime * reductionPercentage

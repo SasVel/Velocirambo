@@ -1,12 +1,18 @@
 extends Control
 
+##Pause screen. Disabled flag outrules active flag.
+
+##Disables the pause screen. Outrules the active flag.
+@onready var disabled : bool = false
 @onready var active : bool = false :
 	set(val):
+		if disabled: return
 		get_tree().paused = val
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if val else Input.MOUSE_MODE_CAPTURED
 		self.visible = val
 
 func _input(event):
+	if disabled: return
 	if event.is_action_pressed("ESC"):
 		active = !active
 
