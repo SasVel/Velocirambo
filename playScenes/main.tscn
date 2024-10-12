@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=26 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
@@ -15,6 +15,14 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="8_ygn4d"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="9_wwvj3"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_ab8gv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qfnde"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8v1l4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m1dsq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3d4hc"]
 
 [sub_resource type="Gradient" id="Gradient_3ul7b"]
 interpolation_mode = 1
@@ -41,7 +49,7 @@ font_size = 26
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Resource" id="Resource_t0iyp"]
+[sub_resource type="Resource" id="Resource_f3cjj"]
 script = ExtResource("10_ab8gv")
 amount = 200
 enabled = true
@@ -50,9 +58,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_ksjbc"]
+[sub_resource type="Resource" id="Resource_vnqpn"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_t0iyp")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_f3cjj")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -87,22 +95,24 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("4_etnxk")
-color = Color(0, 0, 0, 1)
-width = 4
 
 [node name="Bottom" type="Line2D" parent="UI/Crosshair"]
+material = SubResource("ShaderMaterial_qfnde")
 points = PackedVector2Array(0, 4, 0, 20)
 width = 2.0
 
 [node name="Top" type="Line2D" parent="UI/Crosshair"]
+material = SubResource("ShaderMaterial_8v1l4")
 points = PackedVector2Array(0, -4, 0, -20)
 width = 2.0
 
 [node name="Left" type="Line2D" parent="UI/Crosshair"]
+material = SubResource("ShaderMaterial_m1dsq")
 points = PackedVector2Array(-4, 0, -20, 0)
 width = 2.0
 
 [node name="Right" type="Line2D" parent="UI/Crosshair"]
+material = SubResource("ShaderMaterial_3d4hc")
 points = PackedVector2Array(4, 0, 20, 0)
 width = 2.0
 
@@ -242,7 +252,7 @@ fit_content = true
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
 [node name="ProtonScatter" parent="Arena/Crowd" index="0"]
-modifier_stack = SubResource("Resource_ksjbc")
+modifier_stack = SubResource("Resource_vnqpn")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)

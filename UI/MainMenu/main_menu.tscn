@@ -29,11 +29,11 @@ shader_parameter/vignette_intensity = 0.2
 shader_parameter/vignette_opacity = 0.089
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_4ss05"]
-font_size = 34
-
 [sub_resource type="LabelSettings" id="LabelSettings_g24q3"]
 font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ss05"]
+font_size = 25
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_fu6vu")
@@ -206,79 +206,225 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -251.0
-offset_top = -186.0
-offset_right = 251.0
-offset_bottom = 186.0
+offset_left = -328.0
+offset_top = -219.0
+offset_right = 328.0
+offset_bottom = 219.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SettingsContainer" type="VBoxContainer" parent="UILayer/Menu/Settings/MarginContainer"]
 layout_mode = 2
 
-[node name="VolumeLabel" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer"]
+[node name="TabContainer" type="TabContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Video" type="MarginContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Container" type="VBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video"]
+layout_mode = 2
+
+[node name="Mouse" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Mouse"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Mouse Sensitivity"
+label_settings = SubResource("LabelSettings_g24q3")
+
+[node name="SensitivitySlider" type="HSlider" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Mouse"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+max_value = 5.0
+step = 0.1
+value = 3.0
+
+[node name="Crosshair" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+layout_mode = 2
+text = "Crosshair"
+label_settings = SubResource("LabelSettings_4ss05")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Color" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Color"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Color"
+label_settings = SubResource("LabelSettings_g24q3")
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Color"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="InvertColor" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/InvertColor"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Inverse Color"
+label_settings = SubResource("LabelSettings_g24q3")
+
+[node name="InverseColorCheck" type="CheckBox" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/InvertColor"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Opacity" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Opacity"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Opacity"
+label_settings = SubResource("LabelSettings_g24q3")
+
+[node name="OpacitySlider" type="HSlider" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Opacity"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="Width" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="WidthLabel" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Width"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Width"
+label_settings = SubResource("LabelSettings_g24q3")
+
+[node name="WidthSlider" type="HSlider" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Width"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 10.0
+step = 0.1
+value = 1.0
+
+[node name="Length" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="LengthLabel" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Length"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Length"
+label_settings = SubResource("LabelSettings_g24q3")
+
+[node name="LengthSlider" type="HSlider" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Length"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 40.0
+step = 0.1
+value = 1.0
+
+[node name="Audio" type="MarginContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Container" type="VBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
 layout_mode = 2
 text = "Volume"
 label_settings = SubResource("LabelSettings_4ss05")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MainVolContainer" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer"]
+[node name="MainVolContainer" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="MainLabel" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/MainVolContainer"]
+[node name="MainLabel" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MainVolContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Main"
 label_settings = SubResource("LabelSettings_g24q3")
 
-[node name="MainVolSlider" type="HSlider" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/MainVolContainer"]
+[node name="MainVolSlider" type="HSlider" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MainVolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 size_flags_vertical = 4
 max_value = 1.0
 step = 0.01
 
-[node name="MusicVolContainer" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer"]
+[node name="MusicVolContainer" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="MusicLabel" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/MusicVolContainer"]
+[node name="MusicLabel" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Music"
 label_settings = SubResource("LabelSettings_g24q3")
 
-[node name="MusicVolSlider" type="HSlider" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/MusicVolContainer"]
+[node name="MusicVolSlider" type="HSlider" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 size_flags_vertical = 4
 max_value = 1.0
 step = 0.01
 
-[node name="SfxVolContainer" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer"]
+[node name="SfxVolContainer" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="SfxLabel" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/SfxVolContainer"]
+[node name="SfxLabel" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Sound Effects"
 label_settings = SubResource("LabelSettings_g24q3")
 
-[node name="SfxVolSlider" type="HSlider" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/SfxVolContainer"]
+[node name="SfxVolSlider" type="HSlider" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 size_flags_vertical = 4
 max_value = 1.0
 step = 0.01
@@ -286,6 +432,7 @@ step = 0.01
 [node name="BackBtn" type="Button" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 8
 text = "Back"
 
 [node name="ButtonAnimComponent" type="Node" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/BackBtn"]
@@ -354,9 +501,15 @@ time = 0.2
 pivotPos = 0
 
 [connection signal="pressed" from="UILayer/Menu/Credits/VBoxContainer/BackBtn" to="UILayer/Menu/Credits" method="_on_back_btn_pressed"]
-[connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/MainVolContainer/MainVolSlider" to="UILayer/Menu/Settings" method="_on_main_vol_slider_value_changed"]
-[connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/MusicVolContainer/MusicVolSlider" to="UILayer/Menu/Settings" method="_on_music_vol_slider_value_changed"]
-[connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/SfxVolContainer/SfxVolSlider" to="UILayer/Menu/Settings" method="_on_sfx_vol_slider_value_changed"]
+[connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Mouse/SensitivitySlider" to="UILayer/Menu/Settings" method="_on_sensitivity_slider_value_changed"]
+[connection signal="color_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Color/ColorPickerButton" to="UILayer/Menu/Settings" method="_on_color_picker_button_color_changed"]
+[connection signal="toggled" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/InvertColor/InverseColorCheck" to="UILayer/Menu/Settings" method="_on_inverse_color_check_toggled"]
+[connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Opacity/OpacitySlider" to="UILayer/Menu/Settings" method="_on_opacity_slider_value_changed"]
+[connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Width/WidthSlider" to="UILayer/Menu/Settings" method="_on_width_slider_value_changed"]
+[connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Length/LengthSlider" to="UILayer/Menu/Settings" method="_on_length_slider_value_changed"]
+[connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MainVolContainer/MainVolSlider" to="UILayer/Menu/Settings" method="_on_main_vol_slider_value_changed"]
+[connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer/MusicVolSlider" to="UILayer/Menu/Settings" method="_on_music_vol_slider_value_changed"]
+[connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer/SfxVolSlider" to="UILayer/Menu/Settings" method="_on_sfx_vol_slider_value_changed"]
 [connection signal="pressed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/BackBtn" to="UILayer/Menu/Settings" method="_on_back_btn_pressed"]
 [connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/NewGameBtn" to="UILayer/Menu" method="_on_new_game_btn_pressed"]
 [connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/SettingsBtn" to="UILayer/Menu" method="_on_settings_btn_pressed"]

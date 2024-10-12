@@ -11,8 +11,7 @@ class_name Player
 @export_category("Mouse/Camera controls")
 ##TODO Currently not being used
 @export var turningDeadZoneDegrees : float = 15.0
-##The default value is very low for now, because my Mouse has way too much DPI.
-@export var mouseSensitivity : float = 1.7
+@onready var mouseSensitivity : float = GameData.mouseSensitivity
 @export var zoomedInSensModifier : float = 0.5
 
 ##how far down can the camera look/how high can it go. This number should be negative.

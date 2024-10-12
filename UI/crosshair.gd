@@ -1,16 +1,14 @@
 extends CenterContainer
 
-@export var color : Color = Color.WHITE
-@export_range(1, 40) var length : float = 20
-@export_range(1, 10) var width : int = 2
-@export_range(0, 1) var opacity : float = 0.8
 @onready var lineArr = [$Bottom, $Top, $Left, $Right]
+@onready var invertColorShader = preload("res://Shaders/InvertColor.gdshader")
 
 func _ready():
-	change_color(color)
-	change_length(length)
-	change_width(width)
-	change_opacity(opacity)
+	change_color(GameData.crossColor)
+	change_opacity(GameData.crossOpacity)
+	change_length(GameData.crossLength)
+	change_width(GameData.crossWidth)
+	config_invert_shader()
 
 func change_color(col : Color):
 	for line in lineArr:
@@ -39,3 +37,15 @@ func change_width(val : float):
 func change_opacity(val_normalised : float):
 	for line in lineArr:
 		line.default_color.a = val_normalised
+
+func config_invert_shader():
+	if GameData.invertedColors: apply_invert_color_shader()
+	else: remove_shader()
+
+func apply_invert_color_shader():
+	for line in lineArr:
+		line.material.shader = invertColorShader
+
+func remove_shader():
+	for line in lineArr:
+		line.material.shader = null
