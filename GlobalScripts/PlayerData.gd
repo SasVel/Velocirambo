@@ -4,6 +4,7 @@ var position : Vector3
 
 signal health_changed(val : float)
 signal bullets_changed(val : int)
+signal auto_mode_changed(val : bool)
 
 func _ready():
 	GameData.reset.connect(reset)
@@ -21,6 +22,11 @@ var currBullets : int = maxBullets :
 	set(val):
 		currBullets = clamp(val, 0, maxBullets)
 		bullets_changed.emit(currBullets)
+
+var isGunAuto : bool = false :
+	set(val):
+		isGunAuto = val
+		auto_mode_changed.emit(val)
 
 func reset():
 	health = maxHealth

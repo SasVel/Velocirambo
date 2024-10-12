@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=27 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://UI/pause.gd" id="4_f25ew"]
 [ext_resource type="Script" path="res://UI/StatsDisplay/health_bar.gd" id="5_iicw0"]
 [ext_resource type="PackedScene" uid="uid://30rmawnd7jsv" path="res://UI/StatsDisplay/BulletDisplay/bullet_display.tscn" id="6_6fr0m"]
+[ext_resource type="PackedScene" uid="uid://b5den5e8nio6r" path="res://UI/StatsDisplay/GunModeDisplay/gun_mode_display.tscn" id="7_mbfnf"]
 [ext_resource type="Script" path="res://UI/GameOverScreen/game_over_screen.gd" id="7_usdf4"]
 [ext_resource type="PackedScene" uid="uid://bxb5dwbcvtql4" path="res://Bosses/Anky/anky_boss.tscn" id="8_ktlfx"]
 [ext_resource type="Script" path="res://UI/Components/button_anim_component.gd" id="8_udlky"]
@@ -49,7 +50,7 @@ font_size = 26
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Resource" id="Resource_f3cjj"]
+[sub_resource type="Resource" id="Resource_gt8jh"]
 script = ExtResource("10_ab8gv")
 amount = 200
 enabled = true
@@ -58,9 +59,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_vnqpn"]
+[sub_resource type="Resource" id="Resource_3i6dr"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_f3cjj")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_gt8jh")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -147,6 +148,13 @@ offset_left = 30.0
 offset_top = 86.0
 offset_right = 265.0
 offset_bottom = 342.0
+
+[node name="GunModeDisplay" parent="UI/StatsDisplay" instance=ExtResource("7_mbfnf")]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 86.0
+offset_right = 252.0
+offset_bottom = 186.0
 
 [node name="Pause" type="ColorRect" parent="UI"]
 process_mode = 3
@@ -252,7 +260,7 @@ fit_content = true
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
 [node name="ProtonScatter" parent="Arena/Crowd" index="0"]
-modifier_stack = SubResource("Resource_vnqpn")
+modifier_stack = SubResource("Resource_3i6dr")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)

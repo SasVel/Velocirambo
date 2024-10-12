@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcqbntgb12epa"]
+
+[ext_resource type="Texture2D" uid="uid://bbwrlpj7600f1" path="res://UI/StatsDisplay/GunModeDisplay/GunModeIcon.png" id="1_ml61w"]
+
+[node name="BulletRect" type="TextureRect"]
+custom_minimum_size = Vector2(24, 100)
+texture = ExtResource("1_ml61w")
+expand_mode = 1
+stretch_mode = 1

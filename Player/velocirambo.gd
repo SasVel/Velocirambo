@@ -60,16 +60,22 @@ func _input(event):
 	
 	if(currentState == PLAYER_STATE.IDLE || currentState == PLAYER_STATE.RUNNING || currentState == PLAYER_STATE.WALKING):
 		if event.is_action_pressed("Leftclick") && canShoot:
+			if PlayerData.isGunAuto:
+				%AutoShootTimer.start()
 			shoot()
 	if event.is_action_pressed("Aim"): IS_AIMING = true
 	elif event.is_action_released("Aim"): IS_AIMING = false
 	
+	if event.is_action_released("Leftclick") && PlayerData.isGunAuto:
+		%AutoShootTimer.stop()
+	
 	if event.is_action_pressed("reload"):
 		reloading_gun.emit(PlayerData.currBullets)
 		PlayerData.currBullets = 0
-		canShoot = false
-		%ReloadTimer.start()
-		SFX.play(SFX.Reload)
+		reload()
+	
+	if event.is_action_pressed("gun_auto_mode"):
+		PlayerData.isGunAuto = !PlayerData.isGunAuto
 
 func handleStateTransitions(event):
 	if Input.get_vector("Backwards", "Forwards", "Leftways", "Rightways") != Vector2.ZERO:
@@ -155,14 +161,18 @@ func animTransition(state : PLAYER_STATE = currentState):
 func shoot():
 	PlayerData.currBullets -= 1
 	if PlayerData.currBullets <= 0:
-		canShoot = false
-		%ReloadTimer.start()
-		SFX.play(SFX.Reload)
+		reload()
 	if !IS_AIMING:
 		camera.apply_rot_offset(Vector2(8, 0))
 	SFX.play(SFX.Gunshot)
 	camera.apply_shake()
 	shot_gun.emit(IS_AIMING)
+
+func reload():
+	if PlayerData.isGunAuto: %AutoShootTimer.stop()
+	canShoot = false
+	%ReloadTimer.start()
+	SFX.play(SFX.Reload)
 
 func _on_reload_timer_timeout():
 	PlayerData.currBullets = PlayerData.maxBullets
@@ -237,3 +247,6 @@ func _on_roar_timer_timeout():
 
 func _on_hurtbox_got_hit(dmg):
 	currentState = PLAYER_STATE.STUNNED
+
+func _on_auto_shoot_timer_timeout():
+	shoot()
