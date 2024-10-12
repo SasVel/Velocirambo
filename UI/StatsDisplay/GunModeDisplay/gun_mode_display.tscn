@@ -34,3 +34,4 @@ alignment = 1
 
 [node name="BulletRect" parent="BulletsContainer" instance=ExtResource("2_48b3n")]
 layout_mode = 2
+stretch_mode = 3

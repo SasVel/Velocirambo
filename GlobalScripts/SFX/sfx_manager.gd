@@ -24,6 +24,7 @@ enum {
 	RaptorHurt,
 	CasingsDrop,
 	Reload,
+	AutoMode
 }
 
 func play(sound):
@@ -39,6 +40,7 @@ func play(sound):
 		RaptorHurt: $RaptorHurt.play()
 		CasingsDrop: %CasingsTimer.start()
 		Reload: $Reload.play()
+		AutoMode: $AutoMode.play()
 
 func _on_casings_timer_timeout():
 	$CasingsDrop.play()

@@ -76,6 +76,7 @@ func _input(event):
 	
 	if event.is_action_pressed("gun_auto_mode"):
 		PlayerData.isGunAuto = !PlayerData.isGunAuto
+		SFX.play(SFX.AutoMode)
 
 func handleStateTransitions(event):
 	if Input.get_vector("Backwards", "Forwards", "Leftways", "Rightways") != Vector2.ZERO:

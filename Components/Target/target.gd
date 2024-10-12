@@ -7,6 +7,7 @@ class_name Target
 @export var statsComponent : Stats
 
 func _ready() -> void:
+	self.visible = false
 	var tween = create_tween().set_loops()
 	tween.tween_property(sprite, "modulate:a", maxFadeAlpha, 1)
 	tween.tween_property(sprite, "modulate:a", 1, 1)

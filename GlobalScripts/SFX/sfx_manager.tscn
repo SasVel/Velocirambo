@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://j14c17hjdrw4"]
+[gd_scene load_steps=31 format=3 uid="uid://j14c17hjdrw4"]
 
 [ext_resource type="Script" path="res://GlobalScripts/SFX/sfx_manager.gd" id="1_fcx7w"]
 [ext_resource type="AudioStream" uid="uid://b6umf8d3v6d40" path="res://MusicAndSounds/Sounds/Gunshot.mp3" id="2_4g6vg"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://b4dpcgfagobhj" path="res://MusicAndSounds/Sounds/Casings/CasingsDrop-003.mp3" id="19_2ano7"]
 [ext_resource type="AudioStream" uid="uid://clo51wj2mgjxh" path="res://MusicAndSounds/Sounds/Casings/CasingsDrop-004.mp3" id="20_cmuff"]
 [ext_resource type="AudioStream" uid="uid://bvof6j4uyd6qc" path="res://MusicAndSounds/Sounds/Reload.mp3" id="21_ctpak"]
+[ext_resource type="AudioStream" uid="uid://dsl607vbec0hi" path="res://MusicAndSounds/Sounds/AutoModeChange.mp3" id="22_jv2y6"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i64ju"]
 random_pitch = 1.1
@@ -67,6 +68,11 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("21_ctpak")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_twbal"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("22_jv2y6")
+
 [node name="SFXManager" type="Node"]
 script = ExtResource("1_fcx7w")
 
@@ -111,6 +117,11 @@ wait_time = 0.5
 [node name="Reload" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_3qqu3")
 max_polyphony = 2
+bus = &"SFX"
+
+[node name="AutoMode" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_twbal")
+max_polyphony = 4
 bus = &"SFX"
 
 [connection signal="timeout" from="CasingsDrop/CasingsTimer" to="." method="_on_casings_timer_timeout"]
