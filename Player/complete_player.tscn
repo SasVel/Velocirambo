@@ -19,7 +19,7 @@ transform = Transform3D(-1, 1.05329e-08, -1.50628e-07, 0, 0.997564, 0.0697565, 1
 current = true
 script = ExtResource("3_n06hd")
 zoom_speed = 0.2
-shakeStr = 0.1
+shakeStr = 0.2
 shakeFade = 9.0
 
 [node name="GunRayCast" type="RayCast3D" parent="CameraTarget/Camera3D"]

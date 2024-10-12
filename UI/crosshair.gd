@@ -10,6 +10,9 @@ func _ready():
 	change_width(GameData.crossWidth)
 	config_invert_shader()
 
+func _physics_process(delta):
+	change_center_offset(PlayerData.crossOffset)
+
 func change_color(col : Color):
 	for line in lineArr:
 		line.default_color = col
@@ -37,6 +40,12 @@ func change_width(val : float):
 func change_opacity(val_normalised : float):
 	for line in lineArr:
 		line.default_color.a = val_normalised
+
+func change_center_offset(offset):
+	$Bottom.position.y = offset
+	$Top.position.y = -offset
+	$Left.position.x = -offset
+	$Right.position.x = offset
 
 func config_invert_shader():
 	if GameData.invertedColors: apply_invert_color_shader()

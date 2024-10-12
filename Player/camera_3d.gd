@@ -13,7 +13,7 @@ func _physics_process(delta):
 			isShakeActive = false
 	
 	if isRotOffset:
-		rotation_degrees = lerp(rotation_degrees, defaultRotDegrees, rotFadeDuration * delta)
+		rotation_degrees = rotation_degrees.move_toward(defaultRotDegrees, rotFadeDuration * delta)
 		if is_equal_approx(rotation_degrees.x, defaultRotDegrees.x):
 			isRotOffset = false
 
@@ -55,13 +55,17 @@ func apply_shake(strength : float = shakeStr, fade : float = shakeFade):
 var isRotOffset : bool = false : 
 	set(val):
 		if !val:
-			rotFadeDuration = 0.5
+			rotFadeDuration = 5
 			rotOffset = Vector2.ZERO
 		isRotOffset = val
-var rotOffset = Vector2.ZERO
-var rotFadeDuration : float = 5
+var rotOffset = Vector2.ZERO :
+	set(val):
+		PlayerData.crossOffset = val.x * 0.3
+		rotOffset = val
+@export var defaultRotFadeDuration : float = 10
+var rotFadeDuration : float = defaultRotFadeDuration
 
-func apply_rot_offset(offset : Vector2, duration : float = rotFadeDuration):
+func apply_rot_offset(offset : Vector2, duration : float = defaultRotFadeDuration):
 	if isRotOffset:
 		rotOffset += offset
 		rotFadeDuration += duration

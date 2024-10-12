@@ -44,7 +44,7 @@ func play(sound):
 
 func _on_casings_timer_timeout():
 	$CasingsDrop.play()
-	%CasingsTimer.wait_time = maxf(%CasingsTimer.wait_time - randf_range(0.05, 0.2), 0.0)
+	%CasingsTimer.wait_time = maxf(%CasingsTimer.wait_time - randf_range(0.05, 0.2), 0.1)
 	if %CasingsTimer.wait_time <= 0.1: 
 		%CasingsTimer.stop()
 		%CasingsTimer.wait_time = 0.5

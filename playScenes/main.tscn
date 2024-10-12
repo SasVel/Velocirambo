@@ -50,7 +50,7 @@ font_size = 26
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Resource" id="Resource_gt8jh"]
+[sub_resource type="Resource" id="Resource_dvo6g"]
 script = ExtResource("10_ab8gv")
 amount = 200
 enabled = true
@@ -59,9 +59,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_3i6dr"]
+[sub_resource type="Resource" id="Resource_4qnxo"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_gt8jh")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_dvo6g")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -144,10 +144,13 @@ script = ExtResource("5_iicw0")
 
 [node name="BulletDisplay" parent="UI/StatsDisplay" instance=ExtResource("6_6fr0m")]
 layout_mode = 0
+anchors_preset = 0
+anchor_bottom = 0.0
 offset_left = 30.0
 offset_top = 86.0
 offset_right = 265.0
 offset_bottom = 342.0
+grow_vertical = 1
 
 [node name="GunModeDisplay" parent="UI/StatsDisplay" instance=ExtResource("7_mbfnf")]
 layout_mode = 0
@@ -260,7 +263,7 @@ fit_content = true
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
 [node name="ProtonScatter" parent="Arena/Crowd" index="0"]
-modifier_stack = SubResource("Resource_3i6dr")
+modifier_stack = SubResource("Resource_4qnxo")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)

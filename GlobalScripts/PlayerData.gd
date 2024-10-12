@@ -28,6 +28,9 @@ var isGunAuto : bool = false :
 		isGunAuto = val
 		auto_mode_changed.emit(val)
 
+##Crosshair offset based on camera rotational offset when shooting.
+var crossOffset : float
+
 func reset():
 	health = maxHealth
 	currBullets = maxBullets

@@ -163,8 +163,9 @@ func shoot():
 	PlayerData.currBullets -= 1
 	if PlayerData.currBullets <= 0:
 		reload()
-	if !IS_AIMING:
-		camera.apply_rot_offset(Vector2(8, 0))
+	
+	if !IS_AIMING: camera.apply_rot_offset(Vector2(5, 0))
+	else: camera.apply_rot_offset(Vector2(2, 0))
 	SFX.play(SFX.Gunshot)
 	camera.apply_shake()
 	shot_gun.emit(IS_AIMING)
