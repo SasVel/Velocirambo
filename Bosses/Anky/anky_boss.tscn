@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bxb5dwbcvtql4"]
+[gd_scene load_steps=54 format=3 uid="uid://bxb5dwbcvtql4"]
 
 [ext_resource type="PackedScene" uid="uid://dwmycrnmjyus6" path="res://Models/Anky/Ankylosaurus.glb" id="1_1ojo7"]
 [ext_resource type="Script" path="res://Bosses/Anky/anky_boss.gd" id="1_6emht"]
@@ -6,7 +6,7 @@
 [ext_resource type="Animation" uid="uid://cs5nsjcwstevw" path="res://Bosses/Anky/Animations/death.res" id="2_yu11f"]
 [ext_resource type="Animation" uid="uid://ctrbxgn2mudxe" path="res://Bosses/Anky/Animations/idle.res" id="3_m6hnr"]
 [ext_resource type="Animation" uid="uid://k16qa8u6r6yv" path="res://Bosses/Anky/Animations/roll_attack.res" id="4_3ib46"]
-[ext_resource type="PackedScene" uid="uid://c1jajrrorycq6" path="res://Components/BossHitbox/BossHitbox.tscn" id="4_4fbe8"]
+[ext_resource type="PackedScene" uid="uid://c1jajrrorycq6" path="res://Bosses/Components/BossHitbox/BossHitbox.tscn" id="4_4fbe8"]
 [ext_resource type="Animation" uid="uid://cuhk80cylfx36" path="res://Bosses/Anky/Animations/tail_attack_left.res" id="5_ktcyf"]
 [ext_resource type="Animation" uid="uid://iej8rrqgdha1" path="res://Bosses/Anky/Animations/tail_attack_right.res" id="6_hhdgh"]
 [ext_resource type="Animation" uid="uid://b0c3cltawari6" path="res://Bosses/Anky/Animations/throw_attack_up.res" id="7_l6upb"]
@@ -28,6 +28,8 @@
 [ext_resource type="AudioStream" uid="uid://b108m7wcfyrnr" path="res://MusicAndSounds/Sounds/Anky/attacks/ank_tail_attack.mp3" id="26_mq6e7"]
 [ext_resource type="AudioStream" uid="uid://bvajarbnskp8" path="res://MusicAndSounds/Sounds/Anky/attacks/ank_throw_attack_start.mp3" id="27_hbuw4"]
 [ext_resource type="AudioStream" uid="uid://cjpbqri12q2aq" path="res://MusicAndSounds/Sounds/Anky/attacks/ank_throw_attack_end.mp3" id="28_k4nhe"]
+[ext_resource type="Script" path="res://Bosses/Components/obstacles_emitter.gd" id="29_byf36"]
+[ext_resource type="PackedScene" uid="uid://c4hwqoskl2i2h" path="res://Bosses/Anky/anky_spike.tscn" id="30_2tmgg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mk0fu"]
 radius = 1.32391
@@ -185,34 +187,34 @@ damage = 15.0
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.258566, 0)
 
 [node name="Skeleton3D" parent="Ankylosaurus2/Armature" index="0"]
-bones/0/position = Vector3(0, -1.14832, -0.276335)
-bones/0/rotation = Quaternion(-0.0144574, 0, 0, 0.999896)
-bones/1/rotation = Quaternion(0.0224856, 0, 0, 0.999747)
+bones/0/position = Vector3(-2.84519e-17, -1.13539, -0.245404)
+bones/0/rotation = Quaternion(-0.0230832, 2.21259e-17, -9.82553e-25, 0.999734)
+bones/1/rotation = Quaternion(0.0359149, -1.73313e-17, 1.3394e-18, 0.999355)
 bones/2/rotation = Quaternion(-0.0670452, -1.39497e-17, -1.39497e-17, 0.99775)
-bones/3/position = Vector3(-0.0179637, 1.45128, 0.0667483)
-bones/3/rotation = Quaternion(0.321332, 0.00614564, 0.0817531, 0.943411)
+bones/3/position = Vector3(-0.0179637, 1.44334, 0.0619011)
+bones/3/rotation = Quaternion(0.308276, 0.00727387, 0.0816605, 0.947758)
 bones/4/position = Vector3(-0.0179636, 1.15447, 0.427826)
-bones/4/rotation = Quaternion(0.0299963, 0.000966948, 0.0754299, 0.996699)
-bones/5/position = Vector3(-0.0329568, 1.32704, 0.271967)
-bones/5/rotation = Quaternion(0.187631, 0.00222462, 0.0771746, 0.979201)
-bones/6/rotation = Quaternion(0.779166, 0.214531, -0.110079, 0.578584)
-bones/7/rotation = Quaternion(-0.469712, -0.0574638, 0.0987248, 0.875398)
-bones/8/rotation = Quaternion(0.779166, -0.214531, 0.110079, 0.578584)
-bones/9/rotation = Quaternion(-0.469712, 0.0574638, -0.0987248, 0.875398)
-bones/10/rotation = Quaternion(0.97382, -0.000263355, -6.36408e-05, -0.227319)
-bones/11/rotation = Quaternion(-0.180515, 0.000689045, 0.00464363, 0.983561)
+bones/4/rotation = Quaternion(0.0351586, 0.00057622, 0.075434, 0.996531)
+bones/5/position = Vector3(-0.0329567, 1.32997, 0.272852)
+bones/5/rotation = Quaternion(0.184554, 0.00246705, 0.0771672, 0.979785)
+bones/6/rotation = Quaternion(0.782468, 0.215192, -0.113665, 0.573164)
+bones/7/rotation = Quaternion(-0.483499, -0.0574613, 0.100684, 0.867635)
+bones/8/rotation = Quaternion(0.782468, -0.215192, 0.113665, 0.573164)
+bones/9/rotation = Quaternion(-0.483499, 0.0574613, -0.100684, 0.867635)
+bones/10/rotation = Quaternion(0.985179, 3.29103e-18, 2.18794e-17, -0.17153)
+bones/11/rotation = Quaternion(-0.246539, 3.85629e-08, 1.75846e-07, 0.969133)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(-0.101025, 7.24315e-05, 0.0316577, 0.99438)
+bones/12/rotation = Quaternion(-0.0943278, 1.89077e-06, 2.30666e-05, 0.995541)
 bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(-0.151194, -0.00286781, 0.108383, 0.98254)
+bones/13/rotation = Quaternion(0.117265, 3.11247e-05, 0.00140231, 0.9931)
 bones/13/scale = Vector3(1, 0.999999, 1)
-bones/14/rotation = Quaternion(0.0974348, 0.00204269, 0.118543, 0.988155)
+bones/14/rotation = Quaternion(0.459705, -0.00379409, 0.0236973, 0.887748)
 bones/14/scale = Vector3(1, 0.999999, 1)
 bones/15/rotation = Quaternion(-0.00665235, -1.13469e-07, -4.55656e-09, 0.999978)
-bones/16/rotation = Quaternion(0.0746953, 0.842863, 0.528902, -0.0653145)
-bones/17/rotation = Quaternion(-0.42415, 0.0192495, -0.0706212, 0.902629)
-bones/18/rotation = Quaternion(-0.0746953, 0.842863, 0.528902, 0.0653145)
-bones/19/rotation = Quaternion(-0.42415, -0.0192495, 0.0706212, 0.902629)
+bones/16/rotation = Quaternion(0.0763408, 0.846033, 0.523166, -0.068532)
+bones/17/rotation = Quaternion(-0.45507, 0.0195284, -0.074262, 0.887139)
+bones/18/rotation = Quaternion(-0.0763408, 0.846033, 0.523166, 0.068532)
+bones/19/rotation = Quaternion(-0.45507, -0.0195284, 0.074262, 0.887139)
 bones/21/position = Vector3(1.34051, -0.978494, 1.37702)
 bones/21/rotation = Quaternion(0, 0.999829, 0, -0.0184734)
 bones/23/position = Vector3(-1.34051, -0.978494, 1.37702)
@@ -361,6 +363,15 @@ stream = ExtResource("28_k4nhe")
 volume_db = 10.0
 unit_size = 50.0
 bus = &"SFX"
+
+[node name="ObstaclesEmitter" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.28839, 0.99829)
+script = ExtResource("29_byf36")
+obstacleScn = ExtResource("30_2tmgg")
+
+[node name="EmitTimer" type="Timer" parent="ObstaclesEmitter"]
+process_callback = 0
 
 [connection signal="health_changed" from="Stats" to="." method="_on_stats_health_changed"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]

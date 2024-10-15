@@ -4,13 +4,15 @@ extends CharacterBody3D
 @export var speed : float = 5
 @export_range(0.1, 1.0) var animationTransTime : float = 0.2
 
-@onready var bossHealthBarScn = preload("res://Components/BossHealthBar/boss_health_bar.tscn")
+@onready var bossHealthBarScn = preload("res://Bosses/Components/BossHealthBar/boss_health_bar.tscn")
 @onready var animTree : AnimationTree = $AnimationTree
 @onready var attackArea : Area3D = $AttackArea
 @onready var stompParticlesScn = preload("res://Bosses/Particles/stomp_particles.tscn")
 
 @onready var stateTransDefaultTime = $StateTransTimer.wait_time
 @onready var atkCoolDefaultTime = $AttackCooldownTimer.wait_time
+
+@onready var obstaclesEmitter = %ObstaclesEmitter
 
 enum States {
 	IDLE,
@@ -88,6 +90,7 @@ func _roll_attack():
 	%RollAttackPlayer.play()
 	animTransition()
 	self.look_at(PlayerData.position, Vector3.UP, true)
+	obstaclesEmitter.spawn(5, 0.4)
 	await move_dir_tween(global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)), speed * 3, 2.5)
 
 func _tail_attack():

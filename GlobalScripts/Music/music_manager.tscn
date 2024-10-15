@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://iwd1dc3n8np1" path="res://MusicAndSounds/Music/Ankylosaurus_music_lp.wav" id="2_kvrkd"]
 
 [node name="MusicManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_nelcw")
 
 [node name="Anky" type="AudioStreamPlayer" parent="."]

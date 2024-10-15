@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=29 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
 [ext_resource type="Environment" uid="uid://ciipvdp53q8qo" path="res://Misc/MainEnv.tres" id="2_ydlcm"]
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="3_0vutq"]
+[ext_resource type="Shader" path="res://Shaders/Pixelate.gdshader" id="3_4mu0w"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="3_hkrak"]
 [ext_resource type="Script" path="res://UI/crosshair.gd" id="4_etnxk"]
 [ext_resource type="Script" path="res://UI/pause.gd" id="4_f25ew"]
@@ -16,6 +17,10 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="8_ygn4d"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="9_wwvj3"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_ab8gv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yjc10"]
+shader = ExtResource("3_4mu0w")
+shader_parameter/pixel_size = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qfnde"]
 
@@ -50,7 +55,7 @@ font_size = 26
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Resource" id="Resource_dvo6g"]
+[sub_resource type="Resource" id="Resource_xquqe"]
 script = ExtResource("10_ab8gv")
 amount = 200
 enabled = true
@@ -59,9 +64,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_4qnxo"]
+[sub_resource type="Resource" id="Resource_cngsk"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_dvo6g")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_xquqe")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -76,17 +81,21 @@ directional_shadow_mode = 0
 directional_shadow_fade_start = 0.863
 directional_shadow_max_distance = 64.5
 
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
+[node name="Shaders" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="PixelateShader" type="ColorRect" parent="Shaders"]
+visible = false
+material = SubResource("ShaderMaterial_yjc10")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_0vutq")
+
+[node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Crosshair" type="CenterContainer" parent="UI"]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -123,7 +132,7 @@ scale = Vector2(0.06, 0.06)
 texture = SubResource("GradientTexture2D_hqkee")
 
 [node name="StatsDisplay" type="Control" parent="UI"]
-layout_mode = 1
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -162,12 +171,12 @@ offset_bottom = 186.0
 [node name="Pause" type="ColorRect" parent="UI"]
 process_mode = 3
 visible = false
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_0vutq")
 color = Color(0.482353, 0.482353, 0.482353, 0.121569)
 script = ExtResource("4_f25ew")
 
@@ -210,13 +219,13 @@ script = ExtResource("8_udlky")
 [node name="GameOverScreen" type="ColorRect" parent="UI" node_paths=PackedStringArray("pauseScreen")]
 process_mode = 3
 visible = false
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme = ExtResource("3_0vutq")
 color = Color(0.481789, 0.48179, 0.481789, 0.121569)
 script = ExtResource("7_usdf4")
 pauseScreen = NodePath("../Pause")
@@ -263,7 +272,7 @@ fit_content = true
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
 [node name="ProtonScatter" parent="Arena/Crowd" index="0"]
-modifier_stack = SubResource("Resource_4qnxo")
+modifier_stack = SubResource("Resource_cngsk")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)

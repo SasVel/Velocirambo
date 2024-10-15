@@ -6,11 +6,17 @@ extends Area3D
 @export var skeleton : Skeleton3D
 @export var boneName : String
 @export var stats : Stats
-@onready var boneIdx = skeleton.find_bone(boneName)
+@export var isFollowEnabled : bool = true
+@onready var boneIdx : int
 ##Multiplier for the damage value in the stats component
 @export_range(1, 5) var dmgMultiplier = 1.5
 
+func _ready():
+	if !isFollowEnabled: return
+	boneIdx = skeleton.find_bone(boneName)
+
 func _physics_process(_delta):
+	if !isFollowEnabled: return
 	var boneTransform = skeleton.get_bone_global_pose(boneIdx)
 	self.transform = boneTransform
 

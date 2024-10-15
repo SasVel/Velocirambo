@@ -34,7 +34,6 @@ radial_segments = 6
 rings = 4
 
 [node name="StompParticles" type="GPUParticles3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.88118, 9.64781)
 emitting = false
 amount = 6
 one_shot = true
