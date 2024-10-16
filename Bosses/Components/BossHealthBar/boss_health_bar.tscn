@@ -12,7 +12,7 @@ corner_radius_top_left = 13
 corner_radius_bottom_right = 13
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jux3"]
-bg_color = Color(0.628281, 0.0231745, 9.62615e-08, 1)
+bg_color = Color(0.627451, 0.0235294, 0, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3

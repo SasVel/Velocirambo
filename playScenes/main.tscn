@@ -55,7 +55,7 @@ font_size = 26
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Resource" id="Resource_xquqe"]
+[sub_resource type="Resource" id="Resource_dheec"]
 script = ExtResource("10_ab8gv")
 amount = 200
 enabled = true
@@ -64,9 +64,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_cngsk"]
+[sub_resource type="Resource" id="Resource_vvqww"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_xquqe")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_dheec")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -139,6 +139,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("3_0vutq")
 
 [node name="HealthBar" type="ProgressBar" parent="UI/StatsDisplay"]
 layout_mode = 1
@@ -272,7 +273,7 @@ fit_content = true
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
 [node name="ProtonScatter" parent="Arena/Crowd" index="0"]
-modifier_stack = SubResource("Resource_cngsk")
+modifier_stack = SubResource("Resource_vvqww")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)

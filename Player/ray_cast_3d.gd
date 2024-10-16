@@ -12,9 +12,9 @@ func _on_player_shot_gun(isAiming : bool) -> void:
 	var collider = get_collider()
 	Particles.spawn(gunHitParticles, self.get_collision_point())
 	
-	if collider is Target:
-		var target : Target = get_collider()
-		target.hit(PlayerData.shootDmg)
+	if collider is Hurtbox:
+		var hurtbox : Hurtbox = get_collider()
+		hurtbox.hit(PlayerData.shootDmg)
 	reset_target_pos()
 
 func reset_target_pos():

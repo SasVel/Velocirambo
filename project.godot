@@ -13,6 +13,7 @@ config_version=5
 config/name="DinoShooter"
 run/main_scene="res://UI/MainMenu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+run/max_fps=120
 boot_splash/image="res://Misc/android-chrome-512x512.png"
 config/icon="res://Misc/Icon.png"
 config/windows_native_icon="res://Misc/Icon.ico"
@@ -51,6 +52,43 @@ folder_colors={
 [gui]
 
 theme/custom_font="res://Misc/Fonts/LapsusPro-Bold.otf"
+
+[importer_defaults]
+
+scene={
+"_subresources": {
+"materials": {
+"BellyMat": {
+"use_external/enabled": true,
+"use_external/path": "res://Models/Materials/AnkyBellyMat.tres"
+},
+"ColorMat": {
+"use_external/enabled": true,
+"use_external/path": "res://Models/Materials/ColorMat.tres"
+}
+}
+},
+"animation/fps": 30,
+"animation/import": true,
+"animation/import_rest_as_RESET": false,
+"animation/remove_immutable_tracks": true,
+"animation/trimming": false,
+"gltf/embedded_image_handling": 1,
+"gltf/naming_version": 1,
+"import_script/path": "",
+"meshes/create_shadow_meshes": false,
+"meshes/ensure_tangents": true,
+"meshes/force_disable_compression": false,
+"meshes/generate_lods": false,
+"meshes/light_baking": 0,
+"meshes/lightmap_texel_size": 0.2,
+"nodes/apply_root_scale": true,
+"nodes/import_as_skeleton_bones": false,
+"nodes/root_name": "",
+"nodes/root_scale": 1.0,
+"nodes/root_type": "",
+"skins/use_named_skins": true
+}
 
 [input]
 
@@ -127,6 +165,11 @@ gun_auto_mode={
 3d_physics/layer_3="GunCollision"
 3d_physics/layer_4="PlayerHurtbox"
 3d_physics/layer_5="BossCollision"
+
+[physics]
+
+3d/run_on_separate_thread=true
+3d/solver/solver_iterations=8
 
 [rendering]
 

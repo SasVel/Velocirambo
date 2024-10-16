@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Ankylosaurus_music_lp.wav-5954b97788c4f3c74ce
 [params]
 
 force/8_bit=false
-force/mono=false
+force/mono=true
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=true
@@ -21,4 +21,4 @@ edit/normalize=false
 edit/loop_mode=2
 edit/loop_begin=0
 edit/loop_end=-1
-compress/mode=1
+compress/mode=2

@@ -247,7 +247,7 @@ func _on_roar_timer_timeout():
 	%RoarTimer.wait_time = randf_range(10.0, 20.0)
 	%RoarTimer.start()
 
-func _on_hurtbox_got_hit(dmg):
+func _on_hurtbox_got_hit(_dmg):
 	currentState = PLAYER_STATE.STUNNED
 
 func _on_auto_shoot_timer_timeout():

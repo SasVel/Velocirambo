@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://cb074rhhyi1ex"]
+
+[ext_resource type="PackedScene" uid="uid://cutod883oh642" path="res://Components/Pickcups/beer_pickup_particles.tscn" id="1_or4ko"]
+
+[sub_resource type="Curve" id="Curve_cc1rx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.220544, 0.969011), 0.0702563, 0.0702563, 0, 0, Vector2(1, 0.418951), -2.25664, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_inkn6"]
+curve = SubResource("Curve_cc1rx")
+
+[sub_resource type="Curve" id="Curve_8wjkx"]
+_data = [Vector2(0, 0.659118), 0.0, 1.49588, 0, 0, Vector2(1, 0), -3.57257, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_24nvf"]
+curve = SubResource("Curve_8wjkx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l28vn"]
+direction = Vector3(1, 0, 1)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 4, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_24nvf")
+color = Color(0, 0, 0, 1)
+alpha_curve = SubResource("CurveTexture_inkn6")
+
+[node name="SpikeDissapearParticles" instance=ExtResource("1_or4ko")]
+process_material = SubResource("ParticleProcessMaterial_l28vn")

@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://cutod883oh642"]
+
+[ext_resource type="Script" path="res://Bosses/Particles/OneShotParticles.gd" id="1_wvw7t"]
+
+[sub_resource type="Curve" id="Curve_tk4af"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.220544, 0.969011), 0.0702563, 0.0702563, 0, 0, Vector2(1, 0.418951), -2.25664, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_s1vuy"]
+curve = SubResource("Curve_tk4af")
+
+[sub_resource type="Curve" id="Curve_vn3g5"]
+_data = [Vector2(0, 0.659118), 0.0, 1.49588, 0, 0, Vector2(1, 0), -3.57257, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yios2"]
+curve = SubResource("Curve_vn3g5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f5ynn"]
+direction = Vector3(1, 0, 1)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 4, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_yios2")
+alpha_curve = SubResource("CurveTexture_s1vuy")
+
+[sub_resource type="Gradient" id="Gradient_lbp3r"]
+offsets = PackedFloat32Array(0.661765, 0.744118)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g1dty"]
+gradient = SubResource("Gradient_lbp3r")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rggdn"]
+transparency = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.745098)
+albedo_texture = SubResource("GradientTexture2D_g1dty")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_jtxvm"]
+material = SubResource("StandardMaterial3D_rggdn")
+size = Vector2(0.1, 0.1)
+
+[node name="BeerPickupParticles" type="GPUParticles3D"]
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 0.85
+process_material = SubResource("ParticleProcessMaterial_f5ynn")
+draw_pass_1 = SubResource("QuadMesh_jtxvm")
+script = ExtResource("1_wvw7t")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

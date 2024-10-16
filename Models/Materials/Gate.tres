@@ -4,5 +4,7 @@
 
 [resource]
 shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
 albedo_texture = ExtResource("1_p1xho")
 texture_filter = 0

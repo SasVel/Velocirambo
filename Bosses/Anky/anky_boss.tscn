@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bxb5dwbcvtql4"]
+[gd_scene load_steps=56 format=3 uid="uid://bxb5dwbcvtql4"]
 
 [ext_resource type="PackedScene" uid="uid://dwmycrnmjyus6" path="res://Models/Anky/Ankylosaurus.glb" id="1_1ojo7"]
 [ext_resource type="Script" path="res://Bosses/Anky/anky_boss.gd" id="1_6emht"]
@@ -30,6 +30,8 @@
 [ext_resource type="AudioStream" uid="uid://cjpbqri12q2aq" path="res://MusicAndSounds/Sounds/Anky/attacks/ank_throw_attack_end.mp3" id="28_k4nhe"]
 [ext_resource type="Script" path="res://Bosses/Components/obstacles_emitter.gd" id="29_byf36"]
 [ext_resource type="PackedScene" uid="uid://c4hwqoskl2i2h" path="res://Bosses/Anky/anky_spike.tscn" id="30_2tmgg"]
+[ext_resource type="PackedScene" uid="uid://cfm6pfnksuvpv" path="res://Bosses/Anky/anky_spike_geranade.tscn" id="31_fs6lt"]
+[ext_resource type="PackedScene" uid="uid://cs4gpeiprg38m" path="res://Bosses/Particles/roll_particles.tscn" id="31_stgc7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mk0fu"]
 radius = 1.32391
@@ -180,41 +182,41 @@ script = ExtResource("1_6emht")
 
 [node name="Stats" type="Node" parent="."]
 script = ExtResource("2_u4ojp")
-maxHealth = 250.0
+maxHealth = 400.0
 damage = 15.0
 
 [node name="Ankylosaurus2" parent="." instance=ExtResource("1_1ojo7")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.258566, 0)
 
 [node name="Skeleton3D" parent="Ankylosaurus2/Armature" index="0"]
-bones/0/position = Vector3(-2.84519e-17, -1.13539, -0.245404)
-bones/0/rotation = Quaternion(-0.0230832, 2.21259e-17, -9.82553e-25, 0.999734)
-bones/1/rotation = Quaternion(0.0359149, -1.73313e-17, 1.3394e-18, 0.999355)
+bones/0/position = Vector3(0, -1.04346, -0.0255854)
+bones/0/rotation = Quaternion(-0.0843361, 0, 0, 0.996437)
+bones/1/rotation = Quaternion(0.131169, 0, 0, 0.99136)
 bones/2/rotation = Quaternion(-0.0670452, -1.39497e-17, -1.39497e-17, 0.99775)
-bones/3/position = Vector3(-0.0179637, 1.44334, 0.0619011)
-bones/3/rotation = Quaternion(0.308276, 0.00727387, 0.0816605, 0.947758)
+bones/3/position = Vector3(-0.0179637, 1.3869, 0.0274544)
+bones/3/rotation = Quaternion(0.213784, 0.0152521, 0.0805526, 0.973435)
 bones/4/position = Vector3(-0.0179636, 1.15447, 0.427826)
-bones/4/rotation = Quaternion(0.0351586, 0.00057622, 0.075434, 0.996531)
-bones/5/position = Vector3(-0.0329567, 1.32997, 0.272852)
-bones/5/rotation = Quaternion(0.184554, 0.00246705, 0.0771672, 0.979785)
-bones/6/rotation = Quaternion(0.782468, 0.215192, -0.113665, 0.573164)
-bones/7/rotation = Quaternion(-0.483499, -0.0574613, 0.100684, 0.867635)
-bones/8/rotation = Quaternion(0.782468, -0.215192, 0.113665, 0.573164)
-bones/9/rotation = Quaternion(-0.483499, 0.0574613, -0.100684, 0.867635)
-bones/10/rotation = Quaternion(0.985179, 3.29103e-18, 2.18794e-17, -0.17153)
-bones/11/rotation = Quaternion(-0.246539, 3.85629e-08, 1.75846e-07, 0.969133)
+bones/4/rotation = Quaternion(0.0718193, -0.00220107, 0.075404, 0.994561)
+bones/5/position = Vector3(-0.0329568, 1.35079, 0.279149)
+bones/5/rotation = Quaternion(0.162634, 0.00418927, 0.0770929, 0.983661)
+bones/6/rotation = Quaternion(0.798786, 0.218986, -0.136811, 0.543387)
+bones/7/rotation = Quaternion(-0.566491, -0.057962, 0.109716, 0.814672)
+bones/8/rotation = Quaternion(0.798786, -0.218986, 0.136811, 0.543387)
+bones/9/rotation = Quaternion(-0.566491, 0.057962, -0.109716, 0.814672)
+bones/10/rotation = Quaternion(0.9672, -2.39254e-05, -5.76751e-06, -0.254018)
+bones/11/rotation = Quaternion(-0.107819, 0.000136908, 0.000961488, 0.99417)
 bones/11/scale = Vector3(1, 1, 1)
-bones/12/rotation = Quaternion(-0.0943278, 1.89077e-06, 2.30666e-05, 0.995541)
+bones/12/rotation = Quaternion(0.0393442, -0.000299625, 0.0137476, 0.999131)
 bones/12/scale = Vector3(1, 1, 1)
-bones/13/rotation = Quaternion(0.117265, 3.11247e-05, 0.00140231, 0.9931)
+bones/13/rotation = Quaternion(-0.0377825, -0.00867677, 0.10669, 0.993536)
 bones/13/scale = Vector3(1, 0.999999, 1)
-bones/14/rotation = Quaternion(0.459705, -0.00379409, 0.0236973, 0.887748)
+bones/14/rotation = Quaternion(-0.255751, -0.00392259, 0.270032, 0.928256)
 bones/14/scale = Vector3(1, 0.999999, 1)
 bones/15/rotation = Quaternion(-0.00665235, -1.13469e-07, -4.55656e-09, 0.999978)
-bones/16/rotation = Quaternion(0.0763408, 0.846033, 0.523166, -0.068532)
-bones/17/rotation = Quaternion(-0.45507, 0.0195284, -0.074262, 0.887139)
-bones/18/rotation = Quaternion(-0.0763408, 0.846033, 0.523166, 0.068532)
-bones/19/rotation = Quaternion(-0.45507, -0.0195284, 0.074262, 0.887139)
+bones/16/rotation = Quaternion(0.0833478, 0.85291, 0.507789, -0.088027)
+bones/17/rotation = Quaternion(-0.620033, 0.0217534, -0.0867857, 0.779457)
+bones/18/rotation = Quaternion(-0.0833478, 0.85291, 0.507789, 0.088027)
+bones/19/rotation = Quaternion(-0.620033, -0.0217534, 0.0867857, 0.779457)
 bones/21/position = Vector3(1.34051, -0.978494, 1.37702)
 bones/21/rotation = Quaternion(0, 0.999829, 0, -0.0184734)
 bones/23/position = Vector3(-1.34051, -0.978494, 1.37702)
@@ -295,6 +297,16 @@ statsComponent = NodePath("../../Stats")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68109, 3.87514, 6.10814)
 statsComponent = NodePath("../../Stats")
 
+[node name="Target3" parent="Targets" node_paths=PackedStringArray("statsComponent") instance=ExtResource("11_w07bf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.20155, 2.78605, 0.93906)
+targetIdx = 1
+statsComponent = NodePath("../../Stats")
+
+[node name="Target4" parent="Targets" node_paths=PackedStringArray("statsComponent") instance=ExtResource("11_w07bf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.17966, 2.78605, 0.93906)
+targetIdx = 1
+statsComponent = NodePath("../../Stats")
+
 [node name="StateTransTimer" type="Timer" parent="."]
 process_callback = 0
 wait_time = 2.0
@@ -368,11 +380,19 @@ bus = &"SFX"
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.28839, 0.99829)
 script = ExtResource("29_byf36")
-obstacleScn = ExtResource("30_2tmgg")
+obstacleScenes = Array[PackedScene]([ExtResource("30_2tmgg"), ExtResource("31_fs6lt")])
 
 [node name="EmitTimer" type="Timer" parent="ObstaclesEmitter"]
 process_callback = 0
 
+[node name="ConstantParticles" type="Node3D" parent="."]
+
+[node name="RollParticles" parent="ConstantParticles" instance=ExtResource("31_stgc7")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.693)
+emitting = false
+
+[connection signal="boss_stage_changed" from="." to="Targets" method="_on_anky_boss_boss_stage_changed"]
 [connection signal="health_changed" from="Stats" to="." method="_on_stats_health_changed"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
 [connection signal="timeout" from="StateTransTimer" to="." method="_on_state_trans_timer_timeout"]

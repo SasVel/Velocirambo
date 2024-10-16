@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs4gpeiprg38m"]
+
+[ext_resource type="PackedScene" uid="uid://b4pqd3fasde7g" path="res://Bosses/Particles/slam_particles.tscn" id="1_115w0"]
+
+[node name="RollParticles" instance=ExtResource("1_115w0")]
+emitting = true
+amount = 34
+lifetime = 2.0
+one_shot = false
+explosiveness = 0.0
+script = null

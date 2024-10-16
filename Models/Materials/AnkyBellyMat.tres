@@ -4,4 +4,6 @@
 
 [resource]
 shading_mode = 0
+disable_fog = true
+vertex_color_is_srgb = true
 albedo_texture = ExtResource("1_xp0w5")

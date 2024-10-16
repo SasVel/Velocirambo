@@ -1,10 +1,17 @@
-extends Area3D
+extends Hurtbox
 class_name Target
+
+##A specialized hurtbox that shows a target
 
 ##Max target fade.
 @export_range(0.1, 1) var maxFadeAlpha : float
 @onready var sprite : Sprite3D = $Sprite
-@export var statsComponent : Stats
+@export var targetIdx : int
+@export var enabled : bool = false :
+	set(val):
+		self.monitorable = val
+		self.monitoring = val
+		enabled = val
 
 func _ready() -> void:
 	self.visible = false
@@ -13,4 +20,4 @@ func _ready() -> void:
 	tween.tween_property(sprite, "modulate:a", 1, 1)
 
 func hit(dmg : float):
-	statsComponent.health -= dmg
+	if enabled: super(dmg)

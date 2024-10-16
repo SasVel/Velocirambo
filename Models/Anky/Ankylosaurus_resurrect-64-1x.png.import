@@ -3,9 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b60voss7m4yf7"
-path="res://.godot/imported/Ankylosaurus_resurrect-64-1x.png-fbfbcf13615209e57301c3d10e55deed.ctex"
+path.s3tc="res://.godot/imported/Ankylosaurus_resurrect-64-1x.png-fbfbcf13615209e57301c3d10e55deed.s3tc.ctex"
+path.etc2="res://.godot/imported/Ankylosaurus_resurrect-64-1x.png-fbfbcf13615209e57301c3d10e55deed.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "9ef504f28e1ad9f7eff5374fa93510d0"
@@ -14,11 +16,11 @@ generator_parameters={
 [deps]
 
 source_file="res://Models/Anky/Ankylosaurus_resurrect-64-1x.png"
-dest_files=["res://.godot/imported/Ankylosaurus_resurrect-64-1x.png-fbfbcf13615209e57301c3d10e55deed.ctex"]
+dest_files=["res://.godot/imported/Ankylosaurus_resurrect-64-1x.png-fbfbcf13615209e57301c3d10e55deed.s3tc.ctex", "res://.godot/imported/Ankylosaurus_resurrect-64-1x.png-fbfbcf13615209e57301c3d10e55deed.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
@@ -34,4 +36,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

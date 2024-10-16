@@ -2,17 +2,24 @@ extends CharacterBody3D
 
 @export var bossName : String = "Anky"
 @export var speed : float = 5
+@onready var bossStage : int = 1 :
+	set(val):
+		bossStage = val
+		boss_stage_changed.emit(val)
 @export_range(0.1, 1.0) var animationTransTime : float = 0.2
 
 @onready var bossHealthBarScn = preload("res://Bosses/Components/BossHealthBar/boss_health_bar.tscn")
 @onready var animTree : AnimationTree = $AnimationTree
 @onready var attackArea : Area3D = $AttackArea
 @onready var stompParticlesScn = preload("res://Bosses/Particles/stomp_particles.tscn")
+@onready var slamParticlesScn = preload("res://Bosses/Particles/slam_particles.tscn")
 
 @onready var stateTransDefaultTime = $StateTransTimer.wait_time
 @onready var atkCoolDefaultTime = $AttackCooldownTimer.wait_time
 
 @onready var obstaclesEmitter = %ObstaclesEmitter
+
+signal boss_stage_changed(stageIdx)
 
 enum States {
 	IDLE,
@@ -70,11 +77,13 @@ func attack_state():
 	
 	match attackState:
 		AttackStates.ROLL:
-			await _roll_attack()
+			for i in bossStage:
+				await _roll_attack()
 		AttackStates.TAIL:
 			await _tail_attack()
 		AttackStates.THROW:
-			await _throw_attack()
+			for i in bossStage:
+				await _throw_attack()
 	
 	attackState += 1
 	if attackState > AttackStates.keys().size() - 1: 
@@ -88,10 +97,12 @@ func attack_state():
 
 func _roll_attack():
 	%RollAttackPlayer.play()
+	%RollParticles.emitting = true
 	animTransition()
 	self.look_at(PlayerData.position, Vector3.UP, true)
-	obstaclesEmitter.spawn(5, 0.4)
+	obstaclesEmitter.spawn_continious(5, 0.3, bossStage - 1)
 	await move_dir_tween(global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)), speed * 3, 2.5)
+	%RollParticles.emitting = false
 
 func _tail_attack():
 	%TailAttackPlayer.play()
@@ -116,6 +127,10 @@ func _throw_attack():
 	isThrowAttackDown = true
 	animTransition()
 	await move_pos_tween(Vector3(self.global_position.x, 0, self.global_position.z), 0.5)
+	Particles.spawn(slamParticlesScn, self.global_position)
+	obstaclesEmitter.spawn(4, bossStage - 1)
+	await get_tree().create_timer(0.4).timeout
+	
 
 func _on_attack_cooldown_timer_timeout():
 	canAttack = true
@@ -188,6 +203,11 @@ func spawn_stomp_particles():
 func _on_stats_health_changed(health):
 	if health <= 0: return
 	if randf_range(0, 1) >= 0.5: %HitPlayer.play()
-	var reductionPercentage = health / $Stats.maxHealth
+	var reductionPercentage = maxf(health / $Stats.maxHealth, 0.25)
 	$StateTransTimer.wait_time = stateTransDefaultTime * reductionPercentage
 	$AttackCooldownTimer.wait_time = atkCoolDefaultTime * reductionPercentage
+	check_second_stage(health)
+
+func check_second_stage(health):
+	if health <= $Stats.maxHealth / 2: 
+		bossStage = 2

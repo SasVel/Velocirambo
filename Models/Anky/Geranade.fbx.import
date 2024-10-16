@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cufn7ji82vhtv"
-path="res://.godot/imported/RaptorCommando.glb-84d819828d4bdeda16b8ef027660ee55.scn"
+uid="uid://bqrbstacw2ada"
+path="res://.godot/imported/Geranade.fbx-c2b909385374450d23023b64eff64b0b.scn"
 
 [deps]
 
-source_file="res://Models/Commando/RaptorCommando.glb"
-dest_files=["res://.godot/imported/RaptorCommando.glb-84d819828d4bdeda16b8ef027660ee55.scn"]
+source_file="res://Models/Anky/Geranade.fbx"
+dest_files=["res://.godot/imported/Geranade.fbx-c2b909385374450d23023b64eff64b0b.scn"]
 
 [params]
 
@@ -19,25 +19,26 @@ nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
 meshes/ensure_tangents=true
-meshes/generate_lods=false
-meshes/create_shadow_meshes=false
-meshes/light_baking=0
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
-"MainMat.001": {
+"ColorsMat": {
 "use_external/enabled": true,
 "use_external/path": "res://Models/Materials/ColorMat.tres"
 }
 }
 }
-gltf/naming_version=1
-gltf/embedded_image_handling=1
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
