@@ -1,7 +1,7 @@
 extends Node3D
 
 func _ready():
-	GameData.game_won.connect(func(): enable = true)
+	GameInfo.game_won.connect(func(): enable = true)
 
 var enable : bool = false :
 	set(val):

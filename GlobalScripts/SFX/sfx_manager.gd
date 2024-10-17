@@ -6,8 +6,8 @@ extends Node
 @onready var runStream = $Run
 
 func _ready():
-	GameData.game_won.connect(game_won)
-	GameData.reset.connect(reset)
+	GameInfo.game_won.connect(game_won)
+	GameInfo.reset.connect(reset)
 
 func game_won():
 	play(Crowd)

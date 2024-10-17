@@ -1,8 +1,9 @@
-extends Node
+extends Resource
+class_name GameData
 
-signal game_won
-signal game_lost
-signal reset
+##Resource for all permanent data. Change the version if you add/remove/change variables.
+
+@export var version : String = "0NtThpuVV0C9AdMln0Wd7w=="
 
 #region Settings
 #region Mouse

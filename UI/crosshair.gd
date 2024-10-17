@@ -4,10 +4,10 @@ extends CenterContainer
 @onready var invertColorShader = preload("res://Shaders/InvertColor.gdshader")
 
 func _ready():
-	change_color(GameData.crossColor)
-	change_opacity(GameData.crossOpacity)
-	change_length(GameData.crossLength)
-	change_width(GameData.crossWidth)
+	change_color(GameInfo.data.crossColor)
+	change_opacity(GameInfo.data.crossOpacity)
+	change_length(GameInfo.data.crossLength)
+	change_width(GameInfo.data.crossWidth)
 	config_invert_shader()
 
 func _physics_process(delta):
@@ -48,7 +48,7 @@ func change_center_offset(offset):
 	$Right.position.x = offset
 
 func config_invert_shader():
-	if GameData.invertedColors: apply_invert_color_shader()
+	if GameInfo.data.invertedColors: apply_invert_color_shader()
 	else: remove_shader()
 
 func apply_invert_color_shader():

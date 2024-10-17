@@ -193,7 +193,7 @@ func _on_stats_no_health():
 	state = States.DEAD
 	%DeathPlayer.play()
 	%Targets.enabled = false
-	GameData.game_won.emit()
+	GameInfo.game_won.emit()
 
 ##Spawns stomp particles at the global position of the StompGroundMarker
 func spawn_stomp_particles():

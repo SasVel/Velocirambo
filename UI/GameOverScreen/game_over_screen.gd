@@ -3,9 +3,9 @@ extends ColorRect
 @onready var active : bool = false
 @export var pauseScreen : Control
 func _ready():
-	GameData.game_won.connect(game_won)
-	GameData.game_lost.connect(game_lost)
-	GameData.reset.connect(reset)
+	GameInfo.game_won.connect(game_won)
+	GameInfo.game_lost.connect(game_lost)
+	GameInfo.reset.connect(reset)
 
 func _input(event):
 	if !active: return

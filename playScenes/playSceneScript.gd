@@ -13,4 +13,4 @@ func _input(event):
 func _exit_tree():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	Spawn.isSpawningPickups = false
-	GameData.reset.emit()
+	GameInfo.reset.emit()
