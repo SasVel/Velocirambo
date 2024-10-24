@@ -8,7 +8,7 @@ class_name GameData
 
 #region Settings
 #region Mouse
-@export var mouseSensitivity : float = 3.0
+@export var cameraSensitivity  : float = 3.0
 #endregion
 #region Crosshair
 @export var crossColor : Color = Color.BLACK

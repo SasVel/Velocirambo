@@ -57,7 +57,7 @@ font_size = 26
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Resource" id="Resource_3atp5"]
+[sub_resource type="Resource" id="Resource_xags7"]
 script = ExtResource("10_ab8gv")
 amount = 200
 enabled = true
@@ -66,11 +66,11 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_0n2od"]
+[sub_resource type="Resource" id="Resource_ememu"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_3atp5")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_xags7")])
 
-[sub_resource type="Resource" id="Resource_ia10o"]
+[sub_resource type="Resource" id="Resource_abn18"]
 script = ExtResource("10_ab8gv")
 amount = 70
 enabled = true
@@ -79,7 +79,7 @@ custom_seed = 6
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_s8i3t"]
+[sub_resource type="Resource" id="Resource_swwr3"]
 script = ExtResource("16_kn0se")
 position = Vector3(0, 0, 0)
 rotation = Vector3(180, 180, 0)
@@ -90,9 +90,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_nx55b"]
+[sub_resource type="Resource" id="Resource_lksmj"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_ia10o"), SubResource("Resource_s8i3t")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_abn18"), SubResource("Resource_swwr3")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -309,10 +309,10 @@ fit_content = true
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
 [node name="ProtonScatter" parent="Arena/Crowd" index="0"]
-modifier_stack = SubResource("Resource_0n2od")
+modifier_stack = SubResource("Resource_ememu")
 
 [node name="ProtonScatter" parent="Arena/Props" index="1"]
-modifier_stack = SubResource("Resource_nx55b")
+modifier_stack = SubResource("Resource_lksmj")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)

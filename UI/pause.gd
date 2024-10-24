@@ -8,6 +8,7 @@ extends MenuComponent
 	set(val):
 		if disabled: return
 		get_tree().paused = val
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		if val: activate()
 		self.visible = val
 
@@ -18,11 +19,6 @@ func _input(event):
 	if disabled: return
 	if event.is_action_pressed("pause"):
 		active = !active
-	
-	if event is InputEventMouseMotion:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	elif event is InputEventJoypadMotion:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _on_continue_btn_pressed():
 	active = false

@@ -11,7 +11,7 @@ class_name Player
 @export_category("Mouse/Camera controls")
 ##TODO Currently not being used
 @export var turningDeadZoneDegrees : float = 15.0
-@onready var mouseSensitivity : float = GameInfo.data.mouseSensitivity
+@onready var cameraSensitivity : float = GameInfo.data.cameraSensitivity * 15
 @export var zoomedInSensModifier : float = 0.5
 
 ##how far down can the camera look/how high can it go. This number should be negative.
@@ -54,9 +54,9 @@ var cameraVelocity = Vector2.ZERO #Don't confuse with sensitivity
 func _input(event):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	if event is InputEventMouseMotion:
-		cameraVelocity = event.screen_relative
+		cameraVelocity = event.screen_relative.normalized()
 	elif event is InputEventJoypadMotion:
-		cameraVelocity = Input.get_vector("joy_camera_down", "joy_camera_up", "joy_camera_left", "joy_camera_right").rotated(deg_to_rad(-90)) * 15
+		cameraVelocity = Input.get_vector("joy_camera_down", "joy_camera_up", "joy_camera_left", "joy_camera_right").rotated(deg_to_rad(-90))
 		print(cameraVelocity)
 	handleStateTransitions(event)
 	
@@ -216,7 +216,7 @@ func camera_move(delta):
 #checks for the Limits and then turns the camera
 func camera_turn(delta):
 	
-	var mouseModifier = mouseSensitivity * delta
+	var mouseModifier = cameraSensitivity * delta
 	if(Input.is_action_pressed("Aim")): mouseModifier *= zoomedInSensModifier
 	
 	var oldCameraRot = Vector2(cameraTarget.rotation_degrees.x, cameraTarget.rotation_degrees.y)
