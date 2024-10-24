@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://2e04hry7sxo7" path="res://Models/ArenaTextures/Ground.png" id="1_ismcd"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wgiqu"]
-load_path = "res://.godot/imported/GroundDisplacement.png-2b1a4a03f88625c768b1da62ca4dd4d4.s3tc.ctex"
 
 [resource]
 shading_mode = 0

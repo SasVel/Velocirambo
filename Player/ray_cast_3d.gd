@@ -14,7 +14,7 @@ func _on_player_shot_gun(isAiming : bool) -> void:
 	
 	if collider is Hurtbox:
 		var hurtbox : Hurtbox = get_collider()
-		hurtbox.hit(PlayerData.shootDmg)
+		hurtbox.hit(PlayerData.shootDmg, self.get_collision_point())
 	reset_target_pos()
 
 func reset_target_pos():

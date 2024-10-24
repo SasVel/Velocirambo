@@ -61,8 +61,8 @@ shape = SubResource("CapsuleShape3D_vf7t3")
 
 [node name="Hitbox" parent="." node_paths=PackedStringArray("stats") instance=ExtResource("3_ysfjd")]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
-stats = NodePath("../Stats")
 isFollowEnabled = false
+stats = NodePath("../Stats")
 
 [node name="CollisionShape3D" parent="Hitbox" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.145848, 0)

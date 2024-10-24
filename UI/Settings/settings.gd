@@ -8,8 +8,10 @@ func _ready():
 	mainBusIndex = AudioServer.get_bus_index("Master")
 	musicBusIndex = AudioServer.get_bus_index("Music")
 	sfxBusIndex = AudioServer.get_bus_index("SFX")
+	focusedComponent = %BackBtn
 
 func activate():
+	super()
 	self.visible = true
 	config_video_settings()
 	config_vol_sliders()

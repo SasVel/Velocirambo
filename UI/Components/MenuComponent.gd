@@ -5,9 +5,12 @@ class_name MenuComponent
 
 signal closed(component)
 
-##To be overwritten.
+##Focuses component upon menu activation.
+var focusedComponent : Control
+
+##To be overwritten with super() on top.
 func activate():
-	pass
+	focusedComponent.grab_focus()
 
 ##To be overwritten.
 func deactivate():

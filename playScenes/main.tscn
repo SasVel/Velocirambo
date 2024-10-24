@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=34 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
@@ -17,6 +17,8 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="8_ygn4d"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="9_wwvj3"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_ab8gv"]
+[ext_resource type="Script" path="res://UI/Components/button_focus_component.gd" id="11_13ucq"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="16_kn0se"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yjc10"]
 shader = ExtResource("3_4mu0w")
@@ -55,7 +57,7 @@ font_size = 26
 outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Resource" id="Resource_s0vei"]
+[sub_resource type="Resource" id="Resource_3atp5"]
 script = ExtResource("10_ab8gv")
 amount = 200
 enabled = true
@@ -64,9 +66,33 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_apvw2"]
+[sub_resource type="Resource" id="Resource_0n2od"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_s0vei")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_3atp5")])
+
+[sub_resource type="Resource" id="Resource_ia10o"]
+script = ExtResource("10_ab8gv")
+amount = 70
+enabled = true
+override_global_seed = true
+custom_seed = 6
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_s8i3t"]
+script = ExtResource("16_kn0se")
+position = Vector3(0, 0, 0)
+rotation = Vector3(180, 180, 0)
+scale = Vector3(2, 2, 2)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_nx55b"]
+script = ExtResource("8_ygn4d")
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_ia10o"), SubResource("Resource_s8i3t")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -197,11 +223,15 @@ grow_vertical = 2
 alignment = 1
 
 [node name="ContinueBtn" type="Button" parent="UI/Pause/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Continue"
 
 [node name="ButtonAnimComponent" type="Node" parent="UI/Pause/VBoxContainer/ContinueBtn"]
 script = ExtResource("8_udlky")
+
+[node name="ButtonFocusComponent" type="Node" parent="UI/Pause/VBoxContainer/ContinueBtn"]
+script = ExtResource("11_13ucq")
 
 [node name="MainMenuBtn" type="Button" parent="UI/Pause/VBoxContainer"]
 layout_mode = 2
@@ -210,12 +240,18 @@ text = "Main Menu"
 [node name="ButtonAnimComponent" type="Node" parent="UI/Pause/VBoxContainer/MainMenuBtn"]
 script = ExtResource("8_udlky")
 
+[node name="ButtonFocusComponent" type="Node" parent="UI/Pause/VBoxContainer/MainMenuBtn"]
+script = ExtResource("11_13ucq")
+
 [node name="QuitBtn" type="Button" parent="UI/Pause/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
 [node name="ButtonAnimComponent" type="Node" parent="UI/Pause/VBoxContainer/QuitBtn"]
 script = ExtResource("8_udlky")
+
+[node name="ButtonFocusComponent" type="Node" parent="UI/Pause/VBoxContainer/QuitBtn"]
+script = ExtResource("11_13ucq")
 
 [node name="GameOverScreen" type="ColorRect" parent="UI" node_paths=PackedStringArray("pauseScreen")]
 process_mode = 3
@@ -273,7 +309,10 @@ fit_content = true
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
 [node name="ProtonScatter" parent="Arena/Crowd" index="0"]
-modifier_stack = SubResource("Resource_apvw2")
+modifier_stack = SubResource("Resource_0n2od")
+
+[node name="ProtonScatter" parent="Arena/Props" index="1"]
+modifier_stack = SubResource("Resource_nx55b")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)

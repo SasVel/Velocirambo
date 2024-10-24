@@ -32,7 +32,7 @@ func remove_bullet_rect(rect = null):
 func remove_all_bullets():
 	for rect in self.get_children():
 		await remove_bullet_rect(rect)
-		rect.queue_free()
+		if rect != null: rect.queue_free()
 
 var rectTween : Tween
 func tween_bullet_rect(rect):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d0y2nmepdt2pj"]
+[gd_scene load_steps=16 format=3 uid="uid://d0y2nmepdt2pj"]
 
 [ext_resource type="Script" path="res://UI/MainMenu/main_menu.gd" id="1_fu6vu"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="1_levnm"]
@@ -8,8 +8,9 @@
 [ext_resource type="Script" path="res://UI/Components/button_anim_component.gd" id="4_vgnm4"]
 [ext_resource type="Shader" path="res://Shaders/Vignette.gdshader" id="5_4xcmi"]
 [ext_resource type="Script" path="res://UI/MainMenu/menu.gd" id="6_r5gp6"]
-[ext_resource type="Script" path="res://UI/Credits/credits.gd" id="7_018bb"]
+[ext_resource type="PackedScene" uid="uid://cphkmluswqy8n" path="res://UI/Credits/credits.tscn" id="8_ewlye"]
 [ext_resource type="Script" path="res://UI/Settings/settings.gd" id="8_fbtit"]
+[ext_resource type="Script" path="res://UI/Components/button_focus_component.gd" id="11_bp53p"]
 
 [sub_resource type="Environment" id="Environment_tvhjm"]
 background_mode = 1
@@ -37,6 +38,13 @@ font_size = 25
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_fu6vu")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.568433, 0.82273, 0, -0.82273, 0.568433, 0, 39.8015, 0)
+shadow_opacity = 0.3
+directional_shadow_mode = 0
+directional_shadow_fade_start = 0.863
+directional_shadow_max_distance = 64.5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_qi8qv")
@@ -135,57 +143,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.235294, 0.235294, 0.235294, 0.709804)
 
-[node name="Credits" type="MarginContainer" parent="UILayer/Menu"]
+[node name="Credits" parent="UILayer/Menu" instance=ExtResource("8_ewlye")]
 unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
-script = ExtResource("7_018bb")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/Menu/Credits"]
-layout_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/Menu/Credits/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-bbcode_enabled = true
-text = "[center]
-[font_size=28]Game Design and Programming[/font_size]
-[font_size=24]SasVel[/font_size]
-[font_size=24]Arganm[/font_size]
-
-[font_size=28]3D Modelling, Rigging, Animations[/font_size]
-[font_size=24]SasVel[/font_size]
-
-[font_size=28]Music and Sounds[/font_size]
-[font_size=24]Rhyan[/font_size]
-
-[font_size=28]Resources[/font_size]
-[font_size=26]Fonts[/font_size]
-[font_size=22][url=https://www.1001fonts.com/lapsus-pro-font.html]Lapsus Pro[/url][/font_size]
-[font_size=22][url=https://www.1001fonts.com/lexographer-font.html]Lexographer[/url][/font_size]
-
-[font_size=26]Misc[/font_size]
-[font_size=22][url=https://sketchfab.com/3d-models/velociraptor-very-low-poly-71b76520ebff41e4b760746586e5ab58]Velociraptor base model[/url][/font_size]
-[font_size=22][url=https://lospec.com/palette-list/resurrect-64]Palette - Resurrect 64[/url][/font_size]
-[font_size=22][url=https://www.flaticon.com/free-icons/target]Target Icon[/url][/font_size]
-[/center]"
-
-[node name="BackBtn" type="Button" parent="UILayer/Menu/Credits/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Back"
-
-[node name="ButtonAnimComponent" type="Node" parent="UILayer/Menu/Credits/VBoxContainer/BackBtn"]
-script = ExtResource("4_vgnm4")
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Settings" type="Control" parent="UILayer/Menu"]
 unique_name_in_owner = true
@@ -430,6 +395,7 @@ max_value = 1.0
 step = 0.01
 
 [node name="BackBtn" type="Button" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -438,6 +404,9 @@ text = "Back"
 [node name="ButtonAnimComponent" type="Node" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/BackBtn"]
 script = ExtResource("4_vgnm4")
 time = 0.2
+
+[node name="ButtonFocusComponent" type="Node" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/BackBtn"]
+script = ExtResource("11_bp53p")
 
 [node name="MainMenuComponents" type="MarginContainer" parent="UILayer/Menu"]
 unique_name_in_owner = true
@@ -465,6 +434,7 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="NewGameBtn" type="Button" parent="UILayer/Menu/MainMenuComponents/BtnsContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "New Game"
 
@@ -472,6 +442,9 @@ text = "New Game"
 script = ExtResource("4_vgnm4")
 time = 0.2
 pivotPos = 0
+
+[node name="ButtonFocusComponent" type="Node" parent="UILayer/Menu/MainMenuComponents/BtnsContainer/NewGameBtn"]
+script = ExtResource("11_bp53p")
 
 [node name="SettingsBtn" type="Button" parent="UILayer/Menu/MainMenuComponents/BtnsContainer"]
 layout_mode = 2
@@ -482,6 +455,9 @@ script = ExtResource("4_vgnm4")
 time = 0.2
 pivotPos = 0
 
+[node name="ButtonFocusComponent" type="Node" parent="UILayer/Menu/MainMenuComponents/BtnsContainer/SettingsBtn"]
+script = ExtResource("11_bp53p")
+
 [node name="CreditsBtn" type="Button" parent="UILayer/Menu/MainMenuComponents/BtnsContainer"]
 layout_mode = 2
 text = "Credits"
@@ -490,6 +466,9 @@ text = "Credits"
 script = ExtResource("4_vgnm4")
 time = 0.2
 pivotPos = 0
+
+[node name="ButtonFocusComponent" type="Node" parent="UILayer/Menu/MainMenuComponents/BtnsContainer/CreditsBtn"]
+script = ExtResource("11_bp53p")
 
 [node name="QuitBtn" type="Button" parent="UILayer/Menu/MainMenuComponents/BtnsContainer"]
 layout_mode = 2
@@ -500,7 +479,9 @@ script = ExtResource("4_vgnm4")
 time = 0.2
 pivotPos = 0
 
-[connection signal="pressed" from="UILayer/Menu/Credits/VBoxContainer/BackBtn" to="UILayer/Menu/Credits" method="_on_back_btn_pressed"]
+[node name="ButtonFocusComponent" type="Node" parent="UILayer/Menu/MainMenuComponents/BtnsContainer/QuitBtn"]
+script = ExtResource("11_bp53p")
+
 [connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Mouse/SensitivitySlider" to="UILayer/Menu/Settings" method="_on_sensitivity_slider_value_changed"]
 [connection signal="color_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Color/ColorPickerButton" to="UILayer/Menu/Settings" method="_on_color_picker_button_color_changed"]
 [connection signal="toggled" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/InvertColor/InverseColorCheck" to="UILayer/Menu/Settings" method="_on_inverse_color_check_toggled"]

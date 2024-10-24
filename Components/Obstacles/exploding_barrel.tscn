@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnfeymclffuqa"]
+
+[ext_resource type="Script" path="res://Components/Stats/stats.gd" id="1_4mrxp"]
+[ext_resource type="Script" path="res://Components/Obstacles/exploding_barrel.gd" id="1_apjid"]
+[ext_resource type="PackedScene" uid="uid://cxddoqtfpsq47" path="res://Models/Props/Barrel.fbx" id="2_pqtnd"]
+[ext_resource type="PackedScene" uid="uid://bbgkxay0jv4uu" path="res://Components/Hurtbox.tscn" id="3_cqyuq"]
+[ext_resource type="Script" path="res://Components/Obstacles/ScaleTween.gd" id="4_5q1c0"]
+[ext_resource type="Script" path="res://Components/ObjectHitbox.gd" id="6_uoaue"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_2poay"]
+height = 2.55093
+radius = 1.13715
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xdeo5"]
+height = 2.63871
+radius = 1.17496
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ypyit"]
+radius = 5.97793
+
+[node name="ExplodingBarrel" type="RigidBody3D"]
+mass = 10.0
+script = ExtResource("1_apjid")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("1_4mrxp")
+maxHealth = 40.0
+damage = 60.0
+
+[node name="Barrel" parent="." instance=ExtResource("2_pqtnd")]
+
+[node name="ScaleTween" type="Node" parent="Barrel" node_paths=PackedStringArray("object")]
+unique_name_in_owner = true
+script = ExtResource("4_5q1c0")
+object = NodePath("..")
+scaleVector = Vector3(0.8, 1.2, 0.8)
+time = 0.25
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_2poay")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("statsComponent") instance=ExtResource("3_cqyuq")]
+unique_name_in_owner = true
+statsComponent = NodePath("../Stats")
+
+[node name="CollisionShape3D" parent="Hurtbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_xdeo5")
+
+[node name="Hitbox" type="Area3D" parent="." node_paths=PackedStringArray("stats")]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 40
+script = ExtResource("6_uoaue")
+stats = NodePath("../Stats")
+dmgMultiplier = 1.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_ypyit")
+
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="hurtbox_hit" from="Hurtbox" to="." method="_on_hurtbox_hurtbox_hit"]
+
+[editable path="Hurtbox"]

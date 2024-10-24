@@ -24,7 +24,7 @@ shakeFade = 9.0
 
 [node name="GunRayCast" type="RayCast3D" parent="CameraTarget/Camera3D"]
 target_position = Vector3(0, 0, -100)
-collision_mask = 21
+collision_mask = 53
 collide_with_areas = true
 debug_shape_custom_color = Color(1, 0, 0, 1)
 debug_shape_thickness = 1

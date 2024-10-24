@@ -14,7 +14,7 @@ func _ready():
 	set(val):
 		health = clampf(val, 0, maxHealth)
 		health_changed.emit(health)
-		if health == 0: GameInfo.data.game_lost.emit()
+		if health == 0: GameInfo.game_lost.emit()
 @export var shootDmg : float = 10
 
 @export var maxBullets : int = 7

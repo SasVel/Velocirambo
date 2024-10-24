@@ -8,4 +8,5 @@ amount = 34
 lifetime = 2.0
 one_shot = false
 explosiveness = 0.0
+interpolate = false
 script = null

@@ -5,6 +5,7 @@ class_name ButtonAnimComponent
 @export var size : Vector2 = Vector2(1.2, 1.2)
 @export var pivotPos : PIVOTPOS = PIVOTPOS.Center
 @export var transitionType : Tween.TransitionType
+@export var activeWhenFocused : bool = true
 
 @onready var btn : Button = self.get_parent()
 @onready var tween : Tween
@@ -13,8 +14,12 @@ enum PIVOTPOS { Left, Center, Right }
 
 func _ready():
 	btn.pressed.connect(on_pressed)
-	btn.mouse_entered.connect(on_hovered)
-	btn.mouse_exited.connect(reset_hover)
+	if !activeWhenFocused:
+		btn.mouse_entered.connect(on_hovered)
+		btn.mouse_exited.connect(reset_hover)
+	else:
+		btn.focus_entered.connect(on_hovered)
+		btn.focus_exited.connect(reset_hover)
 	
 	setup.call_deferred()
 

@@ -4,6 +4,7 @@ class_name GameData
 ##Resource for all permanent data. Change the version if you add/remove/change variables.
 
 @export var version : String = "0NtThpuVV0C9AdMln0Wd7w=="
+@export var usingController : bool = false
 
 #region Settings
 #region Mouse

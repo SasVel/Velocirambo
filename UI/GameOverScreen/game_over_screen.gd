@@ -9,7 +9,7 @@ func _ready():
 
 func _input(event):
 	if !active: return
-	if event.is_action_pressed("return_to_main_menu"):
+	if event.is_action_pressed("ui_accept"):
 		reset()
 		SceneManager.go_to_main_menu()
 

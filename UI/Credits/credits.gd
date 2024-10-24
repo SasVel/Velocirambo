@@ -1,6 +1,10 @@
 extends MenuComponent
 
+func _ready():
+	focusedComponent = %BackBtn
+
 func activate():
+	super()
 	self.visible = true
 
 func deactivate():

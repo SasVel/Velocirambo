@@ -49,24 +49,29 @@ var currentState : PLAYER_STATE = PLAYER_STATE.IDLE :
 		currentState = newState
 var lastState : PLAYER_STATE = PLAYER_STATE.IDLE
 var lastDirection : Vector3
-var mouseVelocity = Vector2.ZERO #Don't confuse with sensitivity
+var cameraVelocity = Vector2.ZERO #Don't confuse with sensitivity
 
 func _input(event):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	if event is InputEventMouseMotion:
-		mouseVelocity = event.screen_relative
-	
+		cameraVelocity = event.screen_relative
+	elif event is InputEventJoypadMotion:
+		cameraVelocity = Input.get_vector("joy_camera_down", "joy_camera_up", "joy_camera_left", "joy_camera_right").rotated(deg_to_rad(-90)) * 15
+		print(cameraVelocity)
 	handleStateTransitions(event)
 	
 	if(currentState == PLAYER_STATE.IDLE || currentState == PLAYER_STATE.RUNNING || currentState == PLAYER_STATE.WALKING):
-		if event.is_action_pressed("Leftclick") && canShoot:
+		if event.is_action_pressed("Shoot") && canShoot:
+			shoot()
 			if PlayerData.isGunAuto:
 				%AutoShootTimer.start()
-			shoot()
+			else:
+				canShoot = false
+				%ManShootCooldownTimer.start()
 	if event.is_action_pressed("Aim"): IS_AIMING = true
 	elif event.is_action_released("Aim"): IS_AIMING = false
 	
-	if event.is_action_released("Leftclick") && PlayerData.isGunAuto:
+	if event.is_action_released("Shoot") && PlayerData.isGunAuto:
 		%AutoShootTimer.stop()
 	
 	if event.is_action_pressed("reload"):
@@ -79,7 +84,7 @@ func _input(event):
 		SFX.play(SFX.AutoMode)
 
 func handleStateTransitions(event):
-	if Input.get_vector("Backwards", "Forwards", "Leftways", "Rightways") != Vector2.ZERO:
+	if Input.get_vector("Backwards", "Forwards", "Leftways", "Rightways", 0.7) != Vector2.ZERO:
 		if Input.is_action_pressed("Aim"):
 			currentState = PLAYER_STATE.WALKING
 			return
@@ -210,23 +215,21 @@ func camera_move(delta):
 
 #checks for the Limits and then turns the camera
 func camera_turn(delta):
-	if(Input.mouse_mode != Input.MOUSE_MODE_CAPTURED):
-		return
 	
 	var mouseModifier = mouseSensitivity * delta
 	if(Input.is_action_pressed("Aim")): mouseModifier *= zoomedInSensModifier
 	
 	var oldCameraRot = Vector2(cameraTarget.rotation_degrees.x, cameraTarget.rotation_degrees.y)
 	#Quick fix for the camera rotation.
-	var newCameraRot = Vector2(oldCameraRot.x - ((mouseVelocity.y * -1) * mouseModifier),\
-								oldCameraRot.y - (mouseVelocity.x * mouseModifier))
+	var newCameraRot = Vector2(oldCameraRot.x - ((cameraVelocity.y * -1) * mouseModifier),\
+								oldCameraRot.y - (cameraVelocity.x * mouseModifier))
 	
 	if(newCameraRot.x > lowerCameraLimitDegrees): newCameraRot.x = lowerCameraLimitDegrees
 	if(newCameraRot.x < upperCameraLimitDegrees): newCameraRot.x = upperCameraLimitDegrees
 	
 	cameraTarget.rotation_degrees = Vector3(newCameraRot.x, newCameraRot.y, 0.0)
 	horizontalRotPivot.rotation_degrees.y = newCameraRot.y
-	mouseVelocity = Vector2.ZERO
+	cameraVelocity = Vector2.ZERO
 
 func turn_body_to_camera(delta):
 	var cameraRotation = horizontalRotPivot.rotation.y
@@ -252,3 +255,6 @@ func _on_hurtbox_got_hit(_dmg):
 
 func _on_auto_shoot_timer_timeout():
 	shoot()
+
+func _on_man_shoot_cooldown_timer_timeout():
+	canShoot = true

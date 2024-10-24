@@ -19,5 +19,5 @@ func _ready() -> void:
 	tween.tween_property(sprite, "modulate:a", maxFadeAlpha, 1)
 	tween.tween_property(sprite, "modulate:a", 1, 1)
 
-func hit(dmg : float):
-	if enabled: super(dmg)
+func hit(dmg : float, hitVector : Vector3 = Vector3.ZERO):
+	if enabled: super(dmg, hitVector)

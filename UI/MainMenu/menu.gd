@@ -1,4 +1,4 @@
-extends Control
+extends MenuComponent
 
 @onready var mainScn = preload("res://playScenes/main.tscn")
 
@@ -8,6 +8,8 @@ func _ready():
 	%Settings.closed.connect(reset_main_menu)
 	%Credits.closed.connect(reset_main_menu)
 	%DarkenRect.visible = false
+	focusedComponent = %NewGameBtn
+	activate()
 
 func close_main_menu():
 	%DarkenRect.visible = true
@@ -16,6 +18,7 @@ func close_main_menu():
 func reset_main_menu(_component):
 	%DarkenRect.visible = false
 	%MainMenuComponents.visible = true
+	activate()
 
 func _on_new_game_btn_pressed() -> void:
 	get_tree().change_scene_to_packed(mainScn)

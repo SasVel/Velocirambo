@@ -131,6 +131,11 @@ walkingSpeed = 8.0
 runningSpeed = 12.0
 skeleton = NodePath("RaptorCommando/RaptorCommando_001/Skeleton3D")
 
+[node name="ManShootCooldownTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_callback = 0
+wait_time = 0.15
+
 [node name="AutoShootTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 process_callback = 0
@@ -152,24 +157,24 @@ one_shot = true
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="RaptorCommando/RaptorCommando_001" index="0"]
-bones/0/position = Vector3(-0.00169446, 2.84186, 0.340054)
+bones/0/position = Vector3(-0.00169453, 2.80271, 0.340054)
 bones/0/rotation = Quaternion(1.60095e-07, -0.569149, 0.822234, -1.10817e-07)
 bones/1/rotation = Quaternion(1.92893e-07, 0.0511689, 0.99869, -9.96228e-09)
 bones/2/rotation = Quaternion(-7.50228e-05, 0.999815, -0.0191978, 0.00115631)
 bones/3/rotation = Quaternion(0.000370724, 0.931858, 0.362822, -0.00109793)
 bones/4/enabled = false
-bones/4/rotation = Quaternion(-0.0519533, 0.0145928, 0.00694791, 0.998519)
-bones/6/position = Vector3(-0.00712148, 0.415438, 0.347362)
-bones/6/rotation = Quaternion(0.0110123, 0.846492, 0.532206, 0.00930524)
+bones/4/rotation = Quaternion(-0.0344293, 0.0179943, 0.00856744, 0.999208)
+bones/6/position = Vector3(-0.00682178, 0.41812, 0.313942)
+bones/6/rotation = Quaternion(0.0109906, 0.832608, 0.553681, 0.00901724)
 bones/7/position = Vector3(0.00590881, 0.590108, 0.658294)
-bones/7/rotation = Quaternion(0.011476, 0.762461, 0.646783, 0.0138917)
-bones/9/rotation = Quaternion(-0.215704, 0.213193, -0.660844, 0.686517)
-bones/10/rotation = Quaternion(0.622118, 3.09831e-06, -2.50361e-06, 0.782924)
+bones/7/rotation = Quaternion(0.0116002, 0.740962, 0.671312, 0.0134594)
+bones/9/rotation = Quaternion(-0.2448, 0.241195, -0.651146, 0.676688)
+bones/10/rotation = Quaternion(0.694083, 2.83974e-06, -2.7661e-06, 0.719895)
 bones/10/scale = Vector3(1, 0.999985, 1.00001)
-bones/12/rotation = Quaternion(-0.131473, -0.13207, 0.681707, 0.707494)
-bones/13/rotation = Quaternion(0.393426, -3.70334e-06, 1.48967e-06, 0.919356)
+bones/12/rotation = Quaternion(-0.229511, -0.226482, 0.656408, 0.682026)
+bones/13/rotation = Quaternion(0.635802, -3.10937e-06, 2.43869e-06, 0.771852)
 bones/13/scale = Vector3(1, 0.999985, 1.00002)
-bones/14/rotation = Quaternion(-0.0333738, 0.996113, -0.0793776, -0.0185585)
+bones/14/rotation = Quaternion(0.00892899, 0.996086, -0.0802887, 0.0358793)
 bones/15/rotation = Quaternion(0.0192654, -1.19187e-07, 2.29661e-09, 0.999814)
 bones/16/rotation = Quaternion(-0.0137358, 5.07739e-14, 5.27267e-16, 0.999906)
 bones/17/rotation = Quaternion(0.0505618, -3.15521e-15, 2.1017e-15, 0.998721)
@@ -181,21 +186,21 @@ bones/22/rotation = Quaternion(0.0113765, -1.19202e-07, 1.35619e-09, 0.999935)
 bones/23/rotation = Quaternion(-0.0265121, 1.19167e-07, -3.16049e-09, 0.999649)
 bones/24/rotation = Quaternion(-0.0260201, 3.77835e-15, -6.20368e-09, 0.999661)
 bones/25/rotation = Quaternion(0.445196, -0.476238, 0.563821, 0.507055)
-bones/26/rotation = Quaternion(0.0201856, -0.0361983, -0.737147, 0.67446)
-bones/27/rotation = Quaternion(-0.5603, 1.82327e-06, 1.33884e-06, 0.82829)
-bones/28/rotation = Quaternion(0.657589, 2.71237e-08, -2.04553e-07, 0.753376)
+bones/26/rotation = Quaternion(0.0201036, -0.0361087, -0.737152, 0.674462)
+bones/27/rotation = Quaternion(-0.572385, 1.80577e-06, 1.37601e-06, 0.819985)
+bones/28/rotation = Quaternion(0.677201, 2.45958e-08, -2.074e-07, 0.735798)
 bones/29/rotation = Quaternion(0.445195, 0.476238, -0.563821, 0.507055)
-bones/30/rotation = Quaternion(0.0201857, 0.0361984, 0.737147, 0.67446)
-bones/31/rotation = Quaternion(-0.5603, -1.81069e-06, -1.34858e-06, 0.82829)
-bones/32/rotation = Quaternion(0.657589, -2.36359e-08, 1.99952e-07, 0.753376)
-bones/33/position = Vector3(0.404172, 1.72212, 2.05403)
-bones/33/rotation = Quaternion(0.00182215, 0.76933, 0.63885, 2.47732e-07)
+bones/30/rotation = Quaternion(0.0201037, 0.0361088, 0.737152, 0.674462)
+bones/31/rotation = Quaternion(-0.572385, -1.79389e-06, -1.37082e-06, 0.819985)
+bones/32/rotation = Quaternion(0.677201, -2.58296e-08, 2.09836e-07, 0.735798)
+bones/33/position = Vector3(0.404172, 1.77413, 2.05403)
+bones/33/rotation = Quaternion(0.00184193, 0.769972, 0.638075, 2.48896e-07)
 bones/34/rotation = Quaternion(-0.686919, -0.0306942, -0.0324117, 0.725362)
 bones/35/position = Vector3(0.611549, 0.0219753, -0.318177)
 bones/35/rotation = Quaternion(-0.505573, 0.494364, -0.494364, 0.505574)
 bones/36/rotation = Quaternion(-0.699136, 2.52103e-08, 0.714989, -5.65331e-10)
-bones/38/position = Vector3(-0.407561, 1.51993, 2.03024)
-bones/38/rotation = Quaternion(-1.26427e-07, 0.649319, 0.760516, -1.48078e-07)
+bones/38/position = Vector3(-0.407561, 1.68964, 2.0299)
+bones/38/rotation = Quaternion(-1.41873e-07, 0.648667, 0.761073, -1.32613e-07)
 bones/39/rotation = Quaternion(-0.686919, 0.0306942, 0.0324117, 0.725362)
 bones/40/position = Vector3(-0.614938, 0.0219753, -0.318177)
 bones/40/rotation = Quaternion(-0.505573, -0.494364, 0.494364, 0.505574)
@@ -266,6 +271,7 @@ current = true
 
 [connection signal="reloading_gun" from="." to="RaptorCommando/RaptorCommando_001/Skeleton3D/Cylinder_001" method="_on_player_reloading_gun"]
 [connection signal="shot_gun" from="." to="RaptorCommando/RaptorCommando_001/Skeleton3D/Cylinder_001" method="_on_player_shot_gun"]
+[connection signal="timeout" from="ManShootCooldownTimer" to="." method="_on_man_shoot_cooldown_timer_timeout"]
 [connection signal="timeout" from="AutoShootTimer" to="." method="_on_auto_shoot_timer_timeout"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
