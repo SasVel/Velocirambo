@@ -186,9 +186,33 @@ layout_mode = 2
 size_flags_vertical = 3
 current_tab = 0
 
-[node name="Video" type="MarginContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer"]
+[node name="Controls" type="MarginContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 0
+
+[node name="Container" type="VBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls"]
+layout_mode = 2
+
+[node name="MainVolContainer" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="UsingControllerLabel" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/MainVolContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Using Controller"
+label_settings = SubResource("LabelSettings_g24q3")
+
+[node name="UsingControllerBtn" type="CheckButton" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/MainVolContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Video" type="MarginContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="Container" type="VBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video"]
 layout_mode = 2
@@ -322,7 +346,7 @@ value = 1.0
 [node name="Audio" type="MarginContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer"]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 1
+metadata/_tab_index = 2
 
 [node name="Container" type="VBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio"]
 layout_mode = 2
@@ -393,30 +417,6 @@ size_flags_horizontal = 2
 size_flags_vertical = 4
 max_value = 1.0
 step = 0.01
-
-[node name="Controls" type="MarginContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 2
-
-[node name="Container" type="VBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls"]
-layout_mode = 2
-
-[node name="MainVolContainer" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="UsingControllerLabel" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/MainVolContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Main"
-label_settings = SubResource("LabelSettings_g24q3")
-
-[node name="UsingControllerBtn" type="CheckButton" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/MainVolContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 2
 
 [node name="BackBtn" type="Button" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer"]
 unique_name_in_owner = true
@@ -506,6 +506,7 @@ pivotPos = 0
 [node name="ButtonFocusComponent" type="Node" parent="UILayer/Menu/MainMenuComponents/BtnsContainer/QuitBtn"]
 script = ExtResource("11_bp53p")
 
+[connection signal="toggled" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/MainVolContainer/UsingControllerBtn" to="UILayer/Menu/Settings" method="_on_using_controller_btn_toggled"]
 [connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Mouse/SensitivitySlider" to="UILayer/Menu/Settings" method="_on_sensitivity_slider_value_changed"]
 [connection signal="color_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Color/ColorPickerButton" to="UILayer/Menu/Settings" method="_on_color_picker_button_color_changed"]
 [connection signal="toggled" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/InvertColor/InverseColorCheck" to="UILayer/Menu/Settings" method="_on_inverse_color_check_toggled"]
@@ -515,7 +516,6 @@ script = ExtResource("11_bp53p")
 [connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MainVolContainer/MainVolSlider" to="UILayer/Menu/Settings" method="_on_main_vol_slider_value_changed"]
 [connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer/MusicVolSlider" to="UILayer/Menu/Settings" method="_on_music_vol_slider_value_changed"]
 [connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer/SfxVolSlider" to="UILayer/Menu/Settings" method="_on_sfx_vol_slider_value_changed"]
-[connection signal="toggled" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/MainVolContainer/UsingControllerBtn" to="UILayer/Menu/Settings" method="_on_using_controller_btn_toggled"]
 [connection signal="pressed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/BackBtn" to="UILayer/Menu/Settings" method="_on_back_btn_pressed"]
 [connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/NewGameBtn" to="UILayer/Menu" method="_on_new_game_btn_pressed"]
 [connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/SettingsBtn" to="UILayer/Menu" method="_on_settings_btn_pressed"]
