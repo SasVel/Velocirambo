@@ -29,6 +29,7 @@ SFX="*res://GlobalScripts/SFX/sfx_manager.tscn"
 Music="*res://GlobalScripts/Music/music_manager.tscn"
 Spawn="*res://GlobalScripts/spawn_manager.tscn"
 SceneManager="*res://GlobalScripts/SceneManager.gd"
+UI="*res://GlobalScripts/UIHelper.gd"
 
 [display]
 

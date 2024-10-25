@@ -10,6 +10,8 @@ func _ready():
 	%DarkenRect.visible = false
 	focusedComponent = %NewGameBtn
 	activate()
+	
+	GameInfo.data.usingController = await UI.show_yes_no_msg(self, "Are you using a controller?")
 
 func close_main_menu():
 	%DarkenRect.visible = true
@@ -33,4 +35,5 @@ func _on_credits_btn_pressed() -> void:
 	%Credits.activate()
 
 func _on_quit_btn_pressed() -> void:
-	get_tree().quit()
+	if await UI.show_yes_no_msg(self):
+		get_tree().quit()

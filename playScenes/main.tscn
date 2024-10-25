@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="9_wwvj3"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_ab8gv"]
 [ext_resource type="Script" path="res://UI/Components/button_focus_component.gd" id="11_13ucq"]
+[ext_resource type="LabelSettings" uid="uid://w8lv2e054n28" path="res://UI/LabelSettings/big_bold_label_settings.tres" id="13_kwa7w"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="16_kn0se"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yjc10"]
@@ -52,12 +53,7 @@ border_color = Color(1, 1, 1, 1)
 corner_radius_top_right = 13
 corner_radius_bottom_left = 13
 
-[sub_resource type="LabelSettings" id="LabelSettings_701rm"]
-font_size = 26
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Resource" id="Resource_vhmhe"]
+[sub_resource type="Resource" id="Resource_p21kh"]
 script = ExtResource("10_ab8gv")
 amount = 200
 enabled = true
@@ -66,11 +62,11 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_7ogcg"]
+[sub_resource type="Resource" id="Resource_xc6pr"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_vhmhe")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_p21kh")])
 
-[sub_resource type="Resource" id="Resource_2jxvx"]
+[sub_resource type="Resource" id="Resource_cfpdo"]
 script = ExtResource("10_ab8gv")
 amount = 70
 enabled = true
@@ -79,7 +75,7 @@ custom_seed = 6
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_l4p51"]
+[sub_resource type="Resource" id="Resource_vqlfo"]
 script = ExtResource("16_kn0se")
 position = Vector3(0, 0, 0)
 rotation = Vector3(180, 180, 0)
@@ -90,9 +86,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_ccmw0"]
+[sub_resource type="Resource" id="Resource_k34sp"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_2jxvx"), SubResource("Resource_l4p51")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_cfpdo"), SubResource("Resource_vqlfo")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -287,7 +283,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "You will live to see another day!"
-label_settings = SubResource("LabelSettings_701rm")
+label_settings = ExtResource("13_kwa7w")
 
 [node name="GameLostLabel" type="Label" parent="UI/GameOverScreen/VBoxContainer"]
 unique_name_in_owner = true
@@ -295,7 +291,7 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 text = "Better luck next time!"
-label_settings = SubResource("LabelSettings_701rm")
+label_settings = ExtResource("13_kwa7w")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -309,10 +305,10 @@ fit_content = true
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
 [node name="ProtonScatter" parent="Arena/Crowd" index="0"]
-modifier_stack = SubResource("Resource_7ogcg")
+modifier_stack = SubResource("Resource_xc6pr")
 
 [node name="ProtonScatter" parent="Arena/Props" index="1"]
-modifier_stack = SubResource("Resource_ccmw0")
+modifier_stack = SubResource("Resource_k34sp")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)
