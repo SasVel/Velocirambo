@@ -52,12 +52,8 @@ var lastDirection : Vector3
 var cameraVelocity = Vector2.ZERO #Don't confuse with sensitivity
 
 func _input(event):
-	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion && !GameInfo.data.usingController:
 		cameraVelocity = event.screen_relative
-	elif event is InputEventJoypadMotion:
-		cameraVelocity = Input.get_vector("joy_camera_down", "joy_camera_up", "joy_camera_left", "joy_camera_right").rotated(deg_to_rad(-90))
-		print(cameraVelocity)
 	handleStateTransitions(event)
 	
 	if(currentState == PLAYER_STATE.IDLE || currentState == PLAYER_STATE.RUNNING || currentState == PLAYER_STATE.WALKING):
@@ -113,8 +109,12 @@ func _physics_process(delta):
 			stunnedState(delta)
 	animTransition()
 	move_and_slide()
+	if GameInfo.data.usingController: joy_movement_check()
 	camera_move(delta)
 	PlayerData.position = self.position
+
+func joy_movement_check():
+	cameraVelocity = Input.get_vector("joy_camera_left", "joy_camera_right", "joy_camera_up", "joy_camera_down") * 25
 
 func idleState(delta):
 	gravity(delta)
@@ -262,7 +262,7 @@ func _on_auto_shoot_timer_timeout():
 	if PlayerData.currBullets <= 0:
 		reload()
 		return
-	if !canShoot: return
+	elif !canShoot: return
 	shoot()
 
 func _on_man_shoot_cooldown_timer_timeout():

@@ -394,6 +394,30 @@ size_flags_vertical = 4
 max_value = 1.0
 step = 0.01
 
+[node name="Controls" type="MarginContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Container" type="VBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls"]
+layout_mode = 2
+
+[node name="MainVolContainer" type="HBoxContainer" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="UsingControllerLabel" type="Label" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/MainVolContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Main"
+label_settings = SubResource("LabelSettings_g24q3")
+
+[node name="UsingControllerBtn" type="CheckButton" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/MainVolContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+
 [node name="BackBtn" type="Button" parent="UILayer/Menu/Settings/MarginContainer/SettingsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -491,6 +515,7 @@ script = ExtResource("11_bp53p")
 [connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MainVolContainer/MainVolSlider" to="UILayer/Menu/Settings" method="_on_main_vol_slider_value_changed"]
 [connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer/MusicVolSlider" to="UILayer/Menu/Settings" method="_on_music_vol_slider_value_changed"]
 [connection signal="value_changed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer/SfxVolSlider" to="UILayer/Menu/Settings" method="_on_sfx_vol_slider_value_changed"]
+[connection signal="toggled" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/MainVolContainer/UsingControllerBtn" to="UILayer/Menu/Settings" method="_on_using_controller_btn_toggled"]
 [connection signal="pressed" from="UILayer/Menu/Settings/MarginContainer/SettingsContainer/BackBtn" to="UILayer/Menu/Settings" method="_on_back_btn_pressed"]
 [connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/NewGameBtn" to="UILayer/Menu" method="_on_new_game_btn_pressed"]
 [connection signal="pressed" from="UILayer/Menu/MainMenuComponents/BtnsContainer/SettingsBtn" to="UILayer/Menu" method="_on_settings_btn_pressed"]

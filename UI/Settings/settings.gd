@@ -22,13 +22,14 @@ func deactivate():
 	closed.emit(self)
 
 func config_video_settings():
-	%SensitivitySlider.value = GameInfo.data.mouseSensitivity
+	%SensitivitySlider.value = GameInfo.data.cameraSensitivity
 	
 	%ColorPickerButton.color = GameInfo.data.crossColor
 	%OpacitySlider.value = GameInfo.data.crossOpacity
 	%WidthSlider.value = GameInfo.data.crossWidth
 	%LengthSlider.value = GameInfo.data.crossLength
 	%InverseColorCheck.button_pressed = GameInfo.data.invertedColors
+	%UsingControllerBtn.button_pressed = GameInfo.data.usingController
 
 func config_vol_sliders():
 	%MainVolSlider.value = db_to_linear(AudioServer.get_bus_volume_db(mainBusIndex))
@@ -48,7 +49,7 @@ func _on_back_btn_pressed():
 	deactivate()
 
 func _on_sensitivity_slider_value_changed(value):
-	GameInfo.data.mouseSensitivity = value
+	GameInfo.data.cameraSensitivity = value
 
 func _on_color_picker_button_color_changed(color):
 	GameInfo.data.crossColor = color
@@ -64,3 +65,6 @@ func _on_length_slider_value_changed(value):
 
 func _on_inverse_color_check_toggled(toggled_on):
 	GameInfo.data.invertedColors = toggled_on
+
+func _on_using_controller_btn_toggled(toggled_on):
+	GameInfo.data.usingController = toggled_on
