@@ -3,8 +3,12 @@ class_name GameData
 
 ##Resource for all permanent data. Change the version if you add/remove/change variables.
 
-@export var version : String = "0NtThpuVV0C9AdMln0Wd7w=="
-@export var usingController : bool = true
+@export var version : String = Const.gameDataVersion
+##Indicates if a YesNoMessage has been shown for controller.
+@export var askedUsingControllerMsg : bool = false
+##Enables/disables controller.
+@export var usingController : bool = false
+@export var controllerVibration : bool = true
 
 #region Settings
 #region Mouse

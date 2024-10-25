@@ -30,6 +30,7 @@ func config_video_settings():
 	%LengthSlider.value = GameInfo.data.crossLength
 	%InverseColorCheck.button_pressed = GameInfo.data.invertedColors
 	%UsingControllerBtn.button_pressed = GameInfo.data.usingController
+	%ControllerVibrationBtn.button_pressed = GameInfo.data.controllerVibration
 
 func config_vol_sliders():
 	%MainVolSlider.value = db_to_linear(AudioServer.get_bus_volume_db(mainBusIndex))
@@ -68,3 +69,6 @@ func _on_inverse_color_check_toggled(toggled_on):
 
 func _on_using_controller_btn_toggled(toggled_on):
 	GameInfo.data.usingController = toggled_on
+
+func _on_controller_vibration_btn_toggled(toggled_on):
+	GameInfo.data.controllerVibration = toggled_on

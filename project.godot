@@ -30,6 +30,7 @@ Music="*res://GlobalScripts/Music/music_manager.tscn"
 Spawn="*res://GlobalScripts/spawn_manager.tscn"
 SceneManager="*res://GlobalScripts/SceneManager.gd"
 UI="*res://GlobalScripts/UIHelper.gd"
+Controller="*res://GlobalScripts/ControllerManager.gd"
 
 [display]
 

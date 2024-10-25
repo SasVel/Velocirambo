@@ -7,11 +7,11 @@
 [ext_resource type="Script" path="res://UI/Components/button_anim_component.gd" id="5_1ti4v"]
 [ext_resource type="Script" path="res://UI/Components/button_focus_component.gd" id="6_7jgpi"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_g24q3"]
-font_size = 24
-
 [sub_resource type="LabelSettings" id="LabelSettings_4ss05"]
 font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_g24q3"]
+font_size = 24
 
 [node name="MainMenuUI" type="Control"]
 layout_mode = 3
@@ -45,7 +45,6 @@ grow_vertical = 1
 
 [node name="Settings" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -84,18 +83,41 @@ metadata/_tab_index = 0
 [node name="Container" type="VBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls"]
 layout_mode = 2
 
-[node name="MainVolContainer" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
+[node name="ControllerLabel" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
+layout_mode = 2
+text = "Controller"
+label_settings = SubResource("LabelSettings_4ss05")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UsingController" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="UsingControllerLabel" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/MainVolContainer"]
+[node name="UsingControllerLabel" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/UsingController"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Using Controller"
 label_settings = SubResource("LabelSettings_g24q3")
 
-[node name="UsingControllerBtn" type="CheckButton" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/MainVolContainer"]
+[node name="UsingControllerBtn" type="CheckButton" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/UsingController"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Vibration" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ControllerVibrationLabel" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/Vibration"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Controller Vibration"
+label_settings = SubResource("LabelSettings_g24q3")
+
+[node name="ControllerVibrationBtn" type="CheckButton" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/Vibration"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
@@ -325,6 +347,7 @@ script = ExtResource("6_7jgpi")
 
 [node name="MainMenuComponents" type="MarginContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -397,7 +420,8 @@ pivotPos = 0
 [node name="ButtonFocusComponent" type="Node" parent="MainMenuComponents/BtnsContainer/QuitBtn"]
 script = ExtResource("6_7jgpi")
 
-[connection signal="toggled" from="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/MainVolContainer/UsingControllerBtn" to="Settings" method="_on_using_controller_btn_toggled"]
+[connection signal="toggled" from="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/UsingController/UsingControllerBtn" to="Settings" method="_on_using_controller_btn_toggled"]
+[connection signal="toggled" from="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/Vibration/ControllerVibrationBtn" to="Settings" method="_on_controller_vibration_btn_toggled"]
 [connection signal="value_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Mouse/SensitivitySlider" to="Settings" method="_on_sensitivity_slider_value_changed"]
 [connection signal="color_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Color/ColorPickerButton" to="Settings" method="_on_color_picker_button_color_changed"]
 [connection signal="toggled" from="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/InvertColor/InverseColorCheck" to="Settings" method="_on_inverse_color_check_toggled"]

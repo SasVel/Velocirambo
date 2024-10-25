@@ -176,6 +176,7 @@ func shoot():
 	else: camera.apply_rot_offset(Vector2(2, 0))
 	SFX.play(SFX.Gunshot)
 	camera.apply_shake()
+	Controller.start_vibration(0.8, 0, 0.2)
 	shot_gun.emit(IS_AIMING)
 
 func reload():
@@ -256,6 +257,7 @@ func _on_roar_timer_timeout():
 	%RoarTimer.start()
 
 func _on_hurtbox_got_hit(_dmg):
+	Controller.start_vibration(0.2, 0.5, 0.5)
 	currentState = PLAYER_STATE.STUNNED
 
 func _on_auto_shoot_timer_timeout():
