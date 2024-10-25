@@ -11,7 +11,7 @@ class_name Player
 @export_category("Mouse/Camera controls")
 ##TODO Currently not being used
 @export var turningDeadZoneDegrees : float = 15.0
-@onready var cameraSensitivity : float = GameInfo.data.cameraSensitivity * 15
+@onready var cameraSensitivity : float = GameInfo.data.cameraSensitivity
 @export var zoomedInSensModifier : float = 0.5
 
 ##how far down can the camera look/how high can it go. This number should be negative.
@@ -54,7 +54,7 @@ var cameraVelocity = Vector2.ZERO #Don't confuse with sensitivity
 func _input(event):
 	if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
 	if event is InputEventMouseMotion:
-		cameraVelocity = event.screen_relative.normalized()
+		cameraVelocity = event.screen_relative
 	elif event is InputEventJoypadMotion:
 		cameraVelocity = Input.get_vector("joy_camera_down", "joy_camera_up", "joy_camera_left", "joy_camera_right").rotated(deg_to_rad(-90))
 		print(cameraVelocity)
@@ -63,16 +63,21 @@ func _input(event):
 	if(currentState == PLAYER_STATE.IDLE || currentState == PLAYER_STATE.RUNNING || currentState == PLAYER_STATE.WALKING):
 		if event.is_action_pressed("Shoot") && canShoot:
 			shoot()
+			if PlayerData.currBullets <= 0:
+				reload()
+				return
+			
 			if PlayerData.isGunAuto:
 				%AutoShootTimer.start()
 			else:
 				canShoot = false
 				%ManShootCooldownTimer.start()
-	if event.is_action_pressed("Aim"): IS_AIMING = true
-	elif event.is_action_released("Aim"): IS_AIMING = false
 	
 	if event.is_action_released("Shoot") && PlayerData.isGunAuto:
 		%AutoShootTimer.stop()
+	
+	if event.is_action_pressed("Aim"): IS_AIMING = true
+	elif event.is_action_released("Aim"): IS_AIMING = false
 	
 	if event.is_action_pressed("reload"):
 		reloading_gun.emit(PlayerData.currBullets)
@@ -166,8 +171,6 @@ func animTransition(state : PLAYER_STATE = currentState):
 
 func shoot():
 	PlayerData.currBullets -= 1
-	if PlayerData.currBullets <= 0:
-		reload()
 	
 	if !IS_AIMING: camera.apply_rot_offset(Vector2(5, 0))
 	else: camera.apply_rot_offset(Vector2(2, 0))
@@ -177,6 +180,8 @@ func shoot():
 
 func reload():
 	if PlayerData.isGunAuto: %AutoShootTimer.stop()
+	else: %ManShootCooldownTimer.stop()
+	
 	canShoot = false
 	%ReloadTimer.start()
 	SFX.play(SFX.Reload)
@@ -254,6 +259,10 @@ func _on_hurtbox_got_hit(_dmg):
 	currentState = PLAYER_STATE.STUNNED
 
 func _on_auto_shoot_timer_timeout():
+	if PlayerData.currBullets <= 0:
+		reload()
+		return
+	if !canShoot: return
 	shoot()
 
 func _on_man_shoot_cooldown_timer_timeout():
