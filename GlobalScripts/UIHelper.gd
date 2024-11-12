@@ -9,4 +9,5 @@ func show_yes_no_msg(caller : Control, message : String = "Are you sure?"):
 	
 	var res = await msg.answer
 	msg.queue_free()
+	caller.set_focus()
 	return res

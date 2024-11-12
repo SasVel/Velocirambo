@@ -36,12 +36,13 @@ Controller="*res://GlobalScripts/ControllerManager.gd"
 
 window/size/viewport_width=1728
 window/size/viewport_height=972
+window/size/mode=2
 mouse_cursor/custom_image="res://UI/Cursor/DinoHandCursor-ezgif.com-resize.png"
 mouse_cursor/custom_image_hotspot=Vector2(14, 6)
 
 [editor]
 
-movie_writer/movie_file="G:/Videos/Velocirambo/VelociShots.avi"
+movie_writer/movie_file="G:/Videos/Velocirambo/NewVelociGameplay.avi"
 movie_writer/fps=24
 
 [editor_plugins]

@@ -7,10 +7,10 @@ extends MenuComponent
 @onready var active : bool = false :
 	set(val):
 		if disabled: return
+		activate() if val else deactivate()
 		get_tree().paused = val
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		if val: activate()
 		self.visible = val
+		active = val
 
 func _ready():
 	focusedComponent = %ContinueBtn
@@ -19,6 +19,15 @@ func _input(event):
 	if disabled: return
 	if event.is_action_pressed("pause"):
 		active = !active
+
+func activate():
+	super()
+	if GameInfo.data.usingController: Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	else: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func deactivate():
+	if GameInfo.data.usingController: Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	else: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _on_continue_btn_pressed():
 	active = false

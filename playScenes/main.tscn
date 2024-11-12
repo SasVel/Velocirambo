@@ -53,7 +53,7 @@ border_color = Color(1, 1, 1, 1)
 corner_radius_top_right = 13
 corner_radius_bottom_left = 13
 
-[sub_resource type="Resource" id="Resource_p21kh"]
+[sub_resource type="Resource" id="Resource_o45rv"]
 script = ExtResource("10_ab8gv")
 amount = 200
 enabled = true
@@ -62,11 +62,11 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_xc6pr"]
+[sub_resource type="Resource" id="Resource_17lf6"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_p21kh")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_o45rv")])
 
-[sub_resource type="Resource" id="Resource_cfpdo"]
+[sub_resource type="Resource" id="Resource_u8klm"]
 script = ExtResource("10_ab8gv")
 amount = 70
 enabled = true
@@ -75,7 +75,7 @@ custom_seed = 6
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_vqlfo"]
+[sub_resource type="Resource" id="Resource_plchh"]
 script = ExtResource("16_kn0se")
 position = Vector3(0, 0, 0)
 rotation = Vector3(180, 180, 0)
@@ -86,9 +86,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_k34sp"]
+[sub_resource type="Resource" id="Resource_rwlql"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_cfpdo"), SubResource("Resource_vqlfo")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_u8klm"), SubResource("Resource_plchh")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -305,10 +305,10 @@ fit_content = true
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
 [node name="ProtonScatter" parent="Arena/Crowd" index="0"]
-modifier_stack = SubResource("Resource_xc6pr")
+modifier_stack = SubResource("Resource_17lf6")
 
 [node name="ProtonScatter" parent="Arena/Props" index="1"]
-modifier_stack = SubResource("Resource_k34sp")
+modifier_stack = SubResource("Resource_rwlql")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)

@@ -15,6 +15,11 @@ func _ready():
 		GameInfo.data.usingController = await UI.show_yes_no_msg(self, "Are you using a controller? \n (Can always be changed in Settings)")
 		GameInfo.data.askedUsingControllerMsg = true
 		GameInfo.save_data()
+		activate()
+
+func _input(event):
+	if GameInfo.data.usingController: Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	else: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func close_main_menu():
 	%DarkenRect.visible = true

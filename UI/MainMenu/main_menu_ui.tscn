@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bngj3gvodihcr"]
+[gd_scene load_steps=10 format=3 uid="uid://bngj3gvodihcr"]
 
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="1_i2a53"]
 [ext_resource type="Script" path="res://UI/MainMenu/menu.gd" id="2_feui3"]
@@ -6,12 +6,13 @@
 [ext_resource type="Script" path="res://UI/Settings/settings.gd" id="4_bjm2m"]
 [ext_resource type="Script" path="res://UI/Components/button_anim_component.gd" id="5_1ti4v"]
 [ext_resource type="Script" path="res://UI/Components/button_focus_component.gd" id="6_7jgpi"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_4ss05"]
-font_size = 25
+[ext_resource type="PackedScene" uid="uid://d0ifa53fa0md5" path="res://UI/Components/RateComponent/rate_component.tscn" id="7_mibcb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g24q3"]
 font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ss05"]
+font_size = 25
 
 [node name="MainMenuUI" type="Control"]
 layout_mode = 3
@@ -36,15 +37,12 @@ color = Color(0.235294, 0.235294, 0.235294, 0.709804)
 
 [node name="Credits" parent="." instance=ExtResource("3_r7ktl")]
 unique_name_in_owner = true
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+visible = false
+layout_mode = 1
 
 [node name="Settings" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,6 +80,27 @@ metadata/_tab_index = 0
 
 [node name="Container" type="VBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls"]
 layout_mode = 2
+
+[node name="Mouse" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/Mouse"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Look Sensitivity"
+label_settings = SubResource("LabelSettings_g24q3")
+
+[node name="SensitivitySlider" type="HSlider" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/Mouse"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+max_value = 5.0
+step = 0.1
+value = 3.0
 
 [node name="ControllerLabel" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
 layout_mode = 2
@@ -129,27 +148,6 @@ metadata/_tab_index = 1
 
 [node name="Container" type="VBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video"]
 layout_mode = 2
-
-[node name="Mouse" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="Label" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Mouse"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Mouse Sensitivity"
-label_settings = SubResource("LabelSettings_g24q3")
-
-[node name="SensitivitySlider" type="HSlider" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Mouse"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-max_value = 5.0
-step = 0.1
-value = 3.0
 
 [node name="Crosshair" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
 layout_mode = 2
@@ -347,82 +345,112 @@ script = ExtResource("6_7jgpi")
 
 [node name="MainMenuComponents" type="MarginContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
-anchors_preset = 9
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 567.0
+grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 45
 theme_override_constants/margin_top = 45
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MainMenuComponents"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuComponents"]
+layout_mode = 2
+
+[node name="TitleAndMenu" type="Control" parent="MainMenuComponents/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MainMenuComponents/HBoxContainer/TitleAndMenu"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+offset_right = 1658.0
+offset_bottom = 902.0
 bbcode_enabled = true
 text = "[font=res://Misc/Fonts/lexographer.regular.ttf][color=WHITE][font_size=80][outline_size=20][shake rate=20.0 level=5 connected=1]Velocirambo[/shake][/outline_size][/font_size][/color][/font]"
 fit_content = true
 scroll_active = false
 
-[node name="BtnsContainer" type="VBoxContainer" parent="MainMenuComponents"]
+[node name="BtnsContainer" type="VBoxContainer" parent="MainMenuComponents/HBoxContainer/TitleAndMenu"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+offset_right = 300.0
+offset_bottom = 902.0
 size_flags_horizontal = 0
 size_flags_vertical = 3
 alignment = 1
 
-[node name="NewGameBtn" type="Button" parent="MainMenuComponents/BtnsContainer"]
+[node name="NewGameBtn" type="Button" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "New Game"
 
-[node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/BtnsContainer/NewGameBtn"]
+[node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/NewGameBtn"]
 script = ExtResource("5_1ti4v")
 time = 0.2
 pivotPos = 0
 
-[node name="ButtonFocusComponent" type="Node" parent="MainMenuComponents/BtnsContainer/NewGameBtn"]
+[node name="ButtonFocusComponent" type="Node" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/NewGameBtn"]
 script = ExtResource("6_7jgpi")
 
-[node name="SettingsBtn" type="Button" parent="MainMenuComponents/BtnsContainer"]
+[node name="SettingsBtn" type="Button" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer"]
 layout_mode = 2
 text = "Settings"
 
-[node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/BtnsContainer/SettingsBtn"]
+[node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/SettingsBtn"]
 script = ExtResource("5_1ti4v")
 time = 0.2
 pivotPos = 0
 
-[node name="ButtonFocusComponent" type="Node" parent="MainMenuComponents/BtnsContainer/SettingsBtn"]
+[node name="ButtonFocusComponent" type="Node" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/SettingsBtn"]
 script = ExtResource("6_7jgpi")
 
-[node name="CreditsBtn" type="Button" parent="MainMenuComponents/BtnsContainer"]
+[node name="CreditsBtn" type="Button" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer"]
 layout_mode = 2
 text = "Credits"
 
-[node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/BtnsContainer/CreditsBtn"]
+[node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/CreditsBtn"]
 script = ExtResource("5_1ti4v")
 time = 0.2
 pivotPos = 0
 
-[node name="ButtonFocusComponent" type="Node" parent="MainMenuComponents/BtnsContainer/CreditsBtn"]
+[node name="ButtonFocusComponent" type="Node" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/CreditsBtn"]
 script = ExtResource("6_7jgpi")
 
-[node name="QuitBtn" type="Button" parent="MainMenuComponents/BtnsContainer"]
+[node name="QuitBtn" type="Button" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../VBoxContainer/RateComponent")
+focus_neighbor_bottom = NodePath("../../../VBoxContainer/RateComponent")
 text = "Exit"
 
-[node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/BtnsContainer/QuitBtn"]
+[node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/QuitBtn"]
 script = ExtResource("5_1ti4v")
 time = 0.2
 pivotPos = 0
 
-[node name="ButtonFocusComponent" type="Node" parent="MainMenuComponents/BtnsContainer/QuitBtn"]
+[node name="ButtonFocusComponent" type="Node" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/QuitBtn"]
 script = ExtResource("6_7jgpi")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuComponents/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="RateComponent" parent="MainMenuComponents/HBoxContainer/VBoxContainer" instance=ExtResource("7_mibcb")]
+layout_mode = 2
+
+[node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/HBoxContainer/VBoxContainer/RateComponent"]
+script = ExtResource("5_1ti4v")
+time = 0.15
+size = Vector2(1.1, 1.1)
+pivotPos = 2
+
+[node name="ButtonFocusComponent" type="Node" parent="MainMenuComponents/HBoxContainer/VBoxContainer/RateComponent"]
+script = ExtResource("6_7jgpi")
+
+[connection signal="value_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/Mouse/SensitivitySlider" to="Settings" method="_on_sensitivity_slider_value_changed"]
 [connection signal="toggled" from="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/UsingController/UsingControllerBtn" to="Settings" method="_on_using_controller_btn_toggled"]
 [connection signal="toggled" from="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/Vibration/ControllerVibrationBtn" to="Settings" method="_on_controller_vibration_btn_toggled"]
-[connection signal="value_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Mouse/SensitivitySlider" to="Settings" method="_on_sensitivity_slider_value_changed"]
 [connection signal="color_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Color/ColorPickerButton" to="Settings" method="_on_color_picker_button_color_changed"]
 [connection signal="toggled" from="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/InvertColor/InverseColorCheck" to="Settings" method="_on_inverse_color_check_toggled"]
 [connection signal="value_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Opacity/OpacitySlider" to="Settings" method="_on_opacity_slider_value_changed"]
@@ -432,7 +460,7 @@ script = ExtResource("6_7jgpi")
 [connection signal="value_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer/MusicVolSlider" to="Settings" method="_on_music_vol_slider_value_changed"]
 [connection signal="value_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer/SfxVolSlider" to="Settings" method="_on_sfx_vol_slider_value_changed"]
 [connection signal="pressed" from="Settings/MarginContainer/SettingsContainer/BackBtn" to="Settings" method="_on_back_btn_pressed"]
-[connection signal="pressed" from="MainMenuComponents/BtnsContainer/NewGameBtn" to="." method="_on_new_game_btn_pressed"]
-[connection signal="pressed" from="MainMenuComponents/BtnsContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
-[connection signal="pressed" from="MainMenuComponents/BtnsContainer/CreditsBtn" to="." method="_on_credits_btn_pressed"]
-[connection signal="pressed" from="MainMenuComponents/BtnsContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/NewGameBtn" to="." method="_on_new_game_btn_pressed"]
+[connection signal="pressed" from="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/CreditsBtn" to="." method="_on_credits_btn_pressed"]
+[connection signal="pressed" from="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]

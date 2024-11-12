@@ -10,8 +10,11 @@ var focusedComponent : Control
 
 ##To be overwritten with super() on top.
 func activate():
-	focusedComponent.grab_focus()
+	set_focus()
 
 ##To be overwritten.
 func deactivate():
 	pass
+
+func set_focus():
+	focusedComponent.grab_focus()

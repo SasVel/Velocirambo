@@ -1,0 +1,47 @@
+[gd_scene load_steps=11 format=3 uid="uid://d0ifa53fa0md5"]
+
+[ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="1_y2la5"]
+[ext_resource type="Script" path="res://UI/Components/RateComponent/rate_component.gd" id="2_3ao0f"]
+[ext_resource type="Texture2D" uid="uid://djy6dkn4kequ" path="res://UI/Components/RateComponent/StarSprites/0001.png" id="2_b72y4"]
+[ext_resource type="Texture2D" uid="uid://dh2rk5680j5pr" path="res://UI/Components/RateComponent/StarSprites/0011.png" id="3_dtoku"]
+[ext_resource type="Texture2D" uid="uid://cg2qj3sr5xo5t" path="res://UI/Components/RateComponent/StarSprites/0021.png" id="4_gma41"]
+[ext_resource type="Texture2D" uid="uid://ccrnb4njnia70" path="res://UI/Components/RateComponent/StarSprites/0031.png" id="5_wrrf0"]
+[ext_resource type="Texture2D" uid="uid://ls6d3omqysny" path="res://UI/Components/RateComponent/StarSprites/0061.png" id="6_fjamt"]
+[ext_resource type="Texture2D" uid="uid://c8qn18yw580ch" path="res://UI/Components/RateComponent/StarSprites/0071.png" id="7_4gltn"]
+[ext_resource type="Texture2D" uid="uid://m4qr1njs4trs" path="res://UI/Components/RateComponent/StarSprites/0081.png" id="8_lgwfd"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_65wro"]
+frames = 7
+frame_0/texture = ExtResource("2_b72y4")
+frame_0/duration = 0.2
+frame_1/texture = ExtResource("3_dtoku")
+frame_1/duration = 0.2
+frame_2/texture = ExtResource("4_gma41")
+frame_2/duration = 0.2
+frame_3/texture = ExtResource("5_wrrf0")
+frame_3/duration = 0.2
+frame_4/texture = ExtResource("6_fjamt")
+frame_4/duration = 0.2
+frame_5/texture = ExtResource("7_4gltn")
+frame_5/duration = 0.2
+frame_6/texture = ExtResource("8_lgwfd")
+frame_6/duration = 0.2
+
+[node name="RateComponent" type="Button"]
+custom_minimum_size = Vector2(300, 120)
+offset_right = 222.0
+offset_bottom = 92.0
+size_flags_horizontal = 8
+theme = ExtResource("1_y2la5")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "Rate & Review!"
+icon = SubResource("AnimatedTexture_65wro")
+icon_alignment = 1
+vertical_icon_alignment = 2
+expand_icon = true
+script = ExtResource("2_3ao0f")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
