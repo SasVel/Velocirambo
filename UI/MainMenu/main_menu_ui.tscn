@@ -17,7 +17,7 @@ font_size = 24
 font_size = 25
 
 [sub_resource type="LabelSettings" id="LabelSettings_424qg"]
-font_size = 41
+font_size = 50
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 0.596078)
 shadow_offset = Vector2(2, 2)
@@ -485,7 +485,7 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -279.0
+offset_left = -290.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "Wishlist Now!"
@@ -519,3 +519,4 @@ metadata/_custom_type_script = "uid://m20blgxgerfk"
 [connection signal="pressed" from="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/CreditsBtn" to="." method="_on_credits_btn_pressed"]
 [connection signal="pressed" from="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent" to="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent" method="_on_pressed"]
