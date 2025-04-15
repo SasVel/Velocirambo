@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=3 uid="uid://cfm6pfnksuvpv"]
 
-[ext_resource type="Script" path="res://Bosses/Anky/anky_spike_geranade.gd" id="1_y4t18"]
-[ext_resource type="Script" path="res://Bosses/Anky/life_timer.gd" id="2_r4x35"]
-[ext_resource type="Script" path="res://Components/Stats/stats.gd" id="3_8gokw"]
+[ext_resource type="Script" uid="uid://mnfiyiwwgx10" path="res://Bosses/Anky/anky_spike_geranade.gd" id="1_y4t18"]
+[ext_resource type="Script" uid="uid://cgb4nvjl54qcq" path="res://Bosses/Anky/life_timer.gd" id="2_r4x35"]
+[ext_resource type="Script" uid="uid://bptiyj8uso66d" path="res://Components/Stats/stats.gd" id="3_8gokw"]
 [ext_resource type="PackedScene" uid="uid://clperpfmg1asg" path="res://Models/Anky/AnkySpikeModel.fbx" id="4_othuj"]
 [ext_resource type="PackedScene" uid="uid://c1jajrrorycq6" path="res://Bosses/Components/BossHitbox/BossHitbox.tscn" id="5_5txf1"]
-[ext_resource type="Shader" path="res://Shaders/Field.gdshader" id="6_d0q0m"]
+[ext_resource type="Shader" uid="uid://cgkyjsyjdknub" path="res://Shaders/Field.gdshader" id="6_d0q0m"]
 [ext_resource type="PackedScene" uid="uid://bbgkxay0jv4uu" path="res://Components/Hurtbox.tscn" id="7_13f0j"]
 [ext_resource type="PackedScene" uid="uid://bqrbstacw2ada" path="res://Models/Anky/Geranade.fbx" id="8_s3r04"]
 

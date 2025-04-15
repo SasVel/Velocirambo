@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://oc7ku3atm1i6"]
 
-[ext_resource type="Script" path="res://GlobalScripts/ParticlesManger.gd" id="1_yeru5"]
+[ext_resource type="Script" uid="uid://cxj3eecmhdyqk" path="res://GlobalScripts/ParticlesManger.gd" id="1_yeru5"]
 
 [node name="ParticlesManager" type="Node3D"]
 script = ExtResource("1_yeru5")

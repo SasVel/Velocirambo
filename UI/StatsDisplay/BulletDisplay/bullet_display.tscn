@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://30rmawnd7jsv"]
 
-[ext_resource type="Script" path="res://UI/StatsDisplay/BulletDisplay/bullet_display.gd" id="2_a4aig"]
+[ext_resource type="Script" uid="uid://cteeiamhcfmj2" path="res://UI/StatsDisplay/BulletDisplay/bullet_display.gd" id="2_a4aig"]
 
 [node name="BulletDisplay" type="VBoxContainer"]
 texture_repeat = 2

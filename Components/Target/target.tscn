@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://0lhdiufyg5dr"]
 
-[ext_resource type="Script" path="res://Components/Target/target.gd" id="1_6r72c"]
+[ext_resource type="Script" uid="uid://j7keojd3h4a8" path="res://Components/Target/target.gd" id="1_6r72c"]
 [ext_resource type="Texture2D" uid="uid://by34gbkf23f31" path="res://Components/Target/target.png" id="1_wmf8o"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_oul3r"]

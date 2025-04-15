@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://bnjiabs2prmki"]
 
-[ext_resource type="Script" path="res://Components/Pickcups/health_pickup.gd" id="1_ejw8h"]
+[ext_resource type="Script" uid="uid://u1p0egmu7aj6" path="res://Components/Pickcups/health_pickup.gd" id="1_ejw8h"]
 [ext_resource type="PackedScene" uid="uid://bknvt8s1gqm3f" path="res://Models/Props/Beer/Beer.fbx" id="1_r7nf4"]
-[ext_resource type="Script" path="res://Components/Obstacles/ScaleTween.gd" id="2_80ewi"]
+[ext_resource type="Script" uid="uid://b6u2m5ix8v7yx" path="res://Components/Obstacles/ScaleTween.gd" id="2_80ewi"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ry7ma"]
 height = 2.46222

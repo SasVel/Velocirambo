@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cphkmluswqy8n"]
 
-[ext_resource type="Script" path="res://UI/Credits/credits.gd" id="1_rua13"]
-[ext_resource type="Script" path="res://UI/Components/button_anim_component.gd" id="2_updde"]
-[ext_resource type="Script" path="res://UI/Components/button_focus_component.gd" id="3_w1woj"]
+[ext_resource type="Script" uid="uid://d4fppje5nyun7" path="res://UI/Credits/credits.gd" id="1_rua13"]
+[ext_resource type="Script" uid="uid://c6fo8fmkrj3al" path="res://UI/Components/button_anim_component.gd" id="2_updde"]
+[ext_resource type="Script" uid="uid://m20blgxgerfk" path="res://UI/Components/button_focus_component.gd" id="3_w1woj"]
 
 [node name="Credits" type="MarginContainer"]
 anchors_preset = 15

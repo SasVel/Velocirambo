@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5den5e8nio6r"]
 
-[ext_resource type="Script" path="res://UI/StatsDisplay/GunModeDisplay/gun_mode_display.gd" id="1_2qbq8"]
+[ext_resource type="Script" uid="uid://bdqtpogi2ha7a" path="res://UI/StatsDisplay/GunModeDisplay/gun_mode_display.gd" id="1_2qbq8"]
 [ext_resource type="PackedScene" uid="uid://bcqbntgb12epa" path="res://UI/StatsDisplay/GunModeDisplay/bullet_rect.tscn" id="2_48b3n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihktd"]

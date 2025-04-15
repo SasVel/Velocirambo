@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://d0y2nmepdt2pj"]
 
-[ext_resource type="Script" path="res://UI/MainMenu/main_menu.gd" id="1_fu6vu"]
+[ext_resource type="Script" uid="uid://cpmq4ugc2vjqh" path="res://UI/MainMenu/main_menu.gd" id="1_fu6vu"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="1_levnm"]
 [ext_resource type="Environment" uid="uid://ciipvdp53q8qo" path="res://Misc/MainEnv.tres" id="1_qi8qv"]
 [ext_resource type="PackedScene" uid="uid://cufn7ji82vhtv" path="res://Models/Commando/RaptorCommando.glb" id="2_w0nex"]
-[ext_resource type="Shader" path="res://Shaders/Vignette.gdshader" id="5_4xcmi"]
+[ext_resource type="Shader" uid="uid://dja2vurgiek04" path="res://Shaders/Vignette.gdshader" id="5_4xcmi"]
 [ext_resource type="PackedScene" uid="uid://bngj3gvodihcr" path="res://UI/MainMenu/main_menu_ui.tscn" id="6_a64wx"]
 
 [sub_resource type="Environment" id="Environment_tvhjm"]
@@ -112,6 +112,9 @@ grow_vertical = 2
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="MainMenuUI" parent="UILayer" instance=ExtResource("6_a64wx")]
+
+[node name="RateComponent" parent="UILayer/MainMenuUI/MainMenuComponents/HBoxContainer/VBoxContainer" index="0"]
+visible = false
 
 [editable path="RaptorCommando"]
 [editable path="UILayer/MainMenuUI"]

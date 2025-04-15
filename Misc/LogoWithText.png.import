@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxo0dw4cfit5n"
-path="res://.godot/imported/android-chrome-512x512.png-3f2bf472cc5730be15de961da4f58a4b.ctex"
+uid="uid://bmu8dfb7yindu"
+path="res://.godot/imported/LogoWithText.png-9ae816356bf7f44d9d57dfc4046acdf3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Misc/android-chrome-512x512.png"
-dest_files=["res://.godot/imported/android-chrome-512x512.png-3f2bf472cc5730be15de961da4f58a4b.ctex"]
+source_file="res://Misc/LogoWithText.png"
+dest_files=["res://.godot/imported/LogoWithText.png-9ae816356bf7f44d9d57dfc4046acdf3.ctex"]
 
 [params]
 

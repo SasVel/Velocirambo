@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://bnfeymclffuqa"]
 
-[ext_resource type="Script" path="res://Components/Stats/stats.gd" id="1_4mrxp"]
-[ext_resource type="Script" path="res://Components/Obstacles/exploding_barrel.gd" id="1_apjid"]
+[ext_resource type="Script" uid="uid://bptiyj8uso66d" path="res://Components/Stats/stats.gd" id="1_4mrxp"]
+[ext_resource type="Script" uid="uid://yaxa3x8b8i17" path="res://Components/Obstacles/exploding_barrel.gd" id="1_apjid"]
 [ext_resource type="PackedScene" uid="uid://cxddoqtfpsq47" path="res://Models/Props/Barrel.fbx" id="2_pqtnd"]
 [ext_resource type="PackedScene" uid="uid://bbgkxay0jv4uu" path="res://Components/Hurtbox.tscn" id="3_cqyuq"]
-[ext_resource type="Script" path="res://Components/Obstacles/ScaleTween.gd" id="4_5q1c0"]
-[ext_resource type="Script" path="res://Components/ObjectHitbox.gd" id="6_uoaue"]
+[ext_resource type="Script" uid="uid://b6u2m5ix8v7yx" path="res://Components/Obstacles/ScaleTween.gd" id="4_5q1c0"]
+[ext_resource type="Script" uid="uid://ct2s428j5vmv0" path="res://Components/ObjectHitbox.gd" id="6_uoaue"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2poay"]
 height = 2.55093

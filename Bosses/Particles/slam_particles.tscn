@@ -28,6 +28,7 @@ emission_ring_axis = Vector3(5, 2, 5)
 emission_ring_height = 1.0
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 2.0
+emission_ring_cone_angle = 90.0
 direction = Vector3(1, 0, 1)
 spread = 180.0
 flatness = 0.9

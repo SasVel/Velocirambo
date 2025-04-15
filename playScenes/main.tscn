@@ -1,25 +1,25 @@
 [gd_scene load_steps=34 format=3 uid="uid://07oru7jy6ubh"]
 
-[ext_resource type="Script" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
+[ext_resource type="Script" uid="uid://cc4nm2dsvw2l4" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
 [ext_resource type="Environment" uid="uid://ciipvdp53q8qo" path="res://Misc/MainEnv.tres" id="2_ydlcm"]
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="3_0vutq"]
-[ext_resource type="Shader" path="res://Shaders/Pixelate.gdshader" id="3_4mu0w"]
+[ext_resource type="Shader" uid="uid://co3lk5adwog6e" path="res://Shaders/Pixelate.gdshader" id="3_4mu0w"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="3_hkrak"]
-[ext_resource type="Script" path="res://UI/crosshair.gd" id="4_etnxk"]
-[ext_resource type="Script" path="res://UI/pause.gd" id="4_f25ew"]
-[ext_resource type="Script" path="res://UI/StatsDisplay/health_bar.gd" id="5_iicw0"]
+[ext_resource type="Script" uid="uid://l103ek6jr7e8" path="res://UI/crosshair.gd" id="4_etnxk"]
+[ext_resource type="Script" uid="uid://cwxgwiugwealq" path="res://UI/pause.gd" id="4_f25ew"]
+[ext_resource type="Script" uid="uid://g75akvne7cg5" path="res://UI/StatsDisplay/health_bar.gd" id="5_iicw0"]
 [ext_resource type="PackedScene" uid="uid://30rmawnd7jsv" path="res://UI/StatsDisplay/BulletDisplay/bullet_display.tscn" id="6_6fr0m"]
 [ext_resource type="PackedScene" uid="uid://b5den5e8nio6r" path="res://UI/StatsDisplay/GunModeDisplay/gun_mode_display.tscn" id="7_mbfnf"]
-[ext_resource type="Script" path="res://UI/GameOverScreen/game_over_screen.gd" id="7_usdf4"]
+[ext_resource type="Script" uid="uid://dsk42he7floa1" path="res://UI/GameOverScreen/game_over_screen.gd" id="7_usdf4"]
 [ext_resource type="PackedScene" uid="uid://bxb5dwbcvtql4" path="res://Bosses/Anky/anky_boss.tscn" id="8_ktlfx"]
-[ext_resource type="Script" path="res://UI/Components/button_anim_component.gd" id="8_udlky"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="8_ygn4d"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="9_wwvj3"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_ab8gv"]
-[ext_resource type="Script" path="res://UI/Components/button_focus_component.gd" id="11_13ucq"]
+[ext_resource type="Script" uid="uid://c6fo8fmkrj3al" path="res://UI/Components/button_anim_component.gd" id="8_udlky"]
+[ext_resource type="Script" uid="uid://dwv857ro25cg8" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="8_ygn4d"]
+[ext_resource type="Script" uid="uid://btxudf6tl1hh0" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="9_wwvj3"]
+[ext_resource type="Script" uid="uid://bsauw34u4kx43" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_ab8gv"]
+[ext_resource type="Script" uid="uid://m20blgxgerfk" path="res://UI/Components/button_focus_component.gd" id="11_13ucq"]
 [ext_resource type="LabelSettings" uid="uid://w8lv2e054n28" path="res://UI/LabelSettings/big_bold_label_settings.tres" id="13_kwa7w"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="16_kn0se"]
+[ext_resource type="Script" uid="uid://bobmrotpxv64g" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="16_kn0se"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yjc10"]
 shader = ExtResource("3_4mu0w")
@@ -53,7 +53,7 @@ border_color = Color(1, 1, 1, 1)
 corner_radius_top_right = 13
 corner_radius_bottom_left = 13
 
-[sub_resource type="Resource" id="Resource_o45rv"]
+[sub_resource type="Resource" id="Resource_j754f"]
 script = ExtResource("10_ab8gv")
 amount = 200
 enabled = true
@@ -62,11 +62,11 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_17lf6"]
+[sub_resource type="Resource" id="Resource_c2t5g"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_o45rv")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_j754f")])
 
-[sub_resource type="Resource" id="Resource_u8klm"]
+[sub_resource type="Resource" id="Resource_c8lw2"]
 script = ExtResource("10_ab8gv")
 amount = 70
 enabled = true
@@ -75,7 +75,7 @@ custom_seed = 6
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_plchh"]
+[sub_resource type="Resource" id="Resource_fd2tm"]
 script = ExtResource("16_kn0se")
 position = Vector3(0, 0, 0)
 rotation = Vector3(180, 180, 0)
@@ -86,9 +86,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_rwlql"]
+[sub_resource type="Resource" id="Resource_vcfqp"]
 script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_u8klm"), SubResource("Resource_plchh")])
+stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_c8lw2"), SubResource("Resource_fd2tm")])
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_cmvfd")
@@ -305,10 +305,10 @@ fit_content = true
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
 [node name="ProtonScatter" parent="Arena/Crowd" index="0"]
-modifier_stack = SubResource("Resource_17lf6")
+modifier_stack = SubResource("Resource_c2t5g")
 
 [node name="ProtonScatter" parent="Arena/Props" index="1"]
-modifier_stack = SubResource("Resource_rwlql")
+modifier_stack = SubResource("Resource_vcfqp")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)

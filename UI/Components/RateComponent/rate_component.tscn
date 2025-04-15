@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://d0ifa53fa0md5"]
 
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="1_y2la5"]
-[ext_resource type="Script" path="res://UI/Components/RateComponent/rate_component.gd" id="2_3ao0f"]
+[ext_resource type="Script" uid="uid://m0g6nh7qav23" path="res://UI/Components/RateComponent/rate_component.gd" id="2_3ao0f"]
 [ext_resource type="Texture2D" uid="uid://djy6dkn4kequ" path="res://UI/Components/RateComponent/StarSprites/0001.png" id="2_b72y4"]
 [ext_resource type="Texture2D" uid="uid://dh2rk5680j5pr" path="res://UI/Components/RateComponent/StarSprites/0011.png" id="3_dtoku"]
 [ext_resource type="Texture2D" uid="uid://cg2qj3sr5xo5t" path="res://UI/Components/RateComponent/StarSprites/0021.png" id="4_gma41"]
@@ -33,8 +33,8 @@ offset_right = 222.0
 offset_bottom = 92.0
 size_flags_horizontal = 8
 theme = ExtResource("1_y2la5")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 30
 text = "Rate & Review!"

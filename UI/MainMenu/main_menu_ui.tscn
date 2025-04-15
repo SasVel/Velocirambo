@@ -1,18 +1,26 @@
-[gd_scene load_steps=10 format=3 uid="uid://bngj3gvodihcr"]
+[gd_scene load_steps=13 format=3 uid="uid://bngj3gvodihcr"]
 
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="1_i2a53"]
-[ext_resource type="Script" path="res://UI/MainMenu/menu.gd" id="2_feui3"]
+[ext_resource type="Script" uid="uid://dty2t3fr8586a" path="res://UI/MainMenu/menu.gd" id="2_feui3"]
 [ext_resource type="PackedScene" uid="uid://cphkmluswqy8n" path="res://UI/Credits/credits.tscn" id="3_r7ktl"]
-[ext_resource type="Script" path="res://UI/Settings/settings.gd" id="4_bjm2m"]
-[ext_resource type="Script" path="res://UI/Components/button_anim_component.gd" id="5_1ti4v"]
-[ext_resource type="Script" path="res://UI/Components/button_focus_component.gd" id="6_7jgpi"]
+[ext_resource type="Script" uid="uid://dxel6b4vx113r" path="res://UI/Settings/settings.gd" id="4_bjm2m"]
+[ext_resource type="Script" uid="uid://c6fo8fmkrj3al" path="res://UI/Components/button_anim_component.gd" id="5_1ti4v"]
+[ext_resource type="Script" uid="uid://m20blgxgerfk" path="res://UI/Components/button_focus_component.gd" id="6_7jgpi"]
 [ext_resource type="PackedScene" uid="uid://d0ifa53fa0md5" path="res://UI/Components/RateComponent/rate_component.tscn" id="7_mibcb"]
+[ext_resource type="Script" uid="uid://b7dw5f4l2jbuv" path="res://UI/MainMenu/wishlist_component.gd" id="8_oyel6"]
+[ext_resource type="Texture2D" uid="uid://rbaxlkme85nd" path="res://Misc/Icon.png" id="9_t8yxc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g24q3"]
 font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_4ss05"]
 font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_424qg"]
+font_size = 41
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.596078)
+shadow_offset = Vector2(2, 2)
 
 [node name="MainMenuUI" type="Control"]
 layout_mode = 3
@@ -437,6 +445,7 @@ size_flags_horizontal = 3
 alignment = 2
 
 [node name="RateComponent" parent="MainMenuComponents/HBoxContainer/VBoxContainer" instance=ExtResource("7_mibcb")]
+visible = false
 layout_mode = 2
 
 [node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/HBoxContainer/VBoxContainer/RateComponent"]
@@ -447,6 +456,52 @@ pivotPos = 2
 
 [node name="ButtonFocusComponent" type="Node" parent="MainMenuComponents/HBoxContainer/VBoxContainer/RateComponent"]
 script = ExtResource("6_7jgpi")
+
+[node name="WishlistComponent" type="Button" parent="MainMenuComponents/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("beerIcon")]
+custom_minimum_size = Vector2(400, 120)
+layout_mode = 2
+size_flags_horizontal = 8
+keep_pressed_outside = true
+script = ExtResource("8_oyel6")
+beerIcon = NodePath("BeerIcon")
+
+[node name="BeerIcon" type="TextureRect" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 132.0
+offset_bottom = 2.0
+grow_vertical = 2
+pivot_offset = Vector2(65, 65)
+texture = ExtResource("9_t8yxc")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -279.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Wishlist Now!"
+label_settings = SubResource("LabelSettings_424qg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent"]
+script = ExtResource("5_1ti4v")
+time = 0.15
+size = Vector2(1.1, 1.1)
+metadata/_custom_type_script = "uid://c6fo8fmkrj3al"
+
+[node name="ButtonFocusComponent" type="Node" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent"]
+script = ExtResource("6_7jgpi")
+metadata/_custom_type_script = "uid://m20blgxgerfk"
 
 [connection signal="value_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/Mouse/SensitivitySlider" to="Settings" method="_on_sensitivity_slider_value_changed"]
 [connection signal="toggled" from="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/UsingController/UsingControllerBtn" to="Settings" method="_on_using_controller_btn_toggled"]

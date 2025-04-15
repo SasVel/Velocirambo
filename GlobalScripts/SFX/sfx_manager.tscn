@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://j14c17hjdrw4"]
 
-[ext_resource type="Script" path="res://GlobalScripts/SFX/sfx_manager.gd" id="1_fcx7w"]
+[ext_resource type="Script" uid="uid://ls586g1i1l00" path="res://GlobalScripts/SFX/sfx_manager.gd" id="1_fcx7w"]
 [ext_resource type="AudioStream" uid="uid://b6umf8d3v6d40" path="res://MusicAndSounds/Sounds/Gunshot.mp3" id="2_4g6vg"]
 [ext_resource type="AudioStream" uid="uid://vo8le6ba0jq1" path="res://MusicAndSounds/Sounds/Raptor/Run/player_fs_run_02.mp3" id="3_q1tik"]
 [ext_resource type="AudioStream" uid="uid://bombdpemao2bt" path="res://MusicAndSounds/Sounds/Raptor/Run/player_fs_run_03.mp3" id="4_35hkk"]

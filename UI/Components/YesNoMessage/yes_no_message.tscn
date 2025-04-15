@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://cfqrlcjvh1ro7"]
 
-[ext_resource type="Script" path="res://UI/Components/YesNoMessage/yes_no_message.gd" id="1_3brog"]
+[ext_resource type="Script" uid="uid://dwc301tq84aut" path="res://UI/Components/YesNoMessage/yes_no_message.gd" id="1_3brog"]
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="1_xwfyf"]
 [ext_resource type="LabelSettings" uid="uid://w8lv2e054n28" path="res://UI/LabelSettings/big_bold_label_settings.tres" id="3_s60pc"]
-[ext_resource type="Script" path="res://UI/Components/button_anim_component.gd" id="4_wd8ye"]
-[ext_resource type="Script" path="res://UI/Components/button_focus_component.gd" id="5_vj2ep"]
+[ext_resource type="Script" uid="uid://c6fo8fmkrj3al" path="res://UI/Components/button_anim_component.gd" id="4_wd8ye"]
+[ext_resource type="Script" uid="uid://m20blgxgerfk" path="res://UI/Components/button_focus_component.gd" id="5_vj2ep"]
 
 [node name="YesNoMessage" type="Control"]
 layout_mode = 3

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bchtlllt7j06x"]
 
-[ext_resource type="Script" path="res://Bosses/Components/BossHealthBar/boss_health_bar.gd" id="1_6s5dp"]
+[ext_resource type="Script" uid="uid://c4lsqj4tj7h7r" path="res://Bosses/Components/BossHealthBar/boss_health_bar.gd" id="1_6s5dp"]
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="1_rmpot"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ev4s7"]

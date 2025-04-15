@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c1jajrrorycq6"]
 
-[ext_resource type="Script" path="res://Bosses/Components/BossHitbox/boss_hitbox.gd" id="1_ekduo"]
+[ext_resource type="Script" uid="uid://bbqrqess4w3dp" path="res://Bosses/Components/BossHitbox/boss_hitbox.gd" id="1_ekduo"]
 
 [node name="BossHitbox" type="Area3D"]
 collision_layer = 0

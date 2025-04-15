@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ds3gwqm7p52hs"]
 
-[ext_resource type="Script" path="res://Bosses/Particles/OneShotParticles.gd" id="1_jyf2t"]
+[ext_resource type="Script" uid="uid://cuovn4ef0w0sl" path="res://Bosses/Particles/OneShotParticles.gd" id="1_jyf2t"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fuad5"]
 particle_flag_damping_as_friction = true
