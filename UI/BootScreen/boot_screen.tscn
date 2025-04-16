@@ -227,7 +227,7 @@ grow_vertical = 2
 color = Color(0.0579085, 0, 0.435216, 1)
 script = ExtResource("1_sqw01")
 mainMenuScene = ExtResource("2_aveax")
-logoSprites = NodePath("LogoSprites")
+logoSprites = NodePath("LogoControl/LogoSprites")
 
 [node name="Vignette" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_kpsk5")
@@ -238,11 +238,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LogoSprites" type="AnimatedSprite2D" parent="."]
-position = Vector2(859, 480)
+[node name="LogoControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -0.5
+offset_right = 0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LogoSprites" type="AnimatedSprite2D" parent="LogoControl"]
 scale = Vector2(0.887037, 0.887037)
 sprite_frames = SubResource("SpriteFrames_b4tr0")
 frame = 22
 frame_progress = 0.0591245
 
-[connection signal="animation_finished" from="LogoSprites" to="." method="_on_logo_sprites_animation_finished"]
+[connection signal="animation_finished" from="LogoControl/LogoSprites" to="." method="_on_logo_sprites_animation_finished"]

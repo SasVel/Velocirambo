@@ -113,8 +113,5 @@ grow_vertical = 2
 
 [node name="MainMenuUI" parent="UILayer" instance=ExtResource("6_a64wx")]
 
-[node name="RateComponent" parent="UILayer/MainMenuUI/MainMenuComponents/HBoxContainer/VBoxContainer" index="0"]
-visible = false
-
 [editable path="RaptorCommando"]
 [editable path="UILayer/MainMenuUI"]

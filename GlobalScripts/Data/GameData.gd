@@ -24,8 +24,8 @@ class_name GameData
 @export_range(1, 40) var crossLength : float = 20.0
 #endregion
 #region Volume
-@export var mainVol : float
-@export var musicVol : float
-@export var sfxVol : float
+@export var mainVol : float = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+@export var musicVol : float = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
+@export var sfxVol : float = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
 #endregion
 #endregion
