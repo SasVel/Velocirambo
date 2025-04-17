@@ -33,6 +33,7 @@ Spawn="*res://GlobalScripts/spawn_manager.tscn"
 SceneManager="*res://GlobalScripts/SceneManager.gd"
 UI="*res://GlobalScripts/UIHelper.gd"
 Controller="*res://GlobalScripts/ControllerManager.gd"
+SteamStuff="*res://GlobalScripts/SteamManager.gd"
 
 [display]
 
