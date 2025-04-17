@@ -1,10 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://bngj3gvodihcr"]
+[gd_scene load_steps=25 format=3 uid="uid://bngj3gvodihcr"]
 
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="1_i2a53"]
-[ext_resource type="Script" uid="uid://dty2t3fr8586a" path="res://UI/MainMenu/menu.gd" id="2_feui3"]
+[ext_resource type="Script" uid="uid://byw4sjbaek0p6" path="res://UI/MainMenu/main_menu_ui.gd" id="2_3377f"]
 [ext_resource type="PackedScene" uid="uid://cphkmluswqy8n" path="res://UI/Credits/credits.tscn" id="3_r7ktl"]
 [ext_resource type="Shader" uid="uid://cgkyjsyjdknub" path="res://Shaders/Field.gdshader" id="4_3377f"]
-[ext_resource type="Script" uid="uid://dxel6b4vx113r" path="res://UI/Settings/settings.gd" id="4_bjm2m"]
 [ext_resource type="Script" uid="uid://c6fo8fmkrj3al" path="res://UI/Components/button_anim_component.gd" id="5_1ti4v"]
 [ext_resource type="Shader" uid="uid://des3cbf7owwnv" path="res://Shaders/InvertColor.gdshader" id="5_4pnmc"]
 [ext_resource type="Script" uid="uid://m20blgxgerfk" path="res://UI/Components/button_focus_component.gd" id="6_7jgpi"]
@@ -18,6 +17,7 @@
 [ext_resource type="Material" uid="uid://xuxr23kk54f5" path="res://Models/Materials/BeerTexture.tres" id="10_p7xp1"]
 [ext_resource type="Script" uid="uid://bxeni76na4fbm" path="res://Components/MaterialPreloader/material_preloader.gd" id="10_t8yxc"]
 [ext_resource type="Material" uid="uid://b76duvumet37p" path="res://Models/Materials/ColorMat.tres" id="11_it6br"]
+[ext_resource type="PackedScene" uid="uid://buwl6jyd0kvgw" path="res://UI/Settings/settings.tscn" id="13_4pnmc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qvowp"]
 render_priority = 0
@@ -88,12 +88,6 @@ shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_g24q3"]
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_4ss05"]
-font_size = 25
-
 [sub_resource type="LabelSettings" id="LabelSettings_424qg"]
 font_size = 50
 shadow_size = 5
@@ -108,7 +102,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_i2a53")
-script = ExtResource("2_feui3")
+script = ExtResource("2_3377f")
 
 [node name="MaterialPreloader" type="Node" parent="."]
 script = ExtResource("10_t8yxc")
@@ -130,308 +124,9 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="Settings" type="Control" parent="."]
+[node name="Settings" parent="." instance=ExtResource("13_4pnmc")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-script = ExtResource("4_bjm2m")
-
-[node name="MarginContainer" type="MarginContainer" parent="Settings"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -328.0
-offset_top = -219.0
-offset_right = 328.0
-offset_bottom = 219.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SettingsContainer" type="VBoxContainer" parent="Settings/MarginContainer"]
-layout_mode = 2
-
-[node name="TabContainer" type="TabContainer" parent="Settings/MarginContainer/SettingsContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-current_tab = 0
-
-[node name="Controls" type="MarginContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer"]
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="Container" type="VBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls"]
-layout_mode = 2
-
-[node name="Mouse" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="Label" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/Mouse"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Look Sensitivity"
-label_settings = SubResource("LabelSettings_g24q3")
-
-[node name="SensitivitySlider" type="HSlider" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/Mouse"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-max_value = 5.0
-step = 0.1
-value = 3.0
-
-[node name="ControllerLabel" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
-layout_mode = 2
-text = "Controller"
-label_settings = SubResource("LabelSettings_4ss05")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UsingController" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="UsingControllerLabel" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/UsingController"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Using Controller"
-label_settings = SubResource("LabelSettings_g24q3")
-
-[node name="UsingControllerBtn" type="CheckButton" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/UsingController"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="Vibration" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="ControllerVibrationLabel" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/Vibration"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Controller Vibration"
-label_settings = SubResource("LabelSettings_g24q3")
-
-[node name="ControllerVibrationBtn" type="CheckButton" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/Vibration"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="Video" type="MarginContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 1
-
-[node name="Container" type="VBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video"]
-layout_mode = 2
-
-[node name="Crosshair" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
-layout_mode = 2
-text = "Crosshair"
-label_settings = SubResource("LabelSettings_4ss05")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Color" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="Label" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Color"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Color"
-label_settings = SubResource("LabelSettings_g24q3")
-
-[node name="ColorPickerButton" type="ColorPickerButton" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Color"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="InvertColor" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="Label" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/InvertColor"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Inverse Color"
-label_settings = SubResource("LabelSettings_g24q3")
-
-[node name="InverseColorCheck" type="CheckBox" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/InvertColor"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 2
-
-[node name="Opacity" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="Label" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Opacity"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Opacity"
-label_settings = SubResource("LabelSettings_g24q3")
-
-[node name="OpacitySlider" type="HSlider" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Opacity"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.1
-value = 1.0
-
-[node name="Width" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="WidthLabel" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Width"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Width"
-label_settings = SubResource("LabelSettings_g24q3")
-
-[node name="WidthSlider" type="HSlider" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Width"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-min_value = 1.0
-max_value = 10.0
-step = 0.1
-value = 1.0
-
-[node name="Length" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="LengthLabel" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Length"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Length"
-label_settings = SubResource("LabelSettings_g24q3")
-
-[node name="LengthSlider" type="HSlider" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Length"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-min_value = 1.0
-max_value = 40.0
-step = 0.1
-value = 1.0
-
-[node name="Audio" type="MarginContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer"]
-visible = false
-layout_mode = 2
-metadata/_tab_index = 2
-
-[node name="Container" type="VBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Audio"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
-layout_mode = 2
-text = "Volume"
-label_settings = SubResource("LabelSettings_4ss05")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MainVolContainer" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="MainLabel" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MainVolContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Main"
-label_settings = SubResource("LabelSettings_g24q3")
-
-[node name="MainVolSlider" type="HSlider" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MainVolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.01
-
-[node name="MusicVolContainer" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="MusicLabel" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Music"
-label_settings = SubResource("LabelSettings_g24q3")
-
-[node name="MusicVolSlider" type="HSlider" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.01
-
-[node name="SfxVolContainer" type="HBoxContainer" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="SfxLabel" type="Label" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-text = "Sound Effects"
-label_settings = SubResource("LabelSettings_g24q3")
-
-[node name="SfxVolSlider" type="HSlider" parent="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.01
-
-[node name="BackBtn" type="Button" parent="Settings/MarginContainer/SettingsContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-text = "Back"
-
-[node name="ButtonAnimComponent" type="Node" parent="Settings/MarginContainer/SettingsContainer/BackBtn"]
-script = ExtResource("5_1ti4v")
-time = 0.2
-
-[node name="ButtonFocusComponent" type="Node" parent="Settings/MarginContainer/SettingsContainer/BackBtn"]
-script = ExtResource("6_7jgpi")
 
 [node name="MainMenuComponents" type="MarginContainer" parent="."]
 unique_name_in_owner = true
@@ -598,18 +293,6 @@ metadata/_custom_type_script = "uid://c6fo8fmkrj3al"
 script = ExtResource("6_7jgpi")
 metadata/_custom_type_script = "uid://m20blgxgerfk"
 
-[connection signal="value_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/Mouse/SensitivitySlider" to="Settings" method="_on_sensitivity_slider_value_changed"]
-[connection signal="toggled" from="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/UsingController/UsingControllerBtn" to="Settings" method="_on_using_controller_btn_toggled"]
-[connection signal="toggled" from="Settings/MarginContainer/SettingsContainer/TabContainer/Controls/Container/Vibration/ControllerVibrationBtn" to="Settings" method="_on_controller_vibration_btn_toggled"]
-[connection signal="color_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Color/ColorPickerButton" to="Settings" method="_on_color_picker_button_color_changed"]
-[connection signal="toggled" from="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/InvertColor/InverseColorCheck" to="Settings" method="_on_inverse_color_check_toggled"]
-[connection signal="value_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Opacity/OpacitySlider" to="Settings" method="_on_opacity_slider_value_changed"]
-[connection signal="value_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Width/WidthSlider" to="Settings" method="_on_width_slider_value_changed"]
-[connection signal="value_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Video/Container/Length/LengthSlider" to="Settings" method="_on_length_slider_value_changed"]
-[connection signal="value_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MainVolContainer/MainVolSlider" to="Settings" method="_on_main_vol_slider_value_changed"]
-[connection signal="value_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer/MusicVolSlider" to="Settings" method="_on_music_vol_slider_value_changed"]
-[connection signal="value_changed" from="Settings/MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer/SfxVolSlider" to="Settings" method="_on_sfx_vol_slider_value_changed"]
-[connection signal="pressed" from="Settings/MarginContainer/SettingsContainer/BackBtn" to="Settings" method="_on_back_btn_pressed"]
 [connection signal="pressed" from="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/NewGameBtn" to="." method="_on_new_game_btn_pressed"]
 [connection signal="pressed" from="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/CreditsBtn" to="." method="_on_credits_btn_pressed"]

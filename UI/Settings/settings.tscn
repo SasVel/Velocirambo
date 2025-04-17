@@ -1,0 +1,319 @@
+[gd_scene load_steps=7 format=3 uid="uid://buwl6jyd0kvgw"]
+
+[ext_resource type="Script" uid="uid://dxel6b4vx113r" path="res://UI/Settings/settings.gd" id="1_6ukun"]
+[ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="1_eeom4"]
+[ext_resource type="Script" uid="uid://c6fo8fmkrj3al" path="res://UI/Components/button_anim_component.gd" id="2_yuh4y"]
+[ext_resource type="Script" uid="uid://m20blgxgerfk" path="res://UI/Components/button_focus_component.gd" id="3_eeom4"]
+[ext_resource type="LabelSettings" uid="uid://w8lv2e054n28" path="res://UI/LabelSettings/big_bold_label_settings.tres" id="3_hfoeg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ss05"]
+font_size = 30
+shadow_color = Color(0, 0, 0, 0.639216)
+shadow_offset = Vector2(2, 2)
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("1_eeom4")
+script = ExtResource("1_6ukun")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -328.0
+offset_top = -219.0
+offset_right = 328.0
+offset_bottom = 219.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/SettingsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 2
+
+[node name="Controls" type="MarginContainer" parent="MarginContainer/SettingsContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Controls"]
+layout_mode = 2
+
+[node name="Mouse" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="LookSensitivityLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container/Mouse"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Look Sensitivity"
+label_settings = ExtResource("3_hfoeg")
+
+[node name="SensitivitySlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container/Mouse"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+max_value = 5.0
+step = 0.1
+value = 3.0
+
+[node name="ControllerLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
+layout_mode = 2
+text = "Controller"
+label_settings = SubResource("LabelSettings_4ss05")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UsingController" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="UsingControllerLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container/UsingController"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Using Controller"
+label_settings = ExtResource("3_hfoeg")
+
+[node name="UsingControllerBtn" type="CheckButton" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container/UsingController"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Vibration" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ControllerVibrationLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container/Vibration"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Controller Vibration"
+label_settings = ExtResource("3_hfoeg")
+
+[node name="ControllerVibrationBtn" type="CheckButton" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container/Vibration"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Video" type="MarginContainer" parent="MarginContainer/SettingsContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Video"]
+layout_mode = 2
+
+[node name="Crosshair" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+layout_mode = 2
+text = "Crosshair"
+label_settings = SubResource("LabelSettings_4ss05")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Color" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container/Color"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Color"
+label_settings = ExtResource("3_hfoeg")
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container/Color"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="InvertColor" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container/InvertColor"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Inverse Color"
+label_settings = ExtResource("3_hfoeg")
+
+[node name="InverseColorCheck" type="CheckBox" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container/InvertColor"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="Opacity" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container/Opacity"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Opacity"
+label_settings = ExtResource("3_hfoeg")
+
+[node name="OpacitySlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container/Opacity"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="Width" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="WidthLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container/Width"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Width"
+label_settings = ExtResource("3_hfoeg")
+
+[node name="WidthSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container/Width"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 10.0
+step = 0.1
+value = 1.0
+
+[node name="Length" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="LengthLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container/Length"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Length"
+label_settings = ExtResource("3_hfoeg")
+
+[node name="LengthSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container/Length"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 40.0
+step = 0.1
+value = 1.0
+
+[node name="Audio" type="MarginContainer" parent="MarginContainer/SettingsContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Audio"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
+layout_mode = 2
+text = "Volume"
+label_settings = SubResource("LabelSettings_4ss05")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainVolContainer" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="MainLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container/MainVolContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Main"
+label_settings = ExtResource("3_hfoeg")
+
+[node name="MainVolSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container/MainVolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+
+[node name="MusicVolContainer" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="MusicLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Music"
+label_settings = ExtResource("3_hfoeg")
+
+[node name="MusicVolSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+
+[node name="SfxVolContainer" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="SfxLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Sound Effects"
+label_settings = ExtResource("3_hfoeg")
+
+[node name="SfxVolSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+
+[node name="BackBtn" type="Button" parent="MarginContainer/SettingsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Back"
+
+[node name="ButtonAnimComponent" type="Node" parent="MarginContainer/SettingsContainer/BackBtn"]
+script = ExtResource("2_yuh4y")
+time = 0.2
+
+[node name="ButtonFocusComponent" type="Node" parent="MarginContainer/SettingsContainer/BackBtn"]
+script = ExtResource("3_eeom4")
+
+[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/Controls/Container/Mouse/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="toggled" from="MarginContainer/SettingsContainer/TabContainer/Controls/Container/UsingController/UsingControllerBtn" to="." method="_on_using_controller_btn_toggled"]
+[connection signal="toggled" from="MarginContainer/SettingsContainer/TabContainer/Controls/Container/Vibration/ControllerVibrationBtn" to="." method="_on_controller_vibration_btn_toggled"]
+[connection signal="color_changed" from="MarginContainer/SettingsContainer/TabContainer/Video/Container/Color/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="toggled" from="MarginContainer/SettingsContainer/TabContainer/Video/Container/InvertColor/InverseColorCheck" to="." method="_on_inverse_color_check_toggled"]
+[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/Video/Container/Opacity/OpacitySlider" to="." method="_on_opacity_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/Video/Container/Width/WidthSlider" to="." method="_on_width_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/Video/Container/Length/LengthSlider" to="." method="_on_length_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/Audio/Container/MainVolContainer/MainVolSlider" to="." method="_on_main_vol_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer/MusicVolSlider" to="." method="_on_music_vol_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer/SfxVolSlider" to="." method="_on_sfx_vol_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/SettingsContainer/BackBtn" to="." method="_on_back_btn_pressed"]

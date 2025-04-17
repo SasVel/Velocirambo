@@ -5,11 +5,11 @@ extends MenuComponent
 signal game_started
 
 func _ready():
-	%Settings.closed.connect(reset_main_menu)
-	%Credits.closed.connect(reset_main_menu)
+	%Settings.closed.connect(reset)
+	%Credits.closed.connect(reset)
 	
 	focusedComponent = %NewGameBtn
-	reset_main_menu(self)
+	reset(self)
 	
 	if !GameInfo.data.askedUsingControllerMsg:
 		GameInfo.data.usingController = await UI.show_yes_no_msg(self, "Are you using a controller? \n (Can always be changed in Settings)")
@@ -21,11 +21,11 @@ func _input(event):
 	if GameInfo.data.usingController: Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	else: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-func close_main_menu():
+func close():
 	%DarkenRect.visible = true
 	%MainMenuComponents.visible = false
 
-func reset_main_menu(_component):
+func reset(_component):
 	%DarkenRect.visible = false
 	%Settings.visible = false
 	%Credits.visible = false
@@ -37,11 +37,12 @@ func _on_new_game_btn_pressed() -> void:
 	game_started.emit()
 
 func _on_settings_btn_pressed() -> void:
-	close_main_menu()
+	close()
 	%Settings.activate()
+	%Settings.closed.connect(reset)
 
 func _on_credits_btn_pressed() -> void:
-	close_main_menu()
+	close()
 	%Credits.activate()
 
 func _on_quit_btn_pressed() -> void:

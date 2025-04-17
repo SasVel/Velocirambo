@@ -10,13 +10,12 @@ func activate():
 	config_vol_sliders()
 
 func deactivate():
-	self.visible = false
 	GameInfo.save_data()
+	self.visible = false
 	closed.emit(self)
 
 func config_video_settings():
 	%SensitivitySlider.value = GameInfo.data.cameraSensitivity
-	
 	%ColorPickerButton.color = GameInfo.data.crossColor
 	%OpacitySlider.value = GameInfo.data.crossOpacity
 	%WidthSlider.value = GameInfo.data.crossWidth

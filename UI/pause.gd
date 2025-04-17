@@ -42,3 +42,16 @@ func _on_main_screen_btn_pressed():
 func _on_quit_btn_pressed():
 	if (!await UI.show_yes_no_msg(self, "Current progress will be lost.")): return
 	get_tree().quit()
+
+
+func _on_settings_btn_pressed():
+	close()
+	%Settings.activate()
+	%Settings.closed.connect(reset)
+
+func close():
+	%ButtonsContainer.visible = false
+
+func reset(_component):
+	%ButtonsContainer.visible = true
+	activate()

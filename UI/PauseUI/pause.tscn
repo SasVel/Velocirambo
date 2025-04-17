@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm2vu5yqoqmtq"]
+[gd_scene load_steps=6 format=3 uid="uid://cm2vu5yqoqmtq"]
 
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="1_f3fyk"]
 [ext_resource type="Script" uid="uid://cwxgwiugwealq" path="res://UI/pause.gd" id="2_ndwgb"]
 [ext_resource type="Script" uid="uid://c6fo8fmkrj3al" path="res://UI/Components/button_anim_component.gd" id="3_pnqmj"]
 [ext_resource type="Script" uid="uid://m20blgxgerfk" path="res://UI/Components/button_focus_component.gd" id="4_v0e16"]
+[ext_resource type="PackedScene" uid="uid://buwl6jyd0kvgw" path="res://UI/Settings/settings.tscn" id="5_ndwgb"]
 
 [node name="Pause" type="ColorRect"]
 process_mode = 3
@@ -16,7 +17,8 @@ theme = ExtResource("1_f3fyk")
 color = Color(0.482353, 0.482353, 0.482353, 0.121569)
 script = ExtResource("2_ndwgb")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -24,44 +26,59 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -132.0
-offset_top = -163.0
+offset_top = -76.0
 offset_right = 132.0
-offset_bottom = 163.0
+offset_bottom = 76.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="ContinueBtn" type="Button" parent="VBoxContainer"]
+[node name="ContinueBtn" type="Button" parent="ButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Continue"
 
-[node name="ButtonAnimComponent" type="Node" parent="VBoxContainer/ContinueBtn"]
+[node name="ButtonAnimComponent" type="Node" parent="ButtonsContainer/ContinueBtn"]
 script = ExtResource("3_pnqmj")
 
-[node name="ButtonFocusComponent" type="Node" parent="VBoxContainer/ContinueBtn"]
+[node name="ButtonFocusComponent" type="Node" parent="ButtonsContainer/ContinueBtn"]
 script = ExtResource("4_v0e16")
 
-[node name="MainMenuBtn" type="Button" parent="VBoxContainer"]
+[node name="SettingsBtn" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="ButtonAnimComponent" type="Node" parent="ButtonsContainer/SettingsBtn"]
+script = ExtResource("3_pnqmj")
+
+[node name="ButtonFocusComponent" type="Node" parent="ButtonsContainer/SettingsBtn"]
+script = ExtResource("4_v0e16")
+
+[node name="MainMenuBtn" type="Button" parent="ButtonsContainer"]
 layout_mode = 2
 text = "Main Menu"
 
-[node name="ButtonAnimComponent" type="Node" parent="VBoxContainer/MainMenuBtn"]
+[node name="ButtonAnimComponent" type="Node" parent="ButtonsContainer/MainMenuBtn"]
 script = ExtResource("3_pnqmj")
 
-[node name="ButtonFocusComponent" type="Node" parent="VBoxContainer/MainMenuBtn"]
+[node name="ButtonFocusComponent" type="Node" parent="ButtonsContainer/MainMenuBtn"]
 script = ExtResource("4_v0e16")
 
-[node name="QuitBtn" type="Button" parent="VBoxContainer"]
+[node name="QuitBtn" type="Button" parent="ButtonsContainer"]
 layout_mode = 2
 text = "Quit"
 
-[node name="ButtonAnimComponent" type="Node" parent="VBoxContainer/QuitBtn"]
+[node name="ButtonAnimComponent" type="Node" parent="ButtonsContainer/QuitBtn"]
 script = ExtResource("3_pnqmj")
 
-[node name="ButtonFocusComponent" type="Node" parent="VBoxContainer/QuitBtn"]
+[node name="ButtonFocusComponent" type="Node" parent="ButtonsContainer/QuitBtn"]
 script = ExtResource("4_v0e16")
 
-[connection signal="pressed" from="VBoxContainer/ContinueBtn" to="." method="_on_continue_btn_pressed"]
-[connection signal="pressed" from="VBoxContainer/MainMenuBtn" to="." method="_on_main_screen_btn_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
+[node name="Settings" parent="." instance=ExtResource("5_ndwgb")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[connection signal="pressed" from="ButtonsContainer/ContinueBtn" to="." method="_on_continue_btn_pressed"]
+[connection signal="pressed" from="ButtonsContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="ButtonsContainer/MainMenuBtn" to="." method="_on_main_screen_btn_pressed"]
+[connection signal="pressed" from="ButtonsContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]

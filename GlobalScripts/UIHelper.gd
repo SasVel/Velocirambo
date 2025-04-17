@@ -5,12 +5,14 @@ class_name UIHelper
 ##be deleted after their use is over.
 enum Elements {
 	YesNoMessage,
-	AnnouncePopup
+	AnnouncePopup,
+	Settings
 }
 
 var elementsArr = [
 	preload("res://UI/Components/YesNoMessage/yes_no_message.tscn"),
-	preload("res://UI/AnnounceLabelUI/announce_label_ui.tscn")
+	preload("res://UI/AnnounceLabelUI/announce_label_ui.tscn"),
+	preload("res://UI/Settings/settings.tscn")
 ]
 
 func show_yes_no_msg(caller : Control, message : String = "Are you sure?"):

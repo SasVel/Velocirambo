@@ -42,6 +42,7 @@ text = "Are you sure?"
 label_settings = ExtResource("3_s60pc")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
