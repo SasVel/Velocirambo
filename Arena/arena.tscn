@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://bngold1yrgekl"]
+[gd_scene load_steps=56 format=4 uid="uid://bngold1yrgekl"]
 
 [ext_resource type="Material" uid="uid://dla2m3vxn4hxl" path="res://Models/Materials/GroundMat.tres" id="1_c2ipf"]
 [ext_resource type="Material" uid="uid://sd2u46h2r7aw" path="res://Models/Materials/InnerWall.tres" id="2_dgw1y"]
@@ -6,16 +6,18 @@
 [ext_resource type="Material" uid="uid://cj343u35acjat" path="res://Models/Materials/Gate.tres" id="4_60uoq"]
 [ext_resource type="Material" uid="uid://bn7sjso4b3xrx" path="res://Models/Materials/Stairs.tres" id="5_xp281"]
 [ext_resource type="Material" uid="uid://ioxu0hp2d2fy" path="res://Models/Materials/OuterWall.tres" id="6_xlgyc"]
-[ext_resource type="Script" uid="uid://d27kltwvfmjao" path="res://addons/proton_scatter/src/scatter.gd" id="7_hfvfd"]
-[ext_resource type="Script" uid="uid://dwv857ro25cg8" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="8_bxmh1"]
-[ext_resource type="Script" uid="uid://btxudf6tl1hh0" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="9_l23ko"]
-[ext_resource type="Script" uid="uid://bu578fwk1favv" path="res://addons/proton_scatter/src/scatter_item.gd" id="10_xlcme"]
-[ext_resource type="Script" uid="uid://bsauw34u4kx43" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_xtkoc"]
-[ext_resource type="Script" uid="uid://bjakuub5a42i4" path="res://addons/proton_scatter/src/scatter_shape.gd" id="11_uhtoy"]
+[ext_resource type="Script" uid="uid://ddoyaq7slm463" path="res://addons/proton_scatter/src/scatter.gd" id="7_hfvfd"]
+[ext_resource type="Script" uid="uid://duu6afwn5rqpc" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="8_bxmh1"]
+[ext_resource type="Script" uid="uid://biyxdamcxg0ad" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="9_l23ko"]
+[ext_resource type="Script" uid="uid://d30hrf4w7jwsp" path="res://addons/proton_scatter/src/scatter_item.gd" id="10_xlcme"]
+[ext_resource type="Script" uid="uid://cosom40tvaam8" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_xtkoc"]
+[ext_resource type="Script" uid="uid://cn15dibgqbke8" path="res://addons/proton_scatter/src/scatter_shape.gd" id="11_uhtoy"]
+[ext_resource type="Script" uid="uid://cx5o78uvlsxhc" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="12_yopbr"]
+[ext_resource type="Script" uid="uid://1wjr7ou8jcuu" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="14_ugxgx"]
 [ext_resource type="Script" uid="uid://cpd3rj1a4v05v" path="res://Arena/confetti.gd" id="15_bcewd"]
 [ext_resource type="PackedScene" uid="uid://by4cfs7s0nxir" path="res://Arena/Particles/confetti_particles.tscn" id="16_vixfe"]
 [ext_resource type="PackedScene" uid="uid://bnfeymclffuqa" path="res://Components/Obstacles/exploding_barrel.tscn" id="17_tkhsq"]
-[ext_resource type="Script" uid="uid://bobmrotpxv64g" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="18_ip6oq"]
+[ext_resource type="Script" uid="uid://bu2bs35t7u1ja" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="18_ip6oq"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1a26s"]
 _surfaces = [{
@@ -504,20 +506,43 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gxxsm")
 
-[sub_resource type="Resource" id="Resource_smyjd"]
+[sub_resource type="Resource" id="Resource_dwce5"]
 script = ExtResource("10_xtkoc")
-amount = 200
+amount = 500
 enabled = true
 override_global_seed = true
 custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_gom4c"]
+[sub_resource type="Resource" id="Resource_rm6ha"]
 script = ExtResource("8_bxmh1")
-stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_smyjd")])
+stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_dwce5")])
 
 [sub_resource type="Resource" id="Resource_ugxgx"]
+script = ExtResource("12_yopbr")
+radius = 48.8489
+
+[sub_resource type="Resource" id="Resource_7y1pb"]
+script = ExtResource("12_yopbr")
+radius = 37.9745
+metadata/_custom_type_script = "uid://cx5o78uvlsxhc"
+
+[sub_resource type="Resource" id="Resource_h82xl"]
+script = ExtResource("12_yopbr")
+radius = 39.9723
+metadata/_custom_type_script = "uid://cx5o78uvlsxhc"
+
+[sub_resource type="Resource" id="Resource_504y6"]
+script = ExtResource("14_ugxgx")
+size = Vector3(109.136, 23.5164, 114.482)
+metadata/_custom_type_script = "uid://1wjr7ou8jcuu"
+
+[sub_resource type="Resource" id="Resource_k0f77"]
+script = ExtResource("14_ugxgx")
+size = Vector3(109.136, 61.754, 114.482)
+
+[sub_resource type="Resource" id="Resource_lk61r"]
 script = ExtResource("10_xtkoc")
 amount = 70
 enabled = true
@@ -526,7 +551,7 @@ custom_seed = 6
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_dwce5"]
+[sub_resource type="Resource" id="Resource_iq5b5"]
 script = ExtResource("18_ip6oq")
 position = Vector3(0, 0, 0)
 rotation = Vector3(180, 180, 0)
@@ -537,9 +562,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_rm6ha"]
+[sub_resource type="Resource" id="Resource_3eh4h"]
 script = ExtResource("8_bxmh1")
-stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_ugxgx"), SubResource("Resource_dwce5")])
+stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_lk61r"), SubResource("Resource_iq5b5")])
 
 [node name="Arena" type="StaticBody3D"]
 
@@ -1119,7 +1144,7 @@ skeleton = NodePath("")
 [node name="ProtonScatter" type="Node3D" parent="Crowd"]
 script = ExtResource("7_hfvfd")
 global_seed = 3
-modifier_stack = SubResource("Resource_gom4c")
+modifier_stack = SubResource("Resource_rm6ha")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -1143,26 +1168,33 @@ script = ExtResource("10_xlcme")
 proportion = 50
 path = "res://Arena/Crowd/dino_4.tscn"
 
+[node name="Positive" type="Node3D" parent="Crowd/ProtonScatter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31.8474, 0)
+script = ExtResource("11_uhtoy")
+shape = SubResource("Resource_ugxgx")
+
 [node name="Negative_1" type="Node3D" parent="Crowd/ProtonScatter"]
 script = ExtResource("11_uhtoy")
 negative = true
+shape = SubResource("Resource_7y1pb")
 
 [node name="Negative_2" type="Node3D" parent="Crowd/ProtonScatter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.1605, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.3362, 0)
 script = ExtResource("11_uhtoy")
 negative = true
+shape = SubResource("Resource_h82xl")
 
-[node name="Lvl_1" type="Node3D" parent="Crowd/ProtonScatter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.2908, 0)
+[node name="Negative_3" type="Node3D" parent="Crowd/ProtonScatter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.50276, 0)
 script = ExtResource("11_uhtoy")
+negative = true
+shape = SubResource("Resource_504y6")
 
-[node name="Lvl_2" type="Node3D" parent="Crowd/ProtonScatter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.1172, 0)
+[node name="Negative_4" type="Node3D" parent="Crowd/ProtonScatter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51.5924, 0)
 script = ExtResource("11_uhtoy")
-
-[node name="Lvl_3" type="Node3D" parent="Crowd/ProtonScatter"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.3099, 0)
-script = ExtResource("11_uhtoy")
+negative = true
+shape = SubResource("Resource_k0f77")
 
 [node name="Confetti" type="Node3D" parent="."]
 script = ExtResource("15_bcewd")
@@ -1240,7 +1272,7 @@ transform = Transform3D(-0.641209, 0, -0.767367, 0, 1, 0, 0.767367, 0, -0.641209
 [node name="ProtonScatter" type="Node3D" parent="Props"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.192014, 0)
 script = ExtResource("7_hfvfd")
-modifier_stack = SubResource("Resource_rm6ha")
+modifier_stack = SubResource("Resource_3eh4h")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 

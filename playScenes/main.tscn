@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=25 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" uid="uid://cc4nm2dsvw2l4" path="res://playScenes/main.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
@@ -14,12 +14,8 @@
 [ext_resource type="Script" uid="uid://dsk42he7floa1" path="res://UI/GameOverScreen/game_over_screen.gd" id="7_usdf4"]
 [ext_resource type="PackedScene" uid="uid://bxb5dwbcvtql4" path="res://Bosses/Anky/anky_boss.tscn" id="8_ktlfx"]
 [ext_resource type="Script" uid="uid://c6fo8fmkrj3al" path="res://UI/Components/button_anim_component.gd" id="8_udlky"]
-[ext_resource type="Script" uid="uid://dwv857ro25cg8" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="8_ygn4d"]
-[ext_resource type="Script" uid="uid://btxudf6tl1hh0" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="9_wwvj3"]
-[ext_resource type="Script" uid="uid://bsauw34u4kx43" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_ab8gv"]
 [ext_resource type="Script" uid="uid://m20blgxgerfk" path="res://UI/Components/button_focus_component.gd" id="11_13ucq"]
 [ext_resource type="LabelSettings" uid="uid://w8lv2e054n28" path="res://UI/LabelSettings/big_bold_label_settings.tres" id="13_kwa7w"]
-[ext_resource type="Script" uid="uid://bobmrotpxv64g" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="16_kn0se"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yjc10"]
 shader = ExtResource("3_4mu0w")
@@ -52,43 +48,6 @@ border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_right = 13
 corner_radius_bottom_left = 13
-
-[sub_resource type="Resource" id="Resource_j754f"]
-script = ExtResource("10_ab8gv")
-amount = 200
-enabled = true
-override_global_seed = true
-custom_seed = 0
-restrict_height = false
-reference_frame = 1
-
-[sub_resource type="Resource" id="Resource_c2t5g"]
-script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_j754f")])
-
-[sub_resource type="Resource" id="Resource_c8lw2"]
-script = ExtResource("10_ab8gv")
-amount = 70
-enabled = true
-override_global_seed = true
-custom_seed = 6
-restrict_height = false
-reference_frame = 0
-
-[sub_resource type="Resource" id="Resource_fd2tm"]
-script = ExtResource("16_kn0se")
-position = Vector3(0, 0, 0)
-rotation = Vector3(180, 180, 0)
-scale = Vector3(2, 2, 2)
-enabled = true
-override_global_seed = false
-custom_seed = 0
-restrict_height = false
-reference_frame = 0
-
-[sub_resource type="Resource" id="Resource_vcfqp"]
-script = ExtResource("8_ygn4d")
-stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_c8lw2"), SubResource("Resource_fd2tm")])
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("canvasUI")]
 script = ExtResource("1_cmvfd")
@@ -305,30 +264,6 @@ fit_content = true
 
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
-[node name="ProtonScatter" parent="Arena/Crowd" index="0"]
-modifier_stack = SubResource("Resource_c2t5g")
-
-[node name="Negative_1" parent="Arena/Crowd/ProtonScatter" index="4"]
-shape = null
-
-[node name="Negative_2" parent="Arena/Crowd/ProtonScatter" index="5"]
-shape = null
-
-[node name="Lvl_1" parent="Arena/Crowd/ProtonScatter" index="6"]
-shape = null
-
-[node name="Lvl_2" parent="Arena/Crowd/ProtonScatter" index="7"]
-shape = null
-
-[node name="Lvl_3" parent="Arena/Crowd/ProtonScatter" index="8"]
-shape = null
-
-[node name="ProtonScatter" parent="Arena/Props" index="1"]
-modifier_stack = SubResource("Resource_vcfqp")
-
-[node name="ScatterShape" parent="Arena/Props/ProtonScatter" index="1"]
-shape = null
-
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)
 
@@ -338,5 +273,3 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 [connection signal="pressed" from="UI/Pause/VBoxContainer/ContinueBtn" to="UI/Pause" method="_on_continue_btn_pressed"]
 [connection signal="pressed" from="UI/Pause/VBoxContainer/MainMenuBtn" to="UI/Pause" method="_on_main_screen_btn_pressed"]
 [connection signal="pressed" from="UI/Pause/VBoxContainer/QuitBtn" to="UI/Pause" method="_on_quit_btn_pressed"]
-
-[editable path="Arena"]
