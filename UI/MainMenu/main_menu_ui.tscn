@@ -112,7 +112,7 @@ script = ExtResource("2_feui3")
 
 [node name="MaterialPreloader" type="Node" parent="."]
 script = ExtResource("10_t8yxc")
-materials = Array[Material]([SubResource("ShaderMaterial_qvowp"), SubResource("ShaderMaterial_q23st"), SubResource("ShaderMaterial_hn2as"), SubResource("ShaderMaterial_27gxj"), SubResource("ShaderMaterial_cxlkj"), ExtResource("9_vf2ns"), ExtResource("10_p7xp1"), ExtResource("11_it6br"), null])
+materials = Array[Material]([SubResource("ShaderMaterial_qvowp"), SubResource("ShaderMaterial_q23st"), SubResource("ShaderMaterial_hn2as"), SubResource("ShaderMaterial_27gxj"), SubResource("ShaderMaterial_cxlkj"), ExtResource("9_vf2ns"), ExtResource("10_p7xp1"), ExtResource("11_it6br")])
 
 [node name="DarkenRect" type="ColorRect" parent="."]
 unique_name_in_owner = true
@@ -561,19 +561,32 @@ texture = ExtResource("9_t8yxc")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent"]
+[node name="WishlistLabel" type="Label" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent"]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -290.0
+offset_top = 20.0
+offset_bottom = -45.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "Wishlist Now!"
 label_settings = SubResource("LabelSettings_424qg")
 horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="DinoNugLabel" type="RichTextLabel" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent"]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 72.0
+offset_right = 388.0
+offset_bottom = 117.0
+mouse_filter = 2
+bbcode_enabled = true
+text = "[font_size=25][outline_size=8][wave amp=30.0 freq=3.0 connected=1] Will give you [img=45x45]res://Resources/DinoNuggie.png[/img]+5[/wave][/outline_size][/font_size]"
+fit_content = true
+scroll_active = false
 
 [node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent"]
 script = ExtResource("5_1ti4v")

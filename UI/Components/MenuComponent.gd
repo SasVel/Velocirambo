@@ -1,9 +1,7 @@
-extends Control
+extends ComponentUI
 class_name MenuComponent
 
-## Interface for menu components. That means every UI that gets opened and closed.
-
-signal closed(component)
+## Interface for menu components. That means every UI that gets opened and closed AND has focus.
 
 ##Focuses component upon menu activation.
 var focusedComponent : Control

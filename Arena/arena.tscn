@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://bngold1yrgekl"]
+[gd_scene load_steps=49 format=4 uid="uid://bngold1yrgekl"]
 
 [ext_resource type="Material" uid="uid://dla2m3vxn4hxl" path="res://Models/Materials/GroundMat.tres" id="1_c2ipf"]
 [ext_resource type="Material" uid="uid://sd2u46h2r7aw" path="res://Models/Materials/InnerWall.tres" id="2_dgw1y"]
@@ -12,8 +12,6 @@
 [ext_resource type="Script" uid="uid://bu578fwk1favv" path="res://addons/proton_scatter/src/scatter_item.gd" id="10_xlcme"]
 [ext_resource type="Script" uid="uid://bsauw34u4kx43" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="10_xtkoc"]
 [ext_resource type="Script" uid="uid://bjakuub5a42i4" path="res://addons/proton_scatter/src/scatter_shape.gd" id="11_uhtoy"]
-[ext_resource type="Script" uid="uid://crv1enbt2g6bx" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="12_yopbr"]
-[ext_resource type="Script" uid="uid://cd8rsprkmi7qu" path="res://addons/proton_scatter/src/shapes/path_shape.gd" id="14_s3yjs"]
 [ext_resource type="Script" uid="uid://cpd3rj1a4v05v" path="res://Arena/confetti.gd" id="15_bcewd"]
 [ext_resource type="PackedScene" uid="uid://by4cfs7s0nxir" path="res://Arena/Particles/confetti_particles.tscn" id="16_vixfe"]
 [ext_resource type="PackedScene" uid="uid://bnfeymclffuqa" path="res://Components/Obstacles/exploding_barrel.tscn" id="17_tkhsq"]
@@ -506,7 +504,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gxxsm")
 
-[sub_resource type="Resource" id="Resource_4y6sl"]
+[sub_resource type="Resource" id="Resource_smyjd"]
 script = ExtResource("10_xtkoc")
 amount = 200
 enabled = true
@@ -515,58 +513,11 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_uxne0"]
+[sub_resource type="Resource" id="Resource_gom4c"]
 script = ExtResource("8_bxmh1")
-stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_4y6sl")])
+stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_smyjd")])
 
-[sub_resource type="Resource" id="Resource_xwqgj"]
-script = ExtResource("12_yopbr")
-radius = 38.988
-
-[sub_resource type="Resource" id="Resource_guxin"]
-script = ExtResource("12_yopbr")
-radius = 41.4524
-
-[sub_resource type="Curve3D" id="Curve3D_lapwn"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -43.2708, 1.14441e-05, 0.118024, 0, 0, 0, 0, 0, 0, -32.3844, 1.14441e-05, -29.2009, 0, 0, 0, 0, 0, 0, 4.97556, 1.14441e-05, -42.5614, 0, 0, 0, 0, 0, 0, 35.779, 1.14441e-05, -25.4896, 0, 0, 0, 0, 0, 0, 43.0778, 1.14441e-05, 5.31378, 0, 0, 0, 0, 0, 0, 29.2224, 1.14441e-05, 34.0142, 0, 0, 0, 0, 0, 0, 0.150918, 1.14441e-05, 43.7871, 0, 0, 0, 0, 0, 0, -26.199, 1.14441e-05, 35.6224),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
-}
-point_count = 8
-
-[sub_resource type="Resource" id="Resource_sbddn"]
-script = ExtResource("14_s3yjs")
-closed = true
-thickness = 0.0
-curve = SubResource("Curve3D_lapwn")
-
-[sub_resource type="Curve3D" id="Curve3D_rhwy2"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -44.013, 1.33514e-05, 0.118024, 0, 0, 0, 0, 0, 0, -32.8793, 1.33514e-05, -30.1906, 0, 0, 0, 0, 0, 0, 5.96522, 1.33514e-05, -43.7985, 0, 0, 0, 0, 0, 0, 36.1501, 1.33514e-05, -25.6134, 0, 0, 0, 0, 0, 0, 44.0675, 1.33514e-05, 5.68491, 0, 0, 0, 0, 0, 0, 29.4698, 1.33514e-05, 33.8904, 0, 0, 0, 0, 0, 0, 0.150918, 1.33514e-05, 45.1479, 0, 0, 0, 0, 0, 0, -26.3227, 1.33514e-05, 35.7461),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
-}
-point_count = 8
-
-[sub_resource type="Resource" id="Resource_6bs28"]
-script = ExtResource("14_s3yjs")
-closed = true
-thickness = 0.0
-curve = SubResource("Curve3D_rhwy2")
-
-[sub_resource type="Curve3D" id="Curve3D_kws0j"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -46.3578, 2.09808e-05, -0.018146, 0, 0, 0, 0, 0, 0, -34.1107, 2.09808e-05, -31.3163, 0, 0, 0, 0, 0, 0, 6.9604, 2.09808e-05, -45.6665, 0, 0, 0, 0, 0, 0, 37.3926, 2.09808e-05, -26.7391, 0, 0, 0, 0, 0, 0, 45.9285, 2.09808e-05, 5.54872, 0, 0, 0, 0, 0, 0, 29.9701, 2.09808e-05, 35.4861, 0, 0, 0, 0, 0, 0, -0.338392, 2.09808e-05, 46.6198, 0, 0, 0, 0, 0, 0, -27.9253, 2.09808e-05, 37.4654),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
-}
-point_count = 8
-
-[sub_resource type="Resource" id="Resource_fjwjt"]
-script = ExtResource("14_s3yjs")
-closed = true
-thickness = 0.0
-curve = SubResource("Curve3D_kws0j")
-
-[sub_resource type="Resource" id="Resource_qxj2x"]
+[sub_resource type="Resource" id="Resource_ugxgx"]
 script = ExtResource("10_xtkoc")
 amount = 70
 enabled = true
@@ -575,7 +526,7 @@ custom_seed = 6
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_g10ye"]
+[sub_resource type="Resource" id="Resource_dwce5"]
 script = ExtResource("18_ip6oq")
 position = Vector3(0, 0, 0)
 rotation = Vector3(180, 180, 0)
@@ -586,22 +537,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_54ld0"]
+[sub_resource type="Resource" id="Resource_rm6ha"]
 script = ExtResource("8_bxmh1")
-stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_qxj2x"), SubResource("Resource_g10ye")])
-
-[sub_resource type="Curve3D" id="Curve3D_88ktn"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -25.0783, 3.14713e-05, -21.4299, 0, 0, 0, 0, 0, 0, -10.4273, 3.14713e-05, -31.8949, 0, 0, 0, 0, 0, 0, 7.62475, 3.14713e-05, -31.2409, 0, 0, 0, 0, 0, 0, 24.6304, 3.14713e-05, -20.7759, 0, 0, 0, 0, 0, 0, 33.7872, 3.14713e-05, -2.06971, 0, 0, 0, 0, 0, 0, 26.3568, 0, 15.3119, 0, 0, 0, 0, 0, 0, 14.0346, 3.14713e-05, 29.3252, 0, 0, 0, 0, 0, 0, -10.689, 3.14713e-05, 30.6334, 0, 0, 0, 0, 0, 0, -24.8167, 3.14713e-05, 21.7381, 0, 0, 0, 0, 0, 0, -30.9649, 3.14713e-05, 11.404, 0, 0, 0, 0, 0, 0, -32.9271, 3.14713e-05, -3.50865),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-}
-point_count = 11
-
-[sub_resource type="Resource" id="Resource_jf8t2"]
-script = ExtResource("14_s3yjs")
-closed = true
-thickness = 0.0
-curve = SubResource("Curve3D_88ktn")
+stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_ugxgx"), SubResource("Resource_dwce5")])
 
 [node name="Arena" type="StaticBody3D"]
 
@@ -1181,7 +1119,7 @@ skeleton = NodePath("")
 [node name="ProtonScatter" type="Node3D" parent="Crowd"]
 script = ExtResource("7_hfvfd")
 global_seed = 3
-modifier_stack = SubResource("Resource_uxne0")
+modifier_stack = SubResource("Resource_gom4c")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -1208,28 +1146,23 @@ path = "res://Arena/Crowd/dino_4.tscn"
 [node name="Negative_1" type="Node3D" parent="Crowd/ProtonScatter"]
 script = ExtResource("11_uhtoy")
 negative = true
-shape = SubResource("Resource_xwqgj")
 
 [node name="Negative_2" type="Node3D" parent="Crowd/ProtonScatter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.1605, 0)
 script = ExtResource("11_uhtoy")
 negative = true
-shape = SubResource("Resource_guxin")
 
 [node name="Lvl_1" type="Node3D" parent="Crowd/ProtonScatter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.2908, 0)
 script = ExtResource("11_uhtoy")
-shape = SubResource("Resource_sbddn")
 
 [node name="Lvl_2" type="Node3D" parent="Crowd/ProtonScatter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.1172, 0)
 script = ExtResource("11_uhtoy")
-shape = SubResource("Resource_6bs28")
 
 [node name="Lvl_3" type="Node3D" parent="Crowd/ProtonScatter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.3099, 0)
 script = ExtResource("11_uhtoy")
-shape = SubResource("Resource_fjwjt")
 
 [node name="Confetti" type="Node3D" parent="."]
 script = ExtResource("15_bcewd")
@@ -1307,7 +1240,7 @@ transform = Transform3D(-0.641209, 0, -0.767367, 0, 1, 0, 0.767367, 0, -0.641209
 [node name="ProtonScatter" type="Node3D" parent="Props"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.192014, 0)
 script = ExtResource("7_hfvfd")
-modifier_stack = SubResource("Resource_54ld0")
+modifier_stack = SubResource("Resource_rm6ha")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -1318,4 +1251,3 @@ path = "res://Models/Props/Bone.tscn"
 [node name="ScatterShape" type="Node3D" parent="Props/ProtonScatter"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0.557095, 0)
 script = ExtResource("11_uhtoy")
-shape = SubResource("Resource_jf8t2")

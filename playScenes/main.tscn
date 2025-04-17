@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=3 uid="uid://07oru7jy6ubh"]
 
-[ext_resource type="Script" uid="uid://cc4nm2dsvw2l4" path="res://playScenes/playSceneScript.gd" id="1_cmvfd"]
+[ext_resource type="Script" uid="uid://cc4nm2dsvw2l4" path="res://playScenes/main.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
 [ext_resource type="Environment" uid="uid://ciipvdp53q8qo" path="res://Misc/MainEnv.tres" id="2_ydlcm"]
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="3_0vutq"]
@@ -90,8 +90,9 @@ reference_frame = 0
 script = ExtResource("8_ygn4d")
 stack = Array[ExtResource("9_wwvj3")]([SubResource("Resource_c8lw2"), SubResource("Resource_fd2tm")])
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("canvasUI")]
 script = ExtResource("1_cmvfd")
+canvasUI = NodePath("UI")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_ydlcm")
@@ -307,8 +308,26 @@ fit_content = true
 [node name="ProtonScatter" parent="Arena/Crowd" index="0"]
 modifier_stack = SubResource("Resource_c2t5g")
 
+[node name="Negative_1" parent="Arena/Crowd/ProtonScatter" index="4"]
+shape = null
+
+[node name="Negative_2" parent="Arena/Crowd/ProtonScatter" index="5"]
+shape = null
+
+[node name="Lvl_1" parent="Arena/Crowd/ProtonScatter" index="6"]
+shape = null
+
+[node name="Lvl_2" parent="Arena/Crowd/ProtonScatter" index="7"]
+shape = null
+
+[node name="Lvl_3" parent="Arena/Crowd/ProtonScatter" index="8"]
+shape = null
+
 [node name="ProtonScatter" parent="Arena/Props" index="1"]
 modifier_stack = SubResource("Resource_vcfqp")
+
+[node name="ScatterShape" parent="Arena/Props/ProtonScatter" index="1"]
+shape = null
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)

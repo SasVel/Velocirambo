@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://b32o7wdv7g2fs"]
+
+[ext_resource type="Script" uid="uid://l3iedmre1bl4" path="res://UI/AnnounceLabelUI/announce_label_ui.gd" id="1_8ivxv"]
+
+[sub_resource type="Gradient" id="Gradient_5awtj"]
+offsets = PackedFloat32Array(0, 0.382653, 0.595745, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.172549, 0.172549, 0.172549, 0.666667, 0.172549, 0.172549, 0.172549, 0.666667, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8ivxv"]
+gradient = SubResource("Gradient_5awtj")
+width = 1024
+
+[node name="AnnounceLabelUI" type="Control" node_paths=PackedStringArray("textBG", "textLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ivxv")
+textBG = NodePath("TextBG")
+textLabel = NodePath("TextBG/TextLabel")
+
+[node name="TextBG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -881.0
+offset_top = -76.0
+offset_right = 881.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_8ivxv")
+
+[node name="TextLabel" type="RichTextLabel" parent="TextBG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -433.0
+offset_top = -52.0
+offset_right = 433.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_offset_x = 3
+bbcode_enabled = true
+text = "[center][color=e00c00][font_size=50]Title[/font_size]
+[font_size=35]Desc[/font_size][/color][/center]"
+fit_content = true

@@ -4,13 +4,13 @@ class_name GameData
 ##Resource for all permanent data. Change the version if you add/remove/change variables.
 
 @export var version : String = Const.gameDataVersion
+#region Settings
 ##Indicates if a YesNoMessage has been shown for controller.
 @export var askedUsingControllerMsg : bool = false
 ##Enables/disables controller.
 @export var usingController : bool = false
 @export var controllerVibration : bool = true
 
-#region Settings
 #region Mouse
 @export var cameraSensitivity  : float = 3.0
 #endregion
@@ -28,4 +28,9 @@ class_name GameData
 @export var musicVol : float = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
 @export var sfxVol : float = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
 #endregion
+#endregion
+
+#region GameData
+@export var hasWishlistReward = false
+@export var nuggies = 0
 #endregion

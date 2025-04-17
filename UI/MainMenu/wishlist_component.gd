@@ -16,3 +16,7 @@ func _ready():
 
 func _on_pressed():
 	OS.shell_open("")
+	if GameInfo.data.hasWishlistReward: return
+	GameInfo.data.hasWishlistReward = true
+	GameInfo.data.nuggies += 5
+	GameInfo.save_data()
