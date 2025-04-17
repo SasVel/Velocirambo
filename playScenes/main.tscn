@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=23 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" uid="uid://cc4nm2dsvw2l4" path="res://playScenes/main.gd" id="1_cmvfd"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Arena/arena.tscn" id="2_w2pg4"]
@@ -7,14 +7,12 @@
 [ext_resource type="Shader" uid="uid://co3lk5adwog6e" path="res://Shaders/Pixelate.gdshader" id="3_4mu0w"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="3_hkrak"]
 [ext_resource type="Script" uid="uid://l103ek6jr7e8" path="res://UI/crosshair.gd" id="4_etnxk"]
-[ext_resource type="Script" uid="uid://cwxgwiugwealq" path="res://UI/pause.gd" id="4_f25ew"]
 [ext_resource type="Script" uid="uid://g75akvne7cg5" path="res://UI/StatsDisplay/health_bar.gd" id="5_iicw0"]
 [ext_resource type="PackedScene" uid="uid://30rmawnd7jsv" path="res://UI/StatsDisplay/BulletDisplay/bullet_display.tscn" id="6_6fr0m"]
 [ext_resource type="PackedScene" uid="uid://b5den5e8nio6r" path="res://UI/StatsDisplay/GunModeDisplay/gun_mode_display.tscn" id="7_mbfnf"]
 [ext_resource type="Script" uid="uid://dsk42he7floa1" path="res://UI/GameOverScreen/game_over_screen.gd" id="7_usdf4"]
 [ext_resource type="PackedScene" uid="uid://bxb5dwbcvtql4" path="res://Bosses/Anky/anky_boss.tscn" id="8_ktlfx"]
-[ext_resource type="Script" uid="uid://c6fo8fmkrj3al" path="res://UI/Components/button_anim_component.gd" id="8_udlky"]
-[ext_resource type="Script" uid="uid://m20blgxgerfk" path="res://UI/Components/button_focus_component.gd" id="11_13ucq"]
+[ext_resource type="PackedScene" uid="uid://cm2vu5yqoqmtq" path="res://UI/PauseUI/pause.tscn" id="9_0h2et"]
 [ext_resource type="LabelSettings" uid="uid://w8lv2e054n28" path="res://UI/LabelSettings/big_bold_label_settings.tres" id="13_kwa7w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yjc10"]
@@ -151,63 +149,7 @@ offset_top = 86.0
 offset_right = 252.0
 offset_bottom = 186.0
 
-[node name="Pause" type="ColorRect" parent="UI"]
-process_mode = 3
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("3_0vutq")
-color = Color(0.482353, 0.482353, 0.482353, 0.121569)
-script = ExtResource("4_f25ew")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Pause"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -94.0
-offset_top = -116.0
-offset_right = 94.0
-offset_bottom = 116.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="ContinueBtn" type="Button" parent="UI/Pause/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Continue"
-
-[node name="ButtonAnimComponent" type="Node" parent="UI/Pause/VBoxContainer/ContinueBtn"]
-script = ExtResource("8_udlky")
-
-[node name="ButtonFocusComponent" type="Node" parent="UI/Pause/VBoxContainer/ContinueBtn"]
-script = ExtResource("11_13ucq")
-
-[node name="MainMenuBtn" type="Button" parent="UI/Pause/VBoxContainer"]
-layout_mode = 2
-text = "Main Menu"
-
-[node name="ButtonAnimComponent" type="Node" parent="UI/Pause/VBoxContainer/MainMenuBtn"]
-script = ExtResource("8_udlky")
-
-[node name="ButtonFocusComponent" type="Node" parent="UI/Pause/VBoxContainer/MainMenuBtn"]
-script = ExtResource("11_13ucq")
-
-[node name="QuitBtn" type="Button" parent="UI/Pause/VBoxContainer"]
-layout_mode = 2
-text = "Quit"
-
-[node name="ButtonAnimComponent" type="Node" parent="UI/Pause/VBoxContainer/QuitBtn"]
-script = ExtResource("8_udlky")
-
-[node name="ButtonFocusComponent" type="Node" parent="UI/Pause/VBoxContainer/QuitBtn"]
-script = ExtResource("11_13ucq")
+[node name="Pause" parent="UI" instance=ExtResource("9_0h2et")]
 
 [node name="GameOverScreen" type="ColorRect" parent="UI" node_paths=PackedStringArray("pauseScreen")]
 process_mode = 3
@@ -265,11 +207,7 @@ fit_content = true
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.386512, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.509963, 0)
 
 [node name="AnkyBoss" parent="." instance=ExtResource("8_ktlfx")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 22.0644)
-
-[connection signal="pressed" from="UI/Pause/VBoxContainer/ContinueBtn" to="UI/Pause" method="_on_continue_btn_pressed"]
-[connection signal="pressed" from="UI/Pause/VBoxContainer/MainMenuBtn" to="UI/Pause" method="_on_main_screen_btn_pressed"]
-[connection signal="pressed" from="UI/Pause/VBoxContainer/QuitBtn" to="UI/Pause" method="_on_quit_btn_pressed"]

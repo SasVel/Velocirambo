@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://bdvi0uqybo0vd" path="res://Player/ray_cast_3d.gd" id="5_skyla"]
 
 [node name="CompletePlayer" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0423601, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.254937, 0)
 
 [node name="Player" parent="." node_paths=PackedStringArray("camera", "cameraTarget", "horizontalRotPivot") instance=ExtResource("1_g4u3e")]
 camera = NodePath("../CameraTarget/Camera3D")
@@ -15,7 +15,7 @@ horizontalRotPivot = NodePath("../HorizontalRotationPivot")
 [node name="CameraTarget" type="Marker3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="CameraTarget"]
-transform = Transform3D(-1, 1.05329e-08, -1.50628e-07, 0, 0.997564, 0.0697565, 1.50996e-07, 0.0697565, -0.997564, -1.48187, 2.70766, -1.53459)
+transform = Transform3D(-1, 1.0533e-08, -1.50628e-07, 0, 0.997564, 0.0697565, 1.50996e-07, 0.0697565, -0.997564, -1.74585, 2.60637, -2.54422)
 current = true
 script = ExtResource("3_n06hd")
 zoom_speed = 0.2

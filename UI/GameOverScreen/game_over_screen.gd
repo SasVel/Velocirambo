@@ -1,7 +1,7 @@
 extends ColorRect
 
 @onready var active : bool = false
-@export var pauseScreen : Control
+@export var pauseScreen : PauseUI
 func _ready():
 	GameInfo.game_won.connect(game_won)
 	GameInfo.game_lost.connect(game_lost)

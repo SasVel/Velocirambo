@@ -542,7 +542,7 @@ metadata/_custom_type_script = "uid://1wjr7ou8jcuu"
 script = ExtResource("14_ugxgx")
 size = Vector3(109.136, 61.754, 114.482)
 
-[sub_resource type="Resource" id="Resource_lk61r"]
+[sub_resource type="Resource" id="Resource_bs7ms"]
 script = ExtResource("10_xtkoc")
 amount = 70
 enabled = true
@@ -551,7 +551,7 @@ custom_seed = 6
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_iq5b5"]
+[sub_resource type="Resource" id="Resource_lk61r"]
 script = ExtResource("18_ip6oq")
 position = Vector3(0, 0, 0)
 rotation = Vector3(180, 180, 0)
@@ -562,9 +562,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_3eh4h"]
+[sub_resource type="Resource" id="Resource_iq5b5"]
 script = ExtResource("8_bxmh1")
-stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_lk61r"), SubResource("Resource_iq5b5")])
+stack = Array[ExtResource("9_l23ko")]([SubResource("Resource_bs7ms"), SubResource("Resource_lk61r")])
 
 [node name="Arena" type="StaticBody3D"]
 
@@ -1272,7 +1272,7 @@ transform = Transform3D(-0.641209, 0, -0.767367, 0, 1, 0, 0.767367, 0, -0.641209
 [node name="ProtonScatter" type="Node3D" parent="Props"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.192014, 0)
 script = ExtResource("7_hfvfd")
-modifier_stack = SubResource("Resource_3eh4h")
+modifier_stack = SubResource("Resource_iq5b5")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 

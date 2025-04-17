@@ -1,4 +1,5 @@
 extends MenuComponent
+class_name PauseUI
 
 ##Pause screen. Disabled flag outrules active flag.
 
@@ -14,6 +15,7 @@ extends MenuComponent
 
 func _ready():
 	focusedComponent = %ContinueBtn
+	active = false
 
 func _input(event):
 	if disabled: return
@@ -33,8 +35,10 @@ func _on_continue_btn_pressed():
 	active = false
 
 func _on_main_screen_btn_pressed():
+	if (!await UI.show_yes_no_msg(self, "Current progress will be lost.")): return
 	active = false
 	SceneManager.go_to_main_menu()
 
 func _on_quit_btn_pressed():
+	if (!await UI.show_yes_no_msg(self, "Current progress will be lost.")): return
 	get_tree().quit()

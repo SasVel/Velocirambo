@@ -25,6 +25,7 @@ func show_yes_no_msg(caller : Control, message : String = "Are you sure?"):
 func show_announce_label(caller : Node, title : String, desc : String):
 	var label : AnnounceUI = elementsArr[1].instantiate().init(title, desc)
 	caller.add_child(label)
+	caller.move_child(label, 0)
 	
 	await label.activate()
 	label.queue_free()

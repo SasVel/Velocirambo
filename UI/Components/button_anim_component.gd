@@ -21,7 +21,8 @@ func _ready():
 		btn.focus_entered.connect(on_hovered)
 		btn.focus_exited.connect(reset_hover)
 	
-	setup.call_deferred()
+	await get_tree().physics_frame
+	setup()
 
 func setup():
 	match pivotPos:
