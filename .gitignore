@@ -1,3 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+GlobalScripts/Data/EnvData.gd
+GlobalScripts/Data/EnvData.gd.uid

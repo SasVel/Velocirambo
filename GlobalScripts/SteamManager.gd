@@ -11,8 +11,8 @@ enum Ach {
 }
 
 func _init():
-	OS.set_environment("SteamAppID", Const.APP_ID)
-	OS.set_environment("SteamGameID", Const.APP_ID)
+	OS.set_environment("SteamAppID", EnvData.APP_ID)
+	OS.set_environment("SteamGameID", EnvData.APP_ID)
 
 func _ready():
 	Steam.steamInit()
