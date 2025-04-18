@@ -11,9 +11,13 @@ class_name GameData
 @export var usingController : bool = false
 @export var controllerVibration : bool = true
 
+@export var windowMode : int = 1
+@export var resolutionIdx : int = 0
+
 #region Mouse
 @export var cameraSensitivity  : float = 3.0
 #endregion
+
 #region Crosshair
 @export var crossColor : Color = Color.BLACK
 @export var invertedColors : bool = false
@@ -23,6 +27,7 @@ class_name GameData
 ##In pixels
 @export_range(1, 40) var crossLength : float = 20.0
 #endregion
+
 #region Volume
 @export var mainVol : float = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
 @export var musicVol : float = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
