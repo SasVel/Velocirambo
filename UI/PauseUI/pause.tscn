@@ -76,6 +76,7 @@ script = ExtResource("4_v0e16")
 
 [node name="Settings" parent="." instance=ExtResource("5_ndwgb")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="ButtonsContainer/ContinueBtn" to="." method="_on_continue_btn_pressed"]

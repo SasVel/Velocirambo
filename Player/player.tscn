@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://ctdbu511qitd4"]
 
 [ext_resource type="PackedScene" uid="uid://cufn7ji82vhtv" path="res://Models/Commando/RaptorCommando.glb" id="1_viyl2"]
-[ext_resource type="Script" uid="uid://bbnl05dkl5qhi" path="res://Player/velocirambo.gd" id="1_wvw08"]
+[ext_resource type="Script" uid="uid://bbnl05dkl5qhi" path="res://Player/Player.gd" id="1_wvw08"]
 [ext_resource type="Animation" uid="uid://7g0ubk8husx8" path="res://Models/Commando/Animations/idle.res" id="3_srsud"]
 [ext_resource type="Script" uid="uid://d00sa1351u1tf" path="res://Player/gun_anim.gd" id="3_uylya"]
 [ext_resource type="Animation" uid="uid://c3d122hg1kclu" path="res://Models/Commando/Animations/run_back.res" id="4_y20d2"]

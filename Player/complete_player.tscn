@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdvqhvfu8pif1"]
 
 [ext_resource type="PackedScene" uid="uid://ctdbu511qitd4" path="res://Player/player.tscn" id="1_g4u3e"]
-[ext_resource type="Script" uid="uid://sd0s2v67dfy0" path="res://Player/camera_3d.gd" id="3_n06hd"]
-[ext_resource type="Script" uid="uid://bdvi0uqybo0vd" path="res://Player/ray_cast_3d.gd" id="5_skyla"]
+[ext_resource type="Script" uid="uid://sd0s2v67dfy0" path="res://Player/PlayerCamera.gd" id="3_n06hd"]
+[ext_resource type="Script" uid="uid://bdvi0uqybo0vd" path="res://Player/PlayerRaycast.gd" id="5_skyla"]
 
 [node name="CompletePlayer" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.254937, 0)

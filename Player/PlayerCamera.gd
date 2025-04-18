@@ -3,6 +3,9 @@ class_name PlayerCamera
 
 ##Class for the player camera. Contains zoom and shake controls.
 
+func _ready():
+	self.current = true
+
 func _physics_process(delta):
 	if isShakeActive:
 		currShakeStr = lerpf(currShakeStr, 0, shakeFade * delta)

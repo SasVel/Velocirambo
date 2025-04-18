@@ -3,23 +3,15 @@
 [ext_resource type="Script" uid="uid://bdqtpogi2ha7a" path="res://UI/StatsDisplay/GunModeDisplay/gun_mode_display.gd" id="1_2qbq8"]
 [ext_resource type="PackedScene" uid="uid://bcqbntgb12epa" path="res://UI/StatsDisplay/GunModeDisplay/bullet_rect.tscn" id="2_48b3n"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihktd"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvatc"]
 
 [node name="GunModeDisplay" type="Panel"]
 custom_minimum_size = Vector2(102, 100)
-offset_right = 102.0
-offset_bottom = 100.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ihktd")
+offset_left = -3.0
+offset_top = -13.0
+offset_right = 106.0
+offset_bottom = 113.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rvatc")
 script = ExtResource("1_2qbq8")
 
 [node name="BulletsContainer" type="HBoxContainer" parent="."]
@@ -28,6 +20,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1

@@ -23,7 +23,7 @@ config/windows_native_icon="res://Misc/Icon.ico"
 [autoload]
 
 EnvData="*res://GlobalScripts/Data/EnvData.gd"
-Const="*res://GlobalScripts/Const.gd"
+Const="*res://GlobalScripts/Data/Const.gd"
 GameInfo="*res://GlobalScripts/Data/GameInfo.gd"
 PlayerData="*res://GlobalScripts/PlayerData.gd"
 Rng="*res://GlobalScripts/Rng.gd"

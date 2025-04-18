@@ -1,0 +1,79 @@
+[gd_scene load_steps=17 format=3 uid="uid://c328w4wug5l82"]
+
+[ext_resource type="Script" uid="uid://bimts35x6clpe" path="res://UI/LoadingScreen/loading_screen.gd" id="1_5xpxy"]
+[ext_resource type="Texture2D" uid="uid://cod2wv16osxdf" path="res://Resources/DinoNuggie.png" id="2_j5jvt"]
+[ext_resource type="Script" uid="uid://f6l007kxnf4c" path="res://Components/ObjectPreloader/object_preloader.gd" id="2_jlcfg"]
+[ext_resource type="PackedScene" uid="uid://clperpfmg1asg" path="res://Models/Anky/AnkySpikeModel.fbx" id="3_jlcfg"]
+[ext_resource type="Texture2D" uid="uid://rbaxlkme85nd" path="res://Misc/Icon.png" id="3_nrut1"]
+[ext_resource type="PackedScene" uid="uid://c4hwqoskl2i2h" path="res://Bosses/Anky/anky_spike.tscn" id="4_gpexy"]
+[ext_resource type="PackedScene" uid="uid://cfm6pfnksuvpv" path="res://Bosses/Anky/anky_spike_geranade.tscn" id="5_hf5ku"]
+[ext_resource type="PackedScene" uid="uid://bknvt8s1gqm3f" path="res://Models/Props/Beer/Beer.fbx" id="6_pnitq"]
+[ext_resource type="PackedScene" uid="uid://by4cfs7s0nxir" path="res://Arena/Particles/confetti_particles.tscn" id="7_qo5te"]
+[ext_resource type="PackedScene" uid="uid://dn1d3oi4dspne" path="res://Bosses/Particles/big_explosion_particles.tscn" id="8_b66u8"]
+[ext_resource type="PackedScene" uid="uid://58njlxv5dsos" path="res://Bosses/Particles/explosion_particles.tscn" id="9_vmcbh"]
+[ext_resource type="PackedScene" uid="uid://cs4gpeiprg38m" path="res://Bosses/Particles/roll_particles.tscn" id="10_ltnus"]
+[ext_resource type="PackedScene" uid="uid://b4pqd3fasde7g" path="res://Bosses/Particles/slam_particles.tscn" id="11_fbtk1"]
+[ext_resource type="PackedScene" uid="uid://cb074rhhyi1ex" path="res://Bosses/Particles/spike_dissapear_particles.tscn" id="12_20wn8"]
+[ext_resource type="PackedScene" uid="uid://d3qhok26qo35j" path="res://Bosses/Particles/stomp_particles.tscn" id="13_afsws"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jlcfg"]
+
+[node name="LoadingScreen" type="Node3D" node_paths=PackedStringArray("nuggieRect", "beerRect", "objPreloader", "camera", "loadSlider")]
+script = ExtResource("1_5xpxy")
+nuggieRect = NodePath("ColorRect/NuggieRect")
+beerRect = NodePath("ColorRect/BeerRect")
+objPreloader = NodePath("ObjectPreloader")
+camera = NodePath("Camera3D")
+loadSlider = NodePath("ColorRect/LoadSlider")
+
+[node name="ObjectPreloader" type="Node3D" parent="."]
+script = ExtResource("2_jlcfg")
+objects = Array[PackedScene]([ExtResource("3_jlcfg"), ExtResource("4_gpexy"), ExtResource("5_hf5ku"), ExtResource("6_pnitq"), ExtResource("7_qo5te"), ExtResource("8_b66u8"), ExtResource("9_vmcbh"), ExtResource("10_ltnus"), ExtResource("11_fbtk1"), ExtResource("12_20wn8"), ExtResource("13_afsws")])
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="NuggieRect" type="TextureRect" parent="ColorRect"]
+visible = false
+layout_mode = 0
+offset_left = 146.845
+offset_top = 704.0
+offset_right = 336.845
+offset_bottom = 894.0
+texture = ExtResource("2_j5jvt")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="BeerRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 1397.0
+offset_top = 701.0
+offset_right = 1587.0
+offset_bottom = 891.0
+texture = ExtResource("3_nrut1")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="LoadSlider" type="HSlider" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 279.0
+offset_top = -205.0
+offset_right = -279.0
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_jlcfg")
+value = 14.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.47799)
+fov = 103.103

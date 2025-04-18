@@ -1,92 +1,14 @@
-[gd_scene load_steps=25 format=3 uid="uid://bngj3gvodihcr"]
+[gd_scene load_steps=11 format=3 uid="uid://bngj3gvodihcr"]
 
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="1_i2a53"]
 [ext_resource type="Script" uid="uid://byw4sjbaek0p6" path="res://UI/MainMenu/main_menu_ui.gd" id="2_3377f"]
 [ext_resource type="PackedScene" uid="uid://cphkmluswqy8n" path="res://UI/Credits/credits.tscn" id="3_r7ktl"]
-[ext_resource type="Shader" uid="uid://cgkyjsyjdknub" path="res://Shaders/Field.gdshader" id="4_3377f"]
 [ext_resource type="Script" uid="uid://c6fo8fmkrj3al" path="res://UI/Components/button_anim_component.gd" id="5_1ti4v"]
-[ext_resource type="Shader" uid="uid://des3cbf7owwnv" path="res://Shaders/InvertColor.gdshader" id="5_4pnmc"]
 [ext_resource type="Script" uid="uid://m20blgxgerfk" path="res://UI/Components/button_focus_component.gd" id="6_7jgpi"]
-[ext_resource type="Shader" uid="uid://bteuxdtb7ji1h" path="res://Shaders/PlayerProgBar.gdshader" id="6_cugch"]
-[ext_resource type="Shader" uid="uid://bx40tikvwbsv0" path="res://Shaders/sky.gdshader" id="7_bovov"]
 [ext_resource type="PackedScene" uid="uid://d0ifa53fa0md5" path="res://UI/Components/RateComponent/rate_component.tscn" id="7_mibcb"]
 [ext_resource type="Script" uid="uid://b7dw5f4l2jbuv" path="res://UI/MainMenu/wishlist_component.gd" id="8_oyel6"]
-[ext_resource type="Shader" uid="uid://dja2vurgiek04" path="res://Shaders/Vignette.gdshader" id="8_xe6o0"]
 [ext_resource type="Texture2D" uid="uid://rbaxlkme85nd" path="res://Misc/Icon.png" id="9_t8yxc"]
-[ext_resource type="Material" uid="uid://dp0w1jdimgyso" path="res://Models/Materials/AnkyBellyMat.tres" id="9_vf2ns"]
-[ext_resource type="Material" uid="uid://xuxr23kk54f5" path="res://Models/Materials/BeerTexture.tres" id="10_p7xp1"]
-[ext_resource type="Script" uid="uid://bxeni76na4fbm" path="res://Components/MaterialPreloader/material_preloader.gd" id="10_t8yxc"]
-[ext_resource type="Material" uid="uid://b76duvumet37p" path="res://Models/Materials/ColorMat.tres" id="11_it6br"]
 [ext_resource type="PackedScene" uid="uid://buwl6jyd0kvgw" path="res://UI/Settings/settings.tscn" id="13_4pnmc"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qvowp"]
-render_priority = 0
-shader = ExtResource("4_3377f")
-shader_parameter/color = Color(1, 0, 0, 1)
-shader_parameter/size = 1.05
-shader_parameter/opacity = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_q23st"]
-shader = ExtResource("5_4pnmc")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hn2as"]
-shader = ExtResource("6_cugch")
-shader_parameter/stepify = true
-shader_parameter/value = 1.0
-shader_parameter/count = 1
-shader_parameter/margin = Vector2(0, 0)
-shader_parameter/shear_angle = 0.0
-shader_parameter/use_value_gradient = false
-shader_parameter/invert = false
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_27gxj"]
-shader = ExtResource("7_bovov")
-shader_parameter/offset_horizon = 0.236
-shader_parameter/horizon_intensity = -0.443
-shader_parameter/sun_set = Color(0.56, 0.24, 0, 1)
-shader_parameter/horizon_color_day = Color(0.57, 0.53, 0.26, 1)
-shader_parameter/horizon_color_night = Color(0.09, 0.16, 0.04, 1)
-shader_parameter/sun_color = Color(1, 1, 1, 1)
-shader_parameter/sun_radius = 0.2
-shader_parameter/flat_sun = true
-shader_parameter/moon_color = Color(1, 1, 1, 1)
-shader_parameter/moon_radius = 0.05
-shader_parameter/moon_crescent = -0.024
-shader_parameter/dark_falloff = 3.915
-shader_parameter/enable_horizon_fade = true
-shader_parameter/horizon_fade_size = 0.2
-shader_parameter/horizon_fade_blend = 0.1
-shader_parameter/day_bottom_color = Color(0.4, 1, 1, 1)
-shader_parameter/day_top_color = Color(0, 0.8, 1, 1)
-shader_parameter/night_bottom_color = Color(0, 0, 0.2, 1)
-shader_parameter/night_top_color = Color(0, 0, 0, 1)
-shader_parameter/stars_speed = 0.2
-shader_parameter/stars_cutoff = 0.702
-shader_parameter/stars_sky_color = Color(0, 0.11, 0.05, 1)
-shader_parameter/offset_stars = 0.083
-shader_parameter/stars_intensity = -2.829
-shader_parameter/star_falloff = 1.79
-shader_parameter/stars_fade_modulation = 0.91
-shader_parameter/cloud_edge_day_color = Color(0.9, 0.9, 0.9, 1)
-shader_parameter/cloud_main_day_color = Color(1, 1, 1, 1)
-shader_parameter/cloud_edge_night_color = Color(0.15, 0.19, 0.25, 1)
-shader_parameter/cloud_main_night_color = Color(0.15, 0.16, 0.2, 1)
-shader_parameter/cloud_speed_1 = 0.01
-shader_parameter/cloud_speed_2 = 0.02
-shader_parameter/cloud_speed_3 = 0.02
-shader_parameter/cloud_scale_1 = 0.425
-shader_parameter/cloud_scale_2 = 0.074
-shader_parameter/cloud_scale_3 = 0.075
-shader_parameter/cloud_distortion = 1.95
-shader_parameter/cloud_strength = 1.0
-shader_parameter/cloud_cutoff = 0.013
-shader_parameter/cloud_fuzziness = 0.261
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cxlkj"]
-shader = ExtResource("8_xe6o0")
-shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 0.5
-shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_424qg"]
 font_size = 50
@@ -103,10 +25,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_i2a53")
 script = ExtResource("2_3377f")
-
-[node name="MaterialPreloader" type="Node" parent="."]
-script = ExtResource("10_t8yxc")
-materials = Array[Material]([SubResource("ShaderMaterial_qvowp"), SubResource("ShaderMaterial_q23st"), SubResource("ShaderMaterial_hn2as"), SubResource("ShaderMaterial_27gxj"), SubResource("ShaderMaterial_cxlkj"), ExtResource("9_vf2ns"), ExtResource("10_p7xp1"), ExtResource("11_it6br")])
 
 [node name="DarkenRect" type="ColorRect" parent="."]
 unique_name_in_owner = true

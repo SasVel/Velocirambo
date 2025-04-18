@@ -145,9 +145,13 @@ grow_vertical = 1
 [node name="GunModeDisplay" parent="UI/StatsDisplay" instance=ExtResource("7_mbfnf")]
 layout_mode = 0
 offset_left = 150.0
-offset_top = 86.0
+offset_top = 81.0
 offset_right = 252.0
-offset_bottom = 186.0
+offset_bottom = 185.0
+
+[node name="BulletsContainer" parent="UI/StatsDisplay/GunModeDisplay" index="0"]
+offset_top = 0.0
+offset_bottom = 0.0
 
 [node name="Pause" parent="UI" instance=ExtResource("9_0h2et")]
 
@@ -205,9 +209,12 @@ to the main menu[/wave][/color][/font_size][/center]"
 fit_content = true
 
 [node name="Arena" parent="." instance=ExtResource("2_w2pg4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.549866, 0)
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.509963, 0)
 
 [node name="AnkyBoss" parent="." instance=ExtResource("8_ktlfx")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 22.0644)
+
+[editable path="UI/StatsDisplay/GunModeDisplay"]
