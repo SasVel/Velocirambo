@@ -8,9 +8,15 @@ extends Node3D
 
 @onready var mainScn = preload("res://playScenes/main.tscn")
 
+@export var beerRotDeg : float = 12
+@export var beerRotSpeed : float = 0.4
+@export var beerRotPause : float = 0.15
+
 func _ready():
 	camera.current = true
 	objPreloader.loaded.connect(start_game)
+
+	beer_anim()
 
 func _process(_delta):
 	loadSlider.value = objPreloader.get_load_percentage()
@@ -18,3 +24,9 @@ func _process(_delta):
 func start_game():
 	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_packed(mainScn)
+
+func beer_anim():
+	beerRect.pivot_offset = Vector2(beerRect.size.x / 2, beerRect.size.y / 2)
+	var tween = create_tween().set_loops()
+	tween.tween_property(beerRect, "rotation_degrees", beerRotDeg, beerRotSpeed).set_delay(beerRotPause)
+	tween.tween_property(beerRect, "rotation_degrees", beerRotDeg * -1, beerRotSpeed).set_delay(beerRotPause)
