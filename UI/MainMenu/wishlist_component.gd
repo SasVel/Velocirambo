@@ -17,6 +17,8 @@ func _ready():
 func _on_pressed():
 	OS.shell_open("")
 	if GameInfo.data.hasWishlistReward: return
+	
+	SteamStuff.unlock_ach(SteamStuff.Ach.WISHLIST_CLICK)
 	GameInfo.data.hasWishlistReward = true
 	GameInfo.data.nuggies += 5
 	GameInfo.save_data()

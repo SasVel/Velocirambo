@@ -3,11 +3,14 @@ extends Node
 var isSteamRunning : bool = false
 
 enum Ach {
-	GET_THAT_NUGGIE,
+	START_GAME,
+	GET_A_NUGGIE,
+	GRAB_A_BEER,
+	WISHLIST_CLICK,
 	ANKY_BOSS_DEFEAT,
 	KILL_SELF_BARREL,
 	KILL_BOSS_BARREL,
-	EAT_20_SPIKES
+	HIT_20_SPIKES
 }
 
 func _init():
@@ -22,7 +25,7 @@ func _ready():
 	print("Steam is running!")
 	isSteamRunning = Steam.isSteamRunning()
 
-func unlock(ach : Ach):
+func unlock_ach(ach : Ach):
 	if !isSteamRunning: return
 	
 	var achStr = Ach.keys()[ach]
@@ -32,6 +35,6 @@ func unlock(ach : Ach):
 	Steam.setAchievement(achStr)
 	Steam.storeStats()
 
-func clear(ach : Ach):
+func clear_ach(ach : Ach):
 	if !isSteamRunning: return
 	Steam.clearAchievement(Ach.keys()[ach])

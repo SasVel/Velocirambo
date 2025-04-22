@@ -37,5 +37,8 @@ class_name GameData
 
 #region GameData
 @export var hasWishlistReward = false
-@export var nuggies = 0
+@export var nuggies : int = 0 : 
+	set(val):
+		if(nuggies > 0): SteamStuff.unlock_ach(SteamStuff.Ach.GET_A_NUGGIE)
+		nuggies = val
 #endregion

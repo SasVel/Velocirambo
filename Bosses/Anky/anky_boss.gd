@@ -191,7 +191,7 @@ func init_health_bar():
 
 func _on_stats_no_health():
 	state = States.DEAD
-	SteamStuff.unlock(SteamStuff.Ach.ANKY_BOSS_DEFEAT)
+	SteamStuff.unlock_ach(SteamStuff.Ach.ANKY_BOSS_DEFEAT)
 	%DeathPlayer.play()
 	%Targets.enabled = false
 	GameInfo.game_won.emit()

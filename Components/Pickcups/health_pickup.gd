@@ -6,6 +6,7 @@ class_name HealthPickup
 func _on_body_entered(body):
 	SFX.play(SFX.Beer)
 	await picked_up()
+	SteamStuff.unlock_ach(SteamStuff.Ach.GRAB_A_BEER)
 	queue_free()
 
 func picked_up():
