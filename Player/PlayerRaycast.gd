@@ -15,6 +15,8 @@ func _on_player_shot_gun(isAiming : bool) -> void:
 	if collider is Hurtbox:
 		var hurtbox : Hurtbox = get_collider()
 		hurtbox.hit(PlayerData.shootDmg, self.get_collision_point())
+		var inst : FloatingText = Spawn.spawn(Ref.floatingTextScn, self.get_collision_point())
+		inst.init(str(PlayerData.shootDmg))
 	reset_target_pos()
 
 func reset_target_pos():

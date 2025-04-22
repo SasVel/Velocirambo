@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhvl0ic5pyfbb"]
+
+[ext_resource type="Script" uid="uid://crgmyvehye6g7" path="res://UI/FloatingText/floating_text.gd" id="1_x7xa3"]
+
+[node name="FloatingText" type="Label3D"]
+pixel_size = 0.003
+billboard = 1
+no_depth_test = true
+fixed_size = true
+render_priority = 5
+modulate = Color(0.87451, 0.733333, 0, 1)
+text = "60"
+font_size = 15
+outline_size = 5
+uppercase = true
+script = ExtResource("1_x7xa3")

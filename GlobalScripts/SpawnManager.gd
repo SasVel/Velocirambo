@@ -16,11 +16,12 @@ var isSpawningPickups : bool = false :
 func get_random_spawn_position() -> Vector3:
 	return Vector3(randf_range(-spawnSize, spawnSize), 0, randf_range(-spawnSize, spawnSize))
 
-func spawn(objScn : PackedScene, pos = get_random_spawn_position()):
+func spawn(objScn : PackedScene, pos = get_random_spawn_position()) -> Node:
 	var inst = objScn.instantiate()
 	get_tree().get_root().add_child(inst)
 	inst.global_position = pos
 	if inst is Pickup: pickupsArr.push_back(inst)
+	return inst
 
 func _on_pickups_timer_timeout():
 	%PickupsTimer.wait_time = randf_range(20.0, 40.0)
