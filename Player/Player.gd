@@ -219,7 +219,7 @@ func camera_move(delta):
 	cameraTarget.position = position
 	camera_turn(delta)
 
-#checks for the Limits and then turns the camera
+# Checks for the Limits and then turns the camera
 func camera_turn(delta):
 	
 	var mouseModifier = cameraSensitivity * delta

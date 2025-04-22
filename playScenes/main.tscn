@@ -212,9 +212,9 @@ fit_content = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.549866, 0)
 
 [node name="CompletePlayer" parent="." instance=ExtResource("3_hkrak")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.509963, 0)
 
 [node name="AnkyBoss" parent="." instance=ExtResource("8_ktlfx")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 22.0644)
 
 [editable path="UI/StatsDisplay/GunModeDisplay"]
+[editable path="CompletePlayer"]

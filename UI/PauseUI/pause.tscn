@@ -36,7 +36,7 @@ alignment = 1
 [node name="ContinueBtn" type="Button" parent="ButtonsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Continue"
+text = "CONTINUE"
 
 [node name="ButtonAnimComponent" type="Node" parent="ButtonsContainer/ContinueBtn"]
 script = ExtResource("3_pnqmj")
@@ -46,7 +46,7 @@ script = ExtResource("4_v0e16")
 
 [node name="SettingsBtn" type="Button" parent="ButtonsContainer"]
 layout_mode = 2
-text = "Settings"
+text = "SETTINGS"
 
 [node name="ButtonAnimComponent" type="Node" parent="ButtonsContainer/SettingsBtn"]
 script = ExtResource("3_pnqmj")
@@ -56,7 +56,7 @@ script = ExtResource("4_v0e16")
 
 [node name="MainMenuBtn" type="Button" parent="ButtonsContainer"]
 layout_mode = 2
-text = "Main Menu"
+text = "MAIN_MENU"
 
 [node name="ButtonAnimComponent" type="Node" parent="ButtonsContainer/MainMenuBtn"]
 script = ExtResource("3_pnqmj")
@@ -66,7 +66,7 @@ script = ExtResource("4_v0e16")
 
 [node name="QuitBtn" type="Button" parent="ButtonsContainer"]
 layout_mode = 2
-text = "Quit"
+text = "EXIT"
 
 [node name="ButtonAnimComponent" type="Node" parent="ButtonsContainer/QuitBtn"]
 script = ExtResource("3_pnqmj")
