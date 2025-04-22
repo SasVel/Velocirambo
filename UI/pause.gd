@@ -35,12 +35,12 @@ func _on_continue_btn_pressed():
 	active = false
 
 func _on_main_screen_btn_pressed():
-	if (!await UI.show_yes_no_msg(self, "Current progress will be lost.")): return
+	if (!await UI.show_yes_no_msg(self, "CURRENT_PROGRESS_LABEL")): return
 	active = false
 	SceneManager.go_to_main_menu()
 
 func _on_quit_btn_pressed():
-	if (!await UI.show_yes_no_msg(self, "Current progress will be lost.")): return
+	if (!await UI.show_yes_no_msg(self, "CURRENT_PROGRESS_LABEL")): return
 	get_tree().quit()
 
 

@@ -17,11 +17,16 @@ theme = ExtResource("1_xwfyf")
 script = ExtResource("1_3brog")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 2
-offset_left = 726.0
-offset_top = 392.0
-offset_right = 1002.0
-offset_bottom = 580.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -94.0
+offset_right = 138.0
+offset_bottom = 94.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -41,7 +46,7 @@ alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-text = "Are you sure?"
+text = "ARE_YOU_SURE"
 label_settings = ExtResource("3_s60pc")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -57,7 +62,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 55)
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Yes"
+text = "YES"
 
 [node name="ButtonAnimComponent" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/YesBtn"]
 script = ExtResource("4_wd8ye")
@@ -71,7 +76,7 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(70, 55)
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "No"
+text = "NO"
 
 [node name="ButtonAnimComponent" type="Node" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/NoBtn"]
 script = ExtResource("4_wd8ye")

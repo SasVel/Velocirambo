@@ -231,6 +231,10 @@ joy_camera_down={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Misc/Translations/Translations.en.translation", "res://Misc/Translations/Translations.es.translation", "res://Misc/Translations/Translations.bg.translation")
+
 [layer_names]
 
 3d_physics/layer_1="World"

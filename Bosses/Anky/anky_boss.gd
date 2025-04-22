@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var bossName : String = "Anky"
+@export var bossName : String = "ANKY_NAME"
 @export var speed : float = 5
 @onready var bossStage : int = 1 :
 	set(val):

@@ -14,6 +14,8 @@ func _ready():
 		GameInfo.data.askedUsingControllerMsg = true
 		GameInfo.save_data()
 		activate()
+	
+	TranslationServer.set_locale(TranslationServer.get_loaded_locales()[GameInfo.data.localeIdx])
 
 func _input(event):
 	if GameInfo.data.usingController: Input.mouse_mode = Input.MOUSE_MODE_HIDDEN

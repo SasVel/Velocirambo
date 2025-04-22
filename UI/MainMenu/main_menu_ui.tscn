@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://buwl6jyd0kvgw" path="res://UI/Settings/settings.tscn" id="13_4pnmc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_424qg"]
-font_size = 50
+font_size = 45
 shadow_size = 5
 shadow_color = Color(0, 0, 0, 0.596078)
 shadow_offset = Vector2(2, 2)
@@ -44,6 +44,7 @@ layout_mode = 1
 
 [node name="Settings" parent="." instance=ExtResource("13_4pnmc")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [node name="MainMenuComponents" type="MarginContainer" parent="."]
@@ -86,7 +87,7 @@ alignment = 1
 [node name="NewGameBtn" type="Button" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "New Game"
+text = "NEW_GAME"
 
 [node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/NewGameBtn"]
 script = ExtResource("5_1ti4v")
@@ -98,7 +99,7 @@ script = ExtResource("6_7jgpi")
 
 [node name="SettingsBtn" type="Button" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer"]
 layout_mode = 2
-text = "Settings"
+text = "SETTINGS"
 
 [node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/SettingsBtn"]
 script = ExtResource("5_1ti4v")
@@ -110,7 +111,7 @@ script = ExtResource("6_7jgpi")
 
 [node name="CreditsBtn" type="Button" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer"]
 layout_mode = 2
-text = "Credits"
+text = "CREDITS"
 
 [node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/CreditsBtn"]
 script = ExtResource("5_1ti4v")
@@ -124,7 +125,7 @@ script = ExtResource("6_7jgpi")
 layout_mode = 2
 focus_neighbor_left = NodePath("../../../VBoxContainer/RateComponent")
 focus_neighbor_bottom = NodePath("../../../VBoxContainer/RateComponent")
-text = "Exit"
+text = "EXIT"
 
 [node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/HBoxContainer/TitleAndMenu/BtnsContainer/QuitBtn"]
 script = ExtResource("5_1ti4v")
@@ -153,7 +154,7 @@ pivotPos = 2
 script = ExtResource("6_7jgpi")
 
 [node name="WishlistComponent" type="Button" parent="MainMenuComponents/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("beerIcon")]
-custom_minimum_size = Vector2(400, 120)
+custom_minimum_size = Vector2(450, 120)
 layout_mode = 2
 size_flags_horizontal = 8
 keep_pressed_outside = true
@@ -180,12 +181,13 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -290.0
+offset_left = -340.0
 offset_top = 20.0
+offset_right = -4.0
 offset_bottom = -45.0
 grow_horizontal = 0
 grow_vertical = 2
-text = "Wishlist Now!"
+text = "WISHLIST_NOW!"
 label_settings = SubResource("LabelSettings_424qg")
 horizontal_alignment = 1
 
@@ -197,7 +199,7 @@ offset_right = 388.0
 offset_bottom = 117.0
 mouse_filter = 2
 bbcode_enabled = true
-text = "[font_size=25][outline_size=8][wave amp=30.0 freq=3.0 connected=1] Will give you [img=45x45]res://Resources/DinoNuggie.png[/img]+5[/wave][/outline_size][/font_size]"
+text = "[font_size=25][outline_size=8][wave amp=30.0 freq=3.0 connected=1] WILL_GIVE_YOU [img=45x45]res://Resources/DinoNuggie.png[/img]+5[/wave][/outline_size][/font_size]"
 fit_content = true
 scroll_active = false
 

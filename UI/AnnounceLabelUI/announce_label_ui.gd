@@ -12,8 +12,8 @@ func _ready():
 	textBG.pivot_offset = Vector2(textBG.size / 2)
 
 func init(titleText : String, descriptionText : String):
-	self.title = titleText
-	self.desc = descriptionText
+	self.title = tr(titleText)
+	self.desc = tr(descriptionText)
 	return self
 
 

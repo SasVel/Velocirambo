@@ -42,28 +42,27 @@ layout_mode = 2
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/SettingsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 0
 
-[node name="Controls" type="MarginContainer" parent="MarginContainer/SettingsContainer/TabContainer"]
-visible = false
+[node name="CONTROLS" type="MarginContainer" parent="MarginContainer/SettingsContainer/TabContainer"]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Container" type="VBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Controls"]
+[node name="Container" type="VBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/CONTROLS"]
 layout_mode = 2
 
-[node name="Mouse" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
+[node name="Mouse" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/CONTROLS/Container"]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="LookSensitivityLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container/Mouse"]
+[node name="LookSensitivityLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/CONTROLS/Container/Mouse"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Look Sensitivity"
+text = "LOOK_SENSITIVITY"
 label_settings = ExtResource("3_hfoeg")
 
-[node name="SensitivitySlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container/Mouse"]
+[node name="SensitivitySlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/CONTROLS/Container/Mouse"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -73,63 +72,57 @@ max_value = 5.0
 step = 0.1
 value = 3.0
 
-[node name="ControllerLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
-layout_mode = 2
-text = "Controller"
-label_settings = SubResource("LabelSettings_4ss05")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="UsingController" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
+[node name="UsingController" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/CONTROLS/Container"]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="UsingControllerLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container/UsingController"]
+[node name="UsingControllerLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/CONTROLS/Container/UsingController"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Using Controller"
+text = "USING_CONTROLLER"
 label_settings = ExtResource("3_hfoeg")
 
-[node name="UsingControllerBtn" type="CheckButton" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container/UsingController"]
+[node name="UsingControllerBtn" type="CheckButton" parent="MarginContainer/SettingsContainer/TabContainer/CONTROLS/Container/UsingController"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 
-[node name="Vibration" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container"]
+[node name="Vibration" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/CONTROLS/Container"]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="ControllerVibrationLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container/Vibration"]
+[node name="ControllerVibrationLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/CONTROLS/Container/Vibration"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Controller Vibration"
+text = "VIBRATION"
 label_settings = ExtResource("3_hfoeg")
 
-[node name="ControllerVibrationBtn" type="CheckButton" parent="MarginContainer/SettingsContainer/TabContainer/Controls/Container/Vibration"]
+[node name="ControllerVibrationBtn" type="CheckButton" parent="MarginContainer/SettingsContainer/TabContainer/CONTROLS/Container/Vibration"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 
-[node name="Video" type="MarginContainer" parent="MarginContainer/SettingsContainer/TabContainer"]
+[node name="VIDEO" type="MarginContainer" parent="MarginContainer/SettingsContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Container" type="VBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Video"]
+[node name="Container" type="VBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/VIDEO"]
 layout_mode = 2
 
-[node name="WindowMode" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+[node name="WindowMode" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container/WindowMode"]
+[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/WindowMode"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Window Mode "
+text = "WINDOW_MODE"
 label_settings = ExtResource("3_hfoeg")
 
-[node name="WindowModeDrop" type="OptionButton" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container/WindowMode"]
+[node name="WindowModeDrop" type="OptionButton" parent="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/WindowMode"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
@@ -145,49 +138,65 @@ popup/item_2/id = 2
 popup/item_3/text = "Exclusive Fullscreen"
 popup/item_3/id = 3
 
-[node name="Resolution" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container"]
+[node name="Resolution" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container/Resolution"]
+[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/Resolution"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Resolution"
+text = "RESOLUTION"
 label_settings = ExtResource("3_hfoeg")
 
-[node name="ResolutionDrop" type="OptionButton" parent="MarginContainer/SettingsContainer/TabContainer/Video/Container/Resolution"]
+[node name="ResolutionDrop" type="OptionButton" parent="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/Resolution"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
-selected = 2
 
-[node name="Audio" type="MarginContainer" parent="MarginContainer/SettingsContainer/TabContainer"]
+[node name="Locale" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="LocaleLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/Locale"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "LANG"
+label_settings = ExtResource("3_hfoeg")
+
+[node name="LocaleDrop" type="OptionButton" parent="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/Locale"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+
+[node name="AUDIO" type="MarginContainer" parent="MarginContainer/SettingsContainer/TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Container" type="VBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Audio"]
+[node name="Container" type="VBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/AUDIO"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
+[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container"]
 layout_mode = 2
-text = "Volume"
+text = "VOLUME"
 label_settings = SubResource("LabelSettings_4ss05")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MainVolContainer" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
+[node name="MainVolContainer" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container"]
 layout_mode = 2
 alignment = 1
 
-[node name="MainLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container/MainVolContainer"]
+[node name="MainLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container/MainVolContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Main"
+text = "MAIN"
 label_settings = ExtResource("3_hfoeg")
 
-[node name="MainVolSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container/MainVolContainer"]
+[node name="MainVolSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container/MainVolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -196,17 +205,17 @@ size_flags_vertical = 4
 max_value = 1.0
 step = 0.01
 
-[node name="MusicVolContainer" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
+[node name="MusicVolContainer" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container"]
 layout_mode = 2
 alignment = 1
 
-[node name="MusicLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer"]
+[node name="MusicLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container/MusicVolContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Music"
+text = "MUSIC"
 label_settings = ExtResource("3_hfoeg")
 
-[node name="MusicVolSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer"]
+[node name="MusicVolSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container/MusicVolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -215,17 +224,17 @@ size_flags_vertical = 4
 max_value = 1.0
 step = 0.01
 
-[node name="SfxVolContainer" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container"]
+[node name="SfxVolContainer" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container"]
 layout_mode = 2
 alignment = 1
 
-[node name="SfxLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer"]
+[node name="SfxLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container/SfxVolContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Sound Effects"
+text = "SOUND_EFFECTS"
 label_settings = ExtResource("3_hfoeg")
 
-[node name="SfxVolSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer"]
+[node name="SfxVolSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container/SfxVolContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -234,56 +243,56 @@ size_flags_vertical = 4
 max_value = 1.0
 step = 0.01
 
-[node name="Crosshair" type="MarginContainer" parent="MarginContainer/SettingsContainer/TabContainer"]
+[node name="CROSSHAIR" type="MarginContainer" parent="MarginContainer/SettingsContainer/TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
 
-[node name="Container" type="VBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair"]
+[node name="Container" type="VBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR"]
 layout_mode = 2
 
-[node name="Color" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container"]
+[node name="Color" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/Color"]
+[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/Color"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Color"
+text = "COLOR"
 label_settings = ExtResource("3_hfoeg")
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/Color"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/Color"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 
-[node name="InvertColor" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container"]
+[node name="InvertColor" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/InvertColor"]
+[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/InvertColor"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Inverse Color"
+text = "INVERSE_COLOR"
 label_settings = ExtResource("3_hfoeg")
 
-[node name="InverseColorCheck" type="CheckBox" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/InvertColor"]
+[node name="InverseColorCheck" type="CheckBox" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/InvertColor"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 
-[node name="Opacity" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container"]
+[node name="Opacity" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/Opacity"]
+[node name="Label" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/Opacity"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Opacity"
+text = "OPACITY"
 label_settings = ExtResource("3_hfoeg")
 
-[node name="OpacitySlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/Opacity"]
+[node name="OpacitySlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/Opacity"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -293,17 +302,17 @@ max_value = 1.0
 step = 0.1
 value = 1.0
 
-[node name="Width" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container"]
+[node name="Width" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container"]
 layout_mode = 2
 alignment = 1
 
-[node name="WidthLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/Width"]
+[node name="WidthLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/Width"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Width"
+text = "WIDTH"
 label_settings = ExtResource("3_hfoeg")
 
-[node name="WidthSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/Width"]
+[node name="WidthSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/Width"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -314,17 +323,17 @@ max_value = 10.0
 step = 0.1
 value = 1.0
 
-[node name="Length" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container"]
+[node name="Length" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container"]
 layout_mode = 2
 alignment = 1
 
-[node name="LengthLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/Length"]
+[node name="LengthLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/Length"]
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Length"
+text = "LENGTH"
 label_settings = ExtResource("3_hfoeg")
 
-[node name="LengthSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/Length"]
+[node name="LengthSlider" type="HSlider" parent="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/Length"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -340,7 +349,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-text = "Back"
+text = "BACK"
 
 [node name="ButtonAnimComponent" type="Node" parent="MarginContainer/SettingsContainer/BackBtn"]
 script = ExtResource("2_yuh4y")
@@ -349,17 +358,18 @@ time = 0.2
 [node name="ButtonFocusComponent" type="Node" parent="MarginContainer/SettingsContainer/BackBtn"]
 script = ExtResource("3_eeom4")
 
-[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/Controls/Container/Mouse/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
-[connection signal="toggled" from="MarginContainer/SettingsContainer/TabContainer/Controls/Container/UsingController/UsingControllerBtn" to="." method="_on_using_controller_btn_toggled"]
-[connection signal="toggled" from="MarginContainer/SettingsContainer/TabContainer/Controls/Container/Vibration/ControllerVibrationBtn" to="." method="_on_controller_vibration_btn_toggled"]
-[connection signal="item_selected" from="MarginContainer/SettingsContainer/TabContainer/Video/Container/WindowMode/WindowModeDrop" to="." method="_on_window_mode_drop_item_selected"]
-[connection signal="item_selected" from="MarginContainer/SettingsContainer/TabContainer/Video/Container/Resolution/ResolutionDrop" to="." method="_on_resolution_drop_item_selected"]
-[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/Audio/Container/MainVolContainer/MainVolSlider" to="." method="_on_main_vol_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/Audio/Container/MusicVolContainer/MusicVolSlider" to="." method="_on_music_vol_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/Audio/Container/SfxVolContainer/SfxVolSlider" to="." method="_on_sfx_vol_slider_value_changed"]
-[connection signal="color_changed" from="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/Color/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
-[connection signal="toggled" from="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/InvertColor/InverseColorCheck" to="." method="_on_inverse_color_check_toggled"]
-[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/Opacity/OpacitySlider" to="." method="_on_opacity_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/Width/WidthSlider" to="." method="_on_width_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/Crosshair/Container/Length/LengthSlider" to="." method="_on_length_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/CONTROLS/Container/Mouse/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="toggled" from="MarginContainer/SettingsContainer/TabContainer/CONTROLS/Container/UsingController/UsingControllerBtn" to="." method="_on_using_controller_btn_toggled"]
+[connection signal="toggled" from="MarginContainer/SettingsContainer/TabContainer/CONTROLS/Container/Vibration/ControllerVibrationBtn" to="." method="_on_controller_vibration_btn_toggled"]
+[connection signal="item_selected" from="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/WindowMode/WindowModeDrop" to="." method="_on_window_mode_drop_item_selected"]
+[connection signal="item_selected" from="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/Resolution/ResolutionDrop" to="." method="_on_resolution_drop_item_selected"]
+[connection signal="item_selected" from="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/Locale/LocaleDrop" to="." method="_on_locale_drop_item_selected"]
+[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container/MainVolContainer/MainVolSlider" to="." method="_on_main_vol_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container/MusicVolContainer/MusicVolSlider" to="." method="_on_music_vol_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container/SfxVolContainer/SfxVolSlider" to="." method="_on_sfx_vol_slider_value_changed"]
+[connection signal="color_changed" from="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/Color/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="toggled" from="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/InvertColor/InverseColorCheck" to="." method="_on_inverse_color_check_toggled"]
+[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/Opacity/OpacitySlider" to="." method="_on_opacity_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/Width/WidthSlider" to="." method="_on_width_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/CROSSHAIR/Container/Length/LengthSlider" to="." method="_on_length_slider_value_changed"]
 [connection signal="pressed" from="MarginContainer/SettingsContainer/BackBtn" to="." method="_on_back_btn_pressed"]

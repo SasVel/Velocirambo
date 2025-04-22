@@ -8,7 +8,7 @@ func _ready():
 	get_tree().paused = false
 	
 	await get_tree().physics_frame
-	announce("Anky", "The Destroyer of Burgers")
+	announce("ANKY_NAME", "ANKY_DESC")
 
 func _input(event):
 	if event.is_action_pressed("ui_accept") && Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:

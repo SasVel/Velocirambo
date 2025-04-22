@@ -35,8 +35,10 @@ func config_crosshair_settings():
 
 func config_video_settings():
 	add_resolution_items()
+	add_locale_items()
 	%WindowModeDrop.selected = GameInfo.data.windowMode
 	%ResolutionDrop.selected = GameInfo.data.resolutionIdx
+	%LocaleDrop.selected = GameInfo.data.localeIdx
 
 func config_vol_sliders():
 	%MainVolSlider.value = GameInfo.data.mainVol
@@ -92,9 +94,19 @@ func _on_window_mode_drop_item_selected(index : int):
 		3: DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 
 func add_resolution_items() -> void:
+	%ResolutionDrop.clear()
 	for resolutionText in RESOLUTIONS:
 		%ResolutionDrop.add_item(resolutionText)
+
+func add_locale_items() -> void:
+	%LocaleDrop.clear()
+	for localeText in TranslationServer.get_loaded_locales():
+		%LocaleDrop.add_item(localeText)
 
 func _on_resolution_drop_item_selected(index:int):
 	GameInfo.data.resolutionIdx = index
 	DisplayServer.window_set_size(RESOLUTIONS.values()[index])
+
+func _on_locale_drop_item_selected(index:int):
+	GameInfo.data.localeIdx = index
+	TranslationServer.set_locale(%LocaleDrop.get_item_text(index))

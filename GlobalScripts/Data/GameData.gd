@@ -14,6 +14,12 @@ class_name GameData
 @export var windowMode : int = 1
 @export var resolutionIdx : int = 0
 
+signal localeChanged
+@export var localeIdx : int = 0 :
+	set(val):
+		localeIdx = val
+		localeChanged.emit()
+
 #region Mouse
 @export var cameraSensitivity  : float = 3.0
 #endregion
