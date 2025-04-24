@@ -2,6 +2,7 @@ extends Button
 
 
 @export var beerIcon : TextureRect
+@export var linkStr : String
 
 @export var rotDegrees : float = 12
 @export var rotSpeed : float = 0.4
@@ -15,7 +16,7 @@ func _ready():
 
 
 func _on_pressed():
-	OS.shell_open("")
+	OS.shell_open(linkStr)
 	if GameInfo.data.hasWishlistReward: return
 	
 	SteamStuff.unlock_ach(SteamStuff.Ach.WISHLIST_CLICK)

@@ -161,6 +161,7 @@ size_flags_horizontal = 8
 keep_pressed_outside = true
 script = ExtResource("8_oyel6")
 beerIcon = NodePath("BeerIcon")
+linkStr = "https://store.steampowered.com/app/3353170/Velocirambo/#game_area_wishlist"
 
 [node name="BeerIcon" type="TextureRect" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent"]
 layout_mode = 1
