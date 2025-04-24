@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bngj3gvodihcr"]
+[gd_scene load_steps=12 format=3 uid="uid://bngj3gvodihcr"]
 
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="1_i2a53"]
 [ext_resource type="Script" uid="uid://byw4sjbaek0p6" path="res://UI/MainMenu/main_menu_ui.gd" id="2_3377f"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d0ifa53fa0md5" path="res://UI/Components/RateComponent/rate_component.tscn" id="7_mibcb"]
 [ext_resource type="Script" uid="uid://b7dw5f4l2jbuv" path="res://UI/MainMenu/wishlist_component.gd" id="8_oyel6"]
 [ext_resource type="Texture2D" uid="uid://rbaxlkme85nd" path="res://Misc/Icon.png" id="9_t8yxc"]
+[ext_resource type="PackedScene" uid="uid://7eigtoe7o6w4" path="res://Components/RichTextTranslator/rich_text_translator.tscn" id="10_t8yxc"]
 [ext_resource type="PackedScene" uid="uid://buwl6jyd0kvgw" path="res://UI/Settings/settings.tscn" id="13_4pnmc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_424qg"]
@@ -175,33 +176,36 @@ texture = ExtResource("9_t8yxc")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="WishlistLabel" type="Label" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent"]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -340.0
-offset_top = 20.0
-offset_right = -4.0
-offset_bottom = -45.0
-grow_horizontal = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -50.0
+offset_right = 217.0
+offset_bottom = 53.0
+grow_horizontal = 2
 grow_vertical = 2
-text = "WISHLIST_NOW!"
-label_settings = SubResource("LabelSettings_424qg")
-horizontal_alignment = 1
+theme_override_constants/separation = 8
 
-[node name="DinoNugLabel" type="RichTextLabel" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent"]
-layout_mode = 0
-offset_left = 133.0
-offset_top = 72.0
-offset_right = 388.0
-offset_bottom = 117.0
+[node name="Label" type="Label" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent/VBoxContainer"]
+layout_mode = 2
+text = "WISHLIST_NOW"
+label_settings = SubResource("LabelSettings_424qg")
+
+[node name="DinoNugLabel" type="RichTextLabel" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent/VBoxContainer"]
+layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
-text = "[font_size=25][outline_size=8][wave amp=30.0 freq=3.0 connected=1] WILL_GIVE_YOU [img=45x45]res://Resources/DinoNuggie.png[/img]+5[/wave][/outline_size][/font_size]"
+text = "[font_size=25][outline_size=8][wave amp=30.0 freq=3.0 connected=1] ? [img=40x40]res://Resources/DinoNuggieSmall.png[/img]+5[/wave][/outline_size][/font_size]"
 fit_content = true
 scroll_active = false
+
+[node name="RichTextTranslator" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent/VBoxContainer/DinoNugLabel" instance=ExtResource("10_t8yxc")]
+textForTranslation = "WILL_GIVE_YOU"
 
 [node name="ButtonAnimComponent" type="Node" parent="MainMenuComponents/HBoxContainer/VBoxContainer/WishlistComponent"]
 script = ExtResource("5_1ti4v")

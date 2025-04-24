@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://7eigtoe7o6w4"]
+
+[ext_resource type="Script" uid="uid://bt7o1rjma1fkn" path="res://Components/RichTextTranslator/rich_text_translator.gd" id="1_jd47v"]
+
+[node name="RichTextTranslator" type="Node"]
+script = ExtResource("1_jd47v")
