@@ -45,6 +45,6 @@ signal localeChanged
 @export var hasWishlistReward = false
 @export var nuggies : int = 0 : 
 	set(val):
-		if(nuggies > 0): SteamStuff.unlock_ach(SteamStuff.Ach.GET_A_NUGGIE)
+		if(val > 0): SteamStuff.unlock_ach(SteamStuff.Ach.GET_A_NUGGIE)
 		nuggies = val
 #endregion

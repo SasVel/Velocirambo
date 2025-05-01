@@ -69,8 +69,8 @@ size_flags_horizontal = 3
 [node name="RichTextLabel" type="RichTextLabel" parent="MainMenuComponents/HBoxContainer/TitleAndMenu"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
-offset_right = 1658.0
-offset_bottom = 902.0
+offset_right = 489.0
+offset_bottom = 87.0
 bbcode_enabled = true
 text = "[font=res://Misc/Fonts/lexographer.regular.ttf][color=WHITE][font_size=80][outline_size=20][shake rate=20.0 level=5 connected=1]Velocirambo[/shake][/outline_size][/font_size][/color][/font]"
 fit_content = true
