@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdvqhvfu8pif1"]
+[gd_scene load_steps=7 format=3 uid="uid://bdvqhvfu8pif1"]
 
 [ext_resource type="PackedScene" uid="uid://ctdbu511qitd4" path="res://Player/player.tscn" id="1_g4u3e"]
 [ext_resource type="Script" uid="uid://sd0s2v67dfy0" path="res://Player/PlayerCamera.gd" id="3_n06hd"]
 [ext_resource type="Shader" uid="uid://cb8643o7upuj1" path="res://Shaders/BlurVignette.gdshader" id="4_cg67b"]
+[ext_resource type="Script" uid="uid://c2lw8841hnw30" path="res://Shaders/blur_vignette.gd" id="5_hm4qw"]
 [ext_resource type="Script" uid="uid://bdvi0uqybo0vd" path="res://Player/PlayerRaycast.gd" id="5_skyla"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hm4qw"]
@@ -51,5 +52,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_hm4qw")
 
 [connection signal="shot_gun" from="Player" to="CameraTarget/Camera3D/GunRayCast" method="_on_player_shot_gun"]

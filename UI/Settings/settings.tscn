@@ -42,9 +42,10 @@ layout_mode = 2
 [node name="TabContainer" type="TabContainer" parent="MarginContainer/SettingsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 1
 
 [node name="CONTROLS" type="MarginContainer" parent="MarginContainer/SettingsContainer/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -105,7 +106,6 @@ layout_mode = 2
 size_flags_horizontal = 2
 
 [node name="VIDEO" type="MarginContainer" parent="MarginContainer/SettingsContainer/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -170,6 +170,22 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
+
+[node name="Blur" type="HBoxContainer" parent="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="BlurLabel" type="Label" parent="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/Blur"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "BLUR"
+label_settings = ExtResource("3_hfoeg")
+
+[node name="BlurBtn" type="CheckButton" parent="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/Blur"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
 
 [node name="AUDIO" type="MarginContainer" parent="MarginContainer/SettingsContainer/TabContainer"]
 visible = false
@@ -364,6 +380,7 @@ script = ExtResource("3_eeom4")
 [connection signal="item_selected" from="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/WindowMode/WindowModeDrop" to="." method="_on_window_mode_drop_item_selected"]
 [connection signal="item_selected" from="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/Resolution/ResolutionDrop" to="." method="_on_resolution_drop_item_selected"]
 [connection signal="item_selected" from="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/Locale/LocaleDrop" to="." method="_on_locale_drop_item_selected"]
+[connection signal="toggled" from="MarginContainer/SettingsContainer/TabContainer/VIDEO/Container/Blur/BlurBtn" to="." method="_on_blur_btn_toggled"]
 [connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container/MainVolContainer/MainVolSlider" to="." method="_on_main_vol_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container/MusicVolContainer/MusicVolSlider" to="." method="_on_music_vol_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/SettingsContainer/TabContainer/AUDIO/Container/SfxVolContainer/SfxVolSlider" to="." method="_on_sfx_vol_slider_value_changed"]

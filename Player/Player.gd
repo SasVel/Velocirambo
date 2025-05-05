@@ -7,7 +7,7 @@ class_name Player
 @export var sprintMultiplier : float = 1.7
 ##how fast the body tries to catch up to the camera
 @export var turnSpeed : float = 10.0
-@export var blurVignette : ColorRect
+@export var blurVignette : BlurVignette
 
 @export_category("Mouse/Camera controls")
 ##TODO Currently not being used
@@ -48,9 +48,9 @@ var currentState : PLAYER_STATE = PLAYER_STATE.IDLE :
 		if currentState != lastState: lastState = currentState
 
 		if currentState == PLAYER_STATE.SPRINTING: camera.reset_fov()
-		if newState == PLAYER_STATE.SPRINTING: blurVignette.visible = true
+		if newState == PLAYER_STATE.SPRINTING: blurVignette.switch(true)
 		elif newState != PLAYER_STATE.SPRINTING: 
-			blurVignette.visible = false
+			blurVignette.switch(false)
 			print("Not sprinting")
 		currentState = newState
 var lastState : PLAYER_STATE = PLAYER_STATE.IDLE
