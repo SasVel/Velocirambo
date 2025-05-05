@@ -255,7 +255,5 @@ grow_vertical = 2
 [node name="LogoSprites" type="AnimatedSprite2D" parent="LogoControl"]
 scale = Vector2(0.887037, 0.887037)
 sprite_frames = SubResource("SpriteFrames_b4tr0")
-frame = 22
-frame_progress = 0.0591245
 
 [connection signal="animation_finished" from="LogoControl/LogoSprites" to="." method="_on_logo_sprites_animation_finished"]
