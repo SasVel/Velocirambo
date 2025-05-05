@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2abwchgqxe5i"]
+
+[ext_resource type="Shader" uid="uid://y5khmejknbql" path="res://Shaders/ScreenTransDiamond.gdshader" id="1_2jpof"]
+[ext_resource type="Script" uid="uid://blyube460gmln" path="res://Components/Transitions/transition_component.gd" id="2_agdw1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iau2q"]
+shader = ExtResource("1_2jpof")
+shader_parameter/progress = 0.0
+shader_parameter/diamondPixelSize = 15.0
+shader_parameter/direction = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_agdw1"]
+shader = ExtResource("1_2jpof")
+shader_parameter/progress = 0.348
+shader_parameter/diamondPixelSize = 15.0
+shader_parameter/direction = -1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o5b6r"]
+shader = ExtResource("1_2jpof")
+shader_parameter/progress = 1.0
+shader_parameter/diamondPixelSize = 15.0
+shader_parameter/direction = 1.0
+
+[node name="TransitionComponent" type="Control"]
+material = SubResource("ShaderMaterial_iau2q")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_agdw1")
+
+[node name="ConcealRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_agdw1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RevealRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_o5b6r")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

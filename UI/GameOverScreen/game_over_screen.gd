@@ -11,7 +11,7 @@ func _input(event):
 	if !active: return
 	if event.is_action_pressed("ui_accept"):
 		reset()
-		SceneManager.go_to_main_menu()
+		SceneManager.change_scene(SceneManager.Scenes.MainMenu)
 
 func game_won():
 	pauseScreen.disabled = true
@@ -29,5 +29,3 @@ func game_lost():
 func reset():
 	pauseScreen.disabled = false
 	active = false
-	%GameWonLabel.visible = false
-	%GameLostLabel.visible = false

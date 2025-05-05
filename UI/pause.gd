@@ -37,7 +37,7 @@ func _on_continue_btn_pressed():
 func _on_main_screen_btn_pressed():
 	if (!await UI.show_yes_no_msg(self, "CURRENT_PROGRESS_LABEL")): return
 	active = false
-	SceneManager.go_to_main_menu()
+	SceneManager.load_scene(SceneManager.Scenes.MainMenu)
 
 func _on_quit_btn_pressed():
 	if (!await UI.show_yes_no_msg(self, "CURRENT_PROGRESS_LABEL")): return

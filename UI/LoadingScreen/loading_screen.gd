@@ -23,7 +23,7 @@ func _process(_delta):
 
 func start_game():
 	await get_tree().create_timer(1).timeout
-	get_tree().change_scene_to_packed(mainScn)
+	SceneManager.load_scene(SceneManager.Scenes.Arena)
 
 func beer_anim():
 	beerRect.pivot_offset = Vector2(beerRect.size.x / 2, beerRect.size.y / 2)

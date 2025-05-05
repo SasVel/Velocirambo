@@ -52,7 +52,6 @@ var currentState : PLAYER_STATE = PLAYER_STATE.IDLE :
 		if newState == PLAYER_STATE.SPRINTING: blurVignette.switch(true)
 		elif newState != PLAYER_STATE.SPRINTING: 
 			blurVignette.switch(false)
-			print("Not sprinting")
 		currentState = newState
 var lastState : PLAYER_STATE = PLAYER_STATE.IDLE
 var inputDir : Vector2

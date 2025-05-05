@@ -17,4 +17,4 @@ func _on_logo_sprites_animation_finished():
 	var tween = create_tween()
 	tween.tween_property(logoSprites, "modulate:a", 0, 1.5)
 	await tween.finished
-	get_tree().change_scene_to_packed(mainMenuScene)
+	SceneManager.load_scene(SceneManager.Scenes.MainMenu)

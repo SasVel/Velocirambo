@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Velocirambo"
 config/tags=PackedStringArray("projects")
-run/main_scene="uid://cma2yg4d7nlnt"
+run/main_scene="uid://dc2ijb7djwaaf"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=120
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)
@@ -32,7 +32,7 @@ Particles="*res://GlobalScripts/particles_manager.tscn"
 SFX="*res://GlobalScripts/SFX/sfx_manager.tscn"
 Music="*res://GlobalScripts/Music/music_manager.tscn"
 Spawn="*res://GlobalScripts/spawn_manager.tscn"
-SceneManager="*res://GlobalScripts/SceneManager.gd"
+SceneManager="*res://GlobalScripts/SceneManager.tscn"
 UI="*res://GlobalScripts/UIHelper.gd"
 Controller="*res://GlobalScripts/ControllerManager.gd"
 SteamStuff="*res://GlobalScripts/SteamManager.gd"

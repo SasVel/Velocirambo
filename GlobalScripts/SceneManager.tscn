@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://1l6mfv5vjhl0"]
+
+[ext_resource type="Script" uid="uid://bhv5mqf4r26er" path="res://GlobalScripts/SceneManager.gd" id="1_sxg6a"]
+[ext_resource type="PackedScene" uid="uid://c2abwchgqxe5i" path="res://Components/Transitions/transition_component.tscn" id="2_v8fct"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_sxg6a")
+
+[node name="TransitionComponent" parent="." instance=ExtResource("2_v8fct")]
+unique_name_in_owner = true
