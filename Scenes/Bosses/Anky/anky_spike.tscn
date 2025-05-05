@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://c4hwqoskl2i2h"]
+
+[ext_resource type="Script" uid="uid://bb4ha3e644drm" path="res://Scenes/Bosses/Anky/anky_spike.gd" id="1_28wvb"]
+[ext_resource type="PackedScene" uid="uid://clperpfmg1asg" path="res://Resources/Models/Anky/AnkySpikeModel.fbx" id="1_tld78"]
+[ext_resource type="Script" uid="uid://cgb4nvjl54qcq" path="res://Scenes/Bosses/Anky/life_timer.gd" id="2_7ip78"]
+[ext_resource type="Script" uid="uid://bptiyj8uso66d" path="res://Components/Stats/stats.gd" id="2_gwem0"]
+[ext_resource type="PackedScene" uid="uid://c1jajrrorycq6" path="res://Scenes/Bosses/Components/BossHitbox/BossHitbox.tscn" id="3_ysfjd"]
+[ext_resource type="Shader" uid="uid://cgkyjsyjdknub" path="res://Shaders/Field.gdshader" id="5_watx2"]
+[ext_resource type="PackedScene" uid="uid://bbgkxay0jv4uu" path="res://Components/Hurtbox.tscn" id="6_qxa0w"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vf7t3"]
+radius = 0.183993
+height = 0.58622
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7ny3s"]
+radius = 0.77551
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e4lm5"]
+render_priority = 0
+shader = ExtResource("5_watx2")
+shader_parameter/color = Color(1, 0.486275, 0, 1)
+shader_parameter/size = 1.05
+shader_parameter/opacity = 0.4
+
+[sub_resource type="SphereMesh" id="SphereMesh_swqdn"]
+material = SubResource("ShaderMaterial_e4lm5")
+radius = 0.75
+height = 1.5
+radial_segments = 8
+rings = 5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wwmej"]
+radius = 0.501083
+height = 1.53599
+
+[node name="AnkySpike" type="RigidBody3D"]
+collision_layer = 0
+mass = 15.0
+gravity_scale = 2.0
+contact_monitor = true
+max_contacts_reported = 5
+script = ExtResource("1_28wvb")
+
+[node name="LifeTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 10.0
+one_shot = true
+autostart = true
+script = ExtResource("2_7ip78")
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("2_gwem0")
+maxHealth = 20.0
+
+[node name="AnkySpike" parent="." instance=ExtResource("1_tld78")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 1.31888, 0)
+shape = SubResource("CapsuleShape3D_vf7t3")
+
+[node name="Hitbox" parent="." node_paths=PackedStringArray("stats") instance=ExtResource("3_ysfjd")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+isFollowEnabled = false
+stats = NodePath("../Stats")
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.145848, 0)
+shape = SubResource("SphereShape3D_7ny3s")
+
+[node name="HitboxField" type="MeshInstance3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.146812, 0)
+mesh = SubResource("SphereMesh_swqdn")
+skeleton = NodePath("../..")
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("statsComponent") instance=ExtResource("6_qxa0w")]
+statsComponent = NodePath("../Stats")
+
+[node name="CollisionShape3D" parent="Hurtbox" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32008, 0)
+shape = SubResource("CapsuleShape3D_wwmej")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_boss_hitbox_area_entered"]
+
+[editable path="Hitbox"]
+[editable path="Hurtbox"]

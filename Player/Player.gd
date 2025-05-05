@@ -1,12 +1,13 @@
 extends CharacterBody3D
 class_name Player
 
-@export var walkingSpeed : float = 2.5
-@export var runningSpeed : float = 5.0
+@export var walkingSpeed : float = 3
+@export var runningSpeed : float = 6.5
 ##Multiplies the value in runningSpeed to get the sprinting speed.
 @export var sprintMultiplier : float = 1.7
 ##how fast the body tries to catch up to the camera
 @export var turnSpeed : float = 10.0
+@export var blurVignette : ColorRect
 
 @export_category("Mouse/Camera controls")
 ##TODO Currently not being used
@@ -45,16 +46,23 @@ var currentState : PLAYER_STATE = PLAYER_STATE.IDLE :
 	set(newState):
 		if currentState == newState: return
 		if currentState != lastState: lastState = currentState
+
 		if currentState == PLAYER_STATE.SPRINTING: camera.reset_fov()
+		if newState == PLAYER_STATE.SPRINTING: blurVignette.visible = true
+		elif newState != PLAYER_STATE.SPRINTING: 
+			blurVignette.visible = false
+			print("Not sprinting")
 		currentState = newState
 var lastState : PLAYER_STATE = PLAYER_STATE.IDLE
+var inputDir : Vector2
 var lastDirection : Vector3
 var cameraVelocity = Vector2.ZERO #Don't confuse with sensitivity
 
 func _input(event):
+	inputDir = Input.get_vector("Left", "Right", "Forwards", "Backwards", 0.7)
 	if event is InputEventMouseMotion && !GameInfo.data.usingController:
 		cameraVelocity = event.screen_relative
-	handleStateTransitions(event)
+	handle_state_trans(event)
 	
 	if(currentState == PLAYER_STATE.IDLE || currentState == PLAYER_STATE.RUNNING || currentState == PLAYER_STATE.WALKING):
 		if event.is_action_pressed("Shoot") && canShoot:
@@ -84,13 +92,13 @@ func _input(event):
 		PlayerData.isGunAuto = !PlayerData.isGunAuto
 		SFX.play(SFX.AutoMode)
 
-func handleStateTransitions(event):
-	if Input.get_vector("Backwards", "Forwards", "Leftways", "Rightways", 0.7) != Vector2.ZERO:
+func handle_state_trans(event):
+	if inputDir != Vector2.ZERO:
 		if Input.is_action_pressed("Aim"):
 			currentState = PLAYER_STATE.WALKING
 			return
 		if Input.is_action_pressed("sprint"): currentState = PLAYER_STATE.SPRINTING
-		elif event.is_action_released("sprint"): currentState = lastState
+		elif event.is_action_released("sprint"): currentState = PLAYER_STATE.RUNNING
 		else: currentState = PLAYER_STATE.RUNNING
 	else:
 		currentState = PLAYER_STATE.IDLE
@@ -199,7 +207,7 @@ func gravity(delta):
 # Get the input direction and handle the movement.
 func player_move(_delta, speed):
 	#Controls got inverted for some reason. Couldn't figure out why so, uh, temporary fix.
-	var input_dir : Vector2 = Input.get_vector("Leftways", "Rightways", "Forwards", "Backwards") * -1
+	var input_dir : Vector2 = inputDir * -1
 	var direction = (horizontalRotPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * speed

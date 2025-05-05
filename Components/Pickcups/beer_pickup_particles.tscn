@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cutod883oh642"]
 
-[ext_resource type="Script" uid="uid://cuovn4ef0w0sl" path="res://Bosses/Particles/OneShotParticles.gd" id="1_wvw7t"]
+[ext_resource type="Script" uid="uid://cuovn4ef0w0sl" path="res://Scenes/Bosses/Particles/OneShotParticles.gd" id="1_wvw7t"]
 
 [sub_resource type="Curve" id="Curve_tk4af"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.220544, 0.969011), 0.0702563, 0.0702563, 0, 0, Vector2(1, 0.418951), -2.25664, 0.0, 0, 0]

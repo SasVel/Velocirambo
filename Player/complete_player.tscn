@@ -1,13 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdvqhvfu8pif1"]
+[gd_scene load_steps=6 format=3 uid="uid://bdvqhvfu8pif1"]
 
 [ext_resource type="PackedScene" uid="uid://ctdbu511qitd4" path="res://Player/player.tscn" id="1_g4u3e"]
 [ext_resource type="Script" uid="uid://sd0s2v67dfy0" path="res://Player/PlayerCamera.gd" id="3_n06hd"]
+[ext_resource type="Shader" uid="uid://cb8643o7upuj1" path="res://Shaders/BlurVignette.gdshader" id="4_cg67b"]
 [ext_resource type="Script" uid="uid://bdvi0uqybo0vd" path="res://Player/PlayerRaycast.gd" id="5_skyla"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hm4qw"]
+shader = ExtResource("4_cg67b")
+shader_parameter/blur_radius = 0.3
+shader_parameter/blur_amount = 2.0
+shader_parameter/blur_inner = 0.6
+shader_parameter/blur_outer = 0.66
 
 [node name="CompletePlayer" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.254937, 0)
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera", "cameraTarget", "horizontalRotPivot") instance=ExtResource("1_g4u3e")]
+[node name="Player" parent="." node_paths=PackedStringArray("blurVignette", "camera", "cameraTarget", "horizontalRotPivot") instance=ExtResource("1_g4u3e")]
+blurVignette = NodePath("../BlurVignette")
 camera = NodePath("../CameraTarget/Camera3D")
 cameraTarget = NodePath("../CameraTarget")
 horizontalRotPivot = NodePath("../HorizontalRotationPivot")
@@ -16,6 +25,7 @@ horizontalRotPivot = NodePath("../HorizontalRotationPivot")
 
 [node name="Camera3D" type="Camera3D" parent="CameraTarget"]
 transform = Transform3D(-1, 1.0533e-08, -1.50628e-07, 0, 0.997564, 0.0697565, 1.50996e-07, 0.0697565, -0.997564, -1.74585, 2.60637, -2.54422)
+doppler_tracking = 2
 current = true
 script = ExtResource("3_n06hd")
 zoom_speed = 0.2
@@ -32,5 +42,14 @@ script = ExtResource("5_skyla")
 
 [node name="HorizontalRotationPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.70468, 2.82899)
+
+[node name="BlurVignette" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_hm4qw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="shot_gun" from="Player" to="CameraTarget/Camera3D/GunRayCast" method="_on_player_shot_gun"]

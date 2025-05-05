@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3qhok26qo35j"]
+
+[ext_resource type="Script" uid="uid://cuovn4ef0w0sl" path="res://Scenes/Bosses/Particles/OneShotParticles.gd" id="1_1u8r5"]
+
+[sub_resource type="Curve" id="Curve_x8upq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.244853), -2.8788, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_haqvw"]
+curve = SubResource("Curve_x8upq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pdxut"]
+direction = Vector3(1, 0, 1)
+spread = 180.0
+flatness = 0.9
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+damping_min = 2.0
+damping_max = 4.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_haqvw")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixpf5"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.988235, 0.839216, 0.411765, 0.788235)
+
+[sub_resource type="SphereMesh" id="SphereMesh_n48gd"]
+material = SubResource("StandardMaterial3D_ixpf5")
+radius = 0.25
+height = 0.5
+radial_segments = 6
+rings = 4
+
+[node name="StompParticles" type="GPUParticles3D"]
+emitting = false
+amount = 6
+one_shot = true
+explosiveness = 0.95
+randomness = 0.1
+process_material = SubResource("ParticleProcessMaterial_pdxut")
+draw_pass_1 = SubResource("SphereMesh_n48gd")
+script = ExtResource("1_1u8r5")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

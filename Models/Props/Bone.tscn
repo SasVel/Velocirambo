@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://1qlgdi05hcv0"]
-
-[ext_resource type="ArrayMesh" uid="uid://b3fv8m2ttu5lc" path="res://Models/Props/Bone.obj" id="1_8qris"]
-[ext_resource type="Material" uid="uid://b76duvumet37p" path="res://Models/Materials/ColorMat.tres" id="2_rwghh"]
-
-[node name="MeshInstance3D" type="MeshInstance3D"]
-mesh = ExtResource("1_8qris")
-surface_material_override/0 = ExtResource("2_rwghh")

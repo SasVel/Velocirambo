@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=3 uid="uid://dn1d3oi4dspne"]
+
+[ext_resource type="Script" uid="uid://cuovn4ef0w0sl" path="res://Scenes/Bosses/Particles/OneShotParticles.gd" id="1_st8f8"]
+
+[sub_resource type="Curve" id="Curve_8w4du"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.25092, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gytbh"]
+curve = SubResource("Curve_8w4du")
+
+[sub_resource type="Gradient" id="Gradient_kfm3r"]
+offsets = PackedFloat32Array(0, 0.163934, 0.819672)
+colors = PackedColorArray(0.988235, 0.709804, 0.0862745, 1, 0.988235, 0.309804, 0.0862745, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bmx07"]
+gradient = SubResource("Gradient_kfm3r")
+
+[sub_resource type="Curve" id="Curve_euw7o"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.1011, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vat74"]
+curve = SubResource("Curve_euw7o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g1y2t"]
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 35.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, -10, 0)
+damping_min = 10.0
+damping_max = 25.0
+scale_min = 1.5
+scale_max = 4.5
+scale_curve = SubResource("CurveTexture_vat74")
+color_ramp = SubResource("GradientTexture1D_bmx07")
+alpha_curve = SubResource("CurveTexture_gytbh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vp315"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_l8kfp"]
+material = SubResource("StandardMaterial3D_vp315")
+radius = 0.25
+height = 0.5
+radial_segments = 6
+rings = 4
+
+[node name="BigExplosionParticles" type="GPUParticles3D"]
+emitting = false
+amount = 24
+one_shot = true
+explosiveness = 0.9
+randomness = 0.15
+fixed_fps = 60
+interpolate = false
+process_material = SubResource("ParticleProcessMaterial_g1y2t")
+draw_pass_1 = SubResource("SphereMesh_l8kfp")
+script = ExtResource("1_st8f8")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

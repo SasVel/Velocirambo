@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://baxiglbr028b2"]
+
+[ext_resource type="Texture2D" uid="uid://bhmlcx21f3wyd" path="res://Scenes/Arena/Crowd/CrowdSprites/Dino_1.png" id="1_j5xt8"]
+[ext_resource type="Shader" uid="uid://brm100eqte1v3" path="res://Scenes/Arena/Crowd/dinoCrowd.gdshader" id="1_y475n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7htbj"]
+render_priority = 0
+shader = ExtResource("1_y475n")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("1_j5xt8")
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/jumpingAnimSpeed = 4.0
+shader_parameter/jumpingAnimHeightModifier = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_sviiw"]
+material = SubResource("ShaderMaterial_7htbj")
+size = Vector2(6, 4)
+
+[node name="Dino_1" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01454, 0)
+mesh = SubResource("QuadMesh_sviiw")

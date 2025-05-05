@@ -20,6 +20,12 @@ signal localeChanged
 		localeIdx = val
 		localeChanged.emit()
 
+signal blurChanged
+@export var isBlur : bool = true :	
+	set(val):
+		isBlur = val
+		blurChanged.emit()
+
 #region Mouse
 @export var cameraSensitivity  : float = 3.0
 #endregion

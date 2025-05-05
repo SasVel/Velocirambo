@@ -39,6 +39,7 @@ func config_video_settings():
 	%WindowModeDrop.selected = GameInfo.data.windowMode
 	%ResolutionDrop.selected = GameInfo.data.resolutionIdx
 	%LocaleDrop.selected = GameInfo.data.localeIdx
+	%BlurBtn.button_pressed = GameInfo.data.isBlur
 
 func config_vol_sliders():
 	%MainVolSlider.value = GameInfo.data.mainVol
@@ -110,3 +111,6 @@ func _on_resolution_drop_item_selected(index:int):
 func _on_locale_drop_item_selected(index:int):
 	GameInfo.data.localeIdx = index
 	TranslationServer.set_locale(%LocaleDrop.get_item_text(index))
+
+func _on_blur_btn_toggled(toggled_on : bool):
+	GameInfo.data.isBlur = toggled_on

@@ -30,6 +30,7 @@ WIDTH;Width;Ширина
 LENGTH;Length;Дължина
 BACK;Back;Назад
 LANG;Language;Език
+BLUR;Blur;Размазване
 CURRENT_PROGRESS_LABEL;Current progress will be lost.;Прогресът ще се загуби.
 ARE_YOU_SURE;Are you sure?;Сигурни ли сте?
 ANKY_NAME;Anky;Анки

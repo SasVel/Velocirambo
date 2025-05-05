@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://b4pqd3fasde7g"]
+
+[ext_resource type="PackedScene" uid="uid://d3qhok26qo35j" path="res://Scenes/Bosses/Particles/stomp_particles.tscn" id="1_u7p5d"]
+
+[sub_resource type="Curve" id="Curve_ohtkc"]
+_data = [Vector2(0, 0.955882), 0.0, 0.0, 0, 0, Vector2(1, 0.147059), -3.27101, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_08i8f"]
+curve = SubResource("Curve_ohtkc")
+
+[sub_resource type="Gradient" id="Gradient_6xx7e"]
+colors = PackedColorArray(0.988235, 0.690196, 0.411765, 1, 0.988235, 0.839216, 0.411765, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_84ym8"]
+gradient = SubResource("Gradient_6xx7e")
+
+[sub_resource type="Curve" id="Curve_jxyd6"]
+_data = [Vector2(0, 1), 0.0, -0.0687594, 0, 0, Vector2(1, 0.176471), -4.48961, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_c15bl"]
+curve = SubResource("Curve_jxyd6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k4rv5"]
+emission_shape = 6
+emission_ring_axis = Vector3(5, 2, 5)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 2.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(1, 0, 1)
+spread = 180.0
+flatness = 0.9
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, 0, 0)
+damping_min = 2.0
+damping_max = 4.0
+scale_min = 3.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_c15bl")
+color_ramp = SubResource("GradientTexture1D_84ym8")
+alpha_curve = SubResource("CurveTexture_08i8f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hcwvb"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_y2lag"]
+material = SubResource("StandardMaterial3D_hcwvb")
+radius = 0.25
+height = 0.5
+radial_segments = 6
+rings = 4
+
+[node name="SlamParticles" instance=ExtResource("1_u7p5d")]
+amount = 24
+process_material = SubResource("ParticleProcessMaterial_k4rv5")
+draw_pass_1 = SubResource("SphereMesh_y2lag")

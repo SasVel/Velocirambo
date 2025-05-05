@@ -6,7 +6,7 @@ extends Node3D
 @export var camera : Camera3D
 @export var loadSlider : Slider
 
-@onready var mainScn = preload("res://playScenes/main.tscn")
+@onready var mainScn = preload("res://Scenes/main.tscn")
 
 @export var beerRotDeg : float = 12
 @export var beerRotSpeed : float = 0.4

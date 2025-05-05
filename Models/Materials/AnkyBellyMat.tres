@@ -1,9 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dp0w1jdimgyso"]
-
-[ext_resource type="Texture2D" uid="uid://blkc757fwnokd" path="res://Models/Anky/AnkyBellyTexture.png" id="1_xp0w5"]
-
-[resource]
-shading_mode = 0
-disable_fog = true
-vertex_color_is_srgb = true
-albedo_texture = ExtResource("1_xp0w5")

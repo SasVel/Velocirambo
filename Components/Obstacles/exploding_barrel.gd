@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-@onready var expParticlesScn = preload("res://Bosses/Particles/big_explosion_particles.tscn")
+@onready var expParticlesScn = preload("res://Scenes/Bosses/Particles/big_explosion_particles.tscn")
 
 @export var hitForce = 5
 

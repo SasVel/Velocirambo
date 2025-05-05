@@ -57,12 +57,15 @@ enabled=PackedStringArray("res://addons/proton_scatter/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://Arena/": "pink",
-"res://Bosses/": "red",
-"res://Models/": "orange",
+"res://GlobalScripts/": "yellow",
 "res://Player/": "blue",
-"res://UI/": "green",
-"res://playScenes/": "yellow"
+"res://Resources/": "green",
+"res://Resources/Models/": "orange",
+"res://Scenes/": "yellow",
+"res://Scenes/Arena/": "pink",
+"res://Scenes/Bosses/": "red",
+"res://Shaders/": "purple",
+"res://UI/": "green"
 }
 
 [gui]
@@ -152,14 +155,14 @@ Backwards={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194322,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
-Leftways={
+Left={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":-1.0,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194319,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
-Rightways={
+Right={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":1.0,"script":null)

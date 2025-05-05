@@ -1,0 +1,69 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://dvcx51efcyq38"
+path="res://.godot/imported/Arena - Copy.fbx-d6083ddde1fb86ea5332dcf6daaf4a60.scn"
+
+[deps]
+
+source_file="res://Resources/Models/Arena - Copy.fbx"
+dest_files=["res://.godot/imported/Arena - Copy.fbx-d6083ddde1fb86ea5332dcf6daaf4a60.scn"]
+
+[params]
+
+nodes/root_type="StaticBody3D"
+nodes/root_name="Arena"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=false
+meshes/create_shadow_meshes=false
+meshes/light_baking=0
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=false
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=false
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"BrickTexture": {
+"use_external/enabled": true,
+"use_external/path": "res://Models/Materials/InnerWall.tres"
+},
+"BrickTexture.001": {
+"use_external/enabled": true,
+"use_external/path": "res://Models/Materials/Gate.tres"
+},
+"ColorsMat": {
+"use_external/enabled": true,
+"use_external/path": "res://Models/Materials/ColorMat.tres"
+},
+"OutsideRimMat": {
+"use_external/enabled": true,
+"use_external/path": "res://Models/Materials/OuterWall.tres"
+},
+"SandMat": {
+"use_external/enabled": true,
+"use_external/path": "res://Models/Materials/GroundMat.tres"
+},
+"Stairs": {
+"use_external/enabled": true,
+"use_external/path": "res://Models/Materials/Stairs.tres"
+},
+"StairsUpper.001": {
+"use_external/enabled": true,
+"use_external/path": "res://Models/Materials/Stairs.tres"
+}
+}
+}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
