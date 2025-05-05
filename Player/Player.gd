@@ -8,6 +8,7 @@ class_name Player
 ##how fast the body tries to catch up to the camera
 @export var turnSpeed : float = 10.0
 @export var blurVignette : BlurVignette
+@export var walkParticlesScn = preload("res://Player/Particles/walk_particles.tscn")
 
 @export_category("Mouse/Camera controls")
 ##TODO Currently not being used
@@ -176,6 +177,10 @@ func animTransition(state : PLAYER_STATE = currentState):
 			animTree.set("parameters/aim_transition/transition_request", "not_aiming")
 			animTree.set("parameters/RunTime/scale", lerpf(animTree["parameters/RunTime/scale"], sprintMultiplier, 0.2))
 			animTree.set("parameters/idle_move/blend_amount", lerpf(animTree["parameters/idle_move/blend_amount"], 1.0, 0.1))
+
+func spawn_walk_particles():
+	if currentState != PLAYER_STATE.IDLE: 
+		Particles.spawn(walkParticlesScn, %WalkGroundMarker.global_position)
 
 func shoot():
 	PlayerData.currBullets -= 1
