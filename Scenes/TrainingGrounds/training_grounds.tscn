@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bt6u3f11tiw8f"]
+[gd_scene load_steps=14 format=3 uid="uid://bt6u3f11tiw8f"]
 
 [ext_resource type="Script" uid="uid://cgs2uyw41j2dq" path="res://Scenes/TrainingGrounds/training_grounds.gd" id="1_tehus"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="1_w83ly"]
+[ext_resource type="Script" uid="uid://bgp62uobk1woa" path="res://Scenes/TrainingGrounds/dummy.gd" id="4_2rure"]
+[ext_resource type="Script" uid="uid://bptiyj8uso66d" path="res://Components/Stats/stats.gd" id="5_pvtq2"]
+[ext_resource type="Script" uid="uid://c1fk8lqjyfm3p" path="res://Components/hurtbox.gd" id="6_2rure"]
 [ext_resource type="PackedScene" uid="uid://bo8iptqi6h6cw" path="res://Components/Gate/gate.tscn" id="11_mb1cw"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_7gpne"]
@@ -9,6 +12,25 @@ size = Vector2(40, 40)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_w83ly"]
 data = PackedVector3Array(20, -20, 0, -20, -20, 0, 20, 20, 0, -20, -20, 0, -20, 20, 0, 20, 20, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wob2a"]
+albedo_color = Color(0.454414, 0.314263, 1, 1)
+emission_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2rure"]
+albedo_color = Color(0.857834, 0, 0.179141, 1)
+emission_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_4d07c"]
+material = SubResource("StandardMaterial3D_2rure")
+size = Vector3(3, 5, 3)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mb1cw"]
+data = PackedVector3Array(-1.5, 2.5, 1.5, 1.5, 2.5, 1.5, -1.5, -2.5, 1.5, 1.5, 2.5, 1.5, 1.5, -2.5, 1.5, -1.5, -2.5, 1.5, 1.5, 2.5, -1.5, -1.5, 2.5, -1.5, 1.5, -2.5, -1.5, -1.5, 2.5, -1.5, -1.5, -2.5, -1.5, 1.5, -2.5, -1.5, 1.5, 2.5, 1.5, 1.5, 2.5, -1.5, 1.5, -2.5, 1.5, 1.5, 2.5, -1.5, 1.5, -2.5, -1.5, 1.5, -2.5, 1.5, -1.5, 2.5, -1.5, -1.5, 2.5, 1.5, -1.5, -2.5, -1.5, -1.5, 2.5, 1.5, -1.5, -2.5, 1.5, -1.5, -2.5, -1.5, 1.5, 2.5, 1.5, -1.5, 2.5, 1.5, 1.5, 2.5, -1.5, -1.5, 2.5, 1.5, -1.5, 2.5, -1.5, 1.5, 2.5, -1.5, -1.5, -2.5, 1.5, 1.5, -2.5, 1.5, -1.5, -2.5, -1.5, 1.5, -2.5, 1.5, 1.5, -2.5, -1.5, -1.5, -2.5, -1.5)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4d07c"]
+height = 4.0
+radius = 14.0
 
 [node name="TrainingGrounds" type="Node3D"]
 script = ExtResource("1_tehus")
@@ -27,4 +49,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.382147, 0)
 
 [node name="Gate" parent="." instance=ExtResource("11_mb1cw")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 5.01491, 18.9954)
+material_override = SubResource("StandardMaterial3D_wob2a")
 destination = 3
+
+[node name="DummyComponent" type="Node3D" parent="."]
+script = ExtResource("4_2rure")
+
+[node name="Dummy" type="MeshInstance3D" parent="DummyComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5148, 2.88578, 0)
+mesh = SubResource("BoxMesh_4d07c")
+skeleton = NodePath("../..")
+
+[node name="Stats" type="Node" parent="DummyComponent/Dummy"]
+script = ExtResource("5_pvtq2")
+maxHealth = 9999.0
+
+[node name="Body" type="StaticBody3D" parent="DummyComponent/Dummy"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DummyComponent/Dummy/Body"]
+shape = SubResource("ConcavePolygonShape3D_mb1cw")
+
+[node name="DummyHurtbox" type="Area3D" parent="DummyComponent/Dummy" node_paths=PackedStringArray("statsComponent")]
+transform = Transform3D(1.05, 0, 0, 0, 1.05, 0, 0, 0, 1.05, 0, 0, 0)
+collision_layer = 36
+collision_mask = 0
+script = ExtResource("6_2rure")
+statsComponent = NodePath("../Stats")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DummyComponent/Dummy/DummyHurtbox"]
+shape = SubResource("ConcavePolygonShape3D_mb1cw")
+
+[node name="Area3D" type="Area3D" parent="DummyComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.3233, 0.117608, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DummyComponent/Area3D"]
+shape = SubResource("CylinderShape3D_4d07c")
+
+[connection signal="body_entered" from="DummyComponent/Area3D" to="DummyComponent" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="DummyComponent/Area3D" to="DummyComponent" method="_on_area_3d_body_exited"]
