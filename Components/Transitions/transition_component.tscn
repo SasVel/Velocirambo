@@ -11,17 +11,18 @@ shader_parameter/direction = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_agdw1"]
 shader = ExtResource("1_2jpof")
-shader_parameter/progress = 0.348
-shader_parameter/diamondPixelSize = 15.0
+shader_parameter/progress = 0.0
+shader_parameter/diamondPixelSize = 20.0
 shader_parameter/direction = -1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o5b6r"]
 shader = ExtResource("1_2jpof")
 shader_parameter/progress = 1.0
-shader_parameter/diamondPixelSize = 15.0
+shader_parameter/diamondPixelSize = 20.0
 shader_parameter/direction = 1.0
 
 [node name="TransitionComponent" type="Control"]
+process_mode = 3
 material = SubResource("ShaderMaterial_iau2q")
 layout_mode = 3
 anchors_preset = 15

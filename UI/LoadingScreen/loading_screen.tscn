@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c328w4wug5l82"]
+[gd_scene load_steps=19 format=3 uid="uid://c328w4wug5l82"]
 
 [ext_resource type="Script" uid="uid://bimts35x6clpe" path="res://UI/LoadingScreen/loading_screen.gd" id="1_5xpxy"]
 [ext_resource type="Script" uid="uid://f6l007kxnf4c" path="res://Components/ObjectPreloader/object_preloader.gd" id="2_jlcfg"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cb074rhhyi1ex" path="res://Scenes/Bosses/Particles/spike_dissapear_particles.tscn" id="12_20wn8"]
 [ext_resource type="PackedScene" uid="uid://d3qhok26qo35j" path="res://Scenes/Bosses/Particles/stomp_particles.tscn" id="13_afsws"]
 [ext_resource type="Texture2D" uid="uid://cd2xbuud0d8p8" path="res://Resources/DinoNuggie_118px.png" id="15_jlcfg"]
+[ext_resource type="PackedScene" uid="uid://c2abwchgqxe5i" path="res://Components/Transitions/transition_component.tscn" id="16_l6laa"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l6laa"]
 
@@ -67,6 +68,12 @@ theme_override_styles/slider = SubResource("StyleBoxEmpty_l6laa")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_jlcfg")
 value = 10.0
 
+[node name="TransitionComponent" parent="ColorRect" instance=ExtResource("16_l6laa")]
+unique_name_in_owner = true
+layout_mode = 1
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.47799)
 fov = 103.103
+
+[editable path="ColorRect/TransitionComponent"]

@@ -1,4 +1,5 @@
 extends Node3D
+class_name LoadingScreen
 
 @export var nuggieRect : TextureRect
 @export var beerRect : TextureRect
@@ -7,23 +8,29 @@ extends Node3D
 @export var loadSlider : Slider
 
 @onready var mainScn = preload("res://Scenes/main.tscn")
+@onready var transitionComponent : TransitionComponent = %TransitionComponent
 
 @export var beerRotDeg : float = 12
 @export var beerRotSpeed : float = 0.4
 @export var beerRotPause : float = 0.15
 
+var isPreload = false
+
 func _ready():
 	camera.current = true
-	objPreloader.loaded.connect(start_game)
 
-	beer_anim()
+func activate(showLoadingBar = false, preloadObjects = false):
+	isPreload = preloadObjects
+	if isPreload: objPreloader.load_objects()
 
-func _process(_delta):
-	loadSlider.value = objPreloader.get_load_percentage()
+	transitionComponent.visible = !showLoadingBar
 
-func start_game():
-	await get_tree().create_timer(1).timeout
-	SceneManager.load_scene(SceneManager.Scenes.Arena)
+func deactivate():
+	transitionComponent.visible = true
+	self.visible = false
+
+func set_loading_percent(loadPercentage : float):
+	loadSlider.value = loadPercentage * 100
 
 func beer_anim():
 	beerRect.pivot_offset = Vector2(beerRect.size.x / 2, beerRect.size.y / 2)

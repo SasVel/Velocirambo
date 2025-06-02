@@ -31,7 +31,7 @@ func reset(_component):
 	activate()
 
 func _on_new_game_btn_pressed() -> void:
-	SceneManager.load_scene(SceneManager.Scenes.LoadingScreen)
+	SceneManager.load_scene(SceneManager.Scenes.Arena)
 
 func _on_settings_btn_pressed() -> void:
 	close()
