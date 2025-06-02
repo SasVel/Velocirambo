@@ -24,12 +24,11 @@ func _input(event):
 
 func activate():
 	super()
-	if GameInfo.data.usingController: Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-	else: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	UI.change_mode(UI.Modes.Menu)
+
 
 func deactivate():
-	if GameInfo.data.usingController: Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-	else: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	UI.change_to_last_mode()
 
 func _on_continue_btn_pressed():
 	active = false

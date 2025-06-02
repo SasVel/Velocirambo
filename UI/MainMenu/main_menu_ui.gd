@@ -1,6 +1,7 @@
 extends MenuComponent
 
 func _ready():
+	UI.change_mode(UI.Modes.Free)
 	%Settings.closed.connect(reset)
 	%Credits.closed.connect(reset)
 	
@@ -31,7 +32,7 @@ func reset(_component):
 	activate()
 
 func _on_new_game_btn_pressed() -> void:
-	SceneManager.load_scene(SceneManager.Scenes.Arena)
+	SceneManager.load_scene(SceneManager.Scenes.TrainingGrounds)
 
 func _on_settings_btn_pressed() -> void:
 	close()

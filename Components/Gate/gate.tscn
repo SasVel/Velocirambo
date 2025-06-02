@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo8iptqi6h6cw"]
+
+[ext_resource type="Script" uid="uid://dk4nbrnajo3iq" path="res://Components/Gate/gate.gd" id="1_1mhq2"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_lirwa"]
+size = Vector2(7, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1mhq2"]
+data = PackedVector3Array(3.5, -5, 0, -3.5, -5, 0, 3.5, 5, 0, -3.5, -5, 0, -3.5, 5, 0, 3.5, 5, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fysuf"]
+size = Vector3(6.11, 3.95789, 2.43469)
+
+[node name="Gate" type="MeshInstance3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_lirwa")
+script = ExtResource("1_1mhq2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1mhq2")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.32964e-08, -4.44998, 0.495251)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0291052, 1.47894, 0.718058)
+shape = SubResource("BoxShape3D_fysuf")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

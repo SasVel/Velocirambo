@@ -1,16 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=8 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" uid="uid://cc4nm2dsvw2l4" path="res://Scenes/Arena/arena_scene.gd" id="1_2xwcc"]
 [ext_resource type="Environment" uid="uid://ciipvdp53q8qo" path="res://Misc/MainEnv.tres" id="2_320u5"]
 [ext_resource type="Shader" uid="uid://co3lk5adwog6e" path="res://Shaders/Pixelate.gdshader" id="3_g4h8m"]
-[ext_resource type="Script" uid="uid://l103ek6jr7e8" path="res://UI/crosshair.gd" id="4_n8grg"]
-[ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="5_iajq2"]
-[ext_resource type="Script" uid="uid://g75akvne7cg5" path="res://UI/StatsDisplay/health_bar.gd" id="6_jhr8e"]
-[ext_resource type="PackedScene" uid="uid://30rmawnd7jsv" path="res://UI/StatsDisplay/BulletDisplay/bullet_display.tscn" id="7_ulerw"]
-[ext_resource type="PackedScene" uid="uid://b5den5e8nio6r" path="res://UI/StatsDisplay/GunModeDisplay/gun_mode_display.tscn" id="8_d6jj7"]
-[ext_resource type="PackedScene" uid="uid://cm2vu5yqoqmtq" path="res://UI/PauseUI/pause.tscn" id="9_j82i0"]
-[ext_resource type="Script" uid="uid://dsk42he7floa1" path="res://UI/GameOverScreen/game_over_screen.gd" id="10_vyp7h"]
-[ext_resource type="LabelSettings" uid="uid://w8lv2e054n28" path="res://UI/LabelSettings/big_bold_label_settings.tres" id="11_gs1x7"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Scenes/Arena/arena.tscn" id="12_nyhal"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="13_cebwv"]
 [ext_resource type="PackedScene" uid="uid://bxb5dwbcvtql4" path="res://Scenes/Bosses/Anky/anky_boss.tscn" id="14_v2jhk"]
@@ -19,37 +11,8 @@
 shader = ExtResource("3_g4h8m")
 shader_parameter/pixel_size = 2.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qfnde"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8v1l4"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m1dsq"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3d4hc"]
-
-[sub_resource type="Gradient" id="Gradient_3ul7b"]
-interpolation_mode = 1
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_hqkee"]
-gradient = SubResource("Gradient_3ul7b")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.153846, 0.15812)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghko3"]
-bg_color = Color(0.878923, 0.0484415, 1.92523e-07, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_right = 13
-corner_radius_bottom_left = 13
-
-[node name="ArenaScene" type="Node3D" node_paths=PackedStringArray("canvasUI")]
+[node name="ArenaScene" type="Node3D"]
 script = ExtResource("1_2xwcc")
-canvasUI = NodePath("UI")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_320u5")
@@ -73,141 +36,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Crosshair" type="CenterContainer" parent="UI"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("4_n8grg")
-
-[node name="Bottom" type="Line2D" parent="UI/Crosshair"]
-material = SubResource("ShaderMaterial_qfnde")
-points = PackedVector2Array(0, 4, 0, 20)
-width = 2.0
-
-[node name="Top" type="Line2D" parent="UI/Crosshair"]
-material = SubResource("ShaderMaterial_8v1l4")
-points = PackedVector2Array(0, -4, 0, -20)
-width = 2.0
-
-[node name="Left" type="Line2D" parent="UI/Crosshair"]
-material = SubResource("ShaderMaterial_m1dsq")
-points = PackedVector2Array(-4, 0, -20, 0)
-width = 2.0
-
-[node name="Right" type="Line2D" parent="UI/Crosshair"]
-material = SubResource("ShaderMaterial_3d4hc")
-points = PackedVector2Array(4, 0, 20, 0)
-width = 2.0
-
-[node name="CenterDot" type="Sprite2D" parent="UI/Crosshair"]
-visible = false
-scale = Vector2(0.06, 0.06)
-texture = SubResource("GradientTexture2D_hqkee")
-
-[node name="StatsDisplay" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme = ExtResource("5_iajq2")
-
-[node name="HealthBar" type="ProgressBar" parent="UI/StatsDisplay"]
-layout_mode = 1
-offset_left = 28.0
-offset_top = 35.0
-offset_right = 388.0
-offset_bottom = 57.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_ghko3")
-value = 50.0
-show_percentage = false
-script = ExtResource("6_jhr8e")
-
-[node name="BulletDisplay" parent="UI/StatsDisplay" instance=ExtResource("7_ulerw")]
-layout_mode = 0
-anchors_preset = 0
-anchor_bottom = 0.0
-offset_left = 30.0
-offset_top = 86.0
-offset_right = 265.0
-offset_bottom = 342.0
-grow_vertical = 1
-
-[node name="GunModeDisplay" parent="UI/StatsDisplay" instance=ExtResource("8_d6jj7")]
-layout_mode = 0
-offset_left = 150.0
-offset_top = 81.0
-offset_right = 252.0
-offset_bottom = 185.0
-
-[node name="BulletsContainer" parent="UI/StatsDisplay/GunModeDisplay" index="0"]
-offset_top = 0.0
-offset_bottom = 0.0
-
-[node name="Pause" parent="UI" instance=ExtResource("9_j82i0")]
-
-[node name="GameOverScreen" type="ColorRect" parent="UI" node_paths=PackedStringArray("pauseScreen")]
-process_mode = 3
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-theme = ExtResource("5_iajq2")
-color = Color(0.481789, 0.48179, 0.481789, 0.121569)
-script = ExtResource("10_vyp7h")
-pauseScreen = NodePath("../Pause")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverScreen"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -166.0
-offset_top = -94.0
-offset_right = 166.0
-offset_bottom = 94.0
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-
-[node name="GameWonLabel" type="Label" parent="UI/GameOverScreen/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-text = "You will live to see another day!"
-label_settings = ExtResource("11_gs1x7")
-
-[node name="GameLostLabel" type="Label" parent="UI/GameOverScreen/VBoxContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-text = "Better luck next time!"
-label_settings = ExtResource("11_gs1x7")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ReturnLabel" type="RichTextLabel" parent="UI/GameOverScreen/VBoxContainer"]
-layout_mode = 2
-bbcode_enabled = true
-text = "[center][font_size=22][color=YELLOW][wave amp=35.0 freq=-3.0 connected=1]Press Space to return 
-to the main menu[/wave][/color][/font_size][/center]"
-fit_content = true
-
 [node name="ShadersOverUI" type="CanvasLayer" parent="."]
 layer = 2
 
@@ -219,5 +47,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.549866, 0)
 [node name="AnkyBoss" parent="." instance=ExtResource("14_v2jhk")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 22.0644)
 
-[editable path="UI/StatsDisplay/GunModeDisplay"]
 [editable path="CompletePlayer"]

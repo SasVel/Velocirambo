@@ -41,7 +41,6 @@ SteamStuff="*res://GlobalScripts/SteamManager.gd"
 
 window/size/viewport_width=1728
 window/size/viewport_height=972
-window/size/mode=2
 mouse_cursor/custom_image="res://UI/Cursor/DinoHandCursor-ezgif.com-resize.png"
 mouse_cursor/custom_image_hotspot=Vector2(14, 6)
 
@@ -64,6 +63,7 @@ folder_colors={
 "res://Scenes/": "yellow",
 "res://Scenes/Arena/": "pink",
 "res://Scenes/Bosses/": "red",
+"res://Scenes/TrainingGrounds/": "blue",
 "res://Shaders/": "purple",
 "res://UI/": "green"
 }

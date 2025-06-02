@@ -1,9 +1,7 @@
 extends Node3D
 
-@export var canvasUI : CanvasLayer
-
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	UI.change_mode(UI.Modes.Battle)
 	
 	get_tree().paused = false
 	await get_tree().physics_frame
@@ -22,4 +20,4 @@ func _exit_tree():
 	GameInfo.reset.emit()
 
 func announce(title : String, desc : String):
-	UI.show_announce_label(canvasUI, title, desc)
+	UI.show_announce_label(Ref.mainUI, title, desc)

@@ -4,7 +4,8 @@ extends Node
 	"res://UI/MainMenu/main_menu.tscn",
 	"res://UI/LoadingScreen/loading_screen.tscn",
 	"res://UI/BootScreen/boot_screen.tscn",
-	"res://Scenes/Arena/arena_scene.tscn"
+	"res://Scenes/Arena/arena_scene.tscn",
+	"res://Scenes/TrainingGrounds/training_grounds.tscn"
 ]
 
 @onready var loadingScreenScn = preload("res://UI/LoadingScreen/loading_screen.tscn")
@@ -64,7 +65,7 @@ func load_scene(scn : Scenes, hasLoadingBar = false, displayLoadingBar = false, 
 	if stageInstance: stageInstance.queue_free()
 	stageInstance = scene.instantiate()
 	
-	self.call_deferred("add_child", stageInstance)
+	Ref.main.call_deferred("add_child", stageInstance)
 
 	if hasLoadingBar:
 		await loadingScreenInst.transitionComponent.reveal()

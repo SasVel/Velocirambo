@@ -9,6 +9,42 @@ enum Elements {
 	Settings
 }
 
+enum Modes {
+	Free,
+	Menu,
+	Interact,
+	Battle
+}
+
+@onready var _currMode : Modes
+@onready var _lastMode : Modes
+
+func change_mode(val : Modes):
+	_lastMode = _currMode
+	_currMode = val
+	match val:
+		Modes.Free:
+			if GameInfo.data.usingController: Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+			else: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+			Ref.mainUI.interactUI.visible = false
+			Ref.mainUI.battleUI.visible = false
+		Modes.Menu:
+			if GameInfo.data.usingController: Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+			else: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			
+		Modes.Interact:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			Ref.mainUI.interactUI.visible = true
+			Ref.mainUI.battleUI.visible = false
+		Modes.Battle:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			Ref.mainUI.battleUI.visible = true
+			Ref.mainUI.interactUI.visible = false
+
+func change_to_last_mode():
+	change_mode(_lastMode)
+
 var elementsArr = [
 	preload("res://UI/Components/YesNoMessage/yes_no_message.tscn"),
 	preload("res://UI/AnnounceLabelUI/announce_label_ui.tscn"),

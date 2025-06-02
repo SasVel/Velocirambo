@@ -49,8 +49,11 @@ signal blurChanged
 
 #region GameData
 @export var hasWishlistReward = false
+
+signal nuggiesChanged
 @export var nuggies : int = 0 : 
 	set(val):
 		if(val > 0): SteamStuff.unlock_ach(SteamStuff.Ach.GET_A_NUGGIE)
 		nuggies = val
+		nuggiesChanged.emit()
 #endregion
