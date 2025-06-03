@@ -5,8 +5,17 @@ class_name ScaleTween
 @export var scaleVector = Vector3.ZERO
 @export var time : float
 
+var originalScale : Vector3
+var tween : Tween
+var active : bool = false
+
 func activate():
-	var tween = create_tween()
-	tween.tween_property(object, "scale", scaleVector, time * 0.5)
-	tween.tween_property(object, "scale", Vector3(1,1,1), time * 0.5)
+	if active: return
+
+	originalScale = object.scale
+	active = true
+	tween = create_tween()
+	tween.tween_property(object, "scale", originalScale * scaleVector, time * 0.5)
+	tween.tween_property(object, "scale", originalScale, time * 0.5)
 	await tween.finished
+	active = false

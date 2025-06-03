@@ -20,6 +20,8 @@ enum Scenes {
 
 var stageInstance : Node
 
+signal scene_loaded(scn : Scenes)
+
 ## Loading bar transitions not working and disabled for now
 func load_scene(scn : Scenes, hasLoadingBar = false, displayLoadingBar = false, preloadObjects = false) -> bool:
 	get_tree().paused = true
@@ -71,6 +73,8 @@ func load_scene(scn : Scenes, hasLoadingBar = false, displayLoadingBar = false, 
 		await loadingScreenInst.transitionComponent.reveal()
 		loadingScreenInst.queue_free()
 
+	if isLoaded: scene_loaded.emit(scn)
 	get_tree().paused = false
+
 	return isLoaded
 

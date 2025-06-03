@@ -19,7 +19,10 @@ enum Modes {
 @onready var _currMode : Modes
 @onready var _lastMode : Modes
 
+signal mode_changed(mode : Modes)
+
 func change_mode(val : Modes):
+	if _currMode != val: mode_changed.emit(val)
 	_lastMode = _currMode
 	_currMode = val
 	match val:

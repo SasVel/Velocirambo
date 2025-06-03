@@ -7,20 +7,24 @@ class_name InteractComponent
 @export var isBtnPress = true
 @export var btnLabel : FloatingBtn
 
-signal activated
-signal deactivated
+var playerRef
+
+signal activated(player : Player)
+signal deactivated(player : Player)
+
 
 func _input(event):
 	if !isBtnPress: return
 
-	if event.is_action_pressed("Interact"):
-		activated.emit()
+	if event.is_action_pressed("Interact") && self.has_overlapping_bodies():
+		activated.emit(playerRef)
 		btnLabel.visible = false
 
-func _on_body_entered(_body:Node3D):
-	if !isBtnPress: activated.emit()
+func _on_body_entered(player : Player):
+	playerRef = player
+	if !isBtnPress: activated.emit(player)
 	else: btnLabel.visible = true
 
-func _on_body_exited(_body:Node3D):
+func _on_body_exited(player : Player):
 	btnLabel.visible = false
-	deactivated.emit()
+	deactivated.emit(player)

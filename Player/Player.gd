@@ -36,6 +36,9 @@ signal reloading_gun(bulletsLeft : int)
 # Controls the aiming state. Figured it should be seperate from the rest of the states, so they can overlap
 var IS_AIMING : bool = false : set = set_aiming_state
 var canShoot : bool = true
+
+var isControlled : bool = true
+
 enum PLAYER_STATE {
 	IDLE, 
 	RUNNING, 
@@ -59,10 +62,15 @@ var lastDirection : Vector3
 var cameraVelocity = Vector2.ZERO #Don't confuse with sensitivity
 
 func _input(event):
+	if !isControlled: return
+
 	inputDir = Input.get_vector("Left", "Right", "Forwards", "Backwards", 0.7)
 	if event is InputEventMouseMotion && !GameInfo.data.usingController:
 		cameraVelocity = event.screen_relative
+
 	handle_state_trans(event)
+	if !canShoot:
+		return
 	
 	if(currentState == PLAYER_STATE.IDLE || currentState == PLAYER_STATE.RUNNING || currentState == PLAYER_STATE.WALKING):
 		if event.is_action_pressed("Shoot") && canShoot:
@@ -103,6 +111,15 @@ func handle_state_trans(event):
 	else:
 		currentState = PLAYER_STATE.IDLE
 
+func _ready():
+	UI.mode_changed.connect(mode_change)
+
+func mode_change(mode : UI.Modes):
+	if mode == UI.Modes.Battle:
+		canShoot = true
+	elif mode == UI.Modes.Interact:
+		canShoot = false
+
 func _physics_process(delta):
 	match currentState:
 		PLAYER_STATE.IDLE:
@@ -116,10 +133,12 @@ func _physics_process(delta):
 		PLAYER_STATE.STUNNED:
 			stunnedState(delta)
 	animTransition()
-	move_and_slide()
+	PlayerData.position = self.position
+
+	if !isControlled: return
 	if GameInfo.data.usingController: joy_movement_check()
 	camera_move(delta)
-	PlayerData.position = self.position
+	move_and_slide()
 
 func joy_movement_check():
 	cameraVelocity = Input.get_vector("joy_camera_left", "joy_camera_right", "joy_camera_up", "joy_camera_down") * 25
@@ -222,6 +241,14 @@ func player_move(_delta, speed):
 	#I want to make the sound frequency scale with speed, temporary solution
 	%MoveSoundTimer.wait_time = (1 / speed) * 6
 	if %MoveSoundTimer.is_stopped(): %MoveSoundTimer.start()
+
+func tween_move(pos : Vector3, speed : float = 1.0):
+	var tween := create_tween()
+	tween.tween_property(self, "velocity", pos, speed)
+
+func tween_rotate_y(rad : float, speed : float = 1.0):
+	var tween := create_tween()
+	tween.tween_property(self, "rotation:y", rad, speed)
 
 # Handles decelerration.
 func player_stop(speed):

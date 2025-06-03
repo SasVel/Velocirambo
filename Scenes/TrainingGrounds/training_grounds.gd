@@ -5,5 +5,8 @@ extends Node3D
 func _ready():
 	UI.change_mode(UIHelper.Modes.Interact)
 
-func _on_interact_component_activated():
+func _on_level_interact_component_activated(_player):
 	camController.set_current_camera(1)
+
+func _on_equip_interact_component_activated(_player):
+	camController.set_current_camera(2)
