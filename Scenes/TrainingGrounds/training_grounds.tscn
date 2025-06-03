@@ -1,11 +1,27 @@
-[gd_scene load_steps=14 format=3 uid="uid://bt6u3f11tiw8f"]
+[gd_scene load_steps=20 format=3 uid="uid://bt6u3f11tiw8f"]
 
 [ext_resource type="Script" uid="uid://cgs2uyw41j2dq" path="res://Scenes/TrainingGrounds/training_grounds.gd" id="1_tehus"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="1_w83ly"]
 [ext_resource type="Script" uid="uid://bgp62uobk1woa" path="res://Scenes/TrainingGrounds/dummy.gd" id="4_2rure"]
 [ext_resource type="Script" uid="uid://bptiyj8uso66d" path="res://Components/Stats/stats.gd" id="5_pvtq2"]
 [ext_resource type="Script" uid="uid://c1fk8lqjyfm3p" path="res://Components/hurtbox.gd" id="6_2rure"]
+[ext_resource type="Script" uid="uid://sd0s2v67dfy0" path="res://Player/PlayerCamera.gd" id="7_mb1cw"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="7_uxctw"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_wob2a"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_lwts1"]
 [ext_resource type="PackedScene" uid="uid://bo8iptqi6h6cw" path="res://Components/Gate/gate.tscn" id="11_mb1cw"]
+
+[sub_resource type="Resource" id="Resource_4d07c"]
+script = ExtResource("8_wob2a")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_mb1cw"]
+script = ExtResource("8_wob2a")
+duration = 1.0
+transition = 0
+ease = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_7gpne"]
 size = Vector2(40, 40)
@@ -32,8 +48,40 @@ data = PackedVector3Array(-1.5, 2.5, 1.5, 1.5, 2.5, 1.5, -1.5, -2.5, 1.5, 1.5, 2
 height = 4.0
 radius = 14.0
 
-[node name="TrainingGrounds" type="Node3D"]
+[node name="TrainingGrounds" type="Node3D" node_paths=PackedStringArray("objCamera")]
 script = ExtResource("1_tehus")
+objCamera = NodePath("Cameras/ObjCamera")
+
+[node name="Cameras" type="Node" parent="."]
+
+[node name="MainCamera" type="Camera3D" parent="Cameras"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.798, 2.76415, -2)
+doppler_tracking = 2
+current = true
+script = ExtResource("7_mb1cw")
+zoom_speed = 0.2
+shakeStr = 0.2
+shakeFade = 9.0
+
+[node name="PhantomCameraHost" type="Node" parent="Cameras/MainCamera"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("9_lwts1")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="PlayerCameraController" type="Node3D" parent="Cameras"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.798, 2.76415, -2)
+script = ExtResource("7_uxctw")
+priority = 1
+tween_resource = SubResource("Resource_4d07c")
+tween_on_load = false
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="ObjCamera" type="Node3D" parent="Cameras"]
+transform = Transform3D(0.0121123, 0, 0.999927, 0, 1, 0, -0.999927, 0, 0.0121123, 0, 4.15116, 0)
+script = ExtResource("7_uxctw")
+tween_resource = SubResource("Resource_mb1cw")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -46,6 +94,12 @@ shape = SubResource("ConcavePolygonShape3D_w83ly")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("1_w83ly")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.382147, 0)
+
+[node name="Player" parent="CompletePlayer" index="0" node_paths=PackedStringArray("camera")]
+camera = NodePath("../../Cameras/MainCamera")
+
+[node name="CameraTransform" parent="CompletePlayer/CameraTarget" index="0"]
+remote_path = NodePath("../../../Cameras/PlayerCameraController")
 
 [node name="Gate" parent="." instance=ExtResource("11_mb1cw")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 5.01491, 18.9954)
@@ -88,3 +142,5 @@ shape = SubResource("CylinderShape3D_4d07c")
 
 [connection signal="body_entered" from="DummyComponent/Area3D" to="DummyComponent" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="DummyComponent/Area3D" to="DummyComponent" method="_on_area_3d_body_exited"]
+
+[editable path="CompletePlayer"]

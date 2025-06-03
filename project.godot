@@ -22,6 +22,7 @@ config/windows_native_icon="res://Misc/Icon.ico"
 
 [autoload]
 
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 EnvData="*res://GlobalScripts/Data/EnvData.gd"
 GameInfo="*res://GlobalScripts/Data/GameInfo.gd"
 Const="*res://GlobalScripts/Data/Const.gd"
