@@ -1,27 +1,29 @@
-[gd_scene load_steps=19 format=3 uid="uid://bt6u3f11tiw8f"]
+[gd_scene load_steps=22 format=3 uid="uid://bt6u3f11tiw8f"]
 
 [ext_resource type="Script" uid="uid://cgs2uyw41j2dq" path="res://Scenes/TrainingGrounds/training_grounds.gd" id="1_tehus"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="1_w83ly"]
+[ext_resource type="Script" uid="uid://5hsmj243mnm5" path="res://GlobalScripts/CameraController.gd" id="2_mb1cw"]
+[ext_resource type="PackedScene" uid="uid://cg4q6dhku3gso" path="res://Components/MainCamera/main_camera.tscn" id="2_wob2a"]
+[ext_resource type="PackedScene" uid="uid://d2eeq8itfr47q" path="res://Components/MainCamera/player_camera_controller.tscn" id="3_uxctw"]
 [ext_resource type="Script" uid="uid://bgp62uobk1woa" path="res://Scenes/TrainingGrounds/dummy.gd" id="4_2rure"]
 [ext_resource type="Script" uid="uid://bptiyj8uso66d" path="res://Components/Stats/stats.gd" id="5_pvtq2"]
 [ext_resource type="Script" uid="uid://c1fk8lqjyfm3p" path="res://Components/hurtbox.gd" id="6_2rure"]
-[ext_resource type="Script" uid="uid://sd0s2v67dfy0" path="res://Player/PlayerCamera.gd" id="7_mb1cw"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="7_uxctw"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_wob2a"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="9_lwts1"]
 [ext_resource type="PackedScene" uid="uid://bo8iptqi6h6cw" path="res://Components/Gate/gate.tscn" id="11_mb1cw"]
+[ext_resource type="PackedScene" uid="uid://c1qv2asy8cra5" path="res://Components/InteractComponent/interact_component.tscn" id="12_y5dww"]
 
-[sub_resource type="Resource" id="Resource_4d07c"]
+[sub_resource type="Resource" id="Resource_y5dww"]
 script = ExtResource("8_wob2a")
-duration = 1.0
-transition = 0
+duration = 0.8
+transition = 10
 ease = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_7gpne"]
-size = Vector2(40, 40)
+size = Vector2(70, 70)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_w83ly"]
-data = PackedVector3Array(20, -20, 0, -20, -20, 0, 20, 20, 0, -20, -20, 0, -20, 20, 0, 20, 20, 0)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_y5dww"]
+data = PackedVector3Array(35, -35, 0, -35, -35, 0, 35, 35, 0, -35, -35, 0, -35, 35, 0, 35, 35, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wob2a"]
 albedo_color = Color(0.454414, 0.314263, 1, 1)
@@ -42,32 +44,27 @@ data = PackedVector3Array(-1.5, 2.5, 1.5, 1.5, 2.5, 1.5, -1.5, -2.5, 1.5, 1.5, 2
 height = 4.0
 radius = 14.0
 
-[node name="TrainingGrounds" type="Node3D" node_paths=PackedStringArray("objCamera")]
+[sub_resource type="BoxMesh" id="BoxMesh_mb1cw"]
+size = Vector3(1, 5, 7)
+
+[node name="TrainingGrounds" type="Node3D" node_paths=PackedStringArray("camController")]
 script = ExtResource("1_tehus")
-objCamera = NodePath("")
+camController = NodePath("Cameras")
 
-[node name="Cameras" type="Node" parent="."]
+[node name="Cameras" type="Node" parent="." node_paths=PackedStringArray("phCameras")]
+script = ExtResource("2_mb1cw")
+phCameras = [NodePath("PlayerCameraController"), NodePath("LevelSelectCamera")]
 
-[node name="MainCamera" type="Camera3D" parent="Cameras"]
+[node name="MainCamera" parent="Cameras" instance=ExtResource("2_wob2a")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.798, 2.76415, -2)
-doppler_tracking = 2
-current = true
-script = ExtResource("7_mb1cw")
-zoom_speed = 0.2
-shakeStr = 0.2
-shakeFade = 9.0
 
-[node name="PhantomCameraHost" type="Node" parent="Cameras/MainCamera"]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("9_lwts1")
-metadata/_custom_type_script = "uid://bd046eokvcnu2"
-
-[node name="PlayerCameraController" type="Node3D" parent="Cameras"]
+[node name="PlayerCameraController" parent="Cameras" instance=ExtResource("3_uxctw")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.798, 2.76415, -2)
+
+[node name="LevelSelectCamera" type="Node3D" parent="Cameras"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.1851, 4.31746, 17.9346)
 script = ExtResource("7_uxctw")
-priority = 1
-tween_resource = SubResource("Resource_4d07c")
+tween_resource = SubResource("Resource_y5dww")
 tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
@@ -78,7 +75,7 @@ mesh = SubResource("QuadMesh_7gpne")
 [node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_w83ly")
+shape = SubResource("ConcavePolygonShape3D_y5dww")
 
 [node name="CompletePlayer" parent="." instance=ExtResource("1_w83ly")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.382147, 0)
@@ -90,11 +87,12 @@ camera = NodePath("../../Cameras/MainCamera")
 remote_path = NodePath("../../../Cameras/PlayerCameraController")
 
 [node name="Gate" parent="." instance=ExtResource("11_mb1cw")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 5.01491, 18.9954)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 5.01491, 34.131)
 material_override = SubResource("StandardMaterial3D_wob2a")
 destination = 3
 
 [node name="DummyComponent" type="Node3D" parent="."]
+transform = Transform3D(0.8457, 0, -0.533659, 0, 1, 0, 0.533659, 0, 0.8457, -4.42252, 0, -11.404)
 script = ExtResource("4_2rure")
 
 [node name="Dummy" type="MeshInstance3D" parent="DummyComponent"]
@@ -128,7 +126,18 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DummyComponent/Area3D"]
 shape = SubResource("CylinderShape3D_4d07c")
 
+[node name="LevelsBoard" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2403, 4.37697, 18.0011)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelsBoard"]
+mesh = SubResource("BoxMesh_mb1cw")
+
+[node name="InteractComponent" parent="LevelsBoard" instance=ExtResource("12_y5dww")]
+
 [connection signal="body_entered" from="DummyComponent/Area3D" to="DummyComponent" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="DummyComponent/Area3D" to="DummyComponent" method="_on_area_3d_body_exited"]
+[connection signal="activated" from="LevelsBoard/InteractComponent" to="." method="_on_interact_component_activated"]
 
 [editable path="CompletePlayer"]
+[editable path="LevelsBoard/InteractComponent"]
+[editable path="LevelsBoard/InteractComponent/FloatingBtn"]

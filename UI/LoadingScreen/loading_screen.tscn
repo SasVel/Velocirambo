@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b4pqd3fasde7g" path="res://Scenes/Bosses/Particles/slam_particles.tscn" id="11_fbtk1"]
 [ext_resource type="PackedScene" uid="uid://cb074rhhyi1ex" path="res://Scenes/Bosses/Particles/spike_dissapear_particles.tscn" id="12_20wn8"]
 [ext_resource type="PackedScene" uid="uid://d3qhok26qo35j" path="res://Scenes/Bosses/Particles/stomp_particles.tscn" id="13_afsws"]
-[ext_resource type="Texture2D" uid="uid://cd2xbuud0d8p8" path="res://Resources/DinoNuggie_118px.png" id="15_jlcfg"]
+[ext_resource type="Texture2D" uid="uid://cd2xbuud0d8p8" path="res://Resources/Sprites/UI/DinoNuggie_118px.png" id="15_jlcfg"]
 [ext_resource type="PackedScene" uid="uid://c2abwchgqxe5i" path="res://Components/Transitions/transition_component.tscn" id="16_l6laa"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l6laa"]

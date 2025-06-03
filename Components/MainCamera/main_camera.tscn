@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg4q6dhku3gso"]
+
+[ext_resource type="Script" uid="uid://sd0s2v67dfy0" path="res://Player/PlayerCamera.gd" id="1_26gyu"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_88ap5"]
+
+[node name="MainCamera" type="Camera3D"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.798, 2.76415, -2)
+doppler_tracking = 2
+current = true
+script = ExtResource("1_26gyu")
+zoom_speed = 0.2
+shakeStr = 0.2
+shakeFade = 9.0
+
+[node name="PhantomCameraHost" type="Node" parent="."]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_88ap5")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"

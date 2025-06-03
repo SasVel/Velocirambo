@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd2xbuud0d8p8"
-path="res://.godot/imported/DinoNuggie_118px.png-2ceeb6365e9938bd99f8ad64d71a3158.ctex"
+uid="uid://cod2wv16osxdf"
+path="res://.godot/imported/DinoNuggie_512px.png-0c2fccd0e1958296364fdf9b68d93e7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/DinoNuggie_118px.png"
-dest_files=["res://.godot/imported/DinoNuggie_118px.png-2ceeb6365e9938bd99f8ad64d71a3158.ctex"]
+source_file="res://Resources/Sprites/UI/DinoNuggie_512px.png"
+dest_files=["res://.godot/imported/DinoNuggie_512px.png-0c2fccd0e1958296364fdf9b68d93e7f.ctex"]
 
 [params]
 

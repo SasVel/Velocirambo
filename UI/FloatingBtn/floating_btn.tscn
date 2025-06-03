@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpklucgychho"]
+
+[ext_resource type="Texture2D" uid="uid://dyvuohis6q8yr" path="res://Resources/Sprites/UI/CGB02-blue_S_btn.png" id="1_e5p3d"]
+[ext_resource type="Script" uid="uid://l2fbe5qrnd4h" path="res://UI/FloatingBtn/floating_btn.gd" id="2_dyqnp"]
+
+[node name="FloatingBtn" type="Sprite3D" node_paths=PackedStringArray("label")]
+pixel_size = 0.004
+billboard = 1
+no_depth_test = true
+texture = ExtResource("1_e5p3d")
+script = ExtResource("2_dyqnp")
+label = NodePath("BtnLabel")
+
+[node name="BtnLabel" type="Label3D" parent="."]
+billboard = 1
+no_depth_test = true
+render_priority = 1
+outline_render_priority = 2
+text = "E"
+font_size = 65
+outline_size = 8
+uppercase = true

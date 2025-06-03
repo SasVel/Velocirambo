@@ -68,7 +68,7 @@ offset_right = 81.0
 offset_bottom = 47.0
 mouse_filter = 2
 bbcode_enabled = true
-text = "[font_size=35][outline_size=8][img=45x45]res://Resources/DinoNuggieSmall.png[/img] ?[/outline_size][/font_size]"
+text = "[font_size=35][outline_size=8][img=45x45]res://Resources/Sprites/UI/DinoNuggieSmall.png[/img] ?[/outline_size][/font_size]"
 fit_content = true
 scroll_active = false
 script = ExtResource("3_6iyac")

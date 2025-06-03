@@ -25,7 +25,7 @@ horizontalRotPivot = NodePath("../HorizontalRotationPivot")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.798, 2.382, -2)
 update_scale = false
 
-[node name="GunRayCast" type="RayCast3D" parent="CameraTarget/CameraTransform"]
+[node name="CamRayCast" type="RayCast3D" parent="CameraTarget/CameraTransform"]
 transform = Transform3D(1, 0, 0, 0, 0.997564, 0.0697565, 0, -0.0697565, 0.997564, 0, 0, 0)
 target_position = Vector3(0, 0, -100)
 collision_mask = 53
@@ -47,4 +47,4 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_hm4qw")
 
-[connection signal="shot_gun" from="Player" to="CameraTarget/CameraTransform/GunRayCast" method="_on_player_shot_gun"]
+[connection signal="shot_gun" from="Player" to="CameraTarget/CameraTransform/CamRayCast" method="_on_player_shot_gun"]

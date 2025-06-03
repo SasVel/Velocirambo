@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2eeq8itfr47q"]
+
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_va1ta"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_u358p"]
+
+[sub_resource type="Resource" id="Resource_4d07c"]
+script = ExtResource("2_u358p")
+duration = 0.8
+transition = 2
+ease = 2
+
+[node name="PlayerCameraController" type="Node3D"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.798, 2.76415, -2)
+script = ExtResource("1_va1ta")
+priority = 1
+tween_resource = SubResource("Resource_4d07c")
+tween_on_load = false
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"

@@ -201,7 +201,7 @@ label_settings = SubResource("LabelSettings_424qg")
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
-text = "[font_size=25][outline_size=8][wave amp=30.0 freq=3.0 connected=1] ? [img=40x40]res://Resources/DinoNuggieSmall.png[/img]+5[/wave][/outline_size][/font_size]"
+text = "[font_size=25][outline_size=8][wave amp=30.0 freq=3.0 connected=1] ? [img=40x40]res://Resources/Sprites/UI/DinoNuggieSmall.png[/img]+5[/wave][/outline_size][/font_size]"
 fit_content = true
 scroll_active = false
 

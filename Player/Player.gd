@@ -153,7 +153,7 @@ func set_aiming_state(val):
 		camera.reset_fov()
 	IS_AIMING = val
 
-func stunnedState(delta):
+func stunnedState(_delta):
 	if %StunTimer.is_stopped(): %StunTimer.start()
 	velocity = (Vector3(lastDirection.x, 0.0, lastDirection.z) * -1) * runningSpeed * sprintMultiplier
 

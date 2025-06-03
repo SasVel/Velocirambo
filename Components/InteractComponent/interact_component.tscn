@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1qv2asy8cra5"]
+
+[ext_resource type="Script" uid="uid://f21ceihj8il8" path="res://Components/InteractComponent/interact_component.gd" id="1_p7cjq"]
+[ext_resource type="PackedScene" uid="uid://dpklucgychho" path="res://UI/FloatingBtn/floating_btn.tscn" id="2_xcxhw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vdx20"]
+size = Vector3(3.09106, 1, 6.51563)
+
+[node name="InteractComponent" type="Area3D" node_paths=PackedStringArray("btnLabel")]
+collision_mask = 2
+script = ExtResource("1_p7cjq")
+btnLabel = NodePath("FloatingBtn")
+
+[node name="InteractAreaShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8435, -3.79655, 0)
+shape = SubResource("BoxShape3D_vdx20")
+
+[node name="FloatingBtn" parent="." instance=ExtResource("2_xcxhw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.20818, 0, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+
+[editable path="FloatingBtn"]
