@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bt6u3f11tiw8f"]
+[gd_scene load_steps=19 format=3 uid="uid://bt6u3f11tiw8f"]
 
 [ext_resource type="Script" uid="uid://cgs2uyw41j2dq" path="res://Scenes/TrainingGrounds/training_grounds.gd" id="1_tehus"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="1_w83ly"]
@@ -12,12 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://bo8iptqi6h6cw" path="res://Components/Gate/gate.tscn" id="11_mb1cw"]
 
 [sub_resource type="Resource" id="Resource_4d07c"]
-script = ExtResource("8_wob2a")
-duration = 1.0
-transition = 0
-ease = 2
-
-[sub_resource type="Resource" id="Resource_mb1cw"]
 script = ExtResource("8_wob2a")
 duration = 1.0
 transition = 0
@@ -50,7 +44,7 @@ radius = 14.0
 
 [node name="TrainingGrounds" type="Node3D" node_paths=PackedStringArray("objCamera")]
 script = ExtResource("1_tehus")
-objCamera = NodePath("Cameras/ObjCamera")
+objCamera = NodePath("")
 
 [node name="Cameras" type="Node" parent="."]
 
@@ -75,12 +69,6 @@ script = ExtResource("7_uxctw")
 priority = 1
 tween_resource = SubResource("Resource_4d07c")
 tween_on_load = false
-metadata/_custom_type_script = "uid://csjccrhj5wnx7"
-
-[node name="ObjCamera" type="Node3D" parent="Cameras"]
-transform = Transform3D(0.0121123, 0, 0.999927, 0, 1, 0, -0.999927, 0, 0.0121123, 0, 4.15116, 0)
-script = ExtResource("7_uxctw")
-tween_resource = SubResource("Resource_mb1cw")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="Ground" type="MeshInstance3D" parent="."]
