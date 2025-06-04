@@ -1,19 +1,18 @@
-extends CenterContainer
+extends CenterDot
 
-@onready var lineArr = [$Bottom, $Top, $Left, $Right]
-@onready var invertColorShader = preload("res://Shaders/InvertColor.gdshader")
+@onready var lineArr = [%Bottom, %Top, %Left, %Right]
+
 
 func _ready():
-	change_color(GameInfo.data.crossColor)
-	change_opacity(GameInfo.data.crossOpacity)
+	super()
 	change_length(GameInfo.data.crossLength)
 	change_width(GameInfo.data.crossWidth)
-	config_invert_shader()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	change_center_offset(PlayerData.crossOffset)
 
 func change_color(col : Color):
+	super(col)
 	for line in lineArr:
 		line.default_color = col
 
@@ -38,23 +37,22 @@ func change_width(val : float):
 
 #Changes crosshair opacity. Ranges from 0 to 1.
 func change_opacity(val_normalised : float):
+	super(val_normalised)
 	for line in lineArr:
 		line.default_color.a = val_normalised
 
 func change_center_offset(offset):
-	$Bottom.position.y = offset
-	$Top.position.y = -offset
-	$Left.position.x = -offset
-	$Right.position.x = offset
-
-func config_invert_shader():
-	if GameInfo.data.invertedColors: apply_invert_color_shader()
-	else: remove_shader()
+	%Bottom.position.y = offset
+	%Top.position.y = -offset
+	%Left.position.x = -offset
+	%Right.position.x = offset
 
 func apply_invert_color_shader():
+	super()
 	for line in lineArr:
 		line.material.shader = invertColorShader
 
 func remove_shader():
+	super()
 	for line in lineArr:
 		line.material.shader = null

@@ -12,4 +12,5 @@ func set_current_camera(idx : int):
 	phCameras[currCameraIdx].priority = 0
 	phCameras[idx].priority = 10
 	currCameraIdx = idx
+	await get_tree().create_timer(phCameras[idx].tween_resource.duration).timeout
 

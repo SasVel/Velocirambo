@@ -1,6 +1,14 @@
 extends Node
 class_name UIHelper
 
+## Helper class for all things UI
+
+var elementsArr = [
+	preload("res://UI/Components/YesNoMessage/yes_no_message.tscn"),
+	preload("res://UI/AnnounceLabelUI/announce_label_ui.tscn"),
+	preload("res://UI/Settings/settings.tscn")
+]
+
 ##Enum for dynamic UI elements. They can be spawned with elementsArr and should
 ##be deleted after their use is over.
 enum Elements {
@@ -47,12 +55,6 @@ func change_mode(val : Modes):
 
 func change_to_last_mode():
 	change_mode(_lastMode)
-
-var elementsArr = [
-	preload("res://UI/Components/YesNoMessage/yes_no_message.tscn"),
-	preload("res://UI/AnnounceLabelUI/announce_label_ui.tscn"),
-	preload("res://UI/Settings/settings.tscn")
-]
 
 func show_yes_no_msg(caller : Control, message : String = "Are you sure?"):
 	var msg : YesNoMessage = elementsArr[0].instantiate().init(message)

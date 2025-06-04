@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bt6u3f11tiw8f"]
+[gd_scene load_steps=30 format=3 uid="uid://bt6u3f11tiw8f"]
 
 [ext_resource type="Script" uid="uid://cgs2uyw41j2dq" path="res://Scenes/TrainingGrounds/training_grounds.gd" id="1_tehus"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="1_w83ly"]
@@ -16,6 +16,10 @@
 [ext_resource type="PackedScene" uid="uid://4nai4qjgabti" path="res://Resources/Models/TrainingArea/LevelBoard.fbx" id="12_w1sgy"]
 [ext_resource type="PackedScene" uid="uid://c1qv2asy8cra5" path="res://Components/InteractComponent/interact_component.tscn" id="12_y5dww"]
 [ext_resource type="Script" uid="uid://dervt1wukvmxw" path="res://Scenes/TrainingGrounds/equipment.gd" id="13_lwts1"]
+[ext_resource type="Script" uid="uid://dn0pgrxlejbx7" path="res://Scenes/TrainingGrounds/levels_board.gd" id="14_mnaam"]
+[ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="16_vh7g6"]
+[ext_resource type="Script" uid="uid://c6fo8fmkrj3al" path="res://UI/Components/button_anim_component.gd" id="17_mnaam"]
+[ext_resource type="Script" uid="uid://m20blgxgerfk" path="res://UI/Components/button_focus_component.gd" id="18_104mm"]
 
 [sub_resource type="Resource" id="Resource_y5dww"]
 script = ExtResource("8_wob2a")
@@ -53,23 +57,21 @@ height = 3.42259
 height = 4.0
 radius = 14.0
 
-[node name="TrainingGrounds" type="Node3D" node_paths=PackedStringArray("camController")]
+[node name="TrainingGrounds" type="Node3D"]
 script = ExtResource("1_tehus")
-camController = NodePath("Cameras")
 
 [node name="Cameras" type="Node" parent="." node_paths=PackedStringArray("phCameras")]
 script = ExtResource("2_mb1cw")
 phCameras = [NodePath("PlayerCameraController"), NodePath("LevelSelectCamera"), NodePath("EquipmentCamera")]
 
 [node name="MainCamera" parent="Cameras" instance=ExtResource("2_wob2a")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.798, 2.76415, -2)
 
 [node name="PlayerCameraController" parent="Cameras" instance=ExtResource("3_uxctw")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.798, 2.76415, -2)
 
 [node name="LevelSelectCamera" type="Node3D" parent="Cameras"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.1851, 4.31746, 17.9346)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.7099, 3.32644, 17.9346)
 script = ExtResource("7_uxctw")
+priority = 1
 tween_resource = SubResource("Resource_y5dww")
 tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
@@ -153,38 +155,120 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DummyComponent/Area3D"]
 shape = SubResource("CylinderShape3D_4d07c")
 
-[node name="LevelsBoard" type="Node3D" parent="."]
+[node name="LevelsBoard" type="Node3D" parent="." node_paths=PackedStringArray("camController", "rootUI")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.2403, 2.86372, 18.0011)
+script = ExtResource("14_mnaam")
+camController = NodePath("../Cameras")
+activeCameraIdx = 1
+rootUI = NodePath("Menu")
 
 [node name="LevelBoard" parent="LevelsBoard" instance=ExtResource("12_w1sgy")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -3.05524, 0)
 
-[node name="LevelInteractComponent" parent="LevelsBoard" instance=ExtResource("12_y5dww")]
+[node name="InteractComponent" parent="LevelsBoard" instance=ExtResource("12_y5dww")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.26658, 0)
 
-[node name="Equipment" type="Node3D" parent="."]
+[node name="Menu" type="MarginContainer" parent="LevelsBoard"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("16_vh7g6")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 30
+
+[node name="Content" type="Control" parent="LevelsBoard/Menu"]
+layout_mode = 2
+
+[node name="BackBtn" type="Button" parent="LevelsBoard/Menu/Content"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -92.0
+offset_top = -48.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "BACK"
+
+[node name="ButtonAnimComponent" type="Node" parent="LevelsBoard/Menu/Content/BackBtn"]
+script = ExtResource("17_mnaam")
+time = 0.2
+pivotPos = 0
+
+[node name="ButtonFocusComponent" type="Node" parent="LevelsBoard/Menu/Content/BackBtn"]
+script = ExtResource("18_104mm")
+
+[node name="Equipment" type="Node3D" parent="." node_paths=PackedStringArray("camController", "rootUI")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.2324, 0, 18.6103)
 script = ExtResource("13_lwts1")
+camController = NodePath("../Cameras")
+activeCameraIdx = 2
+rootUI = NodePath("Menu")
 
-[node name="EquipInteractComponent" parent="Equipment" instance=ExtResource("12_y5dww")]
+[node name="InteractComponent" parent="Equipment" instance=ExtResource("12_y5dww")]
 
-[node name="InteractAreaShape" parent="Equipment/EquipInteractComponent" index="0"]
+[node name="InteractAreaShape" parent="Equipment/InteractComponent" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06134, -0.155884, 0)
 
-[node name="FloatingBtn" parent="Equipment/EquipInteractComponent" index="1"]
+[node name="FloatingBtn" parent="Equipment/InteractComponent" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33771, 1.70651, 0)
+
+[node name="Menu" type="MarginContainer" parent="Equipment"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("16_vh7g6")
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 30
+
+[node name="Content" type="Control" parent="Equipment/Menu"]
+layout_mode = 2
+
+[node name="BackBtn" type="Button" parent="Equipment/Menu/Content"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -92.0
+offset_top = -48.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "BACK"
+
+[node name="ButtonAnimComponent" type="Node" parent="Equipment/Menu/Content/BackBtn"]
+script = ExtResource("17_mnaam")
+time = 0.2
+pivotPos = 0
+
+[node name="ButtonFocusComponent" type="Node" parent="Equipment/Menu/Content/BackBtn"]
+script = ExtResource("18_104mm")
 
 [connection signal="hurtbox_hit" from="DummyComponent/Dummy/DummyHurtbox" to="DummyComponent" method="_on_dummy_hurtbox_hurtbox_hit"]
 [connection signal="body_entered" from="DummyComponent/Area3D" to="DummyComponent" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="DummyComponent/Area3D" to="DummyComponent" method="_on_area_3d_body_exited"]
-[connection signal="activated" from="LevelsBoard/LevelInteractComponent" to="." method="_on_level_interact_component_activated"]
-[connection signal="activated" from="Equipment/EquipInteractComponent" to="." method="_on_equip_interact_component_activated"]
-[connection signal="activated" from="Equipment/EquipInteractComponent" to="Equipment" method="_on_equip_interact_component_activated"]
-[connection signal="deactivated" from="Equipment/EquipInteractComponent" to="Equipment" method="_on_equip_interact_component_deactivated"]
+[connection signal="activated" from="LevelsBoard/InteractComponent" to="LevelsBoard" method="_on_interact_component_activated"]
+[connection signal="pressed" from="LevelsBoard/Menu/Content/BackBtn" to="LevelsBoard" method="_on_back_btn_pressed"]
+[connection signal="activated" from="Equipment/InteractComponent" to="." method="_on_equip_interact_component_activated"]
+[connection signal="activated" from="Equipment/InteractComponent" to="Equipment" method="_on_equip_interact_component_activated"]
+[connection signal="deactivated" from="Equipment/InteractComponent" to="Equipment" method="_on_equip_interact_component_deactivated"]
+[connection signal="pressed" from="Equipment/Menu/Content/BackBtn" to="LevelsBoard" method="_on_back_btn_pressed"]
 
 [editable path="CompletePlayer"]
 [editable path="DummyComponent/Dummy"]
-[editable path="LevelsBoard/LevelInteractComponent"]
-[editable path="LevelsBoard/LevelInteractComponent/FloatingBtn"]
-[editable path="Equipment/EquipInteractComponent"]
-[editable path="Equipment/EquipInteractComponent/FloatingBtn"]
+[editable path="LevelsBoard/InteractComponent"]
+[editable path="LevelsBoard/InteractComponent/FloatingBtn"]
+[editable path="Equipment/InteractComponent"]
+[editable path="Equipment/InteractComponent/FloatingBtn"]

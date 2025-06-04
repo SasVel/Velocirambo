@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://07oru7jy6ubh"]
+[gd_scene load_steps=11 format=3 uid="uid://07oru7jy6ubh"]
 
 [ext_resource type="Script" uid="uid://cc4nm2dsvw2l4" path="res://Scenes/Arena/arena_scene.gd" id="1_2xwcc"]
 [ext_resource type="Environment" uid="uid://ciipvdp53q8qo" path="res://Misc/MainEnv.tres" id="2_320u5"]
+[ext_resource type="Script" uid="uid://5hsmj243mnm5" path="res://GlobalScripts/CameraController.gd" id="2_kj2vk"]
 [ext_resource type="Shader" uid="uid://co3lk5adwog6e" path="res://Shaders/Pixelate.gdshader" id="3_g4h8m"]
+[ext_resource type="PackedScene" uid="uid://cg4q6dhku3gso" path="res://Components/MainCamera/main_camera.tscn" id="3_qyeiu"]
+[ext_resource type="PackedScene" uid="uid://d2eeq8itfr47q" path="res://Components/MainCamera/player_camera_controller.tscn" id="4_p3twq"]
 [ext_resource type="PackedScene" uid="uid://bngold1yrgekl" path="res://Scenes/Arena/arena.tscn" id="12_nyhal"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="13_cebwv"]
 [ext_resource type="PackedScene" uid="uid://bxb5dwbcvtql4" path="res://Scenes/Bosses/Anky/anky_boss.tscn" id="14_v2jhk"]
@@ -13,6 +16,25 @@ shader_parameter/pixel_size = 2.0
 
 [node name="ArenaScene" type="Node3D"]
 script = ExtResource("1_2xwcc")
+
+[node name="Cameras" type="Node" parent="." node_paths=PackedStringArray("phCameras")]
+script = ExtResource("2_kj2vk")
+phCameras = [NodePath("PlayerCameraController")]
+
+[node name="MainCamera" parent="Cameras" instance=ExtResource("3_qyeiu")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.798, 2.76415, -2)
+
+[node name="PlayerCameraController" parent="Cameras" instance=ExtResource("4_p3twq")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.798, 2.76415, -2)
+
+[node name="CompletePlayer" parent="." instance=ExtResource("13_cebwv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.382147, 0)
+
+[node name="Player" parent="CompletePlayer" index="0" node_paths=PackedStringArray("camera")]
+camera = NodePath("../../Cameras/MainCamera")
+
+[node name="CameraTransform" parent="CompletePlayer/CameraTarget" index="0"]
+remote_path = NodePath("../../../Cameras/PlayerCameraController")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_320u5")
@@ -41,8 +63,6 @@ layer = 2
 
 [node name="Arena" parent="." instance=ExtResource("12_nyhal")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.549866, 0)
-
-[node name="CompletePlayer" parent="." instance=ExtResource("13_cebwv")]
 
 [node name="AnkyBoss" parent="." instance=ExtResource("14_v2jhk")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 22.0644)
