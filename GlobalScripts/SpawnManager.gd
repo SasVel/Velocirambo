@@ -7,6 +7,14 @@ extends Node
 @onready var healthPickupScn : PackedScene = preload("res://Components/Pickcups/health_pickup.tscn")
 @onready var pickupsArr : Array[Pickup]
 
+enum Bosses {
+	Anky
+}
+
+var bossScnDict : Dictionary[Bosses, PackedScene] = {
+	Bosses.Anky: preload("res://Scenes/Bosses/Anky/anky_boss.tscn")
+}
+
 var isSpawningPickups : bool = false :
 	set(val):
 		isSpawningPickups = val
@@ -15,6 +23,9 @@ var isSpawningPickups : bool = false :
 
 func get_random_spawn_position() -> Vector3:
 	return Vector3(randf_range(-spawnSize, spawnSize), 0, randf_range(-spawnSize, spawnSize))
+
+func spawn_boss(type : Bosses, pos : Vector3) -> Node3D:
+	return spawn(bossScnDict[type], pos)
 
 func spawn(objScn : PackedScene, pos = get_random_spawn_position()) -> Node:
 	var inst = objScn.instantiate()

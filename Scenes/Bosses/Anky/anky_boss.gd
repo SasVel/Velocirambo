@@ -1,14 +1,10 @@
-extends CharacterBody3D
+extends Boss
 
-@export var bossName : String = "ANKY_NAME"
-@export var speed : float = 5
 @onready var bossStage : int = 1 :
 	set(val):
 		bossStage = val
 		boss_stage_changed.emit(val)
-@export_range(0.1, 1.0) var animationTransTime : float = 0.2
 
-@onready var bossHealthBarScn = preload("res://Scenes/Bosses/Components/BossHealthBar/boss_health_bar.tscn")
 @onready var animTree : AnimationTree = $AnimationTree
 @onready var attackArea : Area3D = $AttackArea
 @onready var stompParticlesScn = preload("res://Scenes/Bosses/Particles/stomp_particles.tscn")
@@ -21,16 +17,9 @@ extends CharacterBody3D
 
 signal boss_stage_changed(stageIdx)
 
-enum States {
-	IDLE,
-	WALK,
-	ATTACK,
-	DEAD
-}
-var state : States = States.IDLE :
-	set(val):
-		if val != States.ATTACK: animTransition(val)
-		state = val
+func set_state(val):
+	if val != States.ATTACK: animTransition(val)
+	super(val)
 
 enum AttackStates {
 	ROLL,
@@ -39,29 +28,12 @@ enum AttackStates {
 }
 var attackState : AttackStates = AttackStates.ROLL
 
-func _ready() -> void:
-	self.look_at(PlayerData.position, Vector3.UP, true)
-	init_health_bar()
-
-func _physics_process(delta: float) -> void:
-	if state == States.DEAD: return
-	match state:
-		States.IDLE:
-			idle_state(delta)
-		States.WALK:
-			walk_state(delta)
-		States.ATTACK:
-			attack_state()
-	move_and_slide()
-
 func idle_state(delta):
-	velocity = velocity.move_toward(Vector3.ZERO, delta * 4)
+	super(delta)
 	run_state_trans_timer()
 
-func walk_state(_delta):
-	velocity = global_position.direction_to(Vector3(PlayerData.position.x, global_position.y, PlayerData.position.z)) * speed
-	var targetTransform = self.global_transform.looking_at(PlayerData.position, Vector3.UP, true)
-	global_transform.basis = lerp(global_transform.basis.orthonormalized(), targetTransform.basis.orthonormalized(), 0.01)
+func walk_state(delta):
+	super(delta)
 	run_state_trans_timer()
 
 func run_state_trans_timer():
@@ -142,21 +114,6 @@ func _on_state_trans_timer_timeout():
 		state = States.ATTACK
 	else: state = States.WALK
 
-##Moves towards a direction
-func move_dir_tween(dir : Vector3, moveSpeed : float, time : float):
-	var moveTween = create_tween()
-	moveTween.tween_property(self, "velocity", dir * moveSpeed, time * 0.2)
-	moveTween.tween_property(self, "velocity", Vector3.ZERO, time * 0.2).set_delay(time * 0.6)
-	await moveTween.finished
-	velocity = Vector3.ZERO
-
-##Moves to a global position
-func move_pos_tween(pos : Vector3, time : float):
-	var moveToTween = create_tween()
-	moveToTween.tween_property(self, "global_position", pos, time)
-	await moveToTween.finished
-	velocity = Vector3.ZERO
-
 ##Designed to run when a new state is assigned, not every loop. 
 func animTransition(animState : States = state):
 	match animState:
@@ -184,17 +141,6 @@ func animTransition(animState : States = state):
 					animTree.set("parameters/states_trans/transition_request", "throw_attack_state")
 		States.DEAD:
 			animTree.set("parameters/states_trans/transition_request", "death_state")
-
-func init_health_bar():
-	var healthBar : BossHealthBar = bossHealthBarScn.instantiate().init(bossName, $Stats)
-	get_tree().get_root().get_node("/root/Main/UI").add_child(healthBar)
-
-func _on_stats_no_health():
-	state = States.DEAD
-	SteamStuff.unlock_ach(SteamStuff.Ach.ANKY_BOSS_DEFEAT)
-	%DeathPlayer.play()
-	%Targets.enabled = false
-	GameInfo.game_won.emit()
 
 ##Spawns stomp particles at the global position of the StompGroundMarker
 func spawn_stomp_particles():

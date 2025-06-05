@@ -3,6 +3,13 @@ class_name GameData
 
 ##Resource for all permanent data. Change the version if you add/remove/change variables.
 
+
+
+func configure():
+	for i in BalanceData.Levels.values():
+		levelsCompleted[i] = false
+
+
 @export var version : String = Const.gameDataVersion
 #region Settings
 ##Indicates if a YesNoMessage has been shown for controller.
@@ -56,4 +63,10 @@ signal nuggiesChanged
 		if(val > 0): SteamStuff.unlock_ach(SteamStuff.Ach.GET_A_NUGGIE)
 		nuggies = val
 		nuggiesChanged.emit()
+#endregion
+
+#region Player Permanent Data
+
+@export var levelsCompleted : Dictionary[BalanceData.Levels, bool] = {}
+
 #endregion

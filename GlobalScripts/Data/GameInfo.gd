@@ -35,4 +35,5 @@ func save_data():
 
 func create_new_data():
 	data = GameData.new()
+	data.configure()
 	save_data()

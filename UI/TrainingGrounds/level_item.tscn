@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://7qyudkc6k68d"]
+
+[ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="1_06t65"]
+[ext_resource type="Script" uid="uid://ck7foysvgoera" path="res://UI/TrainingGrounds/level_item.gd" id="2_3ao2x"]
+[ext_resource type="Texture2D" uid="uid://30kjbuupev1p" path="res://Resources/Sprites/UI/Check.png" id="2_wgigx"]
+[ext_resource type="LabelSettings" uid="uid://w8lv2e054n28" path="res://UI/LabelSettings/big_bold_label_settings.tres" id="3_2mrs2"]
+[ext_resource type="Script" uid="uid://cfngxiknykpgt" path="res://UI/TrainingGrounds/check_box_container.gd" id="3_yl72p"]
+
+[sub_resource type="Gradient" id="Gradient_wgigx"]
+offsets = PackedFloat32Array(0.359756, 0.674797, 0.686992)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_61cro"]
+gradient = SubResource("Gradient_wgigx")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="LevelItem" type="Button"]
+custom_minimum_size = Vector2(160, 200)
+offset_right = 160.0
+offset_bottom = 200.0
+theme = ExtResource("1_06t65")
+toggle_mode = true
+script = ExtResource("2_3ao2x")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 158.0
+offset_bottom = 198.0
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "BlaBlaBla"
+label_settings = ExtResource("3_2mrs2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "BlaBlaBla"
+label_settings = ExtResource("3_2mrs2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBoxContainer" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -18.0
+offset_right = 37.0
+offset_bottom = 36.0
+rotation = -0.53039
+pivot_offset = Vector2(27, 27)
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_61cro")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("3_yl72p")
+
+[node name="CheckBox" type="TextureRect" parent="CheckBoxContainer"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -23.0
+offset_right = 23.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wgigx")
+expand_mode = 1
+stretch_mode = 5

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bt6u3f11tiw8f"]
+[gd_scene load_steps=31 format=3 uid="uid://bt6u3f11tiw8f"]
 
 [ext_resource type="Script" uid="uid://cgs2uyw41j2dq" path="res://Scenes/TrainingGrounds/training_grounds.gd" id="1_tehus"]
 [ext_resource type="PackedScene" uid="uid://bdvqhvfu8pif1" path="res://Player/complete_player.tscn" id="1_w83ly"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://dn0pgrxlejbx7" path="res://Scenes/TrainingGrounds/levels_board.gd" id="14_mnaam"]
 [ext_resource type="Theme" uid="uid://bybm5iuhmxeoj" path="res://UI/main_theme.tres" id="16_vh7g6"]
 [ext_resource type="Script" uid="uid://c6fo8fmkrj3al" path="res://UI/Components/button_anim_component.gd" id="17_mnaam"]
+[ext_resource type="Script" uid="uid://cs2tnlpomdumm" path="res://Scenes/TrainingGrounds/levels_container.gd" id="18_2l2d0"]
 [ext_resource type="Script" uid="uid://m20blgxgerfk" path="res://UI/Components/button_focus_component.gd" id="18_104mm"]
 
 [sub_resource type="Resource" id="Resource_y5dww"]
@@ -65,8 +66,10 @@ script = ExtResource("2_mb1cw")
 phCameras = [NodePath("PlayerCameraController"), NodePath("LevelSelectCamera"), NodePath("EquipmentCamera")]
 
 [node name="MainCamera" parent="Cameras" instance=ExtResource("2_wob2a")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.798, 2.76415, -2)
 
 [node name="PlayerCameraController" parent="Cameras" instance=ExtResource("3_uxctw")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1.798, 2.76415, -2)
 
 [node name="LevelSelectCamera" type="Node3D" parent="Cameras"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 28.7099, 3.32644, 17.9346)
@@ -180,21 +183,19 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 30
 
-[node name="Content" type="Control" parent="LevelsBoard/Menu"]
+[node name="Content" type="VBoxContainer" parent="LevelsBoard/Menu"]
 layout_mode = 2
+
+[node name="LevelsContainer" type="GridContainer" parent="LevelsBoard/Menu/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("18_2l2d0")
 
 [node name="BackBtn" type="Button" parent="LevelsBoard/Menu/Content"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -92.0
-offset_top = -48.0
-grow_horizontal = 0
-grow_vertical = 0
+custom_minimum_size = Vector2(90, 40)
+layout_mode = 2
+size_flags_horizontal = 8
 text = "BACK"
 
 [node name="ButtonAnimComponent" type="Node" parent="LevelsBoard/Menu/Content/BackBtn"]
@@ -221,6 +222,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06134, -0.155884, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33771, 1.70651, 0)
 
 [node name="Menu" type="MarginContainer" parent="Equipment"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -260,6 +262,7 @@ script = ExtResource("18_104mm")
 [connection signal="body_entered" from="DummyComponent/Area3D" to="DummyComponent" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="DummyComponent/Area3D" to="DummyComponent" method="_on_area_3d_body_exited"]
 [connection signal="activated" from="LevelsBoard/InteractComponent" to="LevelsBoard" method="_on_interact_component_activated"]
+[connection signal="activated" from="LevelsBoard/InteractComponent" to="LevelsBoard/Menu/Content/LevelsContainer" method="_on_interact_component_activated"]
 [connection signal="pressed" from="LevelsBoard/Menu/Content/BackBtn" to="LevelsBoard" method="_on_back_btn_pressed"]
 [connection signal="activated" from="Equipment/InteractComponent" to="." method="_on_equip_interact_component_activated"]
 [connection signal="activated" from="Equipment/InteractComponent" to="Equipment" method="_on_equip_interact_component_activated"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://c555vmvvxen17"]
+
+[ext_resource type="Script" uid="uid://bas80h53xeun0" path="res://GlobalScripts/Data/Balances/balance_expose.gd" id="1_0pon5"]
+[ext_resource type="Script" uid="uid://drgvgnrbtiq8c" path="res://GlobalScripts/Data/BalanceData/LevelData.gd" id="2_vni3x"]
+[ext_resource type="Script" uid="uid://cwvqv6qnhnfcm" path="res://GlobalScripts/Data/Balances/BalanceData.gd" id="3_ggmcm"]
+
+[sub_resource type="Resource" id="Resource_vni3x"]
+script = ExtResource("3_ggmcm")
+levelsBalances = Dictionary[int, ExtResource("2_vni3x")]({})
+metadata/_custom_type_script = "uid://cwvqv6qnhnfcm"
+
+[node name="Balances" type="Node"]
+script = ExtResource("1_0pon5")
+data = SubResource("Resource_vni3x")

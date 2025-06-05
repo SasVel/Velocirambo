@@ -3,6 +3,7 @@ extends Node
 var isSteamRunning : bool = false
 
 enum Ach {
+	NONE,
 	START_GAME,
 	GET_A_NUGGIE,
 	GRAB_A_BEER,
@@ -26,7 +27,7 @@ func _ready():
 	isSteamRunning = Steam.isSteamRunning()
 
 func unlock_ach(ach : Ach):
-	if !isSteamRunning: return
+	if !isSteamRunning || ach == Ach.NONE: return
 	
 	var achStr = Ach.keys()[ach]
 	var status = Steam.getAchievement(achStr)
